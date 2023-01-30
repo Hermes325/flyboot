@@ -88,6 +88,24 @@ export async function getItem(slug: string): Promise<Item> {
   });
 }
 
+//* Поиск товара
+export async function searchItem(name: string): Promise<Item[]> {
+  const query = gql`
+  query searchItem($name: String!) {
+    allItems(first: 1, skip: 0, filter: {title: {matches: {pattern: $name}}}) {
+      slug
+      title
+    }
+  }`;
+  const response = await graphQLRequest({
+    query,
+    variables: { name },
+  })
+
+  return response.allItems
+}
+
+
 // Utils =====================================================
 export type GraphQLRequest = {
   query: string;

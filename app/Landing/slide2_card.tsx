@@ -10,8 +10,6 @@ type Props = {
 }
 
 const Slide2Card = ({ item }: Props) => {
-  console.log("Slide2Card", item.images[0].responsiveImage)
-
   return (
     <div>
       <Image data={item.images[0].responsiveImage} />

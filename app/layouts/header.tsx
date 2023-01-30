@@ -6,6 +6,8 @@ import { Inter } from "@next/font/google";
 import NavLink from "./link";
 import classNames from "classnames";
 import logo_mini_path from "@/public/header-images/logo_mini.png";
+import { Item, searchItem } from "@/lib/datocms";
+import HeaderSearchList from "./headerSearchList";
 import bucket_logo from "@/public/header-images/bucket_logo.svg";
 // import menu_path from "@/public/header-images/menu.svg";
 // import menu_close_path from "@/public/header-images/close.svg";
@@ -26,6 +28,21 @@ const links = [
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [search, setSearch] = useState("")
+  const [foundItems, setFoundItems] = useState<Item[]>([])
+
+  async function searchRequest(event: React.ChangeEvent<HTMLInputElement>) {
+    const name = event.target.value
+    setSearch(name)
+
+    // Меньше 3 символов ничего не найдём
+    if (name.length < 3) return
+
+    const found = await fetch(`/api/search?name=${name}`)
+    const foundItems: Item[] = await found.json()
+    console.log(foundItems);
+    setFoundItems(foundItems)
+  }
 
   return (
     <header className="fixed w-screen z-[1000] shadow">
@@ -40,6 +57,13 @@ function Header() {
         </NavLink>
 
         <div className="flex flex-row justify-center items-center space-x-10">
+          {/* Поиск товаров */}
+          <input
+            placeholder="поиск"
+            className="caret-pink-500 text-black"
+            value={search}
+            onChange={searchRequest} />
+
           <NavLink href="/Bucket">
             <Image
               src={bucket_logo}
@@ -58,6 +82,18 @@ function Header() {
             onClick={() => setIsNavOpen((prev) => !prev)}
           />
         </div>
+      </nav>
+
+
+      {/* Модальное окно поиска */}
+      <nav
+        className={classNames(
+          "fixed z-[1] top-[108] left-0 flex flex-col justify-center items-center gap-10 w-full h-full bg-slate-700 opacity-0 invisible transition",
+          { "!visible opacity-90": search.length > 0 }
+        )}
+        onClick={() => setIsNavOpen((prev) => !prev)}
+      >
+        <HeaderSearchList items={foundItems} />
       </nav>
 
       {/* Модальное окно навигации */}
