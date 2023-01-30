@@ -1,39 +1,18 @@
 import React from "react";
 import { gql } from "graphql-request";
 import { request } from "../../lib/datocms";
-
-// import { GetStaticProps } from "next";
-import { InferGetStaticPropsType } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const pageQuery = gql`
   query {
-    catalog {
+    allBoots(first: 1, skip: 0) {
       id
-      name
-      slug
-      items {
-        ... on ItemRecord {
-          id
-          __typename
-          title
-          description
-        }
-      }
     }
   }
 `;
 
-export async function getStaticProps() {
-  const data: Promise<any> = await request(pageQuery);
-  console.log(data);
-  return {
-    props: { data },
-  };
+export default async function CMS(_: NextApiRequest, res: NextApiResponse) {
+  const qwe = await request({ query: pageQuery });
+  console.log(qwe);
+  res.status(200).json(qwe);
 }
-
-function handler({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(data);
-  return <div>{JSON.stringify(data, null, 2)}</div>;
-}
-
-export default handler;

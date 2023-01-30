@@ -1,4 +1,3 @@
-// import { GraphQLClient } from "graphql-request";
 import { GraphQLClient } from "graphql-request";
 // import { GraphQLRequestContext } from "graphql-request/dist/types";
 
@@ -8,15 +7,20 @@ export type Variables = { [key: string]: any };
 //   variables?: V;
 // }
 
-export function request(
-  query: string,
-  variables?: Variables,
-  includeDrafts?: boolean,
-  excludeInvalid?: boolean
-) {
+export function request({
+  query,
+  variables,
+  includeDrafts,
+  excludeInvalid,
+}: {
+  query: string;
+  variables?: Variables;
+  includeDrafts?: boolean;
+  excludeInvalid?: boolean;
+}) {
   const headers: { [key: string]: any } = {
-    // authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
-    authorization: `Bearer eac83496c71333525d781c9f123e43`,
+    authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+    // authorization: `Bearer eac83496c71333525d781c9f123e43`,
   };
   if (includeDrafts) {
     headers["X-Include-Drafts"] = "true";
