@@ -28,17 +28,20 @@ const links = [
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [search, setSearch] = useState("")
   const [foundItems, setFoundItems] = useState<Item[]>([])
 
-  async function search(event: React.ChangeEvent<HTMLInputElement>) {
+  async function searchRequest(event: React.ChangeEvent<HTMLInputElement>) {
     const name = event.target.value
+    setSearch(name)
 
-    // Ничего не найдём меньше 3 символов
-    if (name.length < 3)
-      return
+    // Меньше 3 символов ничего не найдём
+    if (name.length < 3) return
 
-    const found = await searchItem(name)
-    setFoundItems(found)
+    const found = await fetch(`/api/search?name=${name}`)
+    const foundItems: Item[] = await found.json()
+    console.log(foundItems);
+    setFoundItems(foundItems)
   }
 
   return (
@@ -53,13 +56,14 @@ function Header() {
           />
         </NavLink>
 
-        {/* Поиск товаров */}
-        <input
-          placeholder="поиск"
-          className="TODO:прописать tailwind"
-          onChange={search} />
-
         <div className="flex flex-row justify-center items-center space-x-10">
+          {/* Поиск товаров */}
+          <input
+            placeholder="поиск"
+            className="caret-pink-500 text-black"
+            value={search}
+            onChange={searchRequest} />
+
           <NavLink href="/Bucket">
             <Image
               src={bucket_logo}
@@ -82,7 +86,15 @@ function Header() {
 
 
       {/* Модальное окно поиска */}
-      <HeaderSearchList items={foundItems} />
+      <nav
+        className={classNames(
+          "fixed z-[1] top-[108] left-0 flex flex-col justify-center items-center gap-10 w-full h-full bg-slate-700 opacity-0 invisible transition",
+          { "!visible opacity-90": search.length > 0 }
+        )}
+        onClick={() => setIsNavOpen((prev) => !prev)}
+      >
+        <HeaderSearchList items={foundItems} />
+      </nav>
 
       {/* Модальное окно навигации */}
       <nav

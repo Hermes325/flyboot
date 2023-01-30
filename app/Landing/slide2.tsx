@@ -8,7 +8,7 @@ import Slide2Card from "./slide2_card";
 //* горячие товары
 const Slide2 = async () => {
   const items = await getHotItemsForLanding()
-  console.log("Slide2", items);
+
   return (
     <section>
       {items.map(item =>
