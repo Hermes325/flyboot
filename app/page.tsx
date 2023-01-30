@@ -1,10 +1,10 @@
 import React from 'react'
-import Slide1 from "./Sections/slide1";
-import Slide2 from "./Sections/slide2";
-import Slide3 from "./Sections/slide3";
-import Slide4 from "./Sections/slide4";
-import Slide5 from "./Sections/slide5";
-import Slide6 from "./Sections/slide6";
+import Slide1 from "./Landing/slide1";
+import Slide2 from "./Landing/slide2";
+import Slide3 from "./Landing/slide3";
+import Slide4 from "./Landing/slide4";
+import Slide5 from "./Landing/slide5";
+import Slide6 from "./Landing/slide6";
 
 const Landing = () => (
   <main className="flex flex-col items-center justify-start pt-[158px]">

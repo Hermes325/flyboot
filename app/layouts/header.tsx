@@ -2,11 +2,9 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-
 import { Inter } from "@next/font/google";
-
 import NavLink from "./link";
-
+import classNames from "classnames";
 import logo_mini_path from "@/public/header-images/logo_mini.png";
 // import menu_path from "@/public/header-images/menu.svg";
 // import menu_close_path from "@/public/header-images/close.svg";
@@ -17,7 +15,13 @@ const inter = Inter({
   display: "optional",
 });
 
-var classNames = require("classnames");
+const links = [
+  { href: "/Catalog", label: "Каталог" },
+  { href: "#Как_это_работает?", label: "Как это работает?" },
+  { href: "#A_what_with_delivery_?", label: "А что с доставкой?" },
+  { href: "#About_us", label: "О нас" },
+  { href: "#Связаться", label: "Связаться" }
+]
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -45,6 +49,7 @@ function Header() {
         />
       </nav>
 
+      {/* Модальное окно навигации */}
       <nav
         className={classNames(
           "fixed z-[2] top-0 left-0 flex flex-col justify-center items-center gap-10 w-full h-full bg-black opacity-0 invisible transition",
@@ -52,41 +57,15 @@ function Header() {
         )}
         onClick={() => setIsNavOpen((prev) => !prev)}
       >
-        <a
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
-          style={{ animationDelay: "0.1s" }}
-          href="/Catalog"
-        >
-          Каталог
-        </a>
-        <a
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
-          style={{ animationDelay: "0.2s" }}
-          href="#Как_это_работает?"
-        >
-          Как это работает ?
-        </a>
-        <a
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
-          style={{ animationDelay: "0.3s" }}
-          href="#A_what_with_delivery_?"
-        >
-          А что с доставкой ?
-        </a>
-        <a
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
-          style={{ animationDelay: "0.4s" }}
-          href="#About_us"
-        >
-          О нас
-        </a>
-        <a
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
-          style={{ animationDelay: "0.5s" }}
-          href="#Связаться"
-        >
-          Связаться
-        </a>
+        {links.map(({ href, label }, i) =>
+          <a
+            className="text-[#f9f9f9] hover:text-[#00b5b5] text-5xl"
+            style={{ animationDelay: `0.${i + 1}s` }}
+            href={href}
+            key={href}
+          >
+            {label}
+          </a>)}
       </nav>
     </header>
   );

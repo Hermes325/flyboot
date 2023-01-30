@@ -3,42 +3,101 @@ import { gql } from "graphql-request";
 
 
 
-// Типы ======================================
-export type Variables = {
-  [key: string]: any
+// Типы =====================================================
+export type Item = {
+  brand: string
+  category: string
+  description1: string
+  description2: string
+  slug: string
+  title: string
+  poizonId: string
+  price: number
+  images: { responsiveImage: any }[]
+}
+// Запросы ==================================================
+
+//* Товары для лэндинга
+export async function getHotItemsForLanding(): Promise<Item[]> {
+  const query = gql`
+    query {
+      allItems(first: 1, skip: 0) {
+        title
+        price
+        images {
+          responsiveImage(imgixParams: {auto: format}) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+      }
+    }
+  `;
+  const response = await graphQLRequest({ query })
+  return response.allItems
 }
 
+//* Каталог
+export async function getCatalogPaths(): Promise<string[]> {
+  const query = gql`{
+    allItems {
+      slug
+    }
+  }`
+  const response = await graphQLRequest({ query })
+  console.log("response" + JSON.stringify(response));
+  return response.data.allItems
+    .map((item: Item) => item.slug)
+}
+
+//* Товар
+export async function getItem(slug: string): Promise<Item> {
+  const query = gql`
+    query GetItem($slug:String) {
+      item(filter: {slug: {eq: $slug}}) {
+        slug
+        brand
+        category
+        description1
+        description2
+        title
+        poizonId
+        price
+        images {
+          responsiveImage(imgixParams: {auto: format}) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+      }
+    }
+    `;
+
+  return await graphQLRequest({
+    query,
+    variables: { slug }
+  });
+}
+
+
+// Utils =====================================================
 export type GraphQLRequest = {
   query: string;
-  variables?: Variables;
+  variables?: { [key: string]: any };
   includeDrafts?: boolean;
   excludeInvalid?: boolean;
 }
 
-export type Item = {
-  author: string
-  content: string
-}
-
-// Запросы ======================================
-export async function getHotItemsForLanding(): Promise<Item[]> {
-  const query = gql`
-    query {
-      allBoots(first: 1, skip: 0) {
-        id
-      }
-    }
-  `;
-
-  const response = await graphQLRequest({ query });
-
-  console.log(response);
-
-  return response
-}
-
-
-// Utils ======================================
 export function graphQLRequest(options: GraphQLRequest) {
 
   const {
