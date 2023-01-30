@@ -5,26 +5,13 @@ import Slide3 from "./Sections/slide3";
 import Slide4 from "./Sections/slide4";
 import Slide5 from "./Sections/slide5";
 import Slide6 from "./Sections/slide6";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { Item } from "@/lib/datocms";
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch("https://.../posts");
-  const posts: Item[] = await res.json();
-
-  return {
-    props: {
-      posts,
-    },
-  };
-};
-
-const Landing = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
+const Landing = () => (
   <main className="flex flex-col items-center justify-start pt-[158px]">
     {/* Entry page slide */}
     <Slide1 />
     {/* Demo Catalog Boots */}
-    <Slide2 posts={posts} />
+    <Slide2 />
     {/* Catalogs with category filters  */}
     <Slide3 />
     {/* How it works */}

@@ -1,16 +1,12 @@
 import React from "react";
 import classNames from "classNames";
-
-import "./styles/slides.css";
 import styles from "./styles/slide2.module.css";
-import { Item } from "@/lib/datocms";
+import "./styles/slides.css";
 
-type options = {
-  posts: Item
-}
+import { getHotItemsForLanding, Item } from "@/lib/datocms";
 
-function Slide2({ posts }: options) {
-  return <div>slide2</div>;
-}
-
+const Slide2 = async () => {
+  const qwe: Item[] = await getHotItemsForLanding();
+  return <a>{JSON.stringify(qwe, null, 2)}</a>;
+};
 export default Slide2;

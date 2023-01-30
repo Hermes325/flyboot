@@ -4,16 +4,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const pageQuery = gql`
   query {
-    allBoots(first: 1, skip: 0) {
+    allItems(first: 1, skip: 0) {
       id
     }
   }
 `;
 
-export default async function CMS(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function CMS(req: NextApiRequest, res: NextApiResponse) {
   const qwe = await graphQLRequest({ query: pageQuery });
   console.log(qwe);
   res.status(200).json(qwe);
