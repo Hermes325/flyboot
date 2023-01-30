@@ -71,6 +71,7 @@ function Header() {
               className="w-[50px] h-[50px]"
             />
           </NavLink>
+          
           <div
             className={classNames(
               "z-[3] grid place-items-center w-[20px] h-[20px] bg-[url('../public/header-images/menu.svg')] bg-no-repeat bg-center transition delay-150 duration-300 ease-in-out hover:animate-pulse",
