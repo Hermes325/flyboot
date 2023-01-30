@@ -6,6 +6,8 @@ import { Inter } from "@next/font/google";
 import NavLink from "./link";
 import classNames from "classnames";
 import logo_mini_path from "@/public/header-images/logo_mini.png";
+import { Item, searchItem } from "@/lib/datocms";
+import HeaderSearchList from "./headerSearchList";
 // import menu_path from "@/public/header-images/menu.svg";
 // import menu_close_path from "@/public/header-images/close.svg";
 
@@ -25,6 +27,18 @@ const links = [
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [foundItems, setFoundItems] = useState<Item[]>([])
+
+  async function search(event: React.ChangeEvent<HTMLInputElement>) {
+    const name = event.target.value
+
+    // Ничего не найдём меньше 3 символов
+    if (name.length < 3)
+      return
+
+    const found = await searchItem(name)
+    setFoundItems(found)
+  }
 
   return (
     <header className="fixed w-screen z-[1000] shadow">
@@ -37,6 +51,12 @@ function Header() {
           />
         </NavLink>
 
+        {/* Поиск товаров */}
+        <input
+          placeholder="поиск"
+          className="TODO:прописать tailwind"
+          onChange={search} />
+
         <div
           className={classNames(
             "z-[3] grid place-items-center w-[20px] h-[20px] bg-[url('../public/header-images/menu.svg')] bg-no-repeat bg-center transition delay-150 duration-300 ease-in-out hover:animate-pulse",
@@ -48,6 +68,10 @@ function Header() {
           onClick={() => setIsNavOpen((prev) => !prev)}
         />
       </nav>
+
+
+      {/* Модальное окно поиска */}
+      <HeaderSearchList items={foundItems} />
 
       {/* Модальное окно навигации */}
       <nav
