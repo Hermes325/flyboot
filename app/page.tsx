@@ -1,24 +1,23 @@
-import React from 'react'
+import React from "react";
 import Slide1 from "./Sections/slide1";
 import Slide2 from "./Sections/slide2";
 import Slide3 from "./Sections/slide3";
 import Slide4 from "./Sections/slide4";
 import Slide5 from "./Sections/slide5";
 import Slide6 from "./Sections/slide6";
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { Item } from '@/lib/datocms';
-
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { Item } from "@/lib/datocms";
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch('https://.../posts')
-  const posts: Item[] = await res.json()
+  const res = await fetch("https://.../posts");
+  const posts: Item[] = await res.json();
 
   return {
     props: {
       posts,
-    }
-  }
-}
+    },
+  };
+};
 
 const Landing = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <main className="flex flex-col items-center justify-start pt-[158px]">
@@ -34,6 +33,7 @@ const Landing = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
     <Slide5 />
     {/* About us */}
     <Slide6 />
-  </main>)
+  </main>
+);
 
-export default Landing
+export default Landing;
