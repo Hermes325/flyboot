@@ -6,6 +6,7 @@ import Slide4 from "./Sections/slide4";
 import Slide5 from "./Sections/slide5";
 import Slide6 from "./Sections/slide6";
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { Item } from '@/lib/datocms';
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -20,7 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 const Landing = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
-  <main className="flex flex-row">
+  <main className="flex flex-col items-center justify-start pt-[158px]">
     {/* Entry page slide */}
     <Slide1 />
     {/* Demo Catalog Boots */}
