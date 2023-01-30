@@ -1,3 +1,4 @@
-.landingSection {
-    max-width: 1280px;
+.landing_section {
+  width: 100%;
+  max-width: 1280px;
 }

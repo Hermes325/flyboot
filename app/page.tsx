@@ -8,7 +8,7 @@ import Slide6 from "./Sections/slide6";
 
 export default function Home() {
   return (
-    <main className="flex flex-row">
+    <main className="flex flex-col items-center justify-start pt-[158px]">
       {/* Entry page slide */}
       <Slide1 />
       {/* Demo Catalog Boots */}
