@@ -24,7 +24,7 @@ function Header() {
 
   return (
     <header className="fixed w-screen z-[1000] shadow">
-      <nav className="flex flex-row items-center justify-between px-16 w-full h-[72px] bg-[#19191c] text-[#f9f9f9] transition z-[100] top-0 left-0">
+      <nav className="flex flex-row items-center justify-between px-16 w-full h-[108px] bg-[#19191c] text-[#f9f9f9] transition z-[100] top-0 left-0">
         <NavLink href="/">
           <Image
             src={logo_mini_path}
