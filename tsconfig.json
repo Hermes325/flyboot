@@ -28,6 +28,6 @@
       "@/public/*": ["public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/api/cms.tsx", "lib/datocms.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/api/cms.ts", "lib/datocms.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,26 +1,26 @@
 import { GraphQLClient } from "graphql-request";
-// import { GraphQLRequestContext } from "graphql-request/dist/types";
+import { gql } from "graphql-request";
 
 export type Variables = { [key: string]: any };
-// export interface GraphQLRequestContext<V extends Variables = Variables> {
-//   query: string | string[];
-//   variables?: V;
-// }
 
-export function request({
-  query,
-  variables,
-  includeDrafts,
-  excludeInvalid,
-}: {
+export type GraphQLRequest = {
   query: string;
   variables?: Variables;
   includeDrafts?: boolean;
   excludeInvalid?: boolean;
-}) {
-  const headers: { [key: string]: any } = {
+}
+
+export function graphQLRequest(options: GraphQLRequest) {
+
+  const {
+    query,
+    variables,
+    includeDrafts,
+    excludeInvalid
+  } = options;
+
+  const headers: { [key: string]: string } = {
     authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
-    // authorization: `Bearer eac83496c71333525d781c9f123e43`,
   };
   if (includeDrafts) {
     headers["X-Include-Drafts"] = "true";
@@ -30,4 +30,22 @@ export function request({
   }
   const client = new GraphQLClient("https://graphql.datocms.com", { headers });
   return client.request(query, variables);
+}
+
+// Запросы ======================================
+
+const pageQuery = gql`
+  query {
+    allBoots(first: 1, skip: 0) {
+      id
+    }
+  }
+`;
+export type Item = {
+  author: string
+  content: string
+}
+
+export function getHotItemsForLanding() {
+
 }

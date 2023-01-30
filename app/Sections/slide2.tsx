@@ -4,7 +4,11 @@ import classNames from "classNames";
 import "./styles/slides.css";
 import styles from "./styles/slide2.module.css";
 
-function Slide2() {
+type options = {
+  posts: Post
+}
+
+function Slide2({}) {
   return <div>slide2</div>;
 }
 
