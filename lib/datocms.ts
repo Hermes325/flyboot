@@ -1,7 +1,12 @@
 import { GraphQLClient } from "graphql-request";
 import { gql } from "graphql-request";
 
-export type Variables = { [key: string]: any };
+
+
+// Типы ======================================
+export type Variables = {
+  [key: string]: any
+}
 
 export type GraphQLRequest = {
   query: string;
@@ -10,6 +15,30 @@ export type GraphQLRequest = {
   excludeInvalid?: boolean;
 }
 
+export type Item = {
+  author: string
+  content: string
+}
+
+// Запросы ======================================
+export async function getHotItemsForLanding(): Promise<Item[]> {
+  const query = gql`
+    query {
+      allBoots(first: 1, skip: 0) {
+        id
+      }
+    }
+  `;
+
+  const response = await graphQLRequest({ query });
+
+  console.log(response);
+
+  return response
+}
+
+
+// Utils ======================================
 export function graphQLRequest(options: GraphQLRequest) {
 
   const {
@@ -30,22 +59,4 @@ export function graphQLRequest(options: GraphQLRequest) {
   }
   const client = new GraphQLClient("https://graphql.datocms.com", { headers });
   return client.request(query, variables);
-}
-
-// Запросы ======================================
-
-const pageQuery = gql`
-  query {
-    allBoots(first: 1, skip: 0) {
-      id
-    }
-  }
-`;
-export type Item = {
-  author: string
-  content: string
-}
-
-export function getHotItemsForLanding() {
-
 }
