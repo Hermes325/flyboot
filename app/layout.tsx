@@ -1,5 +1,6 @@
 import Header from "./layouts/header";
 import Footer from "./layouts/footer";
+import { Providers } from "./layouts/provider";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -46,9 +47,11 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Header />
-        <Suspense fallback={<Loading />}>{children}</Suspense>
-        <Footer />
+        <Providers>
+          <Header />
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
