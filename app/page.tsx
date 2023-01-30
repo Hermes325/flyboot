@@ -25,7 +25,7 @@ const Landing = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => (
     {/* Entry page slide */}
     <Slide1 />
     {/* Demo Catalog Boots */}
-    <Slide2 />
+    <Slide2 posts={posts} />
     {/* Catalogs with category filters  */}
     <Slide3 />
     {/* How it works */}
