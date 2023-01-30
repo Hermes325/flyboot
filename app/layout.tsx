@@ -46,7 +46,7 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Header />
+        {/* <Header /> */}
         <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />
       </body>
