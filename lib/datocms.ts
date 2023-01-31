@@ -51,10 +51,10 @@ export async function getCatalogPaths(): Promise<string[]> {
   `;
   const response = await graphQLRequest({ query });
   console.log("response" + JSON.stringify(response));
-  if (!!response.data)
-    return response.data.allItems.map((item: Item) => item.slug);
-  else
-    return response.allItems.map((item: Item) => item.slug);
+  // if (!!response.data)
+  //   return response.data.allItems.map((item: Item) => item.slug);
+  // else
+  return response.allItems.map((item: Item) => item.slug);
 }
 
 //* Товар
@@ -85,29 +85,35 @@ export async function getItem(slug: string): Promise<Item> {
     }
   `;
 
-  return await graphQLRequest({
+  const response = await graphQLRequest({
     query,
     variables: { slug },
   });
+
+  return response.item;
 }
 
 //* Поиск товара
 export async function searchItem(name: string): Promise<Item[]> {
   const query = gql`
-  query searchItem($name: String!) {
-    allItems(first: 1, skip: 0, filter: {title: {matches: {pattern: $name}}}) {
-      slug
-      title
+    query searchItem($name: String!) {
+      allItems(
+        first: 1
+        skip: 0
+        filter: { title: { matches: { pattern: $name } } }
+      ) {
+        slug
+        title
+      }
     }
-  }`;
+  `;
   const response = await graphQLRequest({
     query,
     variables: { name },
-  })
+  });
 
-  return response.allItems
+  return response.allItems;
 }
-
 
 // Utils =====================================================
 export type GraphQLRequest = {
