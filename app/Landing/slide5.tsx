@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classNames";
 
 import "./styles/slides.css";
 import styles from "./styles/slide5.module.css";

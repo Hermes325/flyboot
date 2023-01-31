@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import NavLink from "./link";
 import classNames from "classnames";
+import { Item } from "@/lib/datocms";
 import logo_mini_path from "@/public/header-images/logo_mini.png";
-import { Item, searchItem } from "@/lib/datocms";
 import HeaderSearchList from "./headerSearchList";
 import bucket_logo from "@/public/header-images/bucket_logo.svg";
 // import menu_path from "@/public/header-images/menu.svg";
@@ -71,7 +71,7 @@ function Header() {
               className="w-[50px] h-[50px]"
             />
           </NavLink>
-          
+
           <div
             className={classNames(
               "z-[3] grid place-items-center w-[20px] h-[20px] bg-[url('../public/header-images/menu.svg')] bg-no-repeat bg-center transition delay-150 duration-300 ease-in-out hover:animate-pulse",
