@@ -13,6 +13,21 @@ export type Item = {
   price: number;
   images: { responsiveImage: any }[];
 };
+export type Catalog = {
+  items: Item[],
+  max: { price: number },
+  min: { price: number },
+  all: { count: number }
+}
+export type CatalogBrandsAndCategories = {
+  brands: { name: string }[],
+  category: { categoryJson: { [subCategory: string]: string } }
+}
+export enum SortType {
+  price_ASC,
+  price_DESC,
+  default
+}
 // Запросы ==================================================
 
 //* Товары для лэндинга
@@ -40,7 +55,7 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
   return response.allItems;
 }
 
-//* Каталог
+//* Ссылки на все товары для статической генерации
 export async function getCatalogPaths(): Promise<string[]> {
   const query = gql`
     {
@@ -56,6 +71,88 @@ export async function getCatalogPaths(): Promise<string[]> {
   // else
   return response.allItems.map((item: Item) => item.slug);
 }
+
+//* Все бренды и категории для каталога
+export async function getCatalogBrandsAndCategories(): Promise<CatalogBrandsAndCategories> {
+  const query = gql`
+  {
+    brands: allBrands {
+      name
+    }
+    category {
+      categoryJson
+    }
+  }`;
+  return await graphQLRequest({ query });
+}
+
+//* Все товары для каталога
+export async function getCatalogItems(
+  // Пагинация
+  page: number,
+  // Сортировка по цене
+  orderBy: SortType,
+  // Фильтр по бренду
+  brands: string[],
+  // Фильтр по категории
+  category: string[],
+  // Фильтр по цене
+  minPrice: number,
+  maxPrice: number
+): Promise<Catalog> {
+  const queryVariables = `
+    $first: IntType = 15, 
+    $skip: IntType = 0, 
+    $orderBy: [ItemModelOrderBy] = null, 
+    $brands: [String] = "", 
+    $category: [String] = "", 
+    $minPrice: FloatType = 0, 
+    $maxPrice: FloatType = 1000000000
+  `;
+
+  const queryFilter = `
+    filter: {
+      brand: {in: $brands}, 
+      category: {in: $category}, 
+      price: {gte: $minPrice, lte: $maxPrice}
+    }
+  `;
+
+  const query = gql`
+    query GetCatalog(${queryVariables}) {
+      items: allItems(first: $first, skip: $skip, orderBy: $orderBy, ${queryFilter}) {
+        slug
+        title
+        price
+        poizonId
+      }
+      max: item(orderBy: price_DESC, ${queryFilter}) {
+        price
+      }
+      min: item(orderBy: price_ASC, ${queryFilter}) {
+        price
+      }
+      all: _allItemsMeta(${queryFilter}) {
+        count
+      }
+    }
+  `;
+
+  const response: Catalog = await graphQLRequest({
+    query,
+    variables: {
+      "skip": page * 15,
+      "orderBy": orderBy === SortType.default ? null : orderBy,
+      "brands": brands,
+      "category": category,
+      "minPrice": minPrice,
+      "maxPrice": maxPrice
+    }
+  });
+  console.log("Catalog" + JSON.stringify(response));
+  return response;
+}
+
 
 //* Товар
 export async function getItem(slug: string): Promise<Item> {
