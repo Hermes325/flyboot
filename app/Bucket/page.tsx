@@ -16,24 +16,41 @@ function page() {
 
   return (
     <div className="w-screen min-h-screen flex justify-center bg-[#454545]">
-      <div className="flex flex-col items-center justify-center max-w-[1280px] w-full pt-[150px] pb-10">
+      <div className="flex flex-col items-center justify-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10">
+        <button
+          onClick={() => {
+            dispatch(
+              addItem({
+                brand: "",
+                category: "",
+                description1: "",
+                description2: "",
+                slug: "1",
+                title: "Nike",
+                poizonId: "",
+                price: 0,
+                images: [],
+              })
+            );
+          }}
+        >
+          Добавить предмет в Redux
+        </button>
         {/* Bucket text Корзина */}
         <div className="flex w-full justify-start">
-          <h1 className="font-montserrat font-bold text-7xl">Корзина</h1>
+          <h1 className="font-montserrat font-bold text-7xl text-white">
+            Корзина
+          </h1>
         </div>
         {/* items and info block */}
         <div className="flex flex-row w-full space-x-5">
           <div className="flex flex-col w-[900px] space-y-5">
             {/* Items */}
-            <div className="w-[900px] h-[136px] border-2 rounded-2xl border-[#919191] ">
-              item 1
-            </div>
-            <div className="w-[900px] h-[136px] border-2 rounded-2xl border-[#919191] ">
-              item 2
-            </div>
-            <div className="w-[900px] h-[136px] border-2 rounded-2xl border-[#919191] ">
-              item 3
-            </div>
+            {items.map((x) => (
+              <div className="w-[900px] h-[136px] border-2 rounded-2xl border-[#919191] ">
+                {x.slug}
+              </div>
+            ))}
             {/* inputs */}
             <div className="flex justify-between">
               <input

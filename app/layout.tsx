@@ -7,25 +7,25 @@ import Loading from "./loading";
 import { Inter, Jost, Montserrat, Roboto } from "@next/font/google";
 
 const inter = Inter({
-  subsets: ["cyrillic"],
+  subsets: ["cyrillic", "latin"],
   variable: "--font-inter",
   display: "optional",
 });
 
 const jost = Jost({
-  subsets: ["cyrillic"],
+  subsets: ["cyrillic", "latin"],
   variable: "--font-jost",
   display: "optional",
 });
 
 const montserrat = Montserrat({
-  subsets: ["cyrillic"],
+  subsets: ["cyrillic", "latin"],
   variable: "--font-montserrat",
   display: "optional",
 });
 
 const roboto = Roboto({
-  subsets: ["cyrillic"],
+  subsets: ["cyrillic", "latin"],
   variable: "--font-roboto",
   display: "optional",
   weight: "100",

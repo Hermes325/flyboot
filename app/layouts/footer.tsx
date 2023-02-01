@@ -27,7 +27,7 @@ export default function Footer() {
               <h2 className="font-montserrat text-xl text-white">FAQ</h2>
             </NavLink>
           </div>
-          <div className="flex flex-row">
+          <div className="flex flex-row space-x-6">
             <p className="font-montserrat text-xl text-white">мы в соцсетях</p>
             <Image src={whatsapp_path} alt="whatsapp logo" />
             <Image src={telegram_path} alt="telegramlogo" />
