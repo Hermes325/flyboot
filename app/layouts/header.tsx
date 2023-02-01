@@ -28,26 +28,27 @@ const links = [
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [search, setSearch] = useState("")
-  const [foundItems, setFoundItems] = useState<Item[]>([])
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [foundItems, setFoundItems] = useState<Item[]>([]);
 
   async function searchRequest(event: React.ChangeEvent<HTMLInputElement>) {
-    const name = event.target.value
-    setSearch(name)
+    const name = event.target.value;
+    setSearch(name);
 
     // Меньше 3 символов ничего не найдём
-    if (name.length < 3) return
+    if (name.length < 3) return;
 
-    const found = await fetch(`/api/search?name=${name}`)
-    const foundItems: Item[] = await found.json()
+    const found = await fetch(`/api/search?name=${name}`);
+    const foundItems: Item[] = await found.json();
     console.log(foundItems);
-    setFoundItems(foundItems)
+    setFoundItems(foundItems);
   }
 
   return (
-    <header className="fixed w-screen z-[1000] shadow">
+    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#19191c]">
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between px-16 w-full h-[108px] bg-[#19191c] text-[#f9f9f9] transition z-[100] top-0 left-0">
+      <nav className="flex flex-row items-center justify-between px-16 w-full max-w-[1280px] h-[108px] text-[#f9f9f9] transition top-0 left-0">
         <NavLink href="/">
           <Image
             src={logo_mini_path}
@@ -56,13 +57,24 @@ function Header() {
           />
         </NavLink>
 
+        <NavLink href="/Catalog">
+          <h2 className="font-montserrat text-xl">Каталог</h2>
+        </NavLink>
+        <NavLink href="/">
+          <h2 className="font-montserrat text-xl">О нас</h2>
+        </NavLink>
+        <NavLink href="/">
+          <h2 className="font-montserrat text-xl">FAQ</h2>
+        </NavLink>
+
         <div className="flex flex-row justify-center items-center space-x-10">
           {/* Поиск товаров */}
           <input
-            placeholder="поиск"
-            className="caret-pink-500 text-black"
+            placeholder="Поиск"
+            className="bg-transparent border-b-2 "
             value={search}
-            onChange={searchRequest} />
+            onChange={searchRequest}
+          />
 
           <NavLink href="/Bucket">
             <Image
@@ -85,14 +97,13 @@ function Header() {
         </div>
       </nav>
 
-
       {/* Модальное окно поиска */}
       <nav
         className={classNames(
           "fixed z-[1] top-[108] left-0 flex flex-col justify-center items-center gap-10 w-full h-full bg-slate-700 opacity-0 invisible transition",
           { "!visible opacity-90": search.length > 0 }
         )}
-        onClick={() => setIsNavOpen((prev) => !prev)}
+        onClick={() => setIsSearchOpen((prev) => !prev)}
       >
         <HeaderSearchList items={foundItems} />
       </nav>

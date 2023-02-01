@@ -51,9 +51,6 @@ export async function getCatalogPaths(): Promise<string[]> {
   `;
   const response = await graphQLRequest({ query });
   console.log("response" + JSON.stringify(response));
-  // if (!!response.data)
-  //   return response.data.allItems.map((item: Item) => item.slug);
-  // else
   return response.allItems.map((item: Item) => item.slug);
 }
 

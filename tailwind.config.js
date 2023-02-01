@@ -14,8 +14,8 @@ module.exports = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
-        mono: ["var(--font-roboto)"],
-        montserrat: ["var(--font-roboto)"],
+        roboto: ["var(--font-roboto)"],
+        montserrat: ["var(--font-montserrat)"],
         jost: ["var(--font-jost)"],
       },
     },
