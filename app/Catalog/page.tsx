@@ -1,8 +1,27 @@
-import React from "react";
-
-// import TestCMS from "@/pages/api/testCMS/index";
+import { CatalogBrandsAndCategories, getCatalogBrandsAndCategories, getCatalogItems } from "@/lib/datocms";
+import React, { use } from "react";
 
 function Catalog() {
+
+  // TODO: передать статические категории и первую страница без фильтров
+  const catalogMeta = use(getCatalogBrandsAndCategories())
+  // const catalog = use(getCatalogItems(
+  //   0,
+  //   req.body["orderBy"],
+  //   catalogMeta.brands.map(x => x.name),
+  //   catalogMeta.category.categoryJson,
+  //   req.body["minPrice"],
+  //   req.body["maxPrice"]);
+  // TODO: в дочернем компоненте "use client" + динамические фильтры
+  // useEffect(async () => {
+  //   const brandsAndCats = await getCatalogBrandsAndCategories()
+  //   const   
+  //   return () => {
+  //     second
+  //   }
+  // }, [third])
+
+
   return (
     <div className="w-screen h-screen flex justify-center pt-[72px]">
       <div className="w-full h-full max-w-[1200px] flex flex-row">
