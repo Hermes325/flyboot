@@ -46,7 +46,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className="">
+      <body className="bg-[#0E0E0E]">
         <Providers>
           <Header />
           <Suspense fallback={<Loading />}>{children}</Suspense>

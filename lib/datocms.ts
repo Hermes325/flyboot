@@ -85,17 +85,17 @@ export async function getCatalogBrandsAndCategories(): Promise<CatalogBrandsAndC
 
 //* Все товары для каталога
 export async function getCatalogItems(
-  // Пагинация
-  page: number,
-  // Сортировка по цене
-  orderBy: SortType,
   // Фильтр по бренду
   brands: string[],
   // Фильтр по категории
   category: string[],
+  // Пагинация
+  page: number = 0,
   // Фильтр по цене
-  minPrice: number,
-  maxPrice: number
+  minPrice: number = 0,
+  maxPrice: number = 1000000000,
+  // Сортировка по цене
+  orderBy: SortType = SortType.default
 ): Promise<Catalog> {
   const queryVariables = `
     $first: IntType = 15, 

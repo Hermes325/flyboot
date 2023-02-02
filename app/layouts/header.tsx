@@ -48,7 +48,7 @@ function Header() {
   return (
     <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#19191c]">
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between px-16 w-full max-w-[1280px] h-[108px] text-[#f9f9f9] transition top-0 left-0">
+      <nav className="flex flex-row items-center justify-between px-16 w-full max-w-[1280px] h-[10vh] text-[#f9f9f9] transition top-0 left-0">
         <NavLink href="/">
           <Image
             src={logo_mini_path}
