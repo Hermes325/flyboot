@@ -11,10 +11,10 @@ export default function Footer() {
   return (
     <footer
       id="Связаться"
-      className="flex w-screen h-[169px] justify-center z-[1000] shadow bg-[#19191c]"
+      className="flex w-screen h-[15vh] justify-center z-[1000] shadow bg-[#19191c]"
     >
-      <div className="flex flex-col w-full max-w-[1280px] justify-center items-center">
-        <div className="flex w-full justify-between">
+      <div className="flex flex-col w-full max-w-[1280px] justify-center items-center	">
+        <div className="flex w-full justify-between items-center">
           {/* links to pages */}
           <div className="flex flex-row space-x-72">
             <NavLink href="/Catalog">
@@ -27,7 +27,7 @@ export default function Footer() {
               <h2 className="font-montserrat text-xl text-white">FAQ</h2>
             </NavLink>
           </div>
-          <div className="flex flex-row space-x-6">
+          <div className="flex flex-row space-x-6 items-center">
             <p className="font-montserrat text-xl text-white">мы в соцсетях</p>
             <Image src={whatsapp_path} alt="whatsapp logo" />
             <Image src={telegram_path} alt="telegramlogo" />

@@ -4,7 +4,7 @@ import { Providers } from "./layouts/provider";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { Inter, Jost, Montserrat, Roboto } from "@next/font/google";
+import { Inter, Jost, Montserrat, Roboto, Lato } from "@next/font/google";
 
 const inter = Inter({
   subsets: ["cyrillic", "latin"],
@@ -31,6 +31,13 @@ const roboto = Roboto({
   weight: "100",
 });
 
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  display: "optional",
+  weight: "400",
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -39,7 +46,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${roboto.variable} ${montserrat.variable} ${jost.variable}`}
+      className={`
+        ${inter.variable} 
+        ${roboto.variable} 
+        ${montserrat.variable} 
+        ${jost.variable} 
+        ${lato.variable}`}
     >
       {/*
         <head /> will contain the components returned by the nearest parent

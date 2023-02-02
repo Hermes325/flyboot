@@ -122,6 +122,17 @@ export async function getCatalogItems(
         title
         price
         poizonId
+        images {
+          responsiveImage(imgixParams: { auto: format }) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
       }
       max: item(orderBy: price_DESC, ${queryFilter}) {
         price

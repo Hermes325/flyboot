@@ -1,4 +1,5 @@
 "use client"
+import ItemCard from '@/lib/components/item_card'
 import { Catalog, CatalogBrandsAndCategories } from '@/lib/datocms'
 import React, { useState } from 'react'
 
@@ -10,7 +11,7 @@ type Props = {
 
 const CatalogClient = ({ firstPage, meta }: Props) => {
 
-  const [page, setPage] = useState({
+  const [content, setContent] = useState({
     ...firstPage, items: [
       ...firstPage.items,
       ...firstPage.items,
@@ -21,6 +22,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   });
   const [filters, setFilters] = useState([])
   const [categories, setCategories] = useState([])
+  const [page, setPage] = useState(0)
 
   const h1 = (text: string) =>
     <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>{text}</h1>
@@ -62,9 +64,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     </div>
 
     {/* Filters */}
-    <div className="
-      col-start-2 col-span-1 h-fit
-      p-[1.7rem] mr-[2rem]
+    <div className="col-start-2 col-span-1 
+      h-fit p-[1.7rem] mr-[2rem]
       border-2 rounded-[1.6rem] border-[#909090]">
       {h1("Фильтры")}
 
@@ -100,11 +101,17 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
 
     {/* Catalog */}
     <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px]">
-      {page.items.map(x =>
-        <div key={x.poizonId} className='h-[30vh]'>
-          <p>{x.title}</p>
-        </div>)}
+      {/* Items */}
+      {content.items.map(item =>
+        <ItemCard key={item.poizonId} item={item} />)}
+
+      {/* Pagination */}
+      <div>
+        {/*//TODO:выводить текущую + 2 страницы в каждую сторону и конец */}
+        {page + 1}
+      </div>
     </div>
+
 
   </main >)
 }

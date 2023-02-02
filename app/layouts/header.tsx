@@ -2,7 +2,6 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import NavLink from "./link";
 import classNames from "classnames";
 import { Item } from "@/lib/datocms";
@@ -11,12 +10,6 @@ import HeaderSearchList from "./headerSearchList";
 import bucket_logo from "@/public/header-images/bucket_logo.svg";
 // import menu_path from "@/public/header-images/menu.svg";
 // import menu_close_path from "@/public/header-images/close.svg";
-
-const inter = Inter({
-  subsets: ["latin"],
-  // default, can also use "swap" to ensure custom font always shows
-  display: "optional",
-});
 
 const links = [
   { href: "/Catalog", label: "Каталог" },
@@ -46,25 +39,25 @@ function Header() {
   }
 
   return (
-    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#19191c]">
+    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#000]">
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between px-16 w-full max-w-[1280px] h-[10vh] text-[#f9f9f9] transition top-0 left-0">
+      <nav className="flex flex-row items-center justify-between w-full max-w-[1280px] h-[10vh] text-[#f9f9f9]">
         <NavLink href="/">
           <Image
             src={logo_mini_path}
             alt="Fly Boots Logo"
-            className="h-[55px] w-[70px]"
+            className="h-[55px] w-auto object-cover"
           />
         </NavLink>
 
         <NavLink href="/Catalog">
-          <h2 className="font-montserrat text-xl">Каталог</h2>
+          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">Каталог</h2>
         </NavLink>
         <NavLink href="/">
-          <h2 className="font-montserrat text-xl">О нас</h2>
+          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">О нас</h2>
         </NavLink>
         <NavLink href="/">
-          <h2 className="font-montserrat text-xl">FAQ</h2>
+          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">FAQ</h2>
         </NavLink>
 
         <div className="flex flex-row justify-center items-center space-x-10">
