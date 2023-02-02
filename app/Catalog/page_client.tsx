@@ -1,8 +1,7 @@
 "use client"
 import ItemCard from '@/lib/components/item_card'
-import { Catalog, CatalogBrandsAndCategories } from '@/lib/datocms'
+import { Catalog, CatalogBrandsAndCategories, SortType } from '@/lib/datocms'
 import React, { useState } from 'react'
-
 
 type Props = {
   firstPage: Catalog,
@@ -23,7 +22,11 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   const [filters, setFilters] = useState([])
   const [categories, setCategories] = useState([])
   const [page, setPage] = useState(0)
+  const currentPage = page + 1
+  const lastPage = Math.ceil(content.all.count / 15)
+  // const lastPage = 28
 
+  //#region Templates
   const h1 = (text: string) =>
     <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>{text}</h1>
 
@@ -43,23 +46,30 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       </label>
     </div>
 
+  const pageBtnClasses = "font-inter text-[24px] leading-[27px] mx-[0.5rem] hover:underline";
+
+  const pageBtn = (page: number) =>
+    <button onClick={() => setPage(page - 1)} className={pageBtnClasses}>{page}</button>
+
+  const pageEllipsis = () =>
+    <span className={pageBtnClasses + " hover:no-underline"}>.....</span>
+
+  const sortSpan = () =>
+    <span className='text-white'>Сортировка: </span>
+
+  //#endregion
 
   return (<main className="w-screen min-h-screen grid grid-cols-6 auto-rows-min pt-[20vh] gap-y-[23px]">
 
     {/* Sorting */}
     <div className='col-start-5 col-span-1'>
-      <label
-        htmlFor="Sort by price"
-        className="block mb-2 text-sm font-medium text-gray-900"
-      >
-        Выберите сортировку по цене
-      </label>
       <select
         id="Price selector"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="bg-[#0E0E0E] text-[16px] border border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
-        <option value="Ascending prices" selected>По возрастанию цены</option>
-        <option value="Descending prices">По убыванию цены</option>
+        <option className='text-[#9A9A9A] text-[16px]' value={SortType.default} selected>{sortSpan()}по умолчанию</option>
+        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_ASC}>{sortSpan()}по возрастанию цены</option>
+        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_DESC}>{sortSpan()}по убыванию цены</option>
       </select>
     </div>
 
@@ -100,15 +110,26 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     </div>
 
     {/* Catalog */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px]">
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh]">
       {/* Items */}
       {content.items.map(item =>
         <ItemCard key={item.poizonId} item={item} />)}
 
       {/* Pagination */}
-      <div>
-        {/*//TODO:выводить текущую + 2 страницы в каждую сторону и конец */}
-        {page + 1}
+      <div className='col-span-3 flex justify-center'>
+        {/* Первая */}
+        {currentPage >= 3 && pageBtn(1)}
+        {currentPage >= 4 && pageEllipsis()}
+
+        {currentPage - 2 > 1 && pageBtn(currentPage - 2)}
+        {currentPage - 1 >= 1 && pageBtn(currentPage - 1)}
+        <button className={pageBtnClasses + " text-[#29D9CE]"}>{currentPage}</button>
+        {currentPage + 1 <= lastPage && pageBtn(currentPage + 1)}
+        {currentPage + 2 <= lastPage && pageBtn(currentPage + 2)}
+
+        {/* Последняя */}
+        {currentPage + 2 < lastPage - 1 && pageEllipsis()}
+        {currentPage + 2 < lastPage && pageBtn(lastPage)}
       </div>
     </div>
 
