@@ -1,7 +1,8 @@
 "use client"
-import ItemCard from '@/lib/components/item_card'
+import React, { useEffect, useState } from 'react'
 import { Catalog, CatalogBrandsAndCategories, SortType } from '@/lib/datocms'
-import React, { useState } from 'react'
+import ItemCard from '@/lib/components/item_card'
+
 
 type Props = {
   firstPage: Catalog,
@@ -10,23 +11,58 @@ type Props = {
 
 const CatalogClient = ({ firstPage, meta }: Props) => {
 
-  const [content, setContent] = useState({
-    ...firstPage, items: [
-      ...firstPage.items,
-      ...firstPage.items,
-      ...firstPage.items,
-      ...firstPage.items,
-      ...firstPage.items,
-      ...firstPage.items]
-  });
-  const [filters, setFilters] = useState([])
-  const [categories, setCategories] = useState([])
-  const [page, setPage] = useState(0)
-  const currentPage = page + 1
+  const [content, setContent] = useState(firstPage)
+  const [filters, setFilters] = useState({
+    page: 0,
+    priceSort: SortType.default,
+    priceFilter: {
+      min: firstPage.min?.price,
+      max: firstPage.max?.price
+    },
+    sexFilter: {
+      male: false,
+      female: false
+    },
+    selectedCategories: [],
+    selectedBrands: []
+  })
+  const currentPage = filters.page + 1
   const lastPage = Math.ceil(content.all.count / 15)
   // const lastPage = 28
 
-  //#region Templates
+  //#region Queries
+
+  // TODO: настроить запрос 
+  //* Кидает запрос за товарами после фильтров, сортировки и пагинации
+  async function fetchData(newPage?: number, newFilters?: typeof filters) {
+
+    const queryPage = newPage ?? filters.page;
+    const queryFilters = newFilters ?? filters;
+
+    const query = await fetch("/api/catalog", {
+      method: "POST",
+      body: JSON.stringify({
+        page: queryPage,
+        orderBy: queryFilters.priceSort,
+        brands: !queryFilters.selectedBrands.length ? meta.brands : queryFilters.selectedBrands,
+        category: !queryFilters.selectedCategories.length ? meta.category : queryFilters.selectedCategories,
+        minPrice: queryFilters.priceFilter.min,
+        maxPrice: queryFilters.priceFilter.max,
+      })
+    })
+    const newContent: Catalog = await query.json()
+    setContent(newContent)
+  }
+
+  function setFiltersWrapper(newPage: number) {
+    setFilters(x => ({ ...x, page: newPage }))
+    fetchData(newPage)
+  }
+
+  //#endregion
+
+
+  //#region UI templates
   const h1 = (text: string) =>
     <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>{text}</h1>
 
@@ -36,7 +72,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   const formCheck = (text: string, id: string) =>
     <div className="form-check">
       <input
-        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-transparent checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
         type="checkbox"
         id={id} />
       <label
@@ -49,7 +85,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   const pageBtnClasses = "font-inter text-[24px] leading-[27px] mx-[0.5rem] hover:underline";
 
   const pageBtn = (page: number) =>
-    <button onClick={() => setPage(page - 1)} className={pageBtnClasses}>{page}</button>
+    <button onClick={() => setFiltersWrapper(page - 1)} className={pageBtnClasses}>{page}</button>
 
   const pageEllipsis = () =>
     <span className={pageBtnClasses + " hover:no-underline"}>.....</span>
@@ -65,7 +101,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     <div className='col-start-5 col-span-1'>
       <select
         id="Price selector"
-        className="bg-[#0E0E0E] text-[16px] border border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="bg-[#0E0E0E] font-inter text-white text-[16px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
         <option className='text-[#9A9A9A] text-[16px]' value={SortType.default} selected>{sortSpan()}по умолчанию</option>
         <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_ASC}>{sortSpan()}по возрастанию цены</option>
@@ -105,6 +141,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       {/* Price Filter */}
       <div className="flex flex-col">
         {h2("Цена")}
+        <input value={filters.priceFilter.min} />
+        <input value={filters.priceFilter.max} />
         {/*//TODO: сделать Input Range with two sliders */}
       </div>
     </div>

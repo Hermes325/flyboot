@@ -88,7 +88,7 @@ export async function getCatalogItems(
   // Фильтр по бренду
   brands: string[],
   // Фильтр по категории
-  category: string[],
+  categories: string[],
   // Пагинация
   page: number = 0,
   // Фильтр по цене
@@ -97,12 +97,13 @@ export async function getCatalogItems(
   // Сортировка по цене
   orderBy: SortType = SortType.default
 ): Promise<Catalog> {
+
   const queryVariables = `
     $first: IntType = 15, 
     $skip: IntType = 0, 
     $orderBy: [ItemModelOrderBy] = null, 
     $brands: [String] = "", 
-    $category: [String] = "", 
+    $categories: [String] = "", 
     $minPrice: FloatType = 0, 
     $maxPrice: FloatType = 1000000000
   `;
@@ -110,7 +111,7 @@ export async function getCatalogItems(
   const queryFilter = `
     filter: {
       brand: {in: $brands}, 
-      category: {in: $category}, 
+      category: {in: $categories}, 
       price: {gte: $minPrice, lte: $maxPrice}
     }
   `;
@@ -152,12 +153,12 @@ export async function getCatalogItems(
       "skip": page * 15,
       "orderBy": orderBy === SortType.default ? null : orderBy,
       "brands": brands,
-      "category": category,
+      "categories": categories,
       "minPrice": minPrice,
       "maxPrice": maxPrice
     }
   });
-  console.log("Catalog" + JSON.stringify(response));
+  // console.log("Catalog" + JSON.stringify(response));
   return response;
 }
 
