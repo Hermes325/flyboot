@@ -37,18 +37,18 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   async function fetchData(newFilters: typeof filters): Promise<Catalog> {
 
     const brands = !newFilters.selectedBrands.length
-      ? meta.brands
+      ? meta.brands.map(x => x.name)
       : newFilters.selectedBrands
 
     const categories = !newFilters.selectedCategories.length
-      ? meta.category
+      ? Object.keys(meta.category.categoryJson)
       : newFilters.selectedCategories
 
     const query = await fetch("/api/catalog", {
       method: "POST",
       body: JSON.stringify({
         page: newFilters.page,
-        orderBy: newFilters.priceSort,
+        orderBy: SortType[newFilters.priceSort],
         brands,
         categories,
         minPrice: newFilters.priceFilter.min,
@@ -131,8 +131,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
         className="bg-[#0E0E0E] font-inter text-white text-[16px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
         <option className='text-[#9A9A9A] text-[16px]' value={SortType.default}>Сортировка: по умолчанию</option>
-        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_ASC}> Сортировка: по возрастанию цены</option>
-        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_DESC}> Сортировка: по убыванию цены</option>
+        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_ASC}>Сортировка: по возрастанию цены</option>
+        <option className='text-[#9A9A9A] text-[16px]' value={SortType.price_DESC}>Сортировка: по убыванию цены</option>
       </select>
     </div>
 

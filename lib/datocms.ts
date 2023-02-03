@@ -12,7 +12,7 @@ export type Item = {
   poizonId: string;
   price: number;
   images: { responsiveImage: any }[];
-};
+}
 export type Catalog = {
   items: Item[],
   max: { price: number },
@@ -24,9 +24,9 @@ export type CatalogBrandsAndCategories = {
   category: { categoryJson: { [subCategory: string]: string } }
 }
 export enum SortType {
+  default,
   price_ASC,
   price_DESC,
-  default
 }
 // Запросы ==================================================
 
@@ -158,7 +158,6 @@ export async function getCatalogItems(
       "maxPrice": maxPrice
     }
   });
-  // console.log("Catalog" + JSON.stringify(response));
   return response;
 }
 
