@@ -28,8 +28,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     selectedBrands: [] as string[]
   })
   const currentPage = filters.page + 1
-  const lastPage = Math.ceil(content.all.count / 15)
-  // const lastPage = 28
+  // const lastPage = Math.ceil(content.all.count / 15)
+  const lastPage = 28
 
   //#region Queries
 
@@ -46,6 +46,10 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
 
     const query = await fetch("/api/catalog", {
       method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         page: newFilters.page,
         orderBy: SortType[newFilters.priceSort],
