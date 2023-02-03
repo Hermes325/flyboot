@@ -5,15 +5,16 @@ import { Image } from "react-datocms/image";
 
 type Props = {
   item: Item;
+  className?: string;
 };
 
-function Imageboot({ item }: Props) {
+function Imageboot({ item, className }: Props) {
   return (
-    <>
+    <div>
       {item.images.map((image, i) => (
-        <Image key={i} data={image.responsiveImage} />
+        <Image key={i} data={image.responsiveImage} className={className} />
       ))}
-    </>
+    </div>
   );
 }
 
