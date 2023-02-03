@@ -29,25 +29,25 @@ export default async function ItemPage({ params }: Props) {
           <div className="flex flex-col space-y-5">
             <Imageboot
               item={item}
-              className="object-contain aspect-[646/532] h-[532px] rounded-[15px]"
+              className="object-cover aspect-[646/532] h-[532px] rounded-[15px]"
             />
             {/* more photos */}
             <div className="flex flex-row justify-between">
               <Imageboot
                 item={item}
-                className="object-contain aspect-[143/93] h-[93px] rounded-[15px]"
+                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
               />
               <Imageboot
                 item={item}
-                className="object-contain aspect-[143/93] h-[93px] rounded-[15px]"
+                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
               />
               <Imageboot
                 item={item}
-                className="object-contain aspect-[143/93] h-[93px] rounded-[15px]"
+                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
               />
               <Imageboot
                 item={item}
-                className="object-contain aspect-[143/93] h-[93px] rounded-[15px]"
+                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
               />
             </div>
           </div>

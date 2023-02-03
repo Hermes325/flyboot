@@ -12,7 +12,11 @@ function Imageboot({ item, className }: Props) {
   return (
     <div>
       {item.images.map((image, i) => (
-        <Image key={i} data={image.responsiveImage} className={className} />
+        <Image
+          lazyLoad={true}
+          key={i}
+          data={image.responsiveImage}
+          pictureClassName={className} />
       ))}
     </div>
   );
