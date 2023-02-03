@@ -1,0 +1,30 @@
+.name {
+  font-family   : var(--font-lato);
+  font-weight   : 400;
+  font-size     : 16px;
+  line-height   : 137%;
+  letter-spacing: 0.01em;
+}
+
+.price {
+  font-family   : var(--font-lato);
+  font-weight   : 900;
+  font-size     : 20px;
+  line-height   : 165.5%;
+  letter-spacing: 0.01em;
+  color         : #03FFF0;
+}
+
+.buy-btn {
+  font-size     : 17px;
+  line-height   : 21px;
+  letter-spacing: 0.01em;
+  color         : #FFFFFF;
+  background    : linear-gradient(264.63deg, #00EBDD 6.47%, #009692 103.56%);
+  border-radius : 8px;
+  width         : 50%;
+  height        : 39.2px;
+  font-family   : var(--font-inter);
+  font-style    : normal;
+  font-weight   : 900;
+}
