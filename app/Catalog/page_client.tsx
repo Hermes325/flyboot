@@ -120,7 +120,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     <button onClick={() => setFiltersWrapper(changePage(page - 1))} className={pageBtnClasses}>{page}</button>
 
   const pageEllipsis = () =>
-    <span className={pageBtnClasses + " hover:no-underline"}>.....</span>
+    <span className={pageBtnClasses + " hover:no-underline"}>...</span>
 
   //#endregion
 
@@ -185,7 +185,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
         <ItemCard key={item.poizonId} item={item} />)}
 
       {/* Pagination */}
-      <div className='col-span-3 flex justify-center'>
+      <div className='col-span-3 flex justify-center items-center'>
         {/* Первая */}
         {currentPage >= 3 && pageBtn(1)}
         {currentPage >= 4 && pageEllipsis()}
