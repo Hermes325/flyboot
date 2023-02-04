@@ -7,13 +7,17 @@ export default async function getCatalog(
 ) {
   // console.log("/api/catalog REQUEST\n", typeof req.body, "\n", req.body)
 
+  const orderBy: SortType = req.body["orderBy"] === "default"
+    ? SortType.default
+    : req.body["orderBy"]
+
   const catalog = await getCatalogItems(
     req.body["brands"],
     req.body["categories"],
     req.body["page"] ?? 0,
     req.body["minPrice"] ?? 0,
     req.body["maxPrice"] ?? 1000000000,
-    req.body["orderBy"] ?? SortType.default
+    orderBy ?? SortType.default
   );
   // console.log("\n/api/catalog RESPONSE\n", JSON.stringify(catalog, null, 2))
   res.status(200).json(catalog);

@@ -21,7 +21,13 @@ export type Catalog = {
 }
 export type CatalogBrandsAndCategories = {
   brands: { name: string }[],
-  category: { categoryJson: { [subCategory: string]: string } }
+  category: {
+    categoryJson: {
+      [category: string]: {
+        [subCategory: string]: string
+      }
+    }
+  }
 }
 export enum SortType {
   default,

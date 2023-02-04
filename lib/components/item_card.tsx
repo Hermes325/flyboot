@@ -4,6 +4,7 @@ import { Item } from '@/lib/datocms'
 import { Image } from "react-datocms";
 import styles from "./item_card.module.css"
 import "../../app/globals.css"
+import Link from 'next/link';
 
 type Props = {
   item: Item
@@ -22,9 +23,11 @@ const ItemCard = ({ item }: Props) => {
         <h3 className={styles['name']}>{item.title}</h3>
         <p className={styles['price']}>{item.price}&nbsp;руб</p>
       </div>
-      <button className={styles['buy-btn']}>
-        Купить
-      </button>
+      <Link href={`/Catalog/${item.slug}`}>
+        <button className={styles['buy-btn']}>
+          Купить
+        </button>
+      </Link>
     </div>
   )
 }
