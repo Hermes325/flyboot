@@ -1,16 +1,20 @@
 import React from 'react'
 import { Filters, SetFiltersWrapper } from '../page_client';
 import { CatalogBrandsAndCategories } from '@/lib/datocms';
+import FiltersPrice from './filters_price';
 
 type Props = {
+  min?: number;
+  max?: number;
   meta: CatalogBrandsAndCategories;
   filters: Filters;
   setFiltersWrapper: SetFiltersWrapper;
 }
 
-const Filters = ({ meta, filters, setFiltersWrapper }: Props) => {
+const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
   //#region Queries
+
   function changeCategory(category: string, value: boolean) {
     console.log("changeCategory", value);
 
@@ -42,11 +46,6 @@ const Filters = ({ meta, filters, setFiltersWrapper }: Props) => {
     // console.log("changeBrands", brand, value);
     return (filter: Filters): Filters =>
       ({ ...filter, selectedBrands: { ...filter.selectedBrands, [brand]: value } })
-  }
-
-  function changePrice(dir: "min" | "max", value: number) {
-    return (filter: Filters): Filters =>
-      ({ ...filter, priceFilter: { ...filter.priceFilter, [dir]: value } })
   }
 
   //#endregion
@@ -138,9 +137,11 @@ const Filters = ({ meta, filters, setFiltersWrapper }: Props) => {
     {/* Price Filter */}
     <div className="flex flex-col">
       {h2("Цена")}
-      <input value={filters.priceFilter.min} onChange={x => setFiltersWrapper(changePrice("min", +x.target.value))} />
-      <input value={filters.priceFilter.max} onChange={x => setFiltersWrapper(changePrice("max", +x.target.value))} />
-      {/*//TODO: сделать Input Range with two sliders */}
+      <FiltersPrice
+        min={min ?? 0}
+        max={max ?? 1000000}
+        filters={filters}
+        setFiltersWrapper={setFiltersWrapper} />
     </div>
 
   </>)
