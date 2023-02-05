@@ -49,7 +49,10 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       .filter(x => x[1])
       .map(x => x[0])
 
-    console.log("fetchData", brands, categories)
+    const sex = Object
+      .entries(newFilters.sexFilter)
+      .filter(x => x[1])
+      .map(x => x[0])
 
     const query = await fetch("/api/catalog", {
       method: "POST",
@@ -62,6 +65,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
         orderBy: SortType[newFilters.priceSort],
         brands,
         categories,
+        sex,
         minPrice: newFilters.priceFilter.min,
         maxPrice: newFilters.priceFilter.max,
       })
@@ -110,15 +114,20 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
   }
 
   function changeSex(sex: string, value: boolean) {
-    // console.log("changeSex", sex, value);
+    const sexFilter = { ...filters.sexFilter, [sex]: value }
     return (filter: typeof filters): typeof filters =>
-      ({ ...filter, sexFilter: { ...filter.sexFilter, [sex]: value } })
+      ({ ...filter, sexFilter })
   }
 
   function changeBrands(brand: string, value: boolean) {
     // console.log("changeBrands", brand, value);
     return (filter: typeof filters): typeof filters =>
       ({ ...filter, selectedBrands: { ...filter.selectedBrands, [brand]: value } })
+  }
+
+  function changePrice(dir: "min" | "max", value: number) {
+    return (filter: typeof filters): typeof filters =>
+      ({ ...filter, priceFilter: { ...filter.priceFilter, [dir]: value } })
   }
 
   //#endregion
@@ -243,8 +252,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       {/* Price Filter */}
       <div className="flex flex-col">
         {h2("Цена")}
-        <input defaultValue={filters.priceFilter.min} />
-        <input defaultValue={filters.priceFilter.max} />
+        <input value={filters.priceFilter.min} onChange={x => setFiltersWrapper(changePrice("min", +x.target.value))} />
+        <input value={filters.priceFilter.max} onChange={x => setFiltersWrapper(changePrice("max", +x.target.value))} />
         {/*//TODO: сделать Input Range with two sliders */}
       </div>
     </div>
@@ -263,7 +272,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
 
         {currentPage - 2 > 1 && pageBtn(currentPage - 2)}
         {currentPage - 1 >= 1 && pageBtn(currentPage - 1)}
-        <button className={pageBtnClasses + " text-[#29D9CE]"}>{currentPage}</button>
+        {lastPage > 1 && <button className={pageBtnClasses + " text-[#29D9CE]"}>{currentPage}</button>}
         {currentPage + 1 <= lastPage && pageBtn(currentPage + 1)}
         {currentPage + 2 <= lastPage && pageBtn(currentPage + 2)}
 

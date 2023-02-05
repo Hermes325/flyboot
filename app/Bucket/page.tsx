@@ -23,12 +23,14 @@ function page() {
               addItem({
                 brand: "",
                 category: "",
+                subcategory: "",
                 description1: "",
                 description2: "",
                 slug: "1",
                 title: "Nike",
                 poizonId: "",
                 price: 0,
+                sex: "",
                 images: [],
               })
             );

@@ -1,4 +1,4 @@
-import { Catalog, getCatalogItems, SortType } from '../../lib/datocms';
+import { Catalog, getItems, SortType } from '../../lib/datocms';
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function getCatalog(
@@ -11,9 +11,10 @@ export default async function getCatalog(
     ? SortType.default
     : req.body["orderBy"]
 
-  const catalog = await getCatalogItems(
+  const catalog = await getItems(
     req.body["brands"],
     req.body["categories"],
+    req.body["sex"],
     req.body["page"] ?? 0,
     req.body["minPrice"] ?? 0,
     req.body["maxPrice"] ?? 1000000000,

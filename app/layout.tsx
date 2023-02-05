@@ -5,6 +5,9 @@ import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { Inter, Jost, Montserrat, Roboto, Lato } from "@next/font/google";
+import { register } from 'swiper/element/bundle';
+
+register();
 
 const inter = Inter({
   subsets: ["cyrillic", "latin"],
