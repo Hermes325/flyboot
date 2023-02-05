@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import NavLink from "./link";
 import classNames from "classnames";
+
 import { Item } from "@/lib/datocms";
-import logo_mini_path from "@/public/header-images/logo_mini.png";
+
+import NavLink from "./link";
 import HeaderSearchList from "./headerSearchList";
-import bucket_logo from "@/public/header-images/bucket_logo.svg";
-// import menu_path from "@/public/header-images/menu.svg";
-// import menu_close_path from "@/public/header-images/close.svg";
+
+import FlyBoots_logo from "@/public/header-images/FlyBoots_logo.svg";
+import bucket from "@/public/header-images/bucket.svg";
+import menu_path from "@/public/header-images/menu.svg";
+import menu_close_path from "@/public/header-images/close.svg";
+import search_path from "@/public/header-images/search.svg";
 
 const links = [
   { href: "/Catalog", label: "Каталог" },
@@ -18,6 +21,30 @@ const links = [
   { href: "#About_us", label: "О нас" },
   { href: "#Связаться", label: "Связаться" },
 ];
+
+function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
+  return isNavOpen ? (
+    <Image
+      src={menu_close_path}
+      alt="burger menu close image"
+      className="w-5 h-5"
+    />
+  ) : (
+    <Image src={menu_path} alt="burger menu open image" className="w-5 h-5" />
+  );
+}
+
+function SearchHandle({ isSearchOpen }: { isSearchOpen: boolean }) {
+  return isSearchOpen ? (
+    <Image
+      src={menu_close_path}
+      alt="search menu close image"
+      className="w-5 h-5"
+    />
+  ) : (
+    <Image src={search_path} alt="search menu open image" className="w-5 h-5" />
+  );
+}
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -39,65 +66,84 @@ function Header() {
   }
 
   return (
-    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#000]">
+    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#000000] px-[10px] max-[1312px]:pr-[26px]">
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between w-full max-w-[1280px] h-[10vh] text-[#f9f9f9]">
+      <nav className="flex flex-row items-center justify-between w-full max-w-[1280px] min-h-[63px] h-[10vh] max-h-[108px]">
         <NavLink href="/">
           <Image
-            src={logo_mini_path}
+            src={FlyBoots_logo}
             alt="Fly Boots Logo"
-            className="h-[55px] w-auto object-cover"
+            className="h-16 max-mobile:h-8 w-20 max-mobile:w-11 object-cover"
           />
         </NavLink>
 
-        <NavLink href="/Catalog">
-          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">Каталог</h2>
+        <NavLink href="/Catalog" className="max-mobile:hidden">
+          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
+            Каталог
+          </h2>
         </NavLink>
-        <NavLink href="/">
-          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">О нас</h2>
+        <NavLink href="/" className="max-mobile:hidden">
+          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
+            О нас
+          </h2>
         </NavLink>
-        <NavLink href="/">
-          <h2 className="font-montserrat text-[20px] leading-[24px] tracking-wide hover:text-[#03FFF0]">FAQ</h2>
+        <NavLink href="/" className="max-mobile:hidden">
+          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
+            FAQ
+          </h2>
         </NavLink>
 
         <div className="flex flex-row justify-center items-center space-x-10">
           {/* Поиск товаров */}
           <input
             placeholder="Поиск"
-            className="bg-transparent border-b-2 "
+            className={classNames(
+              "bg-transparent border-b-2 w-[160px] max-mobile:hidden",
+              { "!block w-[200px]": isSearchOpen }
+            )}
             value={search}
             onChange={searchRequest}
           />
+          <button
+            onClick={() => setIsSearchOpen((prev) => !prev)}
+            className="mobile:hidden"
+          >
+            <SearchHandle isSearchOpen={isSearchOpen} />
+          </button>
 
           <NavLink href="/Bucket">
             <Image
-              src={bucket_logo}
+              src={bucket}
               alt="bucket page logo"
-              className="w-[50px] h-[50px]"
+              className="w-11 max-mobile:w-5 h-10 max-mobile:h-5"
             />
           </NavLink>
 
-          <div
-            className={classNames(
-              "z-[3] grid place-items-center w-[20px] h-[20px] bg-[url('../public/header-images/menu.svg')] bg-no-repeat bg-center transition delay-150 duration-300 ease-in-out hover:animate-pulse",
-              {
-                "bg-[url('../public/header-images/close.svg')] transition":
-                  isNavOpen,
-              }
-            )}
+          <button
             onClick={() => setIsNavOpen((prev) => !prev)}
-          />
+            className="mobile:hidden"
+          >
+            <BurgerHandle isNavOpen={isNavOpen} />
+          </button>
         </div>
       </nav>
 
       {/* Модальное окно поиска */}
       <nav
         className={classNames(
-          "fixed z-[1] top-[108] left-0 flex flex-col justify-center items-center gap-10 w-full h-full bg-slate-700 opacity-0 invisible transition",
-          { "!visible opacity-90": search.length > 0 }
+          "fixed z-[1] top-48 left-[50%] -translate-x-[50%] w-[45%] max-w-[1280px] h-1/2 flex-col justify-center items-center gap-10 bg-gray-300 rounded-xl opacity-0 hidden transition",
+          { "!flex opacity-90": search.length > 0 || isSearchOpen }
         )}
-        onClick={() => setIsSearchOpen((prev) => !prev)}
       >
+        <button
+          onClick={() => {
+            setSearch("");
+            setIsSearchOpen(false);
+          }}
+          className="fixed right-0 top-0"
+        >
+          <Image src={menu_close_path} alt="close modal search" />
+        </button>
         <HeaderSearchList items={foundItems} />
       </nav>
 

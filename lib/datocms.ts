@@ -6,7 +6,7 @@ export type Item = {
   brand: string;
   category: string;
   description1: string;
-  description2: string;
+  description2: string; 
   slug: string;
   title: string;
   poizonId: string;
