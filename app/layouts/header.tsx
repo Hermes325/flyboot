@@ -131,7 +131,7 @@ function Header() {
       {/* Модальное окно поиска */}
       <nav
         className={classNames(
-          "fixed z-[1] top-48 left-[50%] -translate-x-[50%] w-[45%] max-w-[1280px] h-1/2 flex-col justify-center items-center gap-10 bg-gray-300 rounded-xl opacity-0 hidden transition",
+          "fixed z-[1] top-48 left-[50%] max-[1280px]:left-[5%] -translate-x-[50%] max-[1280px]:-translate-x-[0%] w-[1280px] max-[1280px]:w-[90%] max-w-[1280px] h-1/2 flex-col justify-center items-start pl-5 gap-10 bg-gray-300 rounded-xl opacity-0 hidden transition",
           { "!flex opacity-90": search.length > 0 || isSearchOpen }
         )}
       >
@@ -140,7 +140,7 @@ function Header() {
             setSearch("");
             setIsSearchOpen(false);
           }}
-          className="fixed right-0 top-0"
+          className="fixed right-4 top-4"
         >
           <Image src={menu_close_path} alt="close modal search" />
         </button>
