@@ -1,4 +1,4 @@
-import { getCatalogBrandsAndCategories, getCatalogItems } from "@/lib/datocms";
+import { getBrandsAndCategories, getItems } from "@/lib/datocms";
 import React, { use } from "react";
 import CatalogClient from "./page_client";
 
@@ -6,12 +6,9 @@ import CatalogClient from "./page_client";
 //* Статическая изначальная страница каталога
 function Catalog() {
   // Все категории и бренды
-  const catalogMeta = use(getCatalogBrandsAndCategories())
-
+  const catalogMeta = use(getBrandsAndCategories())
   // Первая страница
-  const catalog = use(getCatalogItems(
-    /* Все бренды */ catalogMeta.brands.map(x => x.name),
-    /* Категории */ Object.keys(catalogMeta.category.categoryJson)))
+  const catalog = use(getItems())
 
   return (
     <CatalogClient

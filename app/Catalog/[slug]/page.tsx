@@ -1,14 +1,12 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 
 import Imageboot from "./imageboot";
 import BucketButton from "./bucketButton";
 import DropDown from "./dropDown";
 
-import arrow_forward from "@/public/arrow/arrow_forward.svg";
-import arrow_back from "@/public/arrow/arrow_back.svg";
+import Recommends from "./recommends";
 
 type Props = {
   params: { slug: string };
@@ -59,7 +57,7 @@ export default async function ItemPage({ params }: Props) {
               <p className="font-jost text-gray-300">Артикул {item.poizonId}</p>
             </div>
             {/* item price */}
-            <h2 className="font-montserrat text-5xl text-cyan-700">
+            <h2 className="font-montserrat text-5xl text-[#03FFF0]">
               {item.price} руб
             </h2>
             {/* item sizes */}
@@ -85,35 +83,7 @@ export default async function ItemPage({ params }: Props) {
         </div>
 
         {/* Will be interested */}
-        <div className="flex flex-col w-full">
-          {/* will be interested and nav buttons */}
-          <div className="flex flex-row w-full justify-between">
-            <h2 className="text-white text-5xl">Так же будет интересно</h2>
-            <div className="flex flex-row space-x-5">
-              <Image
-                src={arrow_back}
-                alt=""
-                className="p-3 border-2 rounded-full border-white w-14 h-14"
-              />
-              <Image
-                src={arrow_forward}
-                alt=""
-                className="p-3 border-2 rounded-full border-white w-14 h-14"
-              />
-            </div>
-          </div>
-          {/* items carusel */}
-          <div className="flex flex-row w-full space-x-5">
-            <div className="w-1/4 p-2 space-y-3 flex-col rounded-[15px] bg-cyan-800">
-              <Imageboot item={item} className="rounded-[15px] aspect-square" />
-              <h4 className="text-white text-lg">{item.title}</h4>
-              <h4 className="text-cyan-300 text-2xl">{item.price} руб</h4>
-              <button className="bg-cyan-300 px-10 py-3 rounded-xl">
-                <h4 className="text-white text-2xl">Купить</h4>
-              </button>
-            </div>
-          </div>
-        </div>
+        <Recommends item={item} />
       </div>
     </div>
   );

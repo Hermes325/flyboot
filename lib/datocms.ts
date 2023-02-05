@@ -3,8 +3,10 @@ import { gql } from "graphql-request";
 
 // Типы =====================================================
 export type Item = {
+  sex: string,
   brand: string;
   category: string;
+  subcategory: string;
   description1: string;
   description2: string;
   slug: string;
@@ -76,7 +78,7 @@ export async function getCatalogPaths(): Promise<string[]> {
 }
 
 //* Все бренды и категории для каталога
-export async function getCatalogBrandsAndCategories(): Promise<CatalogBrandsAndCategories> {
+export async function getBrandsAndCategories(): Promise<CatalogBrandsAndCategories> {
   const query = gql`
   {
     brands: allBrands {
@@ -89,12 +91,15 @@ export async function getCatalogBrandsAndCategories(): Promise<CatalogBrandsAndC
   return await graphQLRequest({ query });
 }
 
+//TODO: фильтр на sex, subcategories
 //* Все товары для каталога
-export async function getCatalogItems(
+export async function getItems(
   // Фильтр по бренду
-  brands: string[],
+  brands?: string[],
   // Фильтр по категории
-  categories: string[],
+  categories?: string[],
+  // Фильтр по полу
+  sex?: string[],
   // Пагинация
   page: number = 0,
   // Фильтр по цене
@@ -108,16 +113,18 @@ export async function getCatalogItems(
     $first: IntType = 15, 
     $skip: IntType = 0, 
     $orderBy: [ItemModelOrderBy] = null, 
-    $brands: [String] = "", 
-    $categories: [String] = "", 
+    ${brands ? '$brands: [String],' : ''} 
+    ${categories ? '$categories: [String],' : ''}
+    ${sex ? '$sex: [String],' : ''} 
     $minPrice: FloatType = 0, 
     $maxPrice: FloatType = 1000000000
   `;
 
   const queryFilter = `
     filter: {
-      brand: {in: $brands}, 
-      category: {in: $categories}, 
+      ${brands ? "brand: {in: $brands}, " : ""}
+      ${categories ? "category: {in: $categories}, " : ""}
+      ${sex ? "sex: {in: $sex}, " : ""}
       price: {gte: $minPrice, lte: $maxPrice}
     }
   `;
@@ -158,14 +165,67 @@ export async function getCatalogItems(
     variables: {
       "skip": page * 15,
       "orderBy": orderBy === SortType.default ? null : orderBy,
-      "brands": brands,
-      "categories": categories,
-      "minPrice": minPrice,
-      "maxPrice": maxPrice
+      brands,
+      categories,
+      sex,
+      minPrice,
+      maxPrice
     }
   });
   return response;
 }
+
+export async function getRecommendsHandler(
+  // Не рекомендуем текущий товар
+  currentSlug: string,
+  // Рекомендуем товары одного бренда
+  brands: string[]
+): Promise<Catalog> {
+
+  const queryVariables = `
+    $first: IntType = 12, 
+    $brands: [String], 
+    $slug: String
+  `;
+
+  const queryFilter = `filter: { 
+    brand: {in: $brands}, 
+    slug: { neq: $slug } 
+  }`;
+
+  const query = gql`
+    query GetRecommends(${queryVariables}) {
+      items: allItems(first: $first, ${queryFilter}) {
+        slug
+        title
+        price
+        poizonId
+        images {
+          responsiveImage(imgixParams: { auto: format }) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+      }
+    }
+  `;
+
+  const response: Catalog = await graphQLRequest({
+    query,
+    variables: {
+      "skip": 12,
+      "brands": brands,
+      "slug": currentSlug
+    }
+  });
+  return response;
+}
+
 
 
 //* Товар
