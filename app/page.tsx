@@ -4,7 +4,6 @@ import Slide2 from "./Landing/slide2";
 import Slide3 from "./Landing/slide3";
 import Slide4 from "./Landing/slide4";
 import Slide5 from "./Landing/slide5";
-import Slide6 from "./Landing/slide6";
 
 const Landing = () => (
   <main className="min-h-screen flex flex-col items-center justify-start pt-[158px]">
@@ -18,8 +17,6 @@ const Landing = () => (
     <Slide4 />
     {/* About delivery */}
     <Slide5 />
-    {/* About us */}
-    <Slide6 />
   </main>
 );
 

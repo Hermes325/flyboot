@@ -1,3 +1,123 @@
-.huy {
-    background-color: aquamarine;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
+
+
+.h1 {
+    font-family   : 'Inter';
+    font-style    : normal;
+    font-weight   : 900;
+    font-size     : 5rem;
+    line-height   : 107.02%;
+    /* or 86px */
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color         : #FFFFFF;
+}
+
+.span {
+    color: #29D9CE;
+}
+
+.jost_offer {
+    font-family   : var(--font-jost);
+    font-style    : normal;
+    font-weight   : 400;
+    font-size     : 25px;
+    line-height   : 26px;
+    /* or 106% */
+    letter-spacing: 0.04em;
+    color         : #F5F5F5;
+}
+
+.button_main {
+    background    : linear-gradient(32.57deg, #006B68 24.41%, #00BCB1 101.79%);
+    border-radius : 8px;
+    margin-top    : 5px;
+    font-family   : var(--font-Montserrat);
+    font-style    : normal;
+    font-weight   : 700;
+    font-size     : 40px;
+    line-height   : 39px;
+    /* identical to box height, or 98% */
+    text-align    : center;
+    letter-spacing: 0.04em;
+    color         : #FAFAFA;
+}
+
+/* Задний фон */
+.waves {
+    position: absolute;
+    width   : 125vw;
+    top     : 4%;
+    left    : 0%;
+    z-index : -1;
+}
+
+.krugmain {
+    position       : absolute;
+    left           : 60%;
+    width          : 24.5vw;
+    height         : 24.5vw;
+    top            : 7%;
+    background     : linear-gradient(180deg, rgba(3, 240, 225, 0.85) 47.97%, #010101 100%);
+    box-shadow     : 0px -10px 64px #29D9CE;
+    border-radius  : 50%;
+    display        : flex;
+    justify-content: center;
+}
+
+.krug1 {
+    position     : absolute;
+    width        : 7.9vw;
+    height       : 7.9vw;
+    left         : 4.5%;
+    top          : 32.7vw;
+    background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
+    transform    : rotate(-41.79deg);
+    border-radius: 50%;
+}
+
+.krug2 {
+    position     : absolute;
+    width        : 11.2vw;
+    height       : 11.2vw;
+    left         : 29%;
+    top          : 25vw;
+    background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
+    transform    : rotate(-54.33deg);
+    border-radius: 50%;
+    z-index      : -1;
+}
+
+.krug3 {
+    position     : absolute;
+    width        : 4.38vw;
+    height       : 4.38vw;
+    left         : 49%;
+    top          : 17vw;
+    background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
+    transform    : rotate(-58.74deg);
+    border-radius: 50%;
+}
+
+.krug4 {
+    position     : absolute;
+    width        : 5.7vw;
+    height       : 5.7vw;
+    left         : 88.3%;
+    top          : 22.3vw;
+    background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
+    transform    : rotate(-68.55deg);
+    border-radius: 50%;
+}
+
+.Logotip {
+    width    : 35vw;
+    height   : auto;
+    position : absolute;
+    bottom   : 5vw;
+    z-index  : 1;
+    transform: rotate(-26.72deg);
 }

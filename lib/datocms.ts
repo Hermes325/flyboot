@@ -8,7 +8,7 @@ export type Item = {
   category: string;
   subcategory: string;
   description1: string;
-  description2: string; 
+  description2: string;
   slug: string;
   title: string;
   poizonId: string;
@@ -42,7 +42,7 @@ export enum SortType {
 export async function getHotItemsForLanding(): Promise<Item[]> {
   const query = gql`
     query {
-      allItems(first: 1, skip: 0) {
+      allItems(first: 8, skip: 0) {
         title
         price
         images {

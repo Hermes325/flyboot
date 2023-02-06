@@ -1,0 +1,96 @@
+.Montserrat700_2 {
+  font-style    : normal;
+  font-weight   : 700;
+  font-size     : 80px;
+  line-height   : 80px;
+  /* or 100% */
+  letter-spacing: 0.02em;
+  color         : #F5F5F5;
+}
+
+.h3 {
+  font-style    : normal;
+  font-weight   : 400;
+  font-size     : 1.813rem;
+  line-height   : 2.188rem;
+  letter-spacing: 0.04em;
+}
+
+.jost_p {
+  font-style    : italic;
+  font-weight   : 400;
+  font-size     : 1rem;
+  line-height   : 1.438rem;
+  letter-spacing: 0.05em;
+  color         : rgba(245, 245, 245, 0.9);
+}
+
+
+.grid_hiw {
+  display              : grid;
+  grid-template-columns: repeat(2, 45vw);
+  grid-template-rows   : repeat(5, 21vw);
+}
+
+.grid_hiw_left {
+  display           : grid;
+  grid-template-rows: repeat(5, 6vw);
+}
+
+.grid_hiw_2 {
+  margin-top        : 15vw;
+  display           : grid;
+  grid-template-rows: repeat(4, 3.7vw);
+  row-gap           : 100px;
+}
+
+
+
+.flex_colomn_1 {
+  display       : flex;
+  flex-direction: column;
+  align-items   : flex-start;
+}
+
+.flex_left {
+  display        : flex;
+  align-items    : flex-start;
+  justify-content: flex-start;
+  transform      : translate(0vw, -2vw);
+}
+
+
+
+.ramka_hiw {
+  border         : 2px solid rgba(245, 245, 245, 0.2);
+  backdrop-filter: blur(42px);
+  /* Note        : backdrop-filter has minimal browser support */
+  width          : 35.3vw;
+  border-radius  : 20px;
+}
+
+
+.grid_hiw_3 {
+  display              : grid;
+  grid-template-columns: 15vw 1vw 20vw;
+}
+
+.grid_hiw_4 {
+  display              : grid;
+  grid-template-columns: repeat(4, 8.2vw);
+}
+
+.palochka {
+  width     : 33.333vw;
+  border    : 3px solid rgba(245, 245, 245, 0.4);
+  margin-top: 0.8vw;
+}
+
+.svazatsa {
+  background   : linear-gradient(86.33deg, #E9FF3B 0%, #F2BB29 100%);
+  box-shadow   : 0px 2px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  width        : 13vw;
+  height       : 3vw;
+  z-index      : 0;
+}

@@ -1,14 +1,51 @@
 import React from "react";
-import classNames from "classnames/bind";
-
-import "./styles/slides.css";
+import Image from 'next/image'
+import waves from "@/public/main-images/waves.png";
+import kross from "@/public/main-images/14.webp";
 import styles from "./styles/slide1.module.css";
-const cx = classNames.bind(styles);
+
 
 function Slide1() {
   return (
-    <section className={cx(styles.huy, "landing_section")}>
-      <h1 className="font-inter">ЛЮБИМЫЕ БРЕНДЫ</h1>
+    <section>
+
+      <div className="mb-[10vw] translate-x-[-10vw]">
+        <h1 className={styles.h1}>
+          Любимые бренды <br /> <span className={styles.span}>возвращаются</span>
+        </h1>
+        <p className={styles.jost_offer}>
+          Если ты искал, где обновить гардероб, то ты в нужном месте. <br />
+          Одевайся так, будто завтра выступаешь в Карнеги-Холл.
+        </p>
+        <form action="#catalog" className="mt-[1vw]">
+          <button className={styles.button_main + " p-[18px_30px_20px_30px]"}>
+            Смотреть каталог
+          </button>
+        </form>
+      </div>
+      <div>
+        <Image
+          src={waves}
+          alt="Волна"
+          className={styles.waves}
+        />
+
+        <div className={styles.krugmain}>
+          <Image
+            src={kross}
+            alt="Логотип"
+            className={styles.Logotip}
+          />
+        </div>
+
+        <div>
+          <div className={styles.krug1} />
+          <div className={styles.krug2} />
+          <div className={styles.krug3} />
+          <div className={styles.krug4} />
+        </div>
+      </div>
+
     </section>
   );
 }

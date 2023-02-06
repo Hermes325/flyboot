@@ -1,0 +1,100 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+ */
+
+.btn {
+    position      : absolute;
+    /** calc(10px + ...) - из-за самой картинки */
+    top           : 90%;
+    left          : max(15px, 5%);
+    padding       : 0.17vw 1vw 0.25vw 1vw;
+    box-shadow    : 0px 2px 15px rgba(0, 0, 0, 0.1);
+    cursor        : pointer;
+    border        : none;
+    background    : linear-gradient(180deg, #00FFFF 0%, #044F4F 100%);
+    box-shadow    : 0px 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius : 30px 10px 30px 30px;
+    /** Текст кнопки */
+    font-family   : 'Jost';
+    font-style    : normal;
+    font-weight   : 400;
+    font-size     : 1.5vw;
+    text-align    : center;
+    letter-spacing: 0.04em;
+    z-index       : 1;
+}
+
+.btn>img {
+    width: 1.3vw;
+}
+
+.ramochka_child,
+.ramochka_man,
+.ramochka_woman {
+    position         : relative;
+    height           : 34.467vw;
+    background-repeat: no-repeat;
+    background-size  : cover;
+    border-radius    : 1vw;
+    transition       : 0.15s;
+}
+
+.ramochka_child:hover,
+.ramochka_man:hover,
+.ramochka_woman:hover {
+    transform: scale(1.03);
+}
+
+.ramochka_child {
+    background-image: url(/main-images/try1.webp);
+    background-size : cover;
+}
+
+.ramochka_man {
+    background-image: url(/main-images/man.png);
+}
+
+.ramochka_woman {
+    background-image: url(/main-images/woman.png);
+}
+
+.container {
+    display              : grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap      : clamp(10px, 0.78vw, 15px);
+    grid-row-gap         : 1em;
+    margin-top           : 2vw;
+}
+
+.catalog_button {
+    background    : linear-gradient(102.46deg, #03F0E1 2.3%, #226992 105.5%);
+    box-shadow    : 0px 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius : 50px;
+    width         : 25.6vw;
+    height        : 5vw;
+    font-family   : var(--font-Montserrat);
+    font-style    : normal;
+    font-weight   : 700;
+    font-size     : 40px;
+    line-height   : 39px;
+    /* identical to box height, or 98% */
+    text-align    : center;
+    letter-spacing: 0.04em;
+    color         : #FAFAFA;
+}
+
+
+
+
+.jost_p_center {
+    font-family   : var(--font-jost);
+    font-style    : normal;
+    font-weight   : 400;
+    font-size     : 25px;
+    line-height   : 29px;
+    /* or 152% */
+    text-align    : center;
+    letter-spacing: 0.04em;
+    color         : #F5F5F5;
+}
