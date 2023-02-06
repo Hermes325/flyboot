@@ -15,23 +15,23 @@ function Slide4() {
 
       <div id='left сторона' >
         <h2 className={styles.h2 + " font-montserrat"}>Как это <br />работает?</h2>
-        <p className={styles.jost_bledno + " mt-5"}>* очень просто</p>
+        <p className={styles.jost_bledno + " font-jost mt-5"}>* очень просто</p>
 
         <ul className="mt-[1vw]">
-          <p className={styles.jost_p}>
+          <p className={styles.jost_p + " font-jost"}>
             Денег нет, но мы держимся:
           </p>
           <br />
-          <li className={styles.jost_p}>
+          <li className={styles.jost_p + " font-jost"}>
             ⁃ Работаем с сайтом POIZON. Все товары - оригинал, да еще и не по цене почки!
           </li>
           <br />
-          <li className={styles.jost_p}>
+          <li className={styles.jost_p + " font-jost"}>
             ⁃ Доставка входит в стоимость кроссовок: вам не нужно отдельно её считать и
             оплачивать.
           </li>
           <br />
-          <li className={styles.jost_p}>
+          <li className={styles.jost_p + " font-jost"}>
             ⁃ Мы принимаем возврат, если вещи не подошли.
           </li>
         </ul>
@@ -50,7 +50,7 @@ function Slide4() {
               <div className="border-[2px] border-solid h-[2.5vw]">
               </div>
             </div>
-            <p className={styles.jost_p + " w-[80%]"}>
+            <p className={styles.jost_p + " font-jost w-[80%]"}>
               В течении час вы получите карточку-подтверждение о выкупе товара.
             </p>
           </div>
@@ -98,6 +98,6 @@ function Slide4() {
           <p className={styles.hiw_list + " font-montserrat"}>Завершение работы</p>
         </div>
       </div>
-    </section>)
+    </section >)
 }
 export default Slide4;

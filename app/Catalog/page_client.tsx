@@ -25,7 +25,6 @@ type Props = {
 
 const CatalogClient = ({ firstPage, meta }: Props) => {
 
-  // const [content, setContent] = useState({ ...firstPage, items: [...firstPage.items, ...firstPage.items, ...firstPage.items] })
   const [content, setContent] = useState(firstPage)
   const [filters, setFilters] = useState<Filters>({
     page: 0,
@@ -96,7 +95,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
 
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-6 auto-rows-min pt-[12.5vh] gap-y-[23px]">
+  return (<main className="w-screen min-h-screen grid grid-cols-6 auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -111,7 +110,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     </div>
 
     {/* Filters */}
-    <div className="col-start-2 col-span-1 h-fit p-[2rem_2.5rem_2.5rem_2.5rem] mr-[3rem] border-2 rounded-[1.6rem] border-[#909090]">
+    <div className="col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
       <FiltersUI
         min={firstPage.min.price}
         max={firstPage.max.price}

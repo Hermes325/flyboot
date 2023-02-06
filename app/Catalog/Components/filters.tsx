@@ -61,13 +61,15 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     <div className='mb-1.5' key={prop}>
       <input
         className="appearance-none h-[25px] w-[25px] m-0 mr-[29px] border border-gray-300 rounded-sm align-top cursor-pointer
-                  checked:bg-[#29D9CE] checked:border-[#29D9CE] focus:outline-none transition duration-200"
+                  checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
+                  focus:outline-none transition duration-200"
         type="checkbox"
         checked={checked}
         onChange={(x) => setFiltersWrapper(onChange(prop, x.target.checked))}
         id={text} />
       <label
         className="inline-block font-inter text-[20px] leading-[25px] font-extralight"
+        //TODO: сделать onClick={(x) => setFiltersWrapper(onChange(prop, x.target.checked))}
         htmlFor={text}>
         {text}
       </label>
@@ -78,7 +80,8 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       {/* Категория */}
       <input
         className="appearance-none h-[25px] w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
-                  checked:bg-[#29D9CE] checked:border-[#29D9CE] focus:outline-none transition duration-200"
+                  checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
+                  focus:outline-none transition duration-200"
         type="checkbox"
         checked={filters.selectedCategories[category as keyof typeof filters.selectedCategories]}
         onChange={(x) => setFiltersWrapper(changeCategory(category, x.target.checked))}

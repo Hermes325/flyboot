@@ -57,7 +57,6 @@ function Slide5() {
             <h3 className={styles.h3 + " font-montserrat text-[#29D9CE]"}>Доставка застрахована</h3>
             <br />
             <p className={styles.jost_p + " font-jost w-[28vw]"} >
-
               Так что даже если что-то случится, что очень маловероятно, потому что мы находимся на страже
               сохранности ваших новомодных товаров, посылки все равно застрахановы, и вы можете спать
               спокойно!
@@ -65,8 +64,7 @@ function Slide5() {
           </div>
         </div>
       </div>
-    </section>
-  )
+    </section>)
 }
 
 export default Slide5;

@@ -1,7 +1,19 @@
+input.valueInput[type="number"]::-webkit-outer-spin-button,
+input.valueInput[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin            : 0;
+}
+
+input.valueInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+/* Двойной input */
 .rangeSlider {
   position  : relative;
   height    : 30px;
-  margin-top: 20px;
+  margin-top: 37px;
 }
 
 /* Кнопки */
@@ -30,8 +42,8 @@
   z-index           : 1;
   outline           : 0;
   -webkit-appearance: none;
-  width             : 20px;
-  height            : 20px;
+  width             : 26px;
+  height            : 26px;
   border            : none;
   border-radius     : 14px;
   background-color  : #00CEC2;
@@ -43,8 +55,8 @@
   position        : relative;
   z-index         : 10;
   -moz-appearance : none;
-  width           : 20px;
-  height          : 20px;
+  width           : 26px;
+  height          : 26px;
   border          : none;
   border-radius   : 14px;
   background-color: #00CEC2;
@@ -56,8 +68,8 @@
   position        : relative;
   z-index         : 10;
   -ms-appearance  : none;
-  width           : 20px;
-  height          : 20px;
+  width           : 26px;
+  height          : 26px;
   border-radius   : 14px;
   border          : 0;
   background-color: #00CEC2;
