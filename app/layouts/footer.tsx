@@ -20,10 +20,10 @@ export default function Footer() {
             <NavLink href="/Catalog">
               <h2 className="font-montserrat text-xl text-white">Каталог</h2>
             </NavLink>
-            <NavLink href="/">
+            <NavLink href="/About-us">
               <h2 className="font-montserrat text-xl text-white">О нас</h2>
             </NavLink>
-            <NavLink href="/">
+            <NavLink href="/FAQ">
               <h2 className="font-montserrat text-xl text-white">FAQ</h2>
             </NavLink>
           </div>

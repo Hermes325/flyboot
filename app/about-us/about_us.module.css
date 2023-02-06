@@ -1,0 +1,76 @@
+.main {
+    padding: 0 9vw;
+}
+
+
+.Montserrat700_2 {
+    font-style    : normal;
+    font-weight   : 700;
+    font-size     : 80px;
+    line-height   : 80px;
+    /* or 100% */
+    letter-spacing: 0.02em;
+    color         : #F5F5F5;
+}
+
+
+.flex_colomn {
+    display       : flex;
+    flex-direction: column;
+}
+
+
+.flex_around {
+    display        : flex;
+    justify-content: space-around;
+}
+
+
+
+.bc_block1 {
+    background   : #29D9CE;
+    border-radius: 10px;
+    position     : absolute;
+    height       : 24vw;
+    width        : 24vw;
+    z-index      : -1;
+    transform    : translate(-0.5vw, 1.5vw);
+}
+
+.bc_block2 {
+    background   : #29D9CE;
+    border-radius: 10px;
+    position     : absolute;
+    height       : 24vw;
+    width        : 22vw;
+    z-index      : -1;
+    transform    : translate(-0.5vw, 1.5vw);
+}
+
+.right_hand {
+    position: absolute;
+    right   : 0;
+    top     : 4%;
+}
+
+.left_hand {
+    position: absolute;
+    left    : 0;
+    bottom  : 6vh;
+    width   : 31vw;
+}
+
+
+.font_au {
+
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 25px;
+    line-height: 32px;
+    /* or 128% */
+
+    letter-spacing: 0.03em;
+
+    color: #F5F5F5;
+
+}

@@ -82,12 +82,12 @@ function Header() {
             Каталог
           </h2>
         </NavLink>
-        <NavLink href="/" className="max-mobile:hidden">
+        <NavLink href="/About-us" className="max-mobile:hidden">
           <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
             О нас
           </h2>
         </NavLink>
-        <NavLink href="/" className="max-mobile:hidden">
+        <NavLink href="/FAQ" className="max-mobile:hidden">
           <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
             FAQ
           </h2>
