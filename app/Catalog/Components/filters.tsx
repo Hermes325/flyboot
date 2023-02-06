@@ -76,7 +76,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     </div>
 
   const formCategorySelect = (category: string, subcategories: [string, string][]) =>
-    <div className='mb-1.5 flex justify-between gap-[29px]' key={category}>
+    <div className='mb-1.5 flex justify-between gap-[22px]' key={category}>
       {/* Категория */}
       <input
         className="appearance-none h-[25px] w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
