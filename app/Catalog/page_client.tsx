@@ -113,8 +113,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     {/* Filters */}
     <div className="col-start-2 col-span-1 h-fit p-[2rem_2.5rem_2.5rem_2.5rem] mr-[3rem] border-2 rounded-[1.6rem] border-[#909090]">
       <FiltersUI
-        min={content.min?.price}
-        max={content.max?.price}
+        min={firstPage.min.price}
+        max={firstPage.max.price}
         meta={meta}
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />
