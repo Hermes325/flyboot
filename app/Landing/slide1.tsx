@@ -10,19 +10,20 @@ function Slide1() {
     <section>
 
       <div className="mb-[10vw] translate-x-[-10vw]">
-        <h1 className={styles.h1}>
+        <h1 className={styles.h1 + " font-inter"}>
           Любимые бренды <br /> <span className={styles.span}>возвращаются</span>
         </h1>
-        <p className={styles.jost_offer}>
+        <p className={styles.jost_offer + " font-jost"}>
           Если ты искал, где обновить гардероб, то ты в нужном месте. <br />
           Одевайся так, будто завтра выступаешь в Карнеги-Холл.
         </p>
         <form action="#catalog" className="mt-[1vw]">
-          <button className={styles.button_main + " p-[18px_30px_20px_30px]"}>
+          <button className={styles.button_main + " font-montserrat p-[18px_30px_20px_30px]"}>
             Смотреть каталог
           </button>
         </form>
       </div>
+
       <div>
         <Image
           src={waves}
