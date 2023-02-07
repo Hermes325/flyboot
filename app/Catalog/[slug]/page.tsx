@@ -16,7 +16,7 @@ export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
 
-  console.log("function ItemPage", item);
+  // console.log("function ItemPage", item);
 
   return (
     <div className=" w-screen min-h-screen flex justify-center bg-[#454545]">
@@ -49,6 +49,7 @@ export default async function ItemPage({ params }: Props) {
               />
             </div>
           </div>
+
           {/* info block */}
           <div className="space-y-10">
             {/* item title and articul */}
@@ -58,10 +59,12 @@ export default async function ItemPage({ params }: Props) {
               </h1>
               <p className="font-jost text-gray-300">Артикул {item.poizonId}</p>
             </div>
+
             {/* item price */}
             <h2 className="font-montserrat text-5xl text-[#03FFF0]">
               {item.price} руб
             </h2>
+
             {/* item sizes */}
             <div className="flex flex-col space-y-3">
               <div className="flex flex-row space-x-3 items-end">
@@ -91,17 +94,11 @@ export default async function ItemPage({ params }: Props) {
         {/* Will be interested */}
         <Recommends item={item} />
       </div>
-    </div>
-  );
-}
-{
-  /* <h1>{params.slug}</h1>
-<Imageboot item={item} />
-{JSON.stringify(item, null, 2)} */
+    </div>);
 }
 
 export async function generateStaticParams() {
-  console.log("generateStaticParams");
+  // console.log("generateStaticParams");
   const paths = await getCatalogPaths();
   return paths.map((path) => ({ slug: path }));
 }

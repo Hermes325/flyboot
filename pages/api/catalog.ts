@@ -5,7 +5,7 @@ export default async function getCatalog(
   req: NextApiRequest,
   res: NextApiResponse<Catalog>
 ) {
-  // console.log("/api/catalog REQUEST\n", typeof req.body, "\n", req.body)
+  console.log("/api/catalog REQUEST\n")
 
   const orderBy: SortType = req.body["orderBy"] === "default"
     ? SortType.default
@@ -20,6 +20,6 @@ export default async function getCatalog(
     req.body["maxPrice"] ?? 1000000000,
     orderBy ?? SortType.default
   );
-  // console.log("\n/api/catalog RESPONSE\n", JSON.stringify(catalog, null, 2))
+  console.log("\n/api/catalog RESPONSE\n", JSON.stringify(catalog, null, 2))
   res.status(200).json(catalog);
 }

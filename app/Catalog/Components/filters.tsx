@@ -69,7 +69,6 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
         id={text} />
       <label
         className="inline-block font-inter text-[20px] leading-[25px] font-extralight"
-        //TODO: сделать onClick={(x) => setFiltersWrapper(onChange(prop, x.target.checked))}
         htmlFor={text}>
         {text}
       </label>

@@ -13,7 +13,7 @@ const Slide2 = () => {
       {items.map(item =>
         <ItemCard
           item={item}
-          key={item.slug} />)}
+          key={`item-card-${item.slug}`} />)}
     </section>)
 }
 

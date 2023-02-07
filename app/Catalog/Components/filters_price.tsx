@@ -12,7 +12,7 @@ type Props = {
 }
 
 const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
-  console.log("FiltersPrice\n", min, max, filters.priceFilter);
+  // console.log("FiltersPrice\n", min, max, filters.priceFilter);
   const [localFilter, setLocalFilter] = useState<typeof filters.priceFilter>(filters.priceFilter)
 
   //#region Queries

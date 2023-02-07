@@ -7,9 +7,9 @@ import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section>
+    <section className="w-full px-[16.7vw]">
 
-      <div className="mb-[10vw] translate-x-[-10vw]">
+      <div className="mb-[10vw]">
         <h1 className={styles.h1 + " font-inter"}>
           Любимые бренды <br /> <span className={styles.span}>возвращаются</span>
         </h1>
@@ -28,15 +28,13 @@ function Slide1() {
         <Image
           src={waves}
           alt="Волна"
-          className={styles.waves}
-        />
+          className={styles.waves} />
 
         <div className={styles.krugmain}>
           <Image
             src={kross}
             alt="Логотип"
-            className={styles.Logotip}
-          />
+            className={styles.Logotip} />
         </div>
 
         <div>

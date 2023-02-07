@@ -26,6 +26,12 @@ type Props = {
 const CatalogClient = ({ firstPage, meta }: Props) => {
 
   const [content, setContent] = useState(firstPage)
+  // const [content, setContent] = useState({
+  //   ...firstPage,
+  //   items: [
+  //     ...firstPage.items, ...firstPage.items, ...firstPage.items,
+  //     ...firstPage.items, ...firstPage.items, ...firstPage.items]
+  // })
   const [filters, setFilters] = useState<Filters>({
     page: 0,
     priceSort: SortType.default,
@@ -34,36 +40,40 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       max: firstPage.max?.price
     },
     sexFilter: {
-      male: true,
-      female: true
+      male: false,
+      female: false
     },
     selectedCategories: Object
       .keys(meta.category.categoryJson)
-      .reduce((arr, v) => ({ ...arr, [v]: true }), {}) as { [category: string]: boolean },
+      .reduce((arr, v) => ({ ...arr, [v]: false }), {}) as { [category: string]: boolean },
     selectedSubcategories: Object.keys(Object.entries(meta.category.categoryJson).map(x => x[1])),
     selectedBrands: meta.brands
-      .reduce((arr, v) => ({ ...arr, [v.name]: true }), {}) as { [brand: string]: boolean }
+      .reduce((arr, v) => ({ ...arr, [v.name]: false }), {}) as { [brand: string]: boolean }
   })
 
   //#region Queries
 
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
   async function fetchData(newFilters: Filters): Promise<Catalog> {
+    // TODO: при пустых фильтрах выводить всё 
 
-    const brands = Object
+    let brands = Object
       .entries(newFilters.selectedBrands)
       .filter(x => x[1])
       .map(x => x[0])
+    if (!brands.length) brands = meta.brands.map(x => x.name)
 
-    const categories = Object
+    let categories = Object
       .entries(newFilters.selectedCategories)
       .filter(x => x[1])
       .map(x => x[0])
+    if (!categories.length) categories = Object.keys(meta.category.categoryJson)
 
-    const sex = Object
+    let sex = Object
       .entries(newFilters.sexFilter)
       .filter(x => x[1])
       .map(x => x[0])
+    if (!sex.length) sex = Object.keys(newFilters.sexFilter)
 
     const query = await fetch("/api/catalog", {
       method: "POST",
@@ -95,7 +105,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
 
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-6 auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px]">
+  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>

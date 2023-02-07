@@ -45,6 +45,7 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
       allItems(first: 8, skip: 0) {
         title
         price
+        slug
         images {
           responsiveImage(imgixParams: { auto: format }) {
             sizes
@@ -73,7 +74,7 @@ export async function getCatalogPaths(): Promise<string[]> {
     }
   `;
   const response = await graphQLRequest({ query });
-  console.log("response" + JSON.stringify(response));
+  // console.log("response" + JSON.stringify(response));
   return response.allItems.map((item: Item) => item.slug);
 }
 
@@ -91,7 +92,7 @@ export async function getBrandsAndCategories(): Promise<CatalogBrandsAndCategori
   return await graphQLRequest({ query });
 }
 
-//TODO: фильтр на sex, subcategories
+//TODO: фильтр на subcategories
 //* Все товары для каталога
 export async function getItems(
   // Фильтр по бренду
@@ -160,7 +161,7 @@ export async function getItems(
     }
   `;
 
-  const response: Catalog = await graphQLRequest({
+  const options = {
     query,
     variables: {
       "skip": page * 15,
@@ -171,7 +172,9 @@ export async function getItems(
       minPrice,
       maxPrice
     }
-  });
+  }
+
+  const response: Catalog = await graphQLRequest(options);
   return response;
 }
 
