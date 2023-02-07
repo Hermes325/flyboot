@@ -11,9 +11,17 @@ export type Filters = {
   priceSort: SortType;
   priceFilter: { min: number; max: number; };
   sexFilter: { male: boolean; female: boolean; };
-  selectedCategories: { [category: string]: boolean; };
-  selectedSubcategories: string[];
-  selectedBrands: { [brand: string]: boolean; };
+  selectedCategories: {
+    [category: string]: boolean;
+  };
+  selectedSubcategories: {
+    [category: string]: {
+      [subcategory: string]: boolean;
+    };
+  };
+  selectedBrands: {
+    [brand: string]: boolean;
+  };
 }
 export type SetFiltersWrapper =
   (setNewValue: (filter: Filters) => Filters) => Promise<void>
@@ -45,10 +53,18 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     },
     selectedCategories: Object
       .keys(meta.category.categoryJson)
-      .reduce((arr, v) => ({ ...arr, [v]: false }), {}) as { [category: string]: boolean },
-    selectedSubcategories: Object.keys(Object.entries(meta.category.categoryJson).map(x => x[1])),
+      .reduce((arr, category) => ({ ...arr, [category]: false }), {}),
+    selectedSubcategories: Object
+      .entries(meta.category.categoryJson)
+      .reduce((arr, category) => ({
+        ...arr, [category[0]]: Object
+          .keys(category[1])
+          .reduce((arr, subcategory) => ({
+            ...arr, [subcategory]: subcategory === category[0]
+          }), {})
+      }), {}),
     selectedBrands: meta.brands
-      .reduce((arr, v) => ({ ...arr, [v.name]: false }), {}) as { [brand: string]: boolean }
+      .reduce((arr, v) => ({ ...arr, [v.name]: false }), {})
   })
 
   //#region Queries
@@ -62,12 +78,38 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
       .filter(x => x[1])
       .map(x => x[0])
     if (!brands.length) brands = meta.brands.map(x => x.name)
+    // console.table(newFilters.selectedBrands)
 
+    const allCategories = Object.keys(meta.category.categoryJson)
     let categories = Object
       .entries(newFilters.selectedCategories)
       .filter(x => x[1])
       .map(x => x[0])
-    if (!categories.length) categories = Object.keys(meta.category.categoryJson)
+    if (!categories.length) categories = allCategories
+    // console.table(newFilters.selectedCategories)
+
+    const subcategories = Object
+      .values(newFilters.selectedSubcategories)
+      .map(subcat => Object
+        .entries(subcat)
+        .filter(_x => _x[1])[0][0])
+      // При выборе категории в подкатегориях, кидаем полный массив
+      // Выборанная категория отсеет неподходящие варианты
+      .reduce<string[]>((arr, subcat) => {
+        const _subcat = categories.includes(subcat)
+          ? Object.keys(newFilters.selectedSubcategories[subcat])
+          : [subcat];
+
+        return [...arr, ..._subcat]
+      }, [])
+      // Избавляемся от всех категорий в подкатегориях
+      .filter(x => !allCategories.includes(x))
+    // console.groupCollapsed("%cПодкатегории",
+    //   "color:font-family:system-ui;font-size:1.5rem;font-weight:bold")
+    // Object
+    //   .values(newFilters.selectedSubcategories)
+    //   .forEach(x => console.table(x))
+    // console.groupEnd()
 
     let sex = Object
       .entries(newFilters.sexFilter)
@@ -86,6 +128,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
         orderBy: SortType[newFilters.priceSort],
         brands,
         categories,
+        subcategories,
         sex,
         minPrice: newFilters.priceFilter.min,
         maxPrice: newFilters.priceFilter.max,

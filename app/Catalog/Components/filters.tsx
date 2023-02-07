@@ -27,13 +27,38 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
   }
 
   function changeSubcategory(category: string, selected: string, all: string[]) {
-    const selectedSubcategories = selected === category ? all : [selected];
+    // Выбираем все подкатегории 
+    const isAll = selected === category
 
-    console.log("changeSubcategory\n", selectedSubcategories);
-    console.log("changeSubcategory\n", category, selected, all);
+    // Выбираем категорию при выборе подкатегории 
+    const selectedCategories = { ...filters.selectedCategories, [category]: true }
+
+    // Выбираем подкатегории
+    const newCategory = Object
+      .entries(filters.selectedSubcategories[category])
+      .map(Object.entries)
+      .map(x => x.map(_x => _x[1]))
+      .map(subcat => {
+        const value = isAll ? true : subcat[0] === selected
+        return { [subcat[0]]: value }
+      })
+      .reduce((arr, subcat) => {
+        const props = Object.entries(subcat)[0]
+        return { ...arr, [props[0]]: props[1] }
+      })
+
+    const selectedSubcategories = {
+      ...filters.selectedSubcategories,
+      [category]: newCategory
+    }
+
+    // console.log("changeSubcategory\n", selectedSubcategories);
+    // console.log("changeSubcategory\n", category, selected, all);
 
     return (filter: Filters): Filters =>
-      ({ ...filter, page: 0, selectedSubcategories })
+    ({
+      ...filter, page: 0, selectedCategories, selectedSubcategories
+    })
   }
 
   function changeSex(sex: string, value: boolean) {
@@ -89,7 +114,6 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       {/* Подкатегория */}
       <select
         id="price"
-        value={filters.priceSort}
         onChange={(x) => setFiltersWrapper(changeSubcategory(category, x.target.value, subcategories.map(x => x[0])))}
         className="overflow-clip inline-block bg-[#0E0E0E] font-inter font-extralight text-white text-[14px] border border-gray-300
                   focus:ring-blue-500 focus:border-blue-500 h-[25px] w-[calc(100%-54px)]"

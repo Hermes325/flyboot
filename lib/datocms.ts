@@ -92,13 +92,14 @@ export async function getBrandsAndCategories(): Promise<CatalogBrandsAndCategori
   return await graphQLRequest({ query });
 }
 
-//TODO: фильтр на subcategories
 //* Все товары для каталога
 export async function getItems(
   // Фильтр по бренду
   brands?: string[],
   // Фильтр по категории
   categories?: string[],
+  // Фильтр по подкатегории
+  subcategories?: string[],
   // Фильтр по полу
   sex?: string[],
   // Пагинация
@@ -116,6 +117,7 @@ export async function getItems(
     $orderBy: [ItemModelOrderBy] = null, 
     ${brands ? '$brands: [String],' : ''} 
     ${categories ? '$categories: [String],' : ''}
+    ${subcategories ? '$subcategories: [String],' : ''}
     ${sex ? '$sex: [String],' : ''} 
     $minPrice: FloatType = 0, 
     $maxPrice: FloatType = 1000000000
@@ -125,6 +127,7 @@ export async function getItems(
     filter: {
       ${brands ? "brand: {in: $brands}, " : ""}
       ${categories ? "category: {in: $categories}, " : ""}
+      ${subcategories ? "subcategory: {in: $subcategories}, " : ""}
       ${sex ? "sex: {in: $sex}, " : ""}
       price: {gte: $minPrice, lte: $maxPrice}
     }
@@ -136,6 +139,7 @@ export async function getItems(
         slug
         title
         price
+        subcategory
         poizonId
         images {
           responsiveImage(imgixParams: { auto: format }) {
@@ -168,11 +172,14 @@ export async function getItems(
       "orderBy": orderBy === SortType.default ? null : orderBy,
       brands,
       categories,
+      subcategories,
       sex,
       minPrice,
       maxPrice
     }
   }
+
+  // console.log(subcategories, JSON.stringify(options.variables, null, 2));
 
   const response: Catalog = await graphQLRequest(options);
   return response;
