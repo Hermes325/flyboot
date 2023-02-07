@@ -4,6 +4,7 @@ import { SetFiltersWrapper } from '../page_client';
 import Filters from './filters';
 import styles from "./filters_price.module.css"
 
+
 type Props = {
   min: number;
   max: number;
