@@ -77,10 +77,14 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
   //#region UI templates
   const h1 = (text: string) =>
-    <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>{text}</h1>
+    <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>
+      {text}
+    </h1>
 
   const h2 = (text: string) =>
-    <h2 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>{text}</h2>
+    <h2 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>
+      {text}
+    </h2>
 
   const formCheck = (text: string, prop: string, checked: boolean, onChange: (prop: string, checked: boolean) => (filter: Filters) => Filters) =>
     <div className='mb-1.5' key={prop}>
@@ -113,7 +117,6 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
       {/* Подкатегория */}
       <select
-        id="price"
         onChange={(x) => setFiltersWrapper(changeSubcategory(category, x.target.value, subcategories.map(x => x[0])))}
         className="overflow-clip inline-block bg-[#0E0E0E] font-inter font-extralight text-white text-[14px] border border-gray-300
                   focus:ring-blue-500 focus:border-blue-500 h-[25px] w-[calc(100%-54px)]"

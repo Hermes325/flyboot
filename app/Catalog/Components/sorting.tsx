@@ -21,7 +21,6 @@ const Sorting = ({ filters, setFiltersWrapper }: Props) => {
 
   return (
     <select
-      id="price"
       value={filters.priceSort}
       prefix="сортировка"
       onChange={(x) => setFiltersWrapper(changeSort(Number(x.target.value)))}

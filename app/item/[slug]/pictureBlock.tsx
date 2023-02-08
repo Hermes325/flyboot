@@ -15,6 +15,7 @@ const PictureBlock = ({ item }: Props) => {
   return (<>
     <Image
       data={item.images[current].responsiveImage}
+      className="rounded-[15px]"
       pictureClassName="object-cover aspect-[646/532] h-[532px] rounded-[15px]" />
 
     {/* more photos */}

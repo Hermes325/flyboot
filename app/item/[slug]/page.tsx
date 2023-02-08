@@ -16,7 +16,7 @@ export default async function ItemPage({ params }: Props) {
   if (item === null) notFound();
 
   return (
-    <div className=" w-screen min-h-screen flex justify-center bg-[#454545]">
+    <div className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]">
       <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10">
         {/* main block item */}
         <div className="flex flex-row w-full space-x-10">
