@@ -144,7 +144,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //#endregion
 
-  return (<><main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-2xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-2xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0]">
+  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-2xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-2xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -191,9 +191,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         </div>}
     </div>
 
-  </main >
-
-  </>)
+  </main>)
 }
 
 export default CatalogClient

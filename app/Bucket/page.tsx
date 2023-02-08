@@ -1,9 +1,8 @@
 "use client";
 import { useSelector, useDispatch } from "react-redux";
-import { getHotItemsForLanding, Item } from "@/lib/datocms";
 import { addItem, deleteItem, deleteAll } from "../../slices/itemSlice";
 import type { RootState } from "../../store/store";
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function page() {
   const items = useSelector((state: RootState) => state.items);
@@ -21,7 +20,7 @@ function page() {
           onClick={() => {
             dispatch(
               addItem({
-                brand: "",
+                brand: { id: "", name: "" },
                 category: "",
                 subcategory: "",
                 description1: "",
