@@ -34,7 +34,7 @@ type Props = {
 
 const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
-  const [content, setContent] = useState(firstPage)
+  const [content, setContent] = useState({ ...firstPage, items: [...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items] })
   const [filters, setFilters] = useState<Filters>({
     page: 0,
     priceSort: SortType.default,
@@ -144,7 +144,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px]">
+  return (<><main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-2xl:grid-cols-[4vw_1fr_1fr_1fr_4vw]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -169,7 +169,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Catalog */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh]">
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-2xl:col-span-2 max-2xl:grid-cols-[1fr_1fr]">
       {/* Items */}
       {content.items.map(item =>
         <ItemCard key={item.poizonId} item={item} />)}
@@ -188,7 +188,9 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         setFiltersWrapper={setFiltersWrapper} />
     </div>
 
-  </main >)
+  </main >
+
+  </>)
 }
 
 export default CatalogClient
