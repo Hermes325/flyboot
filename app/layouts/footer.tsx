@@ -6,6 +6,7 @@ import telegram_path from "@/public/footer-images/telegram.svg";
 import group_path from "@/public/footer-images/Group.svg";
 import WTF_path from "@/public/footer-images/WTF.svg";
 import NavLink from "./link";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -30,13 +31,13 @@ export default function Footer() {
           <address className="flex flex-row space-x-6 items-center">
             <p className="font-montserrat text-xl text-white not-italic">мы в соцсетях</p>
             <Image src={whatsapp_path} alt="whatsapp logo" />
-            <Image src={telegram_path} alt="telegramlogo" />
-            <Image src={group_path} alt="group logo" />
+            <Link href="https://t.me/flybootsfast"> <Image src={telegram_path} alt="telegramlogo" /></Link>
+            <Image src={group_path} alt="авито logo" />
           </address>
         </div>
 
         <div className="">
-          <p className="font-montserrat text-l text-[#29D9CE]">
+          <p className="font-montserrat text-m text-[#29D9CE]">
             © 2022 Flyboots. Все права защищены.
           </p>
         </div>

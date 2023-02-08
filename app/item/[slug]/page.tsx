@@ -61,8 +61,8 @@ export default async function ItemPage({ params }: Props) {
 
             <BucketButton item={item} />
 
-            <DropDown title="Описание1" description={item.description1} />
-            <DropDown title="Описание2" description={item.description2} />
+            <DropDown title="Описание" description={item.description1} />
+            <DropDown title="Характеристика" description={item.description2} />
           </div>
         </div>
 
