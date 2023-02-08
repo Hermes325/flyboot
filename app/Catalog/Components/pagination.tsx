@@ -29,7 +29,7 @@ const Pagination = ({ setFiltersWrapper, amount, page }: Props) => {
   //#endregion
 
   //*==================================================================
-  return (<div className='col-span-3 flex justify-center items-center'>
+  return (<>
     {/* Первая */}
     {currentPage >= 3 && pageBtn(1)}
     {currentPage >= 4 && pageEllipsis()}
@@ -43,7 +43,7 @@ const Pagination = ({ setFiltersWrapper, amount, page }: Props) => {
     {/* Последняя */}
     {currentPage + 2 < lastPage - 1 && pageEllipsis()}
     {currentPage + 2 < lastPage && pageBtn(lastPage)}
-  </div>)
+  </>)
 }
 
 export default Pagination
