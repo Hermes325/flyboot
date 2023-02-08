@@ -1,24 +1,19 @@
 "use client";
-import React from "react";
 import { Item } from "@/lib/datocms";
+import React from "react";
 import { Image } from "react-datocms/image";
 
 type Props = {
-  item: Item;
+  image: Item["images"][0];
   className?: string;
 };
 
-function Imageboot({ item, className }: Props) {
+function Imageboot({ image, className }: Props) {
   return (
-    <div>
-      {item.images.map((image, i) => (
-        <Image
-          lazyLoad={true}
-          key={i}
-          data={image.responsiveImage}
-          pictureClassName={className} />
-      ))}
-    </div>
+    <Image
+      lazyLoad={true}
+      data={image.responsiveImage}
+      pictureClassName={className} />
   );
 }
 

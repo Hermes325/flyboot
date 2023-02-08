@@ -7,6 +7,7 @@ import BucketButton from "./bucketButton";
 import DropDown from "./dropDown";
 
 import Recommends from "./recommends";
+import PictureBlock from "./pictureBlock";
 
 type Props = {
   params: { slug: string };
@@ -25,29 +26,7 @@ export default async function ItemPage({ params }: Props) {
         <div className="flex flex-row w-full space-x-10">
           {/* images block */}
           <div className="flex flex-col space-y-5">
-            <Imageboot
-              item={item}
-              className="object-cover aspect-[646/532] h-[532px] rounded-[15px]"
-            />
-            {/* more photos */}
-            <div className="flex flex-row justify-between">
-              <Imageboot
-                item={item}
-                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
-              />
-              <Imageboot
-                item={item}
-                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
-              />
-              <Imageboot
-                item={item}
-                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
-              />
-              <Imageboot
-                item={item}
-                className="object-cover aspect-[143/93] h-[93px] rounded-[15px]"
-              />
-            </div>
+            <PictureBlock item={item} />
           </div>
 
           {/* info block */}

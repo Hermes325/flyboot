@@ -34,7 +34,8 @@ type Props = {
 
 const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
-  const [content, setContent] = useState({ ...firstPage, items: [...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items] })
+  // const [content, setContent] = useState({ ...firstPage, items: [...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items] })
+  const [content, setContent] = useState(firstPage)
   const [filters, setFilters] = useState<Filters>({
     page: 0,
     priceSort: SortType.default,
@@ -169,7 +170,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Catalog */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-2xl:col-span-2 max-2xl:grid-cols-[1fr_1fr]">
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-2xl:col-span-2 max-2xl:grid-cols-[1fr_1fr]" style={{ alignItems: "start" }}>
       {/* Items */}
       {content.items.map(item =>
         <ItemCard key={item.poizonId} item={item} />)}
