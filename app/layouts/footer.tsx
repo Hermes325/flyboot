@@ -18,13 +18,13 @@ export default function Footer() {
           {/* links to pages */}
           <div className="flex flex-row space-x-28">
             <NavLink href="/Catalog">
-              <h2 className="font-montserrat text-xl text-white">Каталог</h2>
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">Каталог</h2>
             </NavLink>
             <NavLink href="/About-us">
-              <h2 className="font-montserrat text-xl text-white">О нас</h2>
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">О нас</h2>
             </NavLink>
             <NavLink href="/FAQ">
-              <h2 className="font-montserrat text-xl text-white">FAQ</h2>
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">FAQ</h2>
             </NavLink>
           </div>
           <address className="flex flex-row space-x-6 items-center">
@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
 
         <div className="">
-          <p className="font-montserrat text-xl text-[#29D9CE]">
+          <p className="font-montserrat text-l text-[#29D9CE]">
             © 2022 Flyboots. Все права защищены.
           </p>
         </div>

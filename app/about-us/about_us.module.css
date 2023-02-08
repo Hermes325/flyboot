@@ -48,16 +48,28 @@
 }
 
 .right_hand {
-    position: absolute;
-    right   : 0;
-    top     : 4%;
+    position           : absolute;
+    right              : 0;
+    top                : 4%;
+    z-index            : -1;
+    -moz-user-select   : none;
+    -o-user-select     : none;
+    -khtml-user-select : none;
+    -webkit-user-select: none;
+    user-select        : none;
 }
 
 .left_hand {
-    position: absolute;
-    left    : 0;
-    bottom  : 6vh;
-    width   : 31vw;
+    position           : absolute;
+    left               : 0;
+    bottom             : 6vh;
+    width              : 31vw;
+    z-index            : -1;
+    -moz-user-select   : none;
+    -o-user-select     : none;
+    -khtml-user-select : none;
+    -webkit-user-select: none;
+    user-select        : none;
 }
 
 
