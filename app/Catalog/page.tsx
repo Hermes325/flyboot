@@ -1,5 +1,5 @@
-import { getBrandsAndCategories, getItems } from "@/lib/datocms";
 import React, { use } from "react";
+import { getBrandsAndCategories, getItems } from "@/lib/datocms";
 import CatalogClient from "./page_client";
 
 
@@ -10,10 +10,7 @@ function Catalog() {
   // Первая страница
   const catalog = use(getItems())
 
-  return (
-    <CatalogClient
-      firstPage={catalog}
-      meta={catalogMeta} />)
+  return <CatalogClient firstPage={catalog} meta={catalogMeta} />
 }
 
 export default Catalog

@@ -28,18 +28,13 @@ export type SetFiltersWrapper =
 
 type Props = {
   firstPage: Catalog,
-  meta: CatalogBrandsAndCategories
+  meta: CatalogBrandsAndCategories,
+  initialCategory?: string
 }
 
-const CatalogClient = ({ firstPage, meta }: Props) => {
+const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   const [content, setContent] = useState(firstPage)
-  // const [content, setContent] = useState({
-  //   ...firstPage,
-  //   items: [
-  //     ...firstPage.items, ...firstPage.items, ...firstPage.items,
-  //     ...firstPage.items, ...firstPage.items, ...firstPage.items]
-  // })
   const [filters, setFilters] = useState<Filters>({
     page: 0,
     priceSort: SortType.default,
@@ -53,7 +48,7 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     },
     selectedCategories: Object
       .keys(meta.category.categoryJson)
-      .reduce((arr, category) => ({ ...arr, [category]: false }), {}),
+      .reduce((arr, category) => ({ ...arr, [category]: initialCategory === category }), {}),
     selectedSubcategories: Object
       .entries(meta.category.categoryJson)
       .reduce((arr, category) => ({
@@ -165,8 +160,8 @@ const CatalogClient = ({ firstPage, meta }: Props) => {
     {/* Filters */}
     <div className="col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
       <FiltersUI
-        min={firstPage.min.price}
-        max={firstPage.max.price}
+        min={firstPage.min?.price ?? 0}
+        max={firstPage.max?.price ?? 1000000}
         meta={meta}
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />

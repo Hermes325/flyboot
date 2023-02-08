@@ -139,6 +139,7 @@ export async function getItems(
         slug
         title
         price
+        category
         subcategory
         poizonId
         images {

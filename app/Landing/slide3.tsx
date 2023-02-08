@@ -2,7 +2,22 @@ import React from "react";
 import Image from 'next/image';
 import vector from '@/public/main-images/Vector.svg'
 import styles from "./styles/slide3.module.css";
+import Link from "next/link";
 
+
+const links = [{
+  href: "/Catalog/apparel",
+  name: "Одежда",
+  className: styles.ramochka_child
+}, {
+  href: "/Catalog/shoes",
+  name: "Обувь",
+  className: styles.ramochka_man
+}, {
+  href: "/Catalog/accessory",
+  name: "Аксессуары",
+  className: styles.ramochka_woman
+}]
 
 function Slide3() {
   return (<section id="catalog" className="translate-y-5 px-[16.7vw]">
@@ -13,49 +28,23 @@ function Slide3() {
     </p>
 
     <div className={styles.container}>
-
-      <a href="">
-        <form action="//НАДО СЮДА ПРОПИСАТЬ ССЫЛКУ" className={styles.ramochka_child}>
+      {links.map(({ href, name, className }) =>
+        <Link href={href} key={href} className={className}>
           <button className={styles.btn + " font-jost flex gap-[25px]"}>
-            <h3>Одежда</h3>
+            <h3>{name}</h3>
             <Image
               src={vector}
               alt="купить"
               className="mt-[8px]" />
           </button>
-        </form>
-      </a>
-
-      <a href="">
-        <form action="//НАДО СЮДА ПРОПИСАТЬ ССЫЛКУ" className={styles.ramochka_man}>
-          <button className={styles.btn + " font-jost flex gap-[25px]"}>
-            <h3>Обувь</h3>
-            <Image
-              src={vector}
-              alt="купить"
-              className="mt-[8px]" />
-          </button>
-        </form>
-      </a>
-
-      <a href="">
-        <form action="//НАДО СЮДА ПРОПИСАТЬ ССЫЛКУ" className={styles.ramochka_woman}>
-          <button className={styles.btn + " font-jost flex gap-[25px]"}>
-            <h3>Аксессуары</h3>
-            <Image
-              src={vector}
-              alt="купить"
-              className="mt-[8px]" />
-          </button>
-        </form>
-      </a>
+        </Link>)}
     </div>
 
-    <form className=" mt-[3vw] text-center flex justify-center" >
+    <Link href="/Catalog" className="mt-[3vw] text-center flex justify-center" >
       <button className={styles.catalog_button + " font-montserrat"}>
         Каталог
       </button>
-    </form>
+    </Link>
 
   </section>)
 }
