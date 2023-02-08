@@ -16,7 +16,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
   //#region Queries
 
   function changeCategory(category: string, value: boolean) {
-    console.log("changeCategory", value);
+    // console.log("changeCategory", value);
 
     return (filter: Filters): Filters =>
     ({

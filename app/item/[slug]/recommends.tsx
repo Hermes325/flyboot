@@ -27,7 +27,7 @@ const Recommends = ({ item }: Props) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          "brands": [item.brand],
+          "brands": [item.brand.id],
           "slug": item.slug
         })
       })
@@ -59,6 +59,7 @@ const Recommends = ({ item }: Props) => {
     <div className="flex flex-row w-full space-x-5 mb-[74px]">
       {!loading &&
         <Swiper
+          className='w-full'
           slidesPerView={4}
           spaceBetween={50}
           breakpoints={{
@@ -72,7 +73,7 @@ const Recommends = ({ item }: Props) => {
             prevEl: '.arrow_backward',
             nextEl: '.arrow_forward'
           }}>
-          {[...recommends, ...recommends, ...recommends, ...recommends, ...recommends].map(item =>
+          {recommends.map(item =>
             <SwiperSlide key={item.poizonId} className="cursor-pointer">
               <ItemCard item={item} />
             </SwiperSlide>)}

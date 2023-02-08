@@ -66,13 +66,14 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
   async function fetchData(newFilters: Filters): Promise<Catalog> {
-    // TODO: при пустых фильтрах выводить всё 
 
     let brands = Object
       .entries(newFilters.selectedBrands)
       .filter(x => x[1])
       .map(x => x[0])
-    if (!brands.length) brands = meta.brands.map(x => x.name)
+      .map(x => meta.brands.find(brand => brand.name === x)?.id)
+
+    if (!brands.length) brands = meta.brands.map(x => x.id)
     // console.table(newFilters.selectedBrands)
 
     const allCategories = Object.keys(meta.category.categoryJson)

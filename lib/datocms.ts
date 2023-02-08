@@ -4,7 +4,7 @@ import { gql } from "graphql-request";
 // Типы =====================================================
 export type Item = {
   sex: string,
-  brand: string;
+  brand: { name: string, id: string };
   category: string;
   subcategory: string;
   description1: string;
@@ -22,7 +22,7 @@ export type Catalog = {
   all: { count: number }
 }
 export type CatalogBrandsAndCategories = {
-  brands: { name: string }[],
+  brands: { name: string, id: string }[],
   category: {
     categoryJson: {
       [category: string]: {
@@ -84,6 +84,7 @@ export async function getBrandsAndCategories(): Promise<CatalogBrandsAndCategori
   {
     brands: allBrands {
       name
+      id
     }
     category {
       categoryJson
@@ -115,7 +116,7 @@ export async function getItems(
     $first: IntType = 15, 
     $skip: IntType = 0, 
     $orderBy: [ItemModelOrderBy] = null, 
-    ${brands ? '$brands: [String],' : ''} 
+    ${brands ? '$brands: [ItemId],' : ''} 
     ${categories ? '$categories: [String],' : ''}
     ${subcategories ? '$subcategories: [String],' : ''}
     ${sex ? '$sex: [String],' : ''} 
@@ -139,8 +140,6 @@ export async function getItems(
         slug
         title
         price
-        category
-        subcategory
         poizonId
         images {
           responsiveImage(imgixParams: { auto: format }) {
@@ -169,8 +168,8 @@ export async function getItems(
   const options = {
     query,
     variables: {
-      "skip": page * 15,
-      "orderBy": orderBy === SortType.default ? null : orderBy,
+      skip: page * 15,
+      orderBy: orderBy === SortType.default ? null : orderBy,
       brands,
       categories,
       subcategories,
@@ -195,7 +194,7 @@ export async function getRecommendsHandler(
 
   const queryVariables = `
     $first: IntType = 12, 
-    $brands: [String], 
+    $brands: [ItemId], 
     $slug: String
   `;
 
@@ -245,7 +244,9 @@ export async function getItem(slug: string): Promise<Item> {
     query GetItem($slug: String) {
       item(filter: { slug: { eq: $slug } }) {
         slug
-        brand
+        brand {
+          id
+        }
         category
         description1
         description2
@@ -272,7 +273,7 @@ export async function getItem(slug: string): Promise<Item> {
     variables: { slug },
   });
 
-  return response.item;
+  return response.item
 }
 
 //* Поиск товара
