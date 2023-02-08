@@ -1,13 +1,11 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
-
-import Imageboot from "./imageboot";
 import BucketButton from "./bucketButton";
 import DropDown from "./dropDown";
-
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
+
 
 type Props = {
   params: { slug: string };
@@ -16,8 +14,6 @@ type Props = {
 export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
-
-  // console.log("function ItemPage", item);
 
   return (
     <div className=" w-screen min-h-screen flex justify-center bg-[#454545]">
@@ -77,7 +73,6 @@ export default async function ItemPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  // console.log("generateStaticParams");
   const paths = await getCatalogPaths();
   return paths.map((path) => ({ slug: path }));
 }

@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 
 type Props = {
   item: Item;
-  // className: string;
 };
 
 function BucketButton({ item }: Props) {
