@@ -1,8 +1,10 @@
 "use client";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../store/store";
+import type { RootState } from "@/lib/redux/store/store";
 import React, { useState } from "react";
 import TestRedux from "./TestRedux";
+import BucketItemCard from "./BucketItemCard";
+import styles from "./BucketItemCard.module.css"
 
 function page() {
   const items = useSelector((state: RootState) => state.items);
@@ -20,10 +22,12 @@ function page() {
     setOrder(x => ({ ...x, [prop]: value }))
   }
 
-  const finalPrice = items.reduce((a, v) => a + v.price, 0).toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  })
+  const finalPrice = Math
+    .ceil(items.reduce((a, v) => a + v.price, 0))
+    .toLocaleString(undefined, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
 
   //#region Queries
   //#endregion
@@ -31,15 +35,15 @@ function page() {
   //#region UI templates
   const inputTailwind = "px-[24px] text-[20px] font-lato h-[68px] border-2 rounded-2xl border-[#919191] bg-transparent"
 
-  const h2 = (text: string) =>
-    <h2 className="font-lato text-[25px] font-extrabold leading-[105%] my-[14px] tracking-[0.01em]">
+  const h2 = (text: string, className: string = "") =>
+    <h2 className={`${className} font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]`}>
       {text}
     </h2>
 
   const formRadio = (text: string, prop: string, checked: boolean, propValue: string) =>
-    <div className='mb-1.5' key={prop}>
+    <div className='mt-[14px] flex items-center' key={prop}>
       <input
-        className="appearance-none h-[20px] w-[20px] m-0 mr-[29px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
+        className="appearance-none h-[20px] w-[20px] m-0 mr-[14px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:bg-[#29D9CE] 
                   focus:outline-none transition duration-200"
         type="radio"
@@ -71,13 +75,13 @@ function page() {
     </div>
   //#endregion
 
-  return (<main className="w-screen min-h-screen flex justify-center bg-[#0E0E0E]">
+  return (<main className="w-screen min-h-screen flex justify-center bg-[#0E0E0E] pt-[108px]">
 
     <TestRedux />
 
     <form className="flex flex-col items-center justify-center max-w-[1280px] w-full mb-12">
       {/* Bucket text Корзина */}
-      <h1 className="font-montserrat w-full font-bold text-7xl text-white mt-2 mb-10">
+      <h1 className="font-montserrat w-full font-bold text-7xl text-[#F5F5F5] mt-2 mb-10">
         Корзина
       </h1>
 
@@ -86,10 +90,11 @@ function page() {
 
         {/* Items */}
         <div className="col-span-1 flex flex-col border-2 rounded-2xl border-[#919191]">
-          {items.map((x) => (
-            <div key={x.poizonId} className="w-full h-[136px]">
-              {x.slug}
-            </div>))}
+          {items.map((item, i, arr) => (<div key={item.poizonId}>
+            <BucketItemCard item={item} />
+            {i !== arr.length - 1 &&
+              <hr className="mx-[24px]" />}
+          </div>))}
         </div>
 
         {/* Contacts */}
@@ -125,23 +130,27 @@ function page() {
         </div>
 
         {/* Order & Delivery */}
-        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[60vh] h-fit justify-between max-w-[25vw] border-2 rounded-2xl border-[#919191] px-10 py-4">
-          {h2("Ваш заказ")}
-          <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-            Товары, {items.length} шт. {finalPrice} ₽
-          </p>
+        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[60vh] h-fit justify-between max-w-[357px] border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]">
+          <div>
+            {h2("Ваш заказ")}
+            <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
+              Товары, {items.length} шт. {finalPrice} ₽
+            </p>
+          </div>
 
-          {h2("Выберите способ доставки")}
-          {formRadio("СДЭК (ПВЗ) - 350 ₽", "delivery", order.delivery === "CDEK", "CDEK")}
-          {formRadio("Boxberry (ПВЗ) - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
+          <div>
+            {h2("Выберите способ доставки")}
+            {formRadio("СДЭК (ПВЗ) - 350 ₽", "delivery", order.delivery === "CDEK", "CDEK")}
+            {formRadio("Boxberry (ПВЗ) - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
+          </div>
 
-          {h2(`Итого ${finalPrice} ₽`)}
+          {h2(`Итого ${finalPrice} ₽`, "mt-[1rem]")}
           <textarea
-            cols={4}
             placeholder="Комментарий к заказу"
-            className="block w-full" />
+            rows={3}
+            className="block w-full text-[#454545]" />
           <button
-            className="block">
+            className={styles.buy + " font-inter"}>
             Заказать
           </button>
           {formCheck("Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.",
@@ -151,7 +160,7 @@ function page() {
       </div>
     </form>
 
-  </main>)
+  </main >)
 }
 
 export default page;

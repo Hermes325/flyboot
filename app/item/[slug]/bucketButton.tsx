@@ -1,6 +1,6 @@
 "use client";
 import { Item } from "@/lib/datocms";
-import { addItem } from "@/slices/itemSlice";
+import { addItem } from "@/lib/redux/slices/itemSlice";
 import React from "react";
 
 import { useDispatch } from "react-redux";
