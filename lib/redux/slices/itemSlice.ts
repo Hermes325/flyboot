@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { Item } from "@/lib/datocms";
+import { RootState } from "../store/store";
 
 // Лучше хранить список из товаров и при добавлении товара дублировать запись.
 type BucketItem = {
@@ -14,7 +15,10 @@ type BucketItem = {
   }
 }
 
-const initialState: BucketItem[] = []
+const localStorageBucket = localStorage.getItem("bucket")
+const initialState: BucketItem[] = localStorageBucket === null
+  ? []
+  : JSON.parse(localStorageBucket) as BucketItem[]
 
 const itemSlice = createSlice({
   name: "bucket",
@@ -36,4 +40,15 @@ const itemSlice = createSlice({
 });
 
 export const { addItem, deleteItem, deleteAll } = itemSlice.actions;
+
+export const listenerMiddleware = createListenerMiddleware();
+listenerMiddleware.startListening({
+  matcher: isAnyOf(addItem, deleteItem, deleteAll),
+  effect: (action, listenerApi) =>
+    localStorage.setItem(
+      itemSlice.name,
+      JSON.stringify((listenerApi.getState() as RootState).items)
+    )
+});
+
 export default itemSlice.reducer;
