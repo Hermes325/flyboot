@@ -32,9 +32,6 @@ const ItemCard = ({ item, className }: Props) => {
           <h3 className={styles["name"]}>{item.title}</h3>
           <p className={styles["price"]}>{item.price}&nbsp;руб</p>
         </div>
-        {/* <button className={styles['buy-btn']}>
-          Купить
-        </button> */}
       </div>
     </Link>
   );

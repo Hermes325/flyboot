@@ -22,7 +22,7 @@ const PictureBlock = ({ item }: Props) => {
     <div className="flex flex-row justify-start gap-[24px]">
       {item.images.map((image, i) => current === i ? <></> :
         <div
-          key={i}
+          key={`small-${i}`}
           onClick={_ => setCurrent(i)}
           className="rounded-[15px] cursor-pointer">
           <Image
