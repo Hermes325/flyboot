@@ -8,7 +8,7 @@ const TestRedux = () => {
   const dispatch = useDispatch();
 
   return (<div className="w-[100px] p-[10px] border bg-slate-500 rounded-sm absolute left-0 top-32">
-    {/* <button onClick={() => dispatch(addItem({
+    <button onClick={() => dispatch(addItem({
       brand: { id: "1", name: "Nike" },
       category: "category",
       subcategory: "subcategory",
@@ -31,10 +31,13 @@ const TestRedux = () => {
             base64: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIDg4NDg0PDhUSDQ0IDhENDQgOFx8ZGBYVFhUaHysjGh0oHRUiJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAEwMBIgACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAAAwQBBQf/xAAaEAADAQADAAAAAAAAAAAAAAAAAQISBBEi/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOyW+pMbWCPkV0iDbwBirWmCrVvTAGw5JEp8AAU6n0wAB//Z"
           }
         }
-      ]
+      ],
+      id: "141451",
+      color: "розовый",
+      relatedItems: []
     }))}>
       Добавить предмет в Redux
-    </button> */}
+    </button>
   </div>)
 }
 
