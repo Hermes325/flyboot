@@ -73,7 +73,7 @@ function Header() {
           <Image
             src={FlyBoots_logo}
             alt="Fly Boots Logo"
-            className="h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-10 max-mobile:h-9 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-11 object-fill"
+            className="h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-11 max-mobile:h-9 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-11 object-cover"
           />
         </NavLink>
         <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
