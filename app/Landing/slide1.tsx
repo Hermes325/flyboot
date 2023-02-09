@@ -57,7 +57,9 @@ function Slide1() {
           <Image
             src={kross}
             alt="Логотип"
-            className={styles.Logotip + "  max-w-[unset] max-[1860px]:!w-[24vw]"}
+            className={
+              styles.Logotip + "  max-w-[unset] max-[1860px]:!w-[24vw]"
+            }
           />
         </div>
 
