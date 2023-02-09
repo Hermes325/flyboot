@@ -11,7 +11,7 @@ function Slide1() {
         <h1
           className={
             styles.h1 +
-            " font-inter !max-[1860px]:text-[4.5rem] !max-[1700px]:text-[4rem] !max-[1500px]:text-[3.7rem] !max-[1330px]:text-[3.3rem] !max-[1140px]:text-[3rem]"
+            " font-inter max-[1860px]:!text-[4.5rem] max-[1700px]:!text-[4rem] max-[1500px]:!text-[3.7rem] max-[1330px]:!text-[3.3rem] max-[1140px]:!text-[3rem]"
           }
         >
           Любимые бренды <br />{" "}
