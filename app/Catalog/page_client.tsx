@@ -145,7 +145,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-2xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-2xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0]">
+  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -153,7 +153,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Sorting */}
-    <div className='col-start-5 col-span-1 flex items-end max-2xl:col-start-4'>
+    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4'>
       <Sorting
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />
@@ -170,10 +170,10 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Catalog */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-2xl:col-span-2 max-2xl:grid-cols-[1fr_1fr]" style={{ alignItems: "start" }}>
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]" style={{ alignItems: "start" }}>
       {/* Items */}
       {content.items.map(item =>
-        <ItemCard key={item.poizonArticul} item={item} />)}
+        <ItemCard key={item.poizonArticul} className="h-[300px]" item={item} />)}
 
       {content.items.length === 0 &&
         <div className='col-span-3 flex items-center justify-center h-[50vh]'>
@@ -184,7 +184,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
       {/* Pagination */}
       {content.items.length > 15 &&
-        <div className='col-span-3 max-2xl:col-span-2 flex justify-center items-center'>
+        <div className='col-span-3 max-xl:col-span-2 flex justify-center items-center'>
           <Pagination
             page={filters.page}
             amount={content.all.count}

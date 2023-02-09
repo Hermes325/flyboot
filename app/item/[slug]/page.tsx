@@ -5,6 +5,7 @@ import BucketButton from "./bucketButton";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
+import ChooseColor from "./chooseColor";
 
 
 type Props = {
@@ -39,6 +40,9 @@ export default async function ItemPage({ params }: Props) {
           <h2 className="font-montserrat text-[28px] text-[#03FFF0]">
             {item.price} руб
           </h2>
+
+          {/* colors */}
+          <ChooseColor item={item} />
 
           {/* item sizes */}
           <div className="flex flex-col space-y-3">

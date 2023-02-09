@@ -7,6 +7,7 @@ export type Item = {
   slug: string
   sex: string
   id: string
+  color: string
   category: string
   subcategory: string
   description1: string
