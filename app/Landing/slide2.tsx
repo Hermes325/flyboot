@@ -9,7 +9,7 @@ const Slide2 = () => {
   const items = use(getHotItemsForLanding())
 
   return (
-    <section className="mt-[5vw] grid grid-cols-4 gap-x-5 gap-y-8 px-[16.7vw]">
+    <section className="mt-[5vw] grid grid-cols-4 gap-x-5 gap-y-8 px-[16.7vw] max-[1700px]:mt-[3vw]">
       {items.map(item =>
         <ItemCard
           className="h-[270px]"
