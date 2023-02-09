@@ -66,39 +66,40 @@ function Header() {
   }
 
   return (
-    <header className="fixed w-screen flex justify-center z-[1000] shadow bg-[#000000] px-[10px] max-[1312px]:pr-[26px]">
+    <header className="fixed w-full flex justify-center z-[1000] shadow bg-[#000000] pl-[16.7vw] pr-[16.7vw] max-mobile:pr-[20px]">
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between w-full max-w-[1280px] min-h-[63px] h-[10vh] max-h-[108px]">
+      <nav className="flex flex-row items-center justify-between w-full min-h-[63px] h-[10vh] max-h-[108px]">
         <NavLink href="/">
           <Image
             src={FlyBoots_logo}
             alt="Fly Boots Logo"
-            className="h-16 max-mobile:h-8 w-20 max-mobile:w-11 object-cover"
+            className="h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-10 max-mobile:h-9 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-11 object-fill"
           />
         </NavLink>
+        <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
+          <NavLink href="/Catalog" className="max-mobile:hidden">
+            <h2 className="font-montserrat text-2xl max-[1500px]:text-xl max-[1330px]:text-lg max-[1140px]:text-base max-[720px]:text-sm tracking-wide hover:text-[#03FFF0]">
+              Каталог
+            </h2>
+          </NavLink>
+          <NavLink href="/About-us" className="max-mobile:hidden">
+            <h2 className="font-montserrat text-2xl max-[1500px]:text-xl max-[1330px]:text-lg max-[1140px]:text-base max-[720px]:text-sm tracking-wide hover:text-[#03FFF0]">
+              О нас
+            </h2>
+          </NavLink>
+          <NavLink href="/FAQ" className="max-mobile:hidden">
+            <h2 className="font-montserrat text-2xl max-[1500px]:text-xl max-[1330px]:text-lg max-[1140px]:text-base max-[720px]:text-sm tracking-wide hover:text-[#03FFF0]">
+              FAQ
+            </h2>
+          </NavLink>
+        </div>
 
-        <NavLink href="/Catalog" className="max-mobile:hidden">
-          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
-            Каталог
-          </h2>
-        </NavLink>
-        <NavLink href="/About-us" className="max-mobile:hidden">
-          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
-            О нас
-          </h2>
-        </NavLink>
-        <NavLink href="/FAQ" className="max-mobile:hidden">
-          <h2 className="font-montserrat text-xl tracking-wide hover:text-[#03FFF0]">
-            FAQ
-          </h2>
-        </NavLink>
-
-        <div className="flex flex-row justify-center items-center space-x-10">
+        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
           {/* Поиск товаров */}
           <input
             placeholder="Поиск"
             className={classNames(
-              "bg-transparent border-b-2 w-[160px] max-mobile:hidden",
+              "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden",
               { "!block w-[200px]": isSearchOpen }
             )}
             value={search}
@@ -115,7 +116,7 @@ function Header() {
             <Image
               src={bucket}
               alt="bucket page logo"
-              className="w-11 max-mobile:w-5 h-10 max-mobile:h-5"
+              className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-6 max-mobile:w-5 h-10 max-[1440px]:h-8 max-[1080px]:h-7 max-[720px]:h-6 max-mobile:h-5 object-fill"
             />
           </NavLink>
 
