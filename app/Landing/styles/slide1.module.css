@@ -9,6 +9,9 @@
     color         : #FFFFFF;
 }
 
+
+
+
 .span {
     color: #29D9CE;
 }
@@ -50,8 +53,8 @@
     position       : absolute;
     left           : 60%;
     width          : 24.5vw;
-    height         : 24.5vw;
-    top            : 7%;
+    aspect-ratio : 1/1;
+    top            : 3%;
     background     : linear-gradient(180deg, rgba(3, 240, 225, 0.85) 47.97%, #010101 100%);
     box-shadow     : 0px -10px 64px #29D9CE;
     border-radius  : 50%;
@@ -64,7 +67,7 @@
     width        : 7.9vw;
     aspect-ratio : 1/1;
     left         : 4.5%;
-    top          : 32.7vw;
+    top          : 36.7vw;
     background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
     transform    : rotate(-41.79deg);
     border-radius: 50%;
@@ -75,7 +78,7 @@
     width        : 11.2vw;
     aspect-ratio : 1/1;
     left         : 29%;
-    top          : 25vw;
+    top          : 28vw;
     background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
     transform    : rotate(-54.33deg);
     border-radius: 50%;
@@ -87,7 +90,7 @@
     width        : 4.38vw;
     aspect-ratio : 1/1;
     left         : 49%;
-    top          : 17vw;
+    top          : 22vw;
     background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
     transform    : rotate(-58.74deg);
     border-radius: 50%;
@@ -105,10 +108,10 @@
 }
 
 .Logotip {
-    width    : 35vw;
+    width    : 28vw;
     height   : auto;
     position : absolute;
-    bottom   : 5vw;
+    bottom   : 6vw;
     z-index  : 1;
     transform: rotate(-26.72deg);
 }
