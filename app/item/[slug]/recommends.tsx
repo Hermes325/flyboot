@@ -28,6 +28,7 @@ const Recommends = ({ item }: Props) => {
         },
         body: JSON.stringify({
           "brands": [item.brand.id],
+          "related": [item.id, ...item.relatedItems.map(x => x.id)],
           "slug": item.slug
         })
       })
@@ -74,7 +75,7 @@ const Recommends = ({ item }: Props) => {
             nextEl: '.arrow_forward'
           }}>
           {recommends.map(item =>
-            <SwiperSlide key={item.poizonId} className="cursor-pointer">
+            <SwiperSlide key={item.poizonArticul} className="cursor-pointer">
               <ItemCard item={item} />
             </SwiperSlide>)}
         </Swiper>}

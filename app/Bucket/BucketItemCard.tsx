@@ -33,7 +33,7 @@ const BucketItemCard = ({ item }: Props) => {
 
       <div className='flex justify-between items-center'>
         <p className='font-lato text-[16px] leading-[22px] tracking-[0.01em] inline-block'>
-          Артикул {item.poizonId}
+          Артикул {item.poizonArticul}
         </p>
 
         <select

@@ -9,6 +9,7 @@ export default async function getRecommendsQuery(
 
   const catalog = await getRecommendsHandler(
     req.body["slug"],
+    req.body["related"],
     req.body["brands"]);
 
   // console.log("\n/api/recommends RESPONSE\n", JSON.stringify(catalog, null, 2))

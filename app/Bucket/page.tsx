@@ -7,7 +7,7 @@ import BucketItemCard from "./BucketItemCard";
 import styles from "./BucketItemCard.module.css"
 
 function page() {
-  const items = useSelector((state: RootState) => state.items);
+  const bucketItems = useSelector((state: RootState) => state.items);
 
   const [order, setOrder] = useState({
     name: "",
@@ -23,7 +23,7 @@ function page() {
   }
 
   const finalPrice = Math
-    .ceil(items.reduce((a, v) => a + v.price, 0))
+    .ceil(bucketItems.reduce((a, v) => a + v.item.price, 0))
     .toLocaleString(undefined, {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
@@ -90,8 +90,8 @@ function page() {
 
         {/* Items */}
         <div className="col-span-1 flex flex-col border-2 rounded-2xl border-[#919191]">
-          {items.map((item, i, arr) => (<div key={item.poizonId}>
-            <BucketItemCard item={item} />
+          {bucketItems.map((item, i, arr) => (<div key={item.item.poizonArticul}>
+            <BucketItemCard item={item.item} />
             {i !== arr.length - 1 &&
               <hr className="mx-[24px]" />}
           </div>))}
@@ -134,7 +134,7 @@ function page() {
           <div>
             {h2("Ваш заказ")}
             <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-              Товары, {items.length} шт. {finalPrice} ₽
+              Товары, {bucketItems.length} шт. {finalPrice} ₽
             </p>
           </div>
 

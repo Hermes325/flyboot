@@ -29,14 +29,14 @@ export default async function ItemPage({ params }: Props) {
         <div className="space-y-10">
           {/* item title and articul */}
           <div>
-            <h1 className="font-montserrat text-5xl text-white">
+            <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">
               {item.title}
             </h1>
-            <p className="font-jost text-gray-300">Артикул {item.poizonId}</p>
+            <p className="font-jost text-[18px] text-gray-300">Артикул {item.poizonArticul}</p>
           </div>
 
           {/* item price */}
-          <h2 className="font-montserrat text-5xl text-[#03FFF0]">
+          <h2 className="font-montserrat text-[28px] text-[#03FFF0]">
             {item.price} руб
           </h2>
 

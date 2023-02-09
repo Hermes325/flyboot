@@ -3,17 +3,19 @@ import { gql } from "graphql-request";
 
 // Типы =====================================================
 export type Item = {
-  sex: string,
-  brand: { name: string, id: string };
-  category: string;
-  subcategory: string;
-  description1: string;
-  description2: string;
-  slug: string;
-  title: string;
-  poizonId: string;
-  price: number;
-  images: { responsiveImage: any }[];
+  title: string
+  slug: string
+  sex: string
+  id: string
+  category: string
+  subcategory: string
+  description1: string
+  description2: string
+  poizonArticul: string
+  price: number
+  brand: { name: string, id: string }
+  images: { responsiveImage: any }[]
+  relatedItems: Item[]
 }
 export type Catalog = {
   items: Item[],
@@ -47,7 +49,7 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
         price
         slug
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: { auto: compress }) {
             sizes
             src
             width
@@ -140,9 +142,9 @@ export async function getItems(
         slug
         title
         price
-        poizonId
+        poizonArticul
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: { auto: compress }) {
             sizes
             src
             width
@@ -188,19 +190,22 @@ export async function getItems(
 export async function getRecommendsHandler(
   // Не рекомендуем текущий товар
   currentSlug: string,
+  // Не рекомендуем товары одного цвета
+  currentRelated: string[],
   // Рекомендуем товары одного бренда
-  brands: string[]
+  brands: string[],
 ): Promise<Catalog> {
 
   const queryVariables = `
-    $first: IntType = 12, 
+    $first: IntType, 
     $brands: [ItemId], 
     $slug: String
   `;
 
   const queryFilter = `filter: { 
     brand: {in: $brands}, 
-    slug: { neq: $slug } 
+    slug: { neq: $slug },
+    notInRelated: [ItemId]
   }`;
 
   const query = gql`
@@ -209,9 +214,9 @@ export async function getRecommendsHandler(
         slug
         title
         price
-        poizonId
+        poizonArticul
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: {auto: compress}) {
             sizes
             src
             width
@@ -228,9 +233,10 @@ export async function getRecommendsHandler(
   const response: Catalog = await graphQLRequest({
     query,
     variables: {
-      "skip": 12,
-      "brands": brands,
-      "slug": currentSlug
+      first: 12,
+      brands,
+      notInRelated: currentRelated,
+      slug: currentSlug
     }
   });
   return response;
@@ -243,16 +249,22 @@ export async function getItem(slug: string): Promise<Item> {
   const query = gql`
     query GetItem($slug: String) {
       item(filter: { slug: { eq: $slug } }) {
+        title
         slug
+        id
         brand {
           id
         }
-        category
+        color
         description1
         description2
-        title
-        poizonId
+        poizonArticul
         price
+        relatedItems {
+          id
+          slug
+          color
+        }
         images {
           responsiveImage(imgixParams: { auto: format }) {
             sizes

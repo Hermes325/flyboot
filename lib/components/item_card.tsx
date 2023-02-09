@@ -8,12 +8,13 @@ import "../../app/globals.css"
 
 type Props = {
   item: Item
+  className: string
 }
 
-const ItemCard = ({ item }: Props) => {
+const ItemCard = ({ item, className }: Props) => {
   return (
     <Link href={`/item/${item.slug}`}>
-      <div className={styles.item_card + ` bg-[#003E3E] rounded-2xl flex flex-col p-[0.75vw] h-[300px] justify-between
+      <div className={`${styles.item_card} ${className} bg-[#003E3E] rounded-2xl flex flex-col p-[0.75vw] justify-between
                       hover:bg-[#07b8b88e] hover:transition-[0.15s]`}>
         <Image
           lazyLoad={true}
