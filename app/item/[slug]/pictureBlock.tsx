@@ -19,12 +19,12 @@ const PictureBlock = ({ item }: Props) => {
       pictureClassName="object-cover aspect-[646/532] h-[532px] rounded-[15px]" />
 
     {/* more photos */}
-    <div className="flex flex-row justify-start gap-[24px]">
-      {item.images.map((image, i) => current === i ? <></> :
-        <div
-          key={`small-${i}`}
+    <div className="flex flex-row justify-start">
+      {item.images.map((image, i) => current === i
+        ? <div key={`small-${i}`} />
+        : <div key={`small-${i}`}
           onClick={_ => setCurrent(i)}
-          className="rounded-[15px] cursor-pointer">
+          className="rounded-[15px] cursor-pointer mr-[24px]">
           <Image
             lazyLoad={true}
             data={image.responsiveImage}

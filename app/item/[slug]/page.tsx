@@ -27,7 +27,7 @@ export default async function ItemPage({ params }: Props) {
         </div>
 
         {/* info block */}
-        <div className="space-y-10">
+        <div className="">
           {/* item title and articul */}
           <div>
             <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">
@@ -37,31 +37,39 @@ export default async function ItemPage({ params }: Props) {
           </div>
 
           {/* item price */}
-          <h2 className="font-montserrat text-[28px] text-[#03FFF0]">
+          <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#03FFF0]">
             {item.price} руб
           </h2>
 
-          {/* colors */}
-          <ChooseColor item={item} />
-
           {/* item sizes */}
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col my-[27px] gap-[11px]">
             <div className="flex flex-row space-x-3 items-end">
               {["EU", "RU", "US", "UK", "FR"].map((country, i) => (
-                <button key={i} className="text-white text-3xl">
+                <button
+                  key={i}
+                  className="font-lato font-[900] text-white text-[24px] leading-[33px] tracking-[0.01em]">
                   {country}
-                </button>
-              ))}
-              <h4 className="text-white text-2xl">Таблица размеров</h4>
+                </button>))}
+              <h4 className="font-lato font-[400] text-white text-[24px] leading-[33px] tracking-[0.01em]">
+                Таблица размеров
+              </h4>
             </div>
-            <div className="flex flex-row">
-              {[38, 39, 40, 41, 42, 43, 44].map((size) => (
-                <div key={size} className="border-2 border-white p-2">
-                  <h4 className="text-white text-3xl">{size}</h4>
-                </div>
-              ))}
-            </div>
+            <table className="m-0">
+              <tbody>
+                {[38, 39, 40, 41, 42, 43, 44].map((size) => (
+                  <td
+                    key={size}
+                    className="border-2 border-white">
+                    <button className="font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em] w-full text-white">
+                      {size}
+                    </button>
+                  </td>))}
+              </tbody>
+            </table>
           </div>
+
+          {/* colors */}
+          <ChooseColor item={item} />
 
           <BucketButton item={item} />
 
