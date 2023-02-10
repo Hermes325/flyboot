@@ -75,7 +75,7 @@ function page() {
     </div>
   //#endregion
 
-  return (<main className="w-screen min-h-screen flex justify-center bg-[#0E0E0E] pt-[108px]">
+  return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[16.7vw] pl-[16.7vw]">
 
     <TestRedux />
 
@@ -99,7 +99,7 @@ function page() {
         </div>
 
         {/* Contacts */}
-        <div className="col-span-1 grid grid-cols-2 h-fit gap-y-6 gap-x-14 text-[#919191]">
+        <div className="col-span-1 grid grid-cols-2 h-fit gap-y-6 gap-x-6 text-[#919191]">
           <input
             placeholder="Ваше имя"
             value={order.name}
