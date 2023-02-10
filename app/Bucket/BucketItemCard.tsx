@@ -18,7 +18,7 @@ const BucketItemCard = ({ item }: Props) => {
       maximumFractionDigits: 0
     })
 
-  return (<div className='relative flex flex-row justify-between items-center p-[24px] max-h-[150px] gap-[24px]'>
+  return (<div className='relative flex flex-row items-center p-[24px] max-h-[150px] gap-[24px]'>
     <DatoCMSImage
       className="rounded-[15px]"
       style={{ width: "134px", height: "88px" }}
@@ -27,25 +27,23 @@ const BucketItemCard = ({ item }: Props) => {
       lazyLoad={true} />
 
     <div className='grow'>
-      <h3 className='font-lato text-[20px] leading-[27px] mb-[10px] tracking-[0.01em]'>
+      <h3 className='font-lato text-[20px] leading-[27px] mb-[5px] tracking-[0.01em]'>
         {item.title}
       </h3>
 
-      <div className='flex justify-between items-center'>
-        <p className='font-lato text-[16px] leading-[22px] tracking-[0.01em] inline-block'>
-          Артикул {item.poizonArticul}
-        </p>
+      <p className='font-lato text-[12px] leading-[22px] mb-[5px] tracking-[0.01em]'>
+        Артикул {item.poizonArticul}
+      </p>
 
-        <select
-          value={1}
-          className="font-inter font-bold bg-transparent text-[#03FFF0] text-[15px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 inline-block py-0.5 px-1.5"
-        >
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={1}>8 EU (41 RUS)</option>
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={2}>8 EU (41 RUS)</option>
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={3}>8 EU (41 RUS)</option>
-        </select>
+      <select
+        value={1}
+        className="font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5"
+      >
+        <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={1}>8 EU (41 RUS)</option>
+        <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={2}>8 EU (41 RUS)</option>
+        <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={3}>8 EU (41 RUS)</option>
+      </select>
 
-      </div>
     </div>
 
     <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white'>
