@@ -1,11 +1,10 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
-import BucketButton from "./bucketButton";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
-import ChooseColor from "./chooseColor";
+import ItemPageClientPart from "./pageClientPart";
 
 
 type Props = {
@@ -15,6 +14,13 @@ type Props = {
 export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
+
+  const price = Math
+    .ceil(item.price)
+    .toLocaleString(undefined, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
 
   return (<div className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]">
 
@@ -38,40 +44,11 @@ export default async function ItemPage({ params }: Props) {
 
           {/* item price */}
           <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#03FFF0]">
-            {item.price} руб
+            {price} руб
           </h2>
 
-          {/* item sizes */}
-          <div className="flex flex-col my-[27px] gap-[11px]">
-            <div className="flex flex-row space-x-3 items-end">
-              {["EU", "RU", "US", "UK", "FR"].map((country, i) => (
-                <button
-                  key={i}
-                  className="font-lato font-[900] text-white text-[24px] leading-[33px] tracking-[0.01em]">
-                  {country}
-                </button>))}
-              <h4 className="font-lato font-[400] text-white text-[24px] leading-[33px] tracking-[0.01em]">
-                Таблица размеров
-              </h4>
-            </div>
-            <table className="m-0">
-              <tbody>
-                {[38, 39, 40, 41, 42, 43, 44].map((size) => (
-                  <td
-                    key={size}
-                    className="border-2 border-white">
-                    <button className="font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em] w-full text-white">
-                      {size}
-                    </button>
-                  </td>))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* colors */}
-          <ChooseColor item={item} />
-
-          <BucketButton item={item} />
+          {/* CSR часть с запросом к Егору */}
+          <ItemPageClientPart item={item} />
 
           <DropDown title="Описание" description={item.description1} />
           <DropDown title="Характеристика" description={item.description2} />
