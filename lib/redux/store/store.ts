@@ -2,8 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import itemSlice, { listenerMiddleware } from "../slices/itemSlice";
 
 
-const bucketState = JSON.parse(localStorage.getItem(itemSlice.name) || "null");
-
+const bucketState = typeof localStorage !== 'undefined'
+  ? JSON.parse(localStorage?.getItem(itemSlice.name) || "null")
+  : []
 
 export const store = configureStore({
   preloadedState: {

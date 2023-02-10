@@ -15,10 +15,7 @@ type BucketItem = {
   }
 }
 
-const localStorageBucket = localStorage.getItem("bucket")
-const initialState: BucketItem[] = localStorageBucket === null
-  ? []
-  : JSON.parse(localStorageBucket) as BucketItem[]
+const initialState: BucketItem[] = []
 
 const itemSlice = createSlice({
   name: "bucket",
@@ -45,10 +42,9 @@ export const listenerMiddleware = createListenerMiddleware();
 listenerMiddleware.startListening({
   matcher: isAnyOf(addItem, deleteItem, deleteAll),
   effect: (action, listenerApi) =>
-    localStorage.setItem(
+    localStorage?.setItem(
       itemSlice.name,
-      JSON.stringify((listenerApi.getState() as RootState).items)
-    )
+      JSON.stringify((listenerApi.getState() as RootState).items))
 });
 
 export default itemSlice.reducer;
