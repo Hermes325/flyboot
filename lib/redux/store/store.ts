@@ -1,23 +1,39 @@
-import { configureStore } from "@reduxjs/toolkit";
-import itemSlice, { listenerMiddleware } from "../slices/itemSlice";
+"use client";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import itemSlice from "../slices/itemSlice";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from './storage' // defaults to localStorage for web
 
+const rootReducer = combineReducers({
+  items: itemSlice
+})
 
-const bucketState = typeof localStorage !== 'undefined'
-  ? JSON.parse(localStorage?.getItem(itemSlice.name) || "null")
-  : []
+const persistConfig = {
+  key: itemSlice.name,
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-  preloadedState: {
-    [itemSlice.name]: bucketState === null ? [] : bucketState
-  },
-  reducer: {
-    items: itemSlice,
-  },
-  middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware(),
-    listenerMiddleware.middleware
-  ],
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
 });
 
+export const persistor = persistStore(store)
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

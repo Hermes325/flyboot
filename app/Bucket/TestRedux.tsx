@@ -19,19 +19,17 @@ const TestRedux = () => {
       poizonArticul: "524037W09E19000",
       price: 1414,
       sex: "female",
-      images: [
-        {
-          responsiveImage: {
-            sizes: "(max-width: 864px) 100vw, 864px",
-            src: "https://www.datocms-assets.com/93063/1675053454-af1-07midwhite.webp?auto=format",
-            width: 864,
-            height: 1080,
-            alt: "Кожаная курточка. ИЗМЕНИТЬ",
-            title: null,
-            base64: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoIDg4NDg0PDhUSDQ0IDhENDQgOFx8ZGBYVFhUaHysjGh0oHRUiJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABgAEwMBIgACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAAAwQBBQf/xAAaEAADAQADAAAAAAAAAAAAAAAAAQISBBEi/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOyW+pMbWCPkV0iDbwBirWmCrVvTAGw5JEp8AAU6n0wAB//Z"
-          }
+      images: [{
+        responsiveImage: {
+          sizes: "(max-width: 864px) 100vw, 864px",
+          src: "https://www.datocms-assets.com/93063/1675968198-af1-07midwhite-edited.png?auto=compress",
+          width: 864,
+          height: 607,
+          alt: "Кожаная курточка. ИЗМЕНИТЬ",
+          title: null,
+          base64: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBg8IDg8KChYHDQwQCxIGChEJDRENFxMZGBYVIhUaHysjGh0oHRUWJDUlKC0vMjIyGSI4PTcwPCsxMi8BCgsLBQUFEAUFEC8cFhwvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL//AABEIABEAGAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAABAMHAf/EABoQAAIDAQEAAAAAAAAAAAAAAAABAgMRMQT/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A7JKSitM43LTP0SeE0G2wKrr1gIrtAFfo4T19AA8vAAH/2Q=="
         }
-      ],
+      }],
       id: "141451",
       color: "розовый",
       relatedItems: []

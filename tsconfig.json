@@ -36,6 +36,6 @@
     ".next/types/**/*.ts",
     "pages/api/cms.ts",
     "lib/datocms.ts"
-, "app/layouts/provider.js"  ],
+, "app/layouts/provider.js", "lib/redux/store/storage.js"  ],
   "exclude": ["node_modules"]
 }

@@ -41,7 +41,7 @@ function page() {
     </h2>
 
   const formRadio = (text: string, prop: string, checked: boolean, propValue: string) =>
-    <div className='mt-[14px] flex items-center' key={prop}>
+    <div className='mt-[14px] flex items-center'>
       <input
         className="appearance-none h-[20px] w-[20px] m-0 mr-[14px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:bg-[#29D9CE] 
@@ -80,7 +80,7 @@ function page() {
     <TestRedux />
 
     <form className="flex flex-col items-center justify-center max-w-[1280px] w-full mb-12">
-      {/* Bucket text Корзина */}
+      {/* Bucket text */}
       <h1 className="font-montserrat w-full font-bold text-7xl text-[#F5F5F5] mt-2 mb-10">
         Корзина
       </h1>
@@ -90,11 +90,12 @@ function page() {
 
         {/* Items */}
         <div className="col-span-1 flex flex-col border-2 rounded-2xl border-[#919191]">
-          {bucketItems.map((item, i, arr) => (<div key={item.item.poizonArticul}>
-            <BucketItemCard item={item.item} />
-            {i !== arr.length - 1 &&
-              <hr className="mx-[24px]" />}
-          </div>))}
+          {bucketItems.map((item, i, arr) => (
+            <div key={item.item.poizonArticul}>
+              <BucketItemCard bucketItem={item} />
+              {i !== arr.length - 1 &&
+                <hr className="mx-[24px]" />}
+            </div>))}
         </div>
 
         {/* Contacts */}
@@ -145,15 +146,19 @@ function page() {
           </div>
 
           {h2(`Итого ${finalPrice} ₽`, "mt-[1rem]")}
+
           <textarea
             placeholder="Комментарий к заказу"
             rows={3}
             className="block w-full text-[#454545]" />
-          <button
-            className={styles.buy + " font-inter"}>
+
+          <button className={styles.buy + " font-inter"}>
             Заказать
           </button>
-          {formCheck("Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.",
+
+          {/* Впилить сюда ссылку */}
+          {formCheck(
+            "Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.",
             "personalDataCheck",
             order.personalDataCheck)}
         </div>

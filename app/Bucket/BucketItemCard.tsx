@@ -4,12 +4,16 @@ import React from 'react'
 import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
+import { addItem, BucketItem, minusItemAmount } from '@/lib/redux/slices/itemSlice'
+import { useDispatch } from 'react-redux'
 
 type Props = {
-  item: Item
+  bucketItem: BucketItem
 }
 
-const BucketItemCard = ({ item }: Props) => {
+const BucketItemCard = ({ bucketItem }: Props) => {
+  const dispatch = useDispatch();
+  const { item, amount, size } = bucketItem
 
   const price = Math
     .ceil(item.price)
@@ -37,7 +41,7 @@ const BucketItemCard = ({ item }: Props) => {
         </p>
 
         <select
-          value={1}
+          defaultValue={1}
           className="font-inter font-bold bg-transparent text-[#03FFF0] text-[15px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 inline-block py-0.5 px-1.5"
         >
           <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={1}>8 EU (41 RUS)</option>
@@ -50,22 +54,24 @@ const BucketItemCard = ({ item }: Props) => {
 
     <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white'>
       <button
-        className='font-inter font-bold text-[15px]'>-</button>
+        className='font-inter font-bold text-[15px]'
+        disabled={amount <= 0}
+        onClick={_ => dispatch(minusItemAmount(item))}>-</button>
       <p
-        className='font-inter font-bold text-[15px] text-[#03FFF0]'>1</p>
+        className='font-inter font-bold text-[15px] text-[#03FFF0]'>{amount}</p>
       <button
-        className='font-inter font-bold text-[15px]'>+</button>
+        className='font-inter font-bold text-[15px]'
+        onClick={_ => dispatch(addItem(item))}>+</button>
     </div>
 
     <p className='font-lato font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px]'>
       {price} руб
     </p>
 
-    <button className='absolute bottom-[24px] right-[24px]'>
-      <NextImage
-        src={bin}
-        alt="Удалить" />
-    </button>
+    <NextImage
+      className='absolute bottom-[24px] right-[24px]'
+      src={bin}
+      alt="Удалить" />
   </div>)
 }
 
