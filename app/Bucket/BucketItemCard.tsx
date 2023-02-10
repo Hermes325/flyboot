@@ -1,5 +1,4 @@
 "use client"
-import { Item } from '@/lib/datocms'
 import React from 'react'
 import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
@@ -21,6 +20,16 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
+
+  function itemPlus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault()
+    dispatch(addItem(item))
+  }
+  function itemMinus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault()
+    dispatch(minusItemAmount(item))
+  }
+
 
   return (<div className='relative flex flex-row items-center p-[24px] max-h-[150px] gap-[24px]'>
     <DatoCMSImage
@@ -54,12 +63,12 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       <button
         className='font-inter font-bold text-[15px]'
         disabled={amount <= 0}
-        onClick={_ => dispatch(minusItemAmount(item))}>-</button>
+        onClick={itemMinus}>-</button>
       <p
         className='font-inter font-bold text-[15px] text-[#03FFF0]'>{amount}</p>
       <button
         className='font-inter font-bold text-[15px]'
-        onClick={_ => dispatch(addItem(item))}>+</button>
+        onClick={itemPlus}>+</button>
     </div>
 
     <p className='font-lato font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px]'>

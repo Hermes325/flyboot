@@ -23,11 +23,14 @@ function page() {
   }
 
   const finalPrice = Math
-    .ceil(bucketItems.reduce((a, v) => a + v.item.price, 0))
+    .ceil(bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
     .toLocaleString(undefined, {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
+
+  const finalAmount = bucketItems.reduce((a, v) => a + v.amount, 0)
+
 
   //#region Queries
   //#endregion
@@ -135,7 +138,7 @@ function page() {
           <div>
             {h2("Ваш заказ")}
             <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-              Товары, {bucketItems.length} шт. {finalPrice} ₽
+              Товары, {finalAmount} шт. {finalPrice} ₽
             </p>
           </div>
 

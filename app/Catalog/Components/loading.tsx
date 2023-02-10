@@ -1,7 +1,7 @@
 import React from "react";
 
 function Loading() {
-  return <div>loading page</div>;
+  return <div className="min-h-screen">loading page</div>;
 }
 
 export default Loading;
