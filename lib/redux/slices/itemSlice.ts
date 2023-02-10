@@ -15,7 +15,9 @@ type BucketItem = {
   }
 }
 
-const initialState: BucketItem[] = []
+const initialState: BucketItem[] = typeof localStorage !== 'undefined'
+  ? JSON.parse(localStorage?.getItem("bucket") || "null")
+  : []
 
 const itemSlice = createSlice({
   name: "bucket",
