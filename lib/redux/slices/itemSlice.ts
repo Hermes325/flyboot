@@ -40,7 +40,7 @@ const itemSlice = createSlice({
         state[index].amount--;
     },
     deleteItem: (state, action: PayloadAction<Item>) => {
-      return state.filter((x) => x.item.slug != action.payload.slug);
+      return state.filter(x => x.item.id != action.payload.id);
     },
     deleteAll: (state) => {
       state = [];

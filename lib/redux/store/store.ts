@@ -4,14 +4,9 @@ import itemSlice from "../slices/itemSlice";
 import {
   persistStore,
   persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+  FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER
 } from 'redux-persist'
-import storage from './storage' // defaults to localStorage for web
+import storage from './storage'
 
 const rootReducer = combineReducers({
   items: itemSlice

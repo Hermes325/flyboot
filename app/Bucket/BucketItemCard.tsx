@@ -3,8 +3,9 @@ import React from 'react'
 import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
-import { addItem, BucketItem, minusItemAmount } from '@/lib/redux/slices/itemSlice'
+import { addItem, BucketItem, minusItemAmount, deleteItem } from '@/lib/redux/slices/itemSlice'
 import { useDispatch } from 'react-redux'
+import { Item } from '@/lib/datocms'
 
 type Props = {
   bucketItem: BucketItem
@@ -29,7 +30,9 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     e.preventDefault()
     dispatch(minusItemAmount(item))
   }
-
+  function itemDelete() {
+    dispatch(deleteItem(item))
+  }
 
   return (<div className='relative flex flex-row items-center p-[24px] max-h-[150px] gap-[24px]'>
     <DatoCMSImage
@@ -62,7 +65,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white'>
       <button
         className='font-inter font-bold text-[15px]'
-        disabled={amount <= 0}
+        disabled={amount <= 1}
         onClick={itemMinus}>-</button>
       <p
         className='font-inter font-bold text-[15px] text-[#03FFF0]'>{amount}</p>
@@ -71,13 +74,14 @@ const BucketItemCard = ({ bucketItem }: Props) => {
         onClick={itemPlus}>+</button>
     </div>
 
-    <p className='font-lato font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px]'>
+    <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]'>
       {price} руб
     </p>
 
     <NextImage
-      className='absolute bottom-[24px] right-[24px]'
+      className='absolute bottom-[24px] right-[24px] cursor-pointer'
       src={bin}
+      onClick={itemDelete}
       alt="Удалить" />
   </div>)
 }

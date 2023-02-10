@@ -22,8 +22,15 @@ function page() {
     setOrder(x => ({ ...x, [prop]: value }))
   }
 
-  const finalPrice = Math
+  const itemsPrice = Math
     .ceil(bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
+    .toLocaleString(undefined, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
+  const deliveryPrice = 350;
+  const finalPrice = Math
+    .ceil(deliveryPrice + bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
     .toLocaleString(undefined, {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
@@ -63,7 +70,7 @@ function page() {
   const formCheck = (text: string, prop: string, checked: boolean) =>
     <div key={prop} className="flex flex-row gap-[14px]">
       <input
-        className="appearance-none h-[25px] w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
+        className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
                   focus:outline-none transition duration-200"
         type="checkbox"
@@ -92,10 +99,10 @@ function page() {
       <div className="grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-full gap-6 min-h-[60vh]">
 
         {/* Items */}
-        <div className="col-span-1 flex flex-col border-2 rounded-2xl border-[#919191]">
-          {bucketItems.map((item, i, arr) => (
-            <div key={item.item.poizonArticul}>
-              <BucketItemCard bucketItem={item} />
+        <div className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]">
+          {bucketItems.map((bucketItem, i, arr) => (
+            <div key={bucketItem.item.id}>
+              <BucketItemCard bucketItem={bucketItem} />
               {i !== arr.length - 1 &&
                 <hr className="mx-[24px]" />}
             </div>))}
@@ -138,7 +145,7 @@ function page() {
           <div>
             {h2("Ваш заказ")}
             <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-              Товары, {finalAmount} шт. {finalPrice} ₽
+              Товары, {finalAmount} шт. {itemsPrice} ₽
             </p>
           </div>
 
@@ -155,7 +162,9 @@ function page() {
             rows={3}
             className="block w-full text-[#454545]" />
 
-          <button className={styles.buy + " font-inter"}>
+          <button
+            disabled={!order.personalDataCheck || finalAmount === 0}
+            className={styles.buy + " font-inter"}>
             Заказать
           </button>
 
