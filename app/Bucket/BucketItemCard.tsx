@@ -37,7 +37,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
   return (<div className='relative flex flex-row items-center p-[24px] max-h-[150px] gap-[24px]'>
     <DatoCMSImage
       className="rounded-[15px]"
-      style={{ width: "134px", height: "88px" }}
+      style={{ width: "6.9vw", aspectRatio: "134/88" }}
       objectFit="cover"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
