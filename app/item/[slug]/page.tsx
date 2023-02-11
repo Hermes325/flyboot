@@ -33,7 +33,7 @@ export default async function ItemPage({ params }: Props) {
         </div>
 
         {/* info block */}
-        <div className="">
+        <div>
           {/* item title and articul */}
           <div>
             <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">

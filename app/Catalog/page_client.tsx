@@ -173,7 +173,11 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]" style={{ alignItems: "start" }}>
       {/* Items */}
       {content.items.map(item =>
-        <ItemCard key={item.poizonArticul} className="h-[300px]" item={item} />)}
+        <ItemCard
+          key={item.poizonArticul}
+          imageClassName='aspect-square'
+          className="min-h-[300px]"
+          item={item} />)}
 
       {content.items.length === 0 &&
         <div className='col-span-3 flex items-center justify-center h-[50vh]'>

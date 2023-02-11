@@ -76,7 +76,10 @@ const Recommends = ({ item }: Props) => {
           }}>
           {recommends.map(item =>
             <SwiperSlide key={item.poizonArticul} className="cursor-pointer">
-              <ItemCard item={item} />
+              <ItemCard
+                item={item}
+                className="min-h-[300px]"
+                imageClassName='aspect-square' />
             </SwiperSlide>)}
         </Swiper>}
     </div>
