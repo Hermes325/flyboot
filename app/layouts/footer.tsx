@@ -14,7 +14,7 @@ export default function Footer() {
       id="Связаться"
       className="flex w-full h-[15vh] justify-center z-[1000] shadow bg-[#000]"
     >
-      <div className="flex flex-col w-full px-[16.7vw] justify-center items-center	">
+      <div className="flex flex-col w-full px-[13vw] justify-center items-center	">
         <div className="flex w-full justify-between items-center">
           {/* links to pages */}
           <div className="flex flex-row space-x-28">
