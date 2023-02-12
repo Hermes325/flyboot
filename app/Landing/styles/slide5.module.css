@@ -94,3 +94,13 @@
   height       : 3vw;
   z-index      : 0;
 }
+
+.bc_block1 {
+  background   : #29D9CE;
+  border-radius: 10px;
+  position     : absolute;
+  height       : 24vw;
+  width        : 24vw;
+  z-index      : -1;
+  transform    : translate(-0.5vw, 1.5vw);
+}

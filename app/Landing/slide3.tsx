@@ -20,7 +20,7 @@ const links = [{
 }]
 
 function Slide3() {
-  return (<section id="catalog" className="translate-y-5 px-[16.7vw]">
+  return (<section id="catalog" className="translate-y-5 px-[13vw]">
 
     <p className={styles.jost_p_center + " font-jost mt-[2vw] text-center flex justify-center"}>
       Неограниченное количество годного шмота представлено в каталоге,

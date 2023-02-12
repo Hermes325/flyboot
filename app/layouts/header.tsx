@@ -75,7 +75,7 @@ function Header() {
   }
 
   return (
-    <header className="fixed w-full flex justify-center z-[1000] shadow bg-[#000000] pl-[13vw] pr-[13vw] max-mobile:pr-[20px]">
+    <header className="fixed w-full flex justify-center z-[1000] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]">
       {/* Logo and burger menu */}
       <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
         <NavLink href="/">

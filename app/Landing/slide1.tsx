@@ -6,7 +6,7 @@ import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section className="w-full px-[16.7vw]">
+    <section className="w-full px-[13vw]">
       <div className="mb-[10vw]">
         <h1
           className={
@@ -26,7 +26,7 @@ function Slide1() {
           Если ты искал, где обновить гардероб, то ты в нужном месте. <br />
           Одевайся так, будто завтра выступаешь в Карнеги-Холл.
         </p>
-        <form action="#catalog" className="mt-[1vw]">
+        <a href="/Catalog" className="mt-[1vw]">
           <button
             className={
               styles.button_main +
@@ -35,7 +35,7 @@ function Slide1() {
           >
             Смотреть каталог
           </button>
-        </form>
+        </a>
       </div>
 
       <div>
@@ -44,7 +44,7 @@ function Slide1() {
           alt="Волна"
           className={
             styles.waves +
-            " max-[1750px]:!top-[5%] max-[1700px]:!top-[4%] max-[1550px]:!top-[5%]"
+            " max-[1750px]:!top-[5%] max-[1700px]:!top-[4%] max-[1550px]:!top-[4%]"
           }
         />
 
@@ -67,7 +67,7 @@ function Slide1() {
           <div
             className={
               styles.krug1 +
-              " max-[1860px]:!w-[7vw] max-[1550px]:!w-[9vw] max-[1750px]:!mt-[5%] max-[1700px]:!mt-[0%] max-[1550px]:!mt-[3%] max-[1200px]:!mt-[5%]"
+              " max-[1860px]:!w-[7vw] max-[1550px]:!w-[9vw] max-[1750px]:!mt-[5%] max-[1700px]:!mt-[0%] max-[1550px]:!mt-[0%] max-[1200px]:!mt-[5%]"
             }
           />
           <div
