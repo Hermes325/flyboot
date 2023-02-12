@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Catalog, CatalogBrandsAndCategories, SortType } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card'
 import Pagination from './Components/pagination'
@@ -68,11 +68,22 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   function changeFiltersVisibility(e: any) {
     setIsFiltersShown(!isFiltersShown);
   }
-  function showFilters(){
+  useEffect(() => {
+    showFilters()
+  })
+  function showFilters() {
     // console.log()
-    // if (isFiltersShown) {
-    // } else {
-    // }
+    if (isFiltersShown) {
+      filtersMobile.current?.classList.add('max-[900px]:opacity-90')
+      filtersMobile.current?.classList.remove('max-[900px]:opacity-0')
+      filtersMobile.current?.classList.add('max-[900px]:pointer-events-all')
+      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-none')
+    } else {
+      filtersMobile.current?.classList.add('max-[900px]:opacity-0')
+      filtersMobile.current?.classList.remove('max-[900px]:opacity-90')
+      filtersMobile.current?.classList.add('max-[900px]:pointer-events-none')
+      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-all')
+    }
   }
   //#region Queries
 
@@ -207,7 +218,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         max-[900px]:bg-black
         
         max-[900px]:block
-        max-[900px]:opacity-0
         max-[900px]:transition-all
         max-[900px]:duration-200
       `}
