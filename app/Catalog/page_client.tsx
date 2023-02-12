@@ -70,7 +70,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
   useEffect(() => {
     showFilters()
-  })
+  }, [])
   function showFilters() {
     // console.log()
     if (isFiltersShown) {
@@ -246,8 +246,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         </div>}
 
       {/* Pagination */}
-      {content.items.length > 15 &&
-        <div className='col-span-3 max-xl:col-span-2 flex justify-center items-center'>
+      {content.all.count > 15 &&
+        <div className='col-span-3 max-xl:col-span-2 mt-[3rem] flex justify-center items-center'>
           <Pagination
             page={filters.page}
             amount={content.all.count}
