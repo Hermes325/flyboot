@@ -79,7 +79,7 @@ const Recommends = ({ item }: Props) => {
               <ItemCard
                 item={item}
                 className="min-h-[300px]"
-                imageClassName='aspect-square' />
+                imageClassName='aspect-square h-[200px]' />
             </SwiperSlide>)}
         </Swiper>}
     </div>

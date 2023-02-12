@@ -85,7 +85,7 @@ function page() {
     </div>
   //#endregion
 
-  return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[16.7vw] pl-[16.7vw]">
+  return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]">
 
     <TestRedux />
 

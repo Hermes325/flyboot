@@ -50,7 +50,7 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
         price
         slug
         images {
-          responsiveImage(imgixParams: { auto: compress }) {
+          responsiveImage(imgixParams: { auto: format }) {
             sizes
             src
             width
@@ -145,7 +145,7 @@ export async function getItems(
         price
         poizonArticul
         images {
-          responsiveImage(imgixParams: { auto: compress }) {
+          responsiveImage(imgixParams: { auto: format }) {
             sizes
             src
             width

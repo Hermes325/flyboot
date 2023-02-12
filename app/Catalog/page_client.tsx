@@ -224,7 +224,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       {content.items.map(item =>
         <ItemCard
           key={item.poizonArticul}
-          imageClassName='aspect-square'
+          imageClassName='aspect-square h-[300px]'
           className="min-h-[300px]"
           item={item} />)}
 
