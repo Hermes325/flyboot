@@ -85,7 +85,14 @@ function page() {
     </div>
   //#endregion
 
-  return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]">
+  return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]
+      max-[800px]:pl-[50px]
+      max-[800px]:pr-[50px]
+      max-[600px]:pl-[25px]
+      max-[600px]:pr-[25px]
+      max-[550px]:pl-[5px]
+      max-[550px]:pr-[5px]
+    ">
 
     <TestRedux />
 
@@ -99,7 +106,12 @@ function page() {
       <div className="grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-full gap-6 min-h-[60vh]">
 
         {/* Items */}
-        <div className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]">
+        <div className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
+          max-[1300px]:col-start-1
+          max-[1300px]:col-end-3
+          max-[1300px]:row-start-1
+          max-[550px]:border-0
+        ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={bucketItem.item.id}>
               <BucketItemCard bucketItem={bucketItem} />
@@ -109,39 +121,53 @@ function page() {
         </div>
 
         {/* Contacts */}
-        <div className="col-span-1 grid grid-cols-2 h-fit gap-y-6 gap-x-6 text-[#919191]">
+        <div className="col-span-1 grid grid-cols-2 h-fit gap-y-6 gap-x-6 text-[#919191]
+          max-[1300px]:col-start-1
+          max-[1300px]:col-end-3
+          max-[1300px]:row-start-2
+          max-[1300px]:grid-cols-1
+        ">
+          <h1 className="font-montserrat w-full font-bold text-4xl text-[#F5F5F5] mt-2 mb-10
+            min-[1300px]:hidden
+          ">Оформление заказа</h1>
           <input
             placeholder="Ваше имя"
             value={order.name}
             onChange={(x) => changeOrder("name", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
+            className={`${inputTailwind} max-[1300px]:rounded-[30px] invalid:border-red-500`}
             type="text"
           />
           <input
             placeholder="Ваш телефон"
             value={order.phone}
             onChange={(x) => changeOrder("phone", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
+            className={`${inputTailwind} max-[1300px]:rounded-[30px] invalid:border-red-500`}
             type="tel"
           />
           <input
             placeholder="Ваш e-mail"
             value={order.email}
             onChange={(x) => changeOrder("email", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
+            className={`${inputTailwind} max-[1300px]:rounded-[30px] invalid:border-red-500`}
             type="email"
           />
           <input
             placeholder="Ваш e-mail"
             value={order.city}
             onChange={(x) => changeOrder("city", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
+            className={`${inputTailwind} max-[1300px]:rounded-[30px] invalid:border-red-500`}
             type="email"
           />
         </div>
 
         {/* Order & Delivery */}
-        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[60vh] h-fit justify-between max-w-[357px] border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]">
+        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[60vh] h-fit justify-between max-w-[357px] border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]
+          max-[1300px]:col-start-1
+          max-[1300px]:col-end-3
+          max-[1300px]:row-start-3
+          max-[1300px]:max-w-[none]
+          max-[1300px]:border-0
+        ">
           <div>
             {h2("Ваш заказ")}
             <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">

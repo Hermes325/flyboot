@@ -12,10 +12,15 @@ export default function Footer() {
   return (
     <footer
       id="Связаться"
-      className="flex w-full h-[15vh] justify-center z-[1000] shadow bg-[#000]"
+      className="flex w-full h-[max] justify-center z-[1000] shadow bg-[#000]"
     >
-      <div className="flex flex-col w-full px-[13vw] justify-center items-center	">
-        <div className="flex w-full justify-between items-center">
+      <div className="flex flex-col w-full px-[13vw] py-[15px] justify-center items-center
+        max-[1300px]:gap-2
+      ">
+        <div className="flex w-full justify-between items-center
+          max-[1300px]:flex-col
+          max-[1300px]:gap-5
+        ">
           {/* links to pages */}
           <div className="flex flex-row space-x-28">
             <NavLink href="/Catalog">
@@ -34,16 +39,21 @@ export default function Footer() {
               </h2>
             </NavLink>
           </div>
-          <address className="flex flex-row space-x-6 items-center">
+          <address className="flex flex-row space-x-6 items-center
+            max-[1300px]:flex-col
+            max-[1300px]:gap-3
+          ">
             <p className="font-montserrat text-xl text-white not-italic">
-              мы в соцсетях
+              Мы в соцсетях:
             </p>
-            <Image src={whatsapp_path} alt="whatsapp logo" />
-            <Link href="https://t.me/flybootsfast">
-              {" "}
-              <Image src={telegram_path} alt="telegramlogo" />
-            </Link>
-            <Image src={group_path} alt="авито logo" />
+            <div className="flex flex-row space-x-6 items-center">
+              <Image src={whatsapp_path} alt="whatsapp logo" />
+              <Link href="https://t.me/flybootsfast">
+                {" "}
+                <Image src={telegram_path} alt="telegramlogo" />
+              </Link>
+              <Image src={group_path} alt="авито logo" />
+            </div>
           </address>
         </div>
 
