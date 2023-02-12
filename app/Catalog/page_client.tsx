@@ -10,7 +10,7 @@ export type Filters = {
   page: number;
   priceSort: SortType;
   priceFilter: { min: number; max: number; };
-  sexFilter: { male: boolean; female: boolean; };
+  sexFilter: { male: boolean; female: boolean; unisex: boolean };
   selectedCategories: {
     [category: string]: boolean;
   };
@@ -45,7 +45,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     },
     sexFilter: {
       male: false,
-      female: false
+      female: false,
+      unisex: false
     },
     selectedCategories: Object
       .keys(meta.category.categoryJson)
@@ -73,7 +74,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       .filter(x => x[1])
       .map(x => x[0])
       .map(x => meta.brands.find(brand => brand.name === x)?.id)
-
     if (!brands.length) brands = meta.brands.map(x => x.id)
     // console.table(newFilters.selectedBrands)
 
@@ -175,7 +175,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       {content.items.map(item =>
         <ItemCard
           key={item.poizonArticul}
-          imageClassName='aspect-square h-[300px]'
+          imageClassName='aspect-square h-[350px]'
           className="min-h-[300px]"
           item={item} />)}
 
