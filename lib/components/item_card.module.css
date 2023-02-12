@@ -9,15 +9,19 @@
 
 
 .name {
+  margin-top    : 10px;
   font-family   : var(--font-lato);
+  text-align    : center;
   font-weight   : 400;
   font-size     : 22px;
   line-height   : 137%;
   letter-spacing: 0.01em;
+  height        : 62px;
 }
 
 .price {
   font-family   : var(--font-lato);
+  text-align    : center;
   font-weight   : 900;
   font-size     : 20px;
   line-height   : 165.5%;

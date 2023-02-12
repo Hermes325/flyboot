@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Catalog, CatalogBrandsAndCategories, SortType } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card'
 import Pagination from './Components/pagination'
@@ -10,7 +10,7 @@ export type Filters = {
   page: number;
   priceSort: SortType;
   priceFilter: { min: number; max: number; };
-  sexFilter: { male: boolean; female: boolean; };
+  sexFilter: { male: boolean; female: boolean; unisex: boolean };
   selectedCategories: {
     [category: string]: boolean;
   };
@@ -45,7 +45,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     },
     sexFilter: {
       male: false,
-      female: false
+      female: false,
+      unisex: false
     },
     selectedCategories: Object
       .keys(meta.category.categoryJson)
@@ -62,7 +63,28 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     selectedBrands: meta.brands
       .reduce((arr, v) => ({ ...arr, [v.name]: false }), {})
   })
-
+  const [isFiltersShown, setIsFiltersShown] = useState(false);
+  const filtersMobile = useRef<HTMLDivElement>(null)
+  function changeFiltersVisibility(e: any) {
+    setIsFiltersShown(!isFiltersShown);
+  }
+  useEffect(() => {
+    showFilters()
+  })
+  function showFilters() {
+    // console.log()
+    if (isFiltersShown) {
+      filtersMobile.current?.classList.add('max-[900px]:opacity-90')
+      filtersMobile.current?.classList.remove('max-[900px]:opacity-0')
+      filtersMobile.current?.classList.add('max-[900px]:pointer-events-all')
+      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-none')
+    } else {
+      filtersMobile.current?.classList.add('max-[900px]:opacity-0')
+      filtersMobile.current?.classList.remove('max-[900px]:opacity-90')
+      filtersMobile.current?.classList.add('max-[900px]:pointer-events-none')
+      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-all')
+    }
+  }
   //#region Queries
 
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
@@ -73,7 +95,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       .filter(x => x[1])
       .map(x => x[0])
       .map(x => meta.brands.find(brand => brand.name === x)?.id)
-
     if (!brands.length) brands = meta.brands.map(x => x.id)
     // console.table(newFilters.selectedBrands)
 
@@ -145,7 +166,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] max-xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0]">
+  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 
+    max-xl:grid-cols-[4vw_1fr_1fr_1fr_4vw] max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0] max-[900px]:relative">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -153,14 +175,27 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Sorting */}
-    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4'>
+    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4 max-[900px]:row-start-2 max-[900px]:row-end-2'>
       <Sorting
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />
     </div>
 
     {/* Filters */}
-    <div className="col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
+    <div className='
+      min-[900px]:hidden 
+      max-[900px]:flex
+      col-start-2
+      border-[1px]
+      border-white
+      text-center
+      flex-col
+      justify-center
+      font-inter text-white text-[16px]
+    ' onClick={changeFiltersVisibility}><span className='pointer-events-none'>Фильтры</span></div>
+    <div className={`col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
+      max-[900px]:hidden 
+      ${!isFiltersShown ? 'max-[900px]:hidden' : ''}`}>
       <FiltersUI
         min={firstPage.min?.price ?? 0}
         max={firstPage.max?.price ?? 1000000}
@@ -170,10 +205,38 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Catalog */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]" style={{ alignItems: "start" }}>
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]
+    max-[900px]:col-start-2 max-[900px]:col-end-5 max-[900px]:relative" style={{ alignItems: "start" }}>
+      <div className={`col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
+        min-[900px]:hidden
+        max-[900px]:col-start-1
+        max-[900px]:max-w-[320px]
+        max-[900px]:absolute
+        max-[900px]:top-[0px]
+        max-[900px]:left-[0px]
+        max-[900px]:z-10
+        max-[900px]:bg-black
+        
+        max-[900px]:block
+        max-[900px]:transition-all
+        max-[900px]:duration-200
+      `}
+        ref={filtersMobile}>
+        <FiltersUI
+          min={firstPage.min?.price ?? 0}
+          max={firstPage.max?.price ?? 1000000}
+          meta={meta}
+          filters={filters}
+          setFiltersWrapper={setFiltersWrapper} />
+      </div>
+
       {/* Items */}
       {content.items.map(item =>
-        <ItemCard key={item.poizonArticul} className="h-[300px]" item={item} />)}
+        <ItemCard
+          key={item.poizonArticul}
+          imageClassName='aspect-square h-[350px]'
+          className="min-h-[300px]"
+          item={item} />)}
 
       {content.items.length === 0 &&
         <div className='col-span-3 flex items-center justify-center h-[50vh]'>

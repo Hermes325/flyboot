@@ -1,0 +1,14 @@
+.buy {
+  background   : linear-gradient(264.63deg, #00EBDD 6.47%, #009692 103.56%);
+  border-radius: 8px;
+  margin-top   : 42px;
+  margin-bottom: 24px;
+  padding-block: 17px;
+
+  font-weight   : 900;
+  font-size     : 17px;
+  line-height   : 21px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color         : white;
+}

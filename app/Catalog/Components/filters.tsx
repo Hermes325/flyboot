@@ -77,7 +77,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
   //#region UI templates
   const h1 = (text: string) =>
-    <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px]'>
+    <h1 className='font-inter font-medium leading-none text-[36px] mb-[26px] max-[900px]:hidden'>
       {text}
     </h1>
 
@@ -161,6 +161,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       {h2("Пол")}
       {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
       {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
+      {formCheck("Унисекс", "unisex", filters.sexFilter.unisex, changeSex)}
     </div>
 
     {/* Price Filter */}

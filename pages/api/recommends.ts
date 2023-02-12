@@ -5,7 +5,7 @@ export default async function getRecommendsQuery(
   req: NextApiRequest,
   res: NextApiResponse<Catalog>
 ) {
-  // console.log("/api/recommends REQUEST\n", typeof req.body, "\n", req.body)
+  // console.log("/api/recommends REQUEST\n", req.body)
 
   const catalog = await getRecommendsHandler(
     req.body["slug"],

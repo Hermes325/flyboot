@@ -1,9 +1,10 @@
 "use client";
+import React from "react";
 import { Item } from "@/lib/datocms";
 import { addItem } from "@/lib/redux/slices/itemSlice";
-import React from "react";
-
 import { useDispatch } from "react-redux";
+import styles from "./bucketButton.module.css"
+
 
 type Props = {
   item: Item;
@@ -13,12 +14,10 @@ function BucketButton({ item }: Props) {
   const dispatch = useDispatch();
   return (
     <button
-      className="bg-cyan-700 rounded-lg py-5 px-8"
       onClick={() => dispatch(addItem(item))}
-    >
-      <h2 className="font-inter font-bold text-white ">ДОБАВИТЬ В КОРЗИНУ</h2>
-    </button>
-  );
+      className={styles.buy + " font-inter rounded-lg py-5 px-8"}>
+      Добавить в корзину
+    </button>)
 }
 
 export default BucketButton;

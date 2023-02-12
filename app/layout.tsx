@@ -61,7 +61,9 @@ export default function RootLayout({
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
-      <head />
+      <head>
+        <script type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript"></script>
+      </head>
       <body className="bg-[#0E0E0E]">
         <Providers>
           <Header />
