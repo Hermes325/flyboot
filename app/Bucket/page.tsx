@@ -14,7 +14,7 @@ function page() {
     phone: "",
     email: "",
     city: "",
-    delivery: "CDEK" as "CDEK" | "BoxBerry",
+    delivery: "CDEK" as "CDEK" | "BoxBerry" | "personal delivery",
     personalDataCheck: true
   });
 
@@ -103,7 +103,7 @@ function page() {
       </h1>
 
       {/* items and info block */}
-      <div className="grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-full gap-6 min-h-[60vh]">
+      <div className="grid grid-cols-[1fr_1fr] grid-rows-[1fr_auto] w-full gap-6 min-h-[60vh]">
 
         {/* Items */}
         <div className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
@@ -114,7 +114,7 @@ function page() {
         ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={bucketItem.item.id}>
-              <BucketItemCard bucketItem={bucketItem} />
+              <BucketItemCard bucketItem={bucketItem} />  
               {i !== arr.length - 1 &&
                 <hr className="mx-[24px]" />}
             </div>))}
@@ -152,7 +152,7 @@ function page() {
             type="email"
           />
           <input
-            placeholder="Ваш e-mail"
+            placeholder="Ваш город"
             value={order.city}
             onChange={(x) => changeOrder("city", x.target.value)}
             className={`${inputTailwind} max-[1300px]:rounded-[30px] invalid:border-red-500`}
@@ -161,7 +161,7 @@ function page() {
         </div>
 
         {/* Order & Delivery */}
-        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[60vh] h-fit justify-between max-w-[357px] border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]
+        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[54.3vh] h-fit justify-between border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]
           max-[1300px]:col-start-1
           max-[1300px]:col-end-3
           max-[1300px]:row-start-3
@@ -177,8 +177,9 @@ function page() {
 
           <div>
             {h2("Выберите способ доставки")}
-            {formRadio("СДЭК (ПВЗ) - 350 ₽", "delivery", order.delivery === "CDEK", "CDEK")}
-            {formRadio("Boxberry (ПВЗ) - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
+            {formRadio("ПВЗ СДЭК - 350 ₽", "delivery", order.delivery === "CDEK", "CDEK")}
+            {formRadio("ПВЗ Boxberry - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
+            {formRadio("Курьер СДЭК - 350 ₽", "delivery", order.delivery === "personal delivery", "personal delivery")}
           </div>
 
           {h2(`Итого ${finalPrice} ₽`, "mt-[1rem]")}
@@ -186,7 +187,7 @@ function page() {
           <textarea
             placeholder="Комментарий к заказу"
             rows={3}
-            className="block w-full text-[#454545]" />
+            className="block w-full text-[#454545] mt-4 pl-3 pt-2" />
 
           <button
             disabled={!order.personalDataCheck || finalAmount === 0}
