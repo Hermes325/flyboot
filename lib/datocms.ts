@@ -262,6 +262,7 @@ export async function getItem(slug: string): Promise<Item> {
         description2
         poizonArticul
         price
+        sex
         relatedItems {
           id
           slug

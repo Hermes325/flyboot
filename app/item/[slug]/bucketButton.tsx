@@ -7,6 +7,7 @@ import styles from "./bucketButton.module.css"
 
 
 type Props = {
+  // item: BucketItem;
   item: Item;
 };
 
