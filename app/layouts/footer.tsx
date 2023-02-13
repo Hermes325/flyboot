@@ -22,7 +22,7 @@ export default function Footer() {
           max-[1300px]:gap-5
         ">
           {/* links to pages */}
-          <div className="flex flex-row space-x-28">
+          <div className="flex flex-row space-x-20">
             <NavLink href="/Catalog">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
                 Каталог
@@ -46,13 +46,19 @@ export default function Footer() {
             <p className="font-montserrat text-xl text-white not-italic">
               Мы в соцсетях:
             </p>
-            <div className="flex flex-row space-x-6 items-center">
-              <Image src={whatsapp_path} alt="whatsapp logo" />
+            <div className="flex flex-row space-x-3 items-center">
               <Link href="https://t.me/flybootsfast">
                 {" "}
-                <Image src={telegram_path} alt="telegramlogo" />
+                <Image src={telegram_path} alt="telegramlogo" className="w-10 h-10"/>
               </Link>
-              <Image src={group_path} alt="авито logo" />
+              <Link href={"https://api.whatsapp.com/send?phone=79254538329"}>
+                {''}
+                <Image src={whatsapp_path} alt="whatsapp logo" className="w-10" />
+              </Link>
+              <Link href={"https://www.avito.ru/user/a098c95004a262748dadc1caa85a103a/profile?src=sharing"}>
+              <Image src={group_path} alt="авито logo" className="w-10"/>
+              </Link>
+              
             </div>
           </address>
         </div>
