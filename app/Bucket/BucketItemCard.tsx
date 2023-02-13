@@ -24,7 +24,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
 
   function itemPlus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
-    dispatch(addItem(item))
+    dispatch(addItem(bucketItem))
   }
   function itemMinus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
