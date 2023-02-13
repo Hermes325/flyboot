@@ -17,7 +17,7 @@ export default async function ItemPage({ params }: Props) {
 
   const price = Math
     .ceil(item.price)
-    .toLocaleString(undefined, {
+    .toLocaleString('ru-RU', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
