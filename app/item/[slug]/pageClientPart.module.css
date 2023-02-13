@@ -1,0 +1,21 @@
+.unavailable {
+  position: relative;
+  color   : gray !important;
+  cursor  : initial !important;
+}
+
+.unavailable:after {
+  content       : "";
+  border-bottom : 4px solid grey;
+  position      : absolute;
+  width         : 120%;
+  height        : 0;
+  transform     : rotate(320deg) translate(-20%, 210%) skew(10deg, 10deg);
+  left          : 0;
+  pointer-events: none;
+  cursor        : none;
+}
+
+.selected {
+  color: #03FFF0;
+}

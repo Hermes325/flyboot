@@ -11,4 +11,21 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color         : white;
+  cursor        : pointer;
+}
+
+.buy:disabled {
+  filter: brightness(0.8);
+}
+
+.buy:not(:disabled):hover {
+  filter: brightness(0.9);
+}
+
+.buy:not(:disabled):focus {
+  background: blueviolet;
+}
+
+.buy:not(:disabled):active {
+  background: red;
 }

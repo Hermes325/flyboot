@@ -2,7 +2,6 @@ import { createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { Item } from "@/lib/datocms";
-import { RootState } from "../store/store";
 
 export type BucketItem = {
   item: Item
@@ -19,20 +18,16 @@ const itemSlice = createSlice({
   name: "bucket",
   initialState: [] as BucketItem[],
   reducers: {
-    addItem: (state, action: PayloadAction<Item>) => {
+    addItem: (state, action: PayloadAction<BucketItem>) => {
       // Прибавляем 1
-      const index = state.findIndex(x => x.item.id === action.payload.id)
+      const index = state.findIndex(x => x.item.id === action.payload.item.id)
       if (index !== -1) {
         state[index].amount++;
         return
       }
 
       // Добавляем новый
-      state.push({
-        item: action.payload,
-        amount: 1,
-        size: { chosen: 41, available: [], locale: "ru" }
-      });
+      state.push(action.payload);
     },
     minusItemAmount: (state, action: PayloadAction<Item>) => {
       const index = state.findIndex(x => x.item.id === action.payload.id)

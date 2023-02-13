@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export type Sizes = {
   [size: string]: string,
-  sizeKey: string
+  sizeKey: "EU" | "RU" | "UK" | "US" | "FR"
 }
 
 //* Функция Егора

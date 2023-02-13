@@ -1,12 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Item } from '@/lib/datocms'
-import { changeCountrySize, SIZES_TABLE } from '@/lib/sizes';
+import { mapSizesToAvailableIndices, SIZES_TABLE } from '@/lib/sizes';
 import type { Sizes } from '@/pages/api/sizes';
 import ChooseColor from "./chooseColor";
 import BucketButton from "./bucketButton";
 import classNames from "classnames";
-
+import styles from "./pageClientPart.module.css"
 
 type Props = {
   item: Item
@@ -17,8 +17,7 @@ const ItemPageClientPart = ({ item }: Props) => {
   //#region Sizes
   const [country, setCountry] = useState<keyof typeof SIZES_TABLE>("RU")
   // TODO: какие размеры есть / каких нет
-  const [fetchedSizes, setFetchedSizes] = useState<Sizes>({ sizeKey: "RU" })
-  // TODO: выбрать размер и передать в redux
+  const [fetchedSizes, setFetchedSizes] = useState<number[]>([])
   // TODO: заблокировать кнопку покупки, пока не выбрано
   const [selectedSize, setSelectedSize] = useState<{
     selected: number | null,
@@ -28,14 +27,19 @@ const ItemPageClientPart = ({ item }: Props) => {
     sizeKey: "RU"
   })
 
-  function changeCountry(country: "EU" | "RU" | "UK" | "FR" | "US") {
-    // TODO: уточнить про unisex в US
-    const sex = item.sex.toLowerCase() === "female"
-      ? "female"
-      : "male"
+  function getCountry(country: "EU" | "RU" | "UK" | "FR" | "US")
+    : keyof typeof SIZES_TABLE {
+    const sex = item.sex.toLowerCase() === "male"
+      ? "male"
+      : "female"
     const newCountry = country === "US"
       ? `US_${sex}` as "US_male" | "US_female"
       : country
+    return newCountry
+  }
+
+  function changeCountry(country: "EU" | "RU" | "UK" | "FR" | "US") {
+    const newCountry = getCountry(country)
     setCountry(newCountry)
     // Перевод размеров
     setSelectedSize(size => ({ ...size, sizeKey: newCountry }))
@@ -55,20 +59,25 @@ const ItemPageClientPart = ({ item }: Props) => {
         })
       })
       const newContent = await query.json()
-      if (query.ok)
-        setFetchedSizes(newContent as Sizes)
+      if (!query.ok)
+        console.error("/api/sizes", query.statusText)
+
+      const newSizes = newContent as Sizes
+      setFetchedSizes(
+        mapSizesToAvailableIndices(newSizes, getCountry(newSizes.sizeKey)))
     }
 
     getSizes()
   }, [])
 
-  console.log(country, SIZES_TABLE[country], selectedSize.selected);
+  console.log(selectedSize, fetchedSizes);
   //#endregion
 
   return (<>
 
     {/* item sizes */}
-    <div className="flex flex-col my-[27px] gap-[11px]">
+    <div className="flex flex-col w-fit my-[27px] gap-[11px]">
+      {/* Смена региона */}
       <div className="flex flex-row space-x-3 items-end">
         {["EU", "RU", "US", "UK", "FR"].map(size => (
           <button
@@ -87,11 +96,11 @@ const ItemPageClientPart = ({ item }: Props) => {
       </div>
 
       {/* Размеры */}
-      <div className='mt-0 grid grid-cols-8'>
+      <div className='mt-0 grid grid-cols-6'>
         {SIZES_TABLE[country].map((size, i) =>
           <button
             key={`${size}-${i}`}
-            disabled={selectedSize.selected === i}
+            disabled={selectedSize.selected === i || !fetchedSizes.includes(i)}
             onClick={_ => setSelectedSize({
               selected: i,
               sizeKey: country
@@ -100,8 +109,9 @@ const ItemPageClientPart = ({ item }: Props) => {
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
               "w-full text-white",
               {
-                "bg-[gray]": selectedSize.selected === i,
-                "hover:bg-[#03FFF0]": selectedSize.selected !== i,
+                [styles.unavailable]: !fetchedSizes.includes(i),
+                [styles.selected]: selectedSize.selected === i && fetchedSizes.includes(i),
+                "hover:text-[#03FFF0]": selectedSize.selected !== i && fetchedSizes.includes(i),
               })}>
             {size}
           </button>)}
@@ -112,7 +122,15 @@ const ItemPageClientPart = ({ item }: Props) => {
     {/* colors */}
     <ChooseColor item={item} />
 
-    <BucketButton item={item} />
+    <BucketButton item={{
+      item,
+      amount: 1,
+      size: {
+        available: fetchedSizes,
+        chosen: selectedSize.selected ?? NaN,
+        locale: selectedSize.sizeKey
+      }
+    }} />
   </>)
 }
 
