@@ -23,6 +23,7 @@
 .flex_around {
     display        : flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -41,8 +42,8 @@
     background   : #29D9CE;
     border-radius: 10px;
     position     : absolute;
-    height       : 24vw;
-    width        : 22vw;
+    height       : 22vw;
+    width        : 23vw;
     z-index      : -1;
     transform    : translate(-0.5vw, 1.5vw);
 }
@@ -70,6 +71,16 @@
     -khtml-user-select : none;
     -webkit-user-select: none;
     user-select        : none;
+    bottom: -5%;
+}
+
+.div_left_hand{
+
+    background-image: url("/public/main-images/left_hand.png");
+    background-size: cover;
+    background-attachment: fixed;  
+    background-repeat: no-repeat;
+   
 }
 
 
@@ -77,7 +88,7 @@
 
     font-style : normal;
     font-weight: 400;
-    font-size  : 25px;
+    font-size  : 27px;
     line-height: 32px;
     /* or 128% */
 

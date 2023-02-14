@@ -18,7 +18,7 @@ const links = [
   { href: "/Catalog", label: "Каталог" },
   { href: "#Как_это_работает?", label: "Как это работает?" },
   { href: "#A_what_with_delivery_?", label: "А что с доставкой?" },
-  { href: "#About_us", label: "О нас" },
+  { href: "/About_us", label: "О нас" },
   { href: "#Связаться", label: "Связаться" },
 ];
 
