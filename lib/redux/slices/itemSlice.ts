@@ -8,6 +8,7 @@ export type BucketItem = {
   amount: number
   // Храним все размеры, чтобы изменять в корзине
   size: {
+    sizeCategory: string, //TODO: категории в зависимости от таблиц размеров
     chosen: number
     available: number[]
     locale: string

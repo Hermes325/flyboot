@@ -1,6 +1,6 @@
 "use client";
-import { useSelector, useDispatch } from "react-redux";
-import { addItem, deleteItem, deleteAll } from "@/lib/redux/slices/itemSlice";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/lib/redux/slices/itemSlice";
 import React from "react";
 
 
@@ -37,6 +37,7 @@ const TestRedux = () => {
       },
       amount: 1,
       size: {
+        sizeCategory: "apparel",
         available: [0, 1],
         chosen: 1,
         locale: "RU"

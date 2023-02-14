@@ -16,9 +16,7 @@ const ItemPageClientPart = ({ item }: Props) => {
 
   //#region Sizes
   const [country, setCountry] = useState<keyof typeof SIZES_TABLE>("RU")
-  // TODO: какие размеры есть / каких нет
   const [fetchedSizes, setFetchedSizes] = useState<number[]>([])
-  // TODO: заблокировать кнопку покупки, пока не выбрано
   const [selectedSize, setSelectedSize] = useState<{
     selected: number | null,
     sizeKey: typeof country
@@ -126,6 +124,7 @@ const ItemPageClientPart = ({ item }: Props) => {
       item,
       amount: 1,
       size: {
+        sizeCategory: "apparel",
         available: fetchedSizes,
         chosen: selectedSize.selected ?? NaN,
         locale: selectedSize.sizeKey

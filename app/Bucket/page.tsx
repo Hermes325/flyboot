@@ -6,7 +6,7 @@ import TestRedux from "./TestRedux";
 import BucketItemCard from "./BucketItemCard";
 import styles from "./BucketItemCard.module.css"
 
-function page() {
+function BucketPage() {
   const bucketItems = useSelector((state: RootState) => state.items);
 
   const [order, setOrder] = useState({
@@ -14,7 +14,7 @@ function page() {
     phone: "",
     email: "",
     city: "",
-    delivery: "CDEK" as "CDEK" | "BoxBerry" | "personal delivery",
+    delivery: "SDEK" as "SDEK" | "BoxBerry" | "personal delivery",
     personalDataCheck: true
   });
 
@@ -24,14 +24,14 @@ function page() {
 
   const itemsPrice = Math
     .ceil(bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
-    .toLocaleString(undefined, {
+    .toLocaleString('ru-RU', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
   const deliveryPrice = 350;
   const finalPrice = Math
     .ceil(deliveryPrice + bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
-    .toLocaleString(undefined, {
+    .toLocaleString('ru-RU', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
@@ -86,12 +86,9 @@ function page() {
   //#endregion
 
   return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]
-      max-[800px]:pl-[50px]
-      max-[800px]:pr-[50px]
-      max-[600px]:pl-[25px]
-      max-[600px]:pr-[25px]
-      max-[550px]:pl-[5px]
-      max-[550px]:pr-[5px]
+      max-[800px]:pl-[50px] max-[800px]:pr-[50px]
+      max-[600px]:pl-[25px] max-[600px]:pr-[25px]
+      max-[550px]:pl-[5px]  max-[550px]:pr-[5px]
     ">
 
     <TestRedux />
@@ -114,7 +111,7 @@ function page() {
         ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={bucketItem.item.id}>
-              <BucketItemCard bucketItem={bucketItem} />  
+              <BucketItemCard bucketItem={bucketItem} />
               {i !== arr.length - 1 &&
                 <hr className="mx-[24px]" />}
             </div>))}
@@ -177,7 +174,7 @@ function page() {
 
           <div>
             {h2("Выберите способ доставки")}
-            {formRadio("ПВЗ СДЭК - 350 ₽", "delivery", order.delivery === "CDEK", "CDEK")}
+            {formRadio("ПВЗ СДЭК - 350 ₽", "delivery", order.delivery === "SDEK", "SDEK")}
             {formRadio("ПВЗ Boxberry - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
             {formRadio("Курьер СДЭК - 350 ₽", "delivery", order.delivery === "personal delivery", "personal delivery")}
           </div>
@@ -207,4 +204,4 @@ function page() {
   </main >)
 }
 
-export default page;
+export default BucketPage;
