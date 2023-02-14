@@ -66,23 +66,6 @@ function BucketPage() {
         {text}
       </label>
     </div>
-
-  const formCheck = (text: string, prop: string, checked: boolean) =>
-    <div key={prop} className="flex flex-row gap-[14px]">
-      <input
-        className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
-                  checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
-                  focus:outline-none transition duration-200"
-        type="checkbox"
-        onChange={x => changeOrder(prop, x.target.checked)}
-        checked={checked}
-        id={text} />
-      <label
-        className="font-inter text-[10px] leading-[12.1px] font-extrabold"
-        htmlFor={text}>
-        {text}
-      </label>
-    </div>
   //#endregion
 
   return (<main className="w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]
@@ -100,10 +83,10 @@ function BucketPage() {
       </h1>
 
       {/* items and info block */}
-      <div className="grid grid-cols-[1fr_1fr] grid-rows-[1fr_auto] w-full gap-6 min-h-[60vh]">
+      <div className="grid grid-cols-[1fr_1fr] grid-rows-[1fr_auto] w-full gap-6">
 
         {/* Items */}
-        <div className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
+        <div className="col-span-1 flex flex-col justify-center transition-all border-2 rounded-2xl border-[#919191]
           max-[1300px]:col-start-1
           max-[1300px]:col-end-3
           max-[1300px]:row-start-1
@@ -158,7 +141,7 @@ function BucketPage() {
         </div>
 
         {/* Order & Delivery */}
-        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col min-h-[54.3vh] h-fit justify-between border-2 rounded-2xl border-[#919191] px-10 pt-[13px] pb-[34px]
+        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit w-fit justify-between border-2 rounded-2xl border-[#919191] px-10 pt-[26px] pb-[34px]
           max-[1300px]:col-start-1
           max-[1300px]:col-end-3
           max-[1300px]:row-start-3
@@ -173,7 +156,7 @@ function BucketPage() {
           </div>
 
           <div>
-            {h2("Выберите способ доставки")}
+            {h2("Выберите способ доставки", "w-[16ch]")}
             {formRadio("ПВЗ СДЭК - 350 ₽", "delivery", order.delivery === "SDEK", "SDEK")}
             {formRadio("ПВЗ Boxberry - 350 ₽", "delivery", order.delivery === "BoxBerry", "BoxBerry")}
             {formRadio("Курьер СДЭК - 350 ₽", "delivery", order.delivery === "personal delivery", "personal delivery")}
@@ -193,10 +176,21 @@ function BucketPage() {
           </button>
 
           {/* Впилить сюда ссылку */}
-          {formCheck(
-            "Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.",
-            "personalDataCheck",
-            order.personalDataCheck)}
+          <div className="flex flex-row gap-[14px]">
+            <input
+              className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
+                  checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
+                  focus:outline-none transition duration-200"
+              type="checkbox"
+              onChange={x => changeOrder("personalDataCheck", x.target.checked)}
+              checked={order.personalDataCheck}
+              id="personalDataCheck" />
+            <label
+              className="font-inter text-[10px] leading-[12.1px] font-extrabold tracking-[0.01em] max-w-[35ch]"
+              htmlFor="personalDataCheck">
+              Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.
+            </label>
+          </div>
         </div>
       </div>
     </form>

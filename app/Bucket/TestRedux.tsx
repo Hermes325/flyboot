@@ -37,10 +37,9 @@ const TestRedux = () => {
       },
       amount: 1,
       size: {
-        sizeCategory: "apparel",
-        available: [0, 1],
-        chosen: 1,
-        locale: "RU"
+        available: [{ sizeKey: "RU", sizeValue: ["31", "32", "33", "34"] }],
+        chosenSizeKey: "RU",
+        chosenSizeValue: 1
       }
     }))}>
       Добавить предмет в Redux

@@ -11,6 +11,7 @@ import bucket from "@/public/header-images/bucket.svg";
 import menu_path from "@/public/header-images/menu.svg";
 import menu_close_path from "@/public/header-images/close.svg";
 import search_path from "@/public/header-images/search.svg";
+// import styles 
 import classNames from "classnames";
 
 const links = [
@@ -49,7 +50,7 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const bucketItems = useSelector((state: RootState) => state.items.length);
+  const bucketItems = useSelector((state: RootState) => state.items.reduce((sum, v) => sum + v.amount, 0));
 
   //#region Search
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -129,19 +130,17 @@ function Header() {
             <SearchHandle isSearchOpen={isSearchOpen} />
           </button> */}
 
-        <NavLink href="/Bucket">
+        <NavLink href="/Bucket" className="relative">
           <Image
             src={bucket}
             alt="bucket page logo"
             className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-8 object-cover"
           />
-          {bucketItems > 0 && <p>({bucketItems})</p>}
+          {bucketItems > 0 && <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">{bucketItems}</p>}
         </NavLink>
 
         <button
-          onClick={() => {
-            setIsNavOpen((prev) => !prev);
-          }}
+          onClick={() => setIsNavOpen(prev => !prev)}
           className="mobile:hidden"
         >
           <BurgerHandle isNavOpen={isNavOpen} />
