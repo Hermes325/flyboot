@@ -63,6 +63,7 @@ export default function RootLayout({
       */}
       <head>
         <script type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript" />
+        <script type="text/javascript" src="https://www.payanyway.ru/assistant-builder" />
       </head>
       <body className="bg-[#0E0E0E]">
         <Providers>

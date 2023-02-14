@@ -50,7 +50,6 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const bucketItems = useSelector((state: RootState) => state.items.length);
-  console.log("Header items >> ", bucketItems);
 
   //#region Search
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -136,6 +135,7 @@ function Header() {
             alt="bucket page logo"
             className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-8 object-cover"
           />
+          {bucketItems > 0 && <p>({bucketItems})</p>}
         </NavLink>
 
         <button
