@@ -134,47 +134,52 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
   //#endregion
 
   //*==================================================================
-  return (<>
-    {h1("Фильтры")}
+  return (
+    <>
 
-    {/* Category Filter */}
-    <div className="flex flex-col mb-[18px]">
-      {h2("Категория")}
-      {Object
-        .entries(meta.category.categoryJson)
-        .map(category => formCategorySelect(category[0], Object.entries(category[1])))}
-    </div>
 
-    {/* Brand Filter */}
-    <div className="flex flex-col mb-[18px]">
-      {h2("Бренд")}
-      {meta.brands.map(x =>
-        formCheck(
-          x.name,
-          x.name,
-          filters.selectedBrands[x.name as keyof typeof filters.selectedBrands],
-          changeBrands))}
-    </div>
 
-    {/* Sex filter */}
-    <div className="flex flex-col mb-[18px]">
-      {h2("Пол")}
-      {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
-      {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
-      {formCheck("Унисекс", "unisex", filters.sexFilter.unisex, changeSex)}
-    </div>
+      {h1("Фильтры")}
 
-    {/* Price Filter */}
-    <div className="flex flex-col">
-      {h2("Цена")}
-      <FiltersPrice
-        min={min ?? 0}
-        max={max ?? 1000000}
-        filters={filters}
-        setFiltersWrapper={setFiltersWrapper} />
-    </div>
+      {/* Category Filter */}
+      <div className="flex flex-col mb-[18px]">
+        {h2("Категория")}
+        {Object
+          .entries(meta.category.categoryJson)
+          .map(category => formCategorySelect(category[0], Object.entries(category[1])))}
+      </div>
 
-  </>)
+      {/* Brand Filter */}
+      <div className="flex flex-col mb-[18px]">
+        {h2("Бренд")}
+        {meta.brands.map(x =>
+          formCheck(
+            x.name,
+            x.name,
+            filters.selectedBrands[x.name as keyof typeof filters.selectedBrands],
+            changeBrands))}
+      </div>
+
+      {/* Sex filter */}
+      <div className="flex flex-col mb-[18px]">
+        {h2("Пол")}
+        {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
+        {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
+        {formCheck("Унисекс", "unisex", filters.sexFilter.unisex, changeSex)}
+      </div>
+
+      {/* Price Filter */}
+      <div className="flex flex-col">
+        {h2("Цена")}
+        <FiltersPrice
+          min={min ?? 0}
+          max={max ?? 1000000}
+          filters={filters}
+          setFiltersWrapper={setFiltersWrapper} />
+      </div>
+
+    </>
+  )
 }
 
 export default Filters
