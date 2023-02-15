@@ -1,5 +1,5 @@
 .main {
-    padding: 0 9vw;
+    padding: 9vw 9vw 0;
 }
 
 
@@ -29,7 +29,7 @@
 
 
 .bc_block1 {
-    position: absolute;
+    position     : absolute;
     background   : #29D9CE;
     border-radius: 10px;
     position     : absolute;
@@ -52,8 +52,9 @@
 .right_hand {
     position           : absolute;
     right              : 0;
-    top                : 4%;
+    top                : 6%;
     z-index            : -1;
+    width              : 32%;
     -moz-user-select   : none;
     -o-user-select     : none;
     -khtml-user-select : none;
@@ -64,8 +65,8 @@
 .left_hand {
     position           : absolute;
     left               : 0;
-    bottom             : -12%;
-    width              : 31vw;
+    bottom             : -9%;
+    width              : 26%;
     z-index            : -1;
     -moz-user-select   : none;
     -o-user-select     : none;

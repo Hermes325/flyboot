@@ -10,7 +10,7 @@ import left_hand from "@/public/main-images/left_hand.png"
 
 const About = () => {
   return (
-    <main className={styles.main + ' relative overflow-hidden pt-[7vw]'}>
+    <main className={styles.main + ' relative overflow-hidden'}>
       <h2 className={styles.Montserrat700_2 + " font-montserrat"}>
         О нас
       </h2>

@@ -92,12 +92,12 @@ function Header() {
           />
         </NavLink>
         <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
-          <NavLink href="/Catalog" className="max-mobile:hidden">
+          <NavLink href="/catalog" className="max-mobile:hidden">
             <h2 className="font-montserrat text-2xl max-[1500px]:text-xl max-[1330px]:text-lg max-[1140px]:text-base max-[720px]:text-sm tracking-wide hover:text-[#03FFF0]">
               Каталог
             </h2>
           </NavLink>
-          <NavLink href="/About-us" className="max-mobile:hidden">
+          <NavLink href="/about-us" className="max-mobile:hidden">
             <h2 className="font-montserrat text-2xl max-[1500px]:text-xl max-[1330px]:text-lg max-[1140px]:text-base max-[720px]:text-sm tracking-wide hover:text-[#03FFF0]">
               О нас
             </h2>
@@ -109,102 +109,102 @@ function Header() {
           </NavLink>
         </div>
 
-      <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
-        {/* Поиск товаров */}
-        <input
-          placeholder="Поиск"
-          className={classNames(
-            "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden",
-            { "!block w-[300px]": isSearchOpen }
-          )}
-          value={search}
-          onChange={searchRequest}
-        />
-        {/* <button
+        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
+          {/* Поиск товаров */}
+          <input
+            placeholder="Поиск"
+            className={classNames(
+              "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden",
+              { "!block w-[300px]": isSearchOpen }
+            )}
+            value={search}
+            onChange={searchRequest}
+          />
+          {/* <button
             onClick={() => setIsSearchOpen((prev) => !prev)}
             className="mobile:hidden"
           >
             <SearchHandle isSearchOpen={isSearchOpen} />
           </button> */}
 
-        <NavLink href="/Bucket" className="relative">
-          <Image
-            src={bucket}
-            alt="bucket page logo"
-            className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-8 object-cover"
-          />
-          {bucketItems > 0 && <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">{bucketItems}</p>}
-        </NavLink>
+          <NavLink href="/Bucket" className="relative">
+            <Image
+              src={bucket}
+              alt="bucket page logo"
+              className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-8 object-cover"
+            />
+            {bucketItems > 0 && <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">{bucketItems}</p>}
+          </NavLink>
 
+          <button
+            onClick={() => setIsNavOpen(prev => !prev)}
+            className="mobile:hidden"
+          >
+            {/*<BurgerHandle isNavOpen={isNavOpen} />*/}
+            <Image
+              src={menu_path}
+              alt="открыть меню"
+              className="w-10 h-10" />
+          </button>
+        </div>
+      </nav>
+
+      {/* Модальное окно поиска */}
+      <div className={classNames(
+        // "fixed z-[1] top-48 left-[50%] max-[1280px]:left-[5%] -translate-x-[50%] max-[1280px]:-translate-x-[0%] w-[1280px] max-[1280px]:w-[90%] max-w-[1280px] h-1/2 flex-col justify-center items-start pl-5 gap-10 bg-gray-300 rounded-xl opacity-0 hidden transition",
+        "fixed z-[1] top-[108px] left-[16.7vw] w-[66.6vw] translate-x-0 h-1/4 flex-col justify-center items-start pl-5 gap-10 bg-black rounded-xl opacity-0 hidden transition",
+        { "!flex opacity-90": isSearchOpen },
+        "opacity-0 max-mobile:hidden"
+      )}>
         <button
-          onClick={() => setIsNavOpen(prev => !prev)}
-          className="mobile:hidden"
+          onClick={() => {
+            setSearch("");
+            setIsSearchOpen(false);
+          }}
+          className="fixed right-4 top-4 max-mobile:hidden"
         >
-          {/*<BurgerHandle isNavOpen={isNavOpen} />*/}
-          <Image
-            src={menu_path}
-            alt="открыть меню"
-            className="w-10 h-10" />
+          <Image src={menu_close_path} alt="close modal search" />
         </button>
+        <HeaderSearchList items={foundItems} />
       </div>
-    </nav>
 
-    {/* Модальное окно поиска */}
-    <div className={classNames(
-      // "fixed z-[1] top-48 left-[50%] max-[1280px]:left-[5%] -translate-x-[50%] max-[1280px]:-translate-x-[0%] w-[1280px] max-[1280px]:w-[90%] max-w-[1280px] h-1/2 flex-col justify-center items-start pl-5 gap-10 bg-gray-300 rounded-xl opacity-0 hidden transition",
-      "fixed z-[1] top-[108px] left-[16.7vw] w-[66.6vw] translate-x-0 h-1/4 flex-col justify-center items-start pl-5 gap-10 bg-black rounded-xl opacity-0 hidden transition",
-      { "!flex opacity-90": isSearchOpen },
-      "opacity-0 max-mobile:hidden"
-    )}>
-      <button
-        onClick={() => {
-          setSearch("");
-          setIsSearchOpen(false);
-        }}
-        className="fixed right-4 top-4 max-mobile:hidden"
+      {/* Модальное окно навигации */}
+      <nav
+        className={classNames(
+          "fixed z-[1] top-[0] bottom-[0] left-[0] w-[100vw] translate-x-0 flex flex-col justify-center items-center gap-10 bg-black rounded-xl opacity-0 invisible transition", {
+          "!visible opacity-90": isNavOpen
+        })}
+        onClick={() => setIsNavOpen(false)}
       >
-        <Image src={menu_close_path} alt="close modal search" />
-      </button>
-      <HeaderSearchList items={foundItems} />
-    </div>
-
-    {/* Модальное окно навигации */}
-    <nav
-      className={classNames(
-        "fixed z-[1] top-[0] bottom-[0] left-[0] w-[100vw] translate-x-0 flex flex-col justify-center items-center gap-10 bg-black rounded-xl opacity-0 invisible transition", {
-        "!visible opacity-90": isNavOpen
-      })}
-      onClick={() => setIsNavOpen(false)}
-    >
-      <button
-        onClick={() => {
-          setSearch("");
-          setIsNavOpen(false);
-        }}
-        className="fixed right-[23px] top-[15px]">
-        <Image
-          src={menu_close_path}
-          alt="Закрыть окно поиска"
+        <button
+          onClick={() => {
+            setSearch("");
+            setIsNavOpen(false);
+          }}
+          className="fixed right-[23px] top-[15px]">
+          <Image
+            src={menu_close_path}
+            alt="Закрыть окно поиска"
           // onClick={() => setIsNavOpen(() => {
           //   console.log(isNavOpen)
           //   return !isNavOpen
           // })}
-        />
-      </button>
-      <HeaderSearchList items={foundItems} />
-      <br />
-      {links.map(({ href, label }, i) =>
-        <NavLink
-          key={href}
-          href={href}
-          prefetch={href.startsWith("/")}
-          className="text-[#f9f9f9] hover:text-[#00b5b5] text-2xl"
-          style={{ animationDelay: `0.${i + 1}s` }}>
-          {label}
-        </NavLink>)}
-    </nav>
+          />
+        </button>
+        <HeaderSearchList items={foundItems} />
+        <br />
+        {links.map(({ href, label }, i) =>
+          <NavLink
+            key={href}
+            href={href}
+            prefetch={href.startsWith("/")}
+            className="text-[#f9f9f9] hover:text-[#00b5b5] text-2xl"
+            style={{ animationDelay: `0.${i + 1}s` }}>
+            {label}
+          </NavLink>)}
+      </nav>
 
-  </header>)
+    </header>)
 }
 
 export default Header;
