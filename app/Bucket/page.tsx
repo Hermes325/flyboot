@@ -76,14 +76,14 @@ function BucketPage() {
 
     <TestRedux />
 
-    <form className="flex flex-col items-center justify-center max-w-[1280px] w-full mb-12">
+    <form className="flex flex-col items-center justify-center w-full mb-12">
       {/* Bucket text */}
       <h1 className="font-montserrat w-full font-bold text-7xl text-[#F5F5F5] mt-2 mb-10">
         Корзина
       </h1>
 
       {/* items and info block */}
-      <div className="grid grid-cols-[1fr_1fr] grid-rows-[1fr_auto] w-full gap-6">
+      <div className="grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-full gap-6">
 
         {/* Items */}
         <div className="col-span-1 flex flex-col justify-center transition-all border-2 rounded-2xl border-[#919191]
@@ -175,7 +175,7 @@ function BucketPage() {
             Заказать
           </button>
 
-          {/* Впилить сюда ссылку */}
+          {/* Впилить ссылку */}
           <div className="flex flex-row gap-[14px]">
             <input
               className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
@@ -188,7 +188,10 @@ function BucketPage() {
             <label
               className="font-inter text-[10px] leading-[12.1px] font-extrabold tracking-[0.01em] max-w-[35ch]"
               htmlFor="personalDataCheck">
-              Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с условиями.
+              Нажимая «Заказать» Вы даете согласие на хранение и обработку ваших персональных данных в соответствии с&nbsp;
+              <a
+                href="https://sneakerhead.ru/privacy/"
+                className="underline focus:text-[gray]">условиями</a>.
             </label>
           </div>
         </div>

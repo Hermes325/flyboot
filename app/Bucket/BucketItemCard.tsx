@@ -15,12 +15,10 @@ const BucketItemCard = ({ bucketItem }: Props) => {
   const dispatch = useDispatch();
   const { item, amount, size } = bucketItem
 
-  const price = Math
-    .ceil(item.price)
-    .toLocaleString('ru-RU', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    })
+  const price = Math.ceil(item.price).toLocaleString('ru-RU', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
 
   function itemPlus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
@@ -34,9 +32,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     dispatch(deleteItem(item))
   }
 
-  console.log("size >> ", size);
-
-  return (<div className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
+  return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
     <DatoCMSImage
       className="rounded-[13px] "
       style={{ width: "13vw", aspectRatio: "134/88" }}
@@ -79,8 +75,6 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       </div>
     </div>
 
-
-
     <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]'>
       {price} руб
     </p>
@@ -90,7 +84,8 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       src={bin}
       onClick={itemDelete}
       alt="Удалить" />
-  </div>)
+
+  </article>)
 }
 
 export default BucketItemCard

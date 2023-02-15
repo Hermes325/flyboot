@@ -6,6 +6,7 @@ import Pagination from './Components/pagination'
 import FiltersUI from './Components/filters'
 import Sorting from './Components/sorting'
 
+//#region Filters
 export type Filters = {
   page: number;
   priceSort: SortType;
@@ -25,6 +26,7 @@ export type Filters = {
 }
 export type SetFiltersWrapper =
   (setNewValue: (filter: Filters) => Filters) => Promise<void>
+//#endregion
 
 type Props = {
   firstPage: Catalog,
@@ -33,10 +35,13 @@ type Props = {
 }
 
 const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
+  console.log("CatalogClient reload");
+  const saved: { content: Catalog, filters: Filters } = JSON.parse(sessionStorage.getItem("catalog") ?? "null")
 
-  // const [content, setContent] = useState({ ...firstPage, items: [...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items, ...firstPage.items] })
-  const [content, setContent] = useState(firstPage)
-  const [filters, setFilters] = useState<Filters>({
+  const [content, setContent] = useState(saved?.content ?? firstPage)
+
+  //#region Filters
+  const [filters, setFilters] = useState<Filters>(saved?.filters ?? {
     page: 0,
     priceSort: SortType.default,
     priceFilter: {
@@ -65,26 +70,30 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   })
   const [isFiltersShown, setIsFiltersShown] = useState(false);
   const filtersMobile = useRef<HTMLDivElement>(null)
-  function changeFiltersVisibility(e: any) {
+  function changeFiltersVisibility() {
     setIsFiltersShown(!isFiltersShown);
   }
-  useEffect(() => {
-    showFilters()
-  }, [])
   function showFilters() {
-    // console.log()
     if (isFiltersShown) {
-      filtersMobile.current?.classList.add('max-[900px]:opacity-90')
-      filtersMobile.current?.classList.remove('max-[900px]:opacity-0')
-      filtersMobile.current?.classList.add('max-[900px]:pointer-events-all')
-      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-none')
+      filtersMobile.current?.classList.add(
+        'max-[900px]:opacity-90',
+        'max-[900px]:pointer-events-all')
+      filtersMobile.current?.classList.remove(
+        'max-[900px]:opacity-0',
+        'max-[900px]:pointer-events-none')
     } else {
-      filtersMobile.current?.classList.add('max-[900px]:opacity-0')
-      filtersMobile.current?.classList.remove('max-[900px]:opacity-90')
-      filtersMobile.current?.classList.add('max-[900px]:pointer-events-none')
-      filtersMobile.current?.classList.remove('max-[900px]:pointer-events-all')
+      filtersMobile.current?.classList.add(
+        'max-[900px]:opacity-0',
+        'max-[900px]:pointer-events-none')
+      filtersMobile.current?.classList.remove(
+        'max-[900px]:opacity-90',
+        'max-[900px]:pointer-events-all')
     }
   }
+
+  useEffect(() => { showFilters() }, [])
+  //#endregion
+
   //#region Queries
 
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
@@ -162,6 +171,10 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     setFilters(newFilters)
     const newContent = await fetchData(newFilters)
     setContent(newContent)
+    sessionStorage.setItem("catalog", JSON.stringify({
+      filters: newFilters,
+      content: newContent
+    }))
     window.scrollTo(0, 0)
   }
 

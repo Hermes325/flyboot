@@ -1,5 +1,5 @@
 import { Sizes } from '@/pages/api/sizes';
-import { createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { Item } from "@/lib/datocms";
