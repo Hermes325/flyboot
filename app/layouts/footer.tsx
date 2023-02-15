@@ -29,7 +29,7 @@ export default function Footer() {
               </h2>
             </NavLink>
             <NavLink href="/About-us">
-              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px]">
                 О нас
               </h2>
             </NavLink>
@@ -64,8 +64,8 @@ export default function Footer() {
         </div>
 
         <div className="">
-          <p className="font-montserrat text-m text-[#29D9CE]">
-            © 2022 Flyboots. Все права защищены.
+          <p className="font-montserrat text-s text-[#29D9CE] w-[200px] text-center">
+            © 2022 Flyboots. <br /> Все права защищены.
           </p>
         </div>
       </div>
