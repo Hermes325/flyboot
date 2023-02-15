@@ -1,12 +1,16 @@
 "use client"
 import React, { useRef, useEffect } from "react";
+import menu_close_path from "@/public/header-images/close.svg";
+import Image from "next/image";
 
 
 type Props = {
   setSdekTerminalData: React.SetStateAction<any>
+  closeModal: () => any,
+  isSdekModalOpen: boolean
 }
 
-function SdekTerminalModal({ setSdekTerminalData }: Props) {
+function SdekTerminalModal({ setSdekTerminalData, closeModal, isSdekModalOpen }: Props) {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -22,19 +26,33 @@ function SdekTerminalModal({ setSdekTerminalData }: Props) {
       })
 
       const choosePVZ = (wat: any) => {
-        setSdekTerminalData(wat);
+        setSdekTerminalData(wat)
+        closeModal()
       };
 
       widget?.binders.add(choosePVZ, "onChoose");
     }
   }, [setSdekTerminalData]);
 
-  return (<article className="w-screen h-screen top-0 left-0 fixed z-50">
+  return (<div className={isSdekModalOpen ? "" : "hidden"}>
+
+    <div
+      onClick={closeModal}
+      className="w-screen h-screen top-0 left-0 absolute backdrop-brightness-50 z-[101]" />
+
+    <button
+      onClick={closeModal}
+      className="cursor-pointer fixed z-[103] right-[5vw] translate-x-[50%] top-[108px] max-mobile:hidden"
+    >
+      <Image src={menu_close_path} width={100} height={100} alt="закрыть модальное окно" />
+    </button>
+
     <div
       ref={modalRef}
       id="forpvz"
-      className="w-full h-[80vh] fixed z-50" />
-  </article>)
+      className="absolute z-[102] top-[108px] left-[10vw] w-[80vw] h-[80vh]"
+      onClick={e => e.stopPropagation()} />
+  </div>)
 };
 
 export default SdekTerminalModal;

@@ -94,7 +94,7 @@ function Header() {
 
   //#endregion
 
-  return (<header className="fixed w-full flex justify-center z-[1000] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]">
+  return (<header className="fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]">
 
     {/* Logo and burger menu */}
     <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
@@ -188,10 +188,10 @@ function Header() {
         <Image
           src={menu_close_path}
           alt="Закрыть окно поиска"
-          // onClick={() => setIsNavOpen(() => {
-          //   console.log(isNavOpen)
-          //   return !isNavOpen
-          // })}
+        // onClick={() => setIsNavOpen(() => {
+        //   console.log(isNavOpen)
+        //   return !isNavOpen
+        // })}
         />
       </button>
       <HeaderSearchList items={foundItems} />

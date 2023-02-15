@@ -72,11 +72,15 @@ function BucketPage() {
       max-[800px]:pl-[50px] max-[800px]:pr-[50px]
       max-[600px]:pl-[25px] max-[600px]:pr-[25px]
       max-[550px]:pl-[5px]  max-[550px]:pr-[5px]`, {
-    "overflow-hidden": isSdekModalOpen
+    "relative": !isSdekModalOpen,
+    "overflow-hidden fixed z-[103]": isSdekModalOpen
   })}>
 
     <TestRedux />
-    {isSdekModalOpen && <SdekTerminalModal setSdekTerminalData={setSdekTerminalData} />}
+    <SdekTerminalModal
+      isSdekModalOpen={isSdekModalOpen}
+      closeModal={() => setIsSdekModalOpen(false)}
+      setSdekTerminalData={setSdekTerminalData} />
 
     <form className="flex flex-col items-center justify-center w-full mb-12">
       {/* Bucket text */}
