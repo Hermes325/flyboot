@@ -143,7 +143,11 @@ function Header() {
           onClick={() => setIsNavOpen(prev => !prev)}
           className="mobile:hidden"
         >
-          <BurgerHandle isNavOpen={isNavOpen} />
+          {/*<BurgerHandle isNavOpen={isNavOpen} />*/}
+          <Image
+            src={menu_path}
+            alt="открыть меню"
+            className="w-10 h-10" />
         </button>
       </div>
     </nav>
@@ -170,20 +174,25 @@ function Header() {
     {/* Модальное окно навигации */}
     <nav
       className={classNames(
-        "fixed z-[1] top-[50vh] left-[16.7vw] w-[66.6vw] translate-x-0 flex flex-col justify-center items-center gap-10 bg-black rounded-xl opacity-0 invisible transition", {
+        "fixed z-[1] top-[0] bottom-[0] left-[0] w-[100vw] translate-x-0 flex flex-col justify-center items-center gap-10 bg-black rounded-xl opacity-0 invisible transition", {
         "!visible opacity-90": isNavOpen
       })}
-      onClick={() => setIsNavOpen((prev) => !prev)}
+      onClick={() => setIsNavOpen(false)}
     >
       <button
         onClick={() => {
           setSearch("");
           setIsNavOpen(false);
         }}
-        className="fixed right-4 top-4">
+        className="fixed right-[23px] top-[15px]">
         <Image
           src={menu_close_path}
-          alt="Закрыть окно поиска" />
+          alt="Закрыть окно поиска"
+          // onClick={() => setIsNavOpen(() => {
+          //   console.log(isNavOpen)
+          //   return !isNavOpen
+          // })}
+        />
       </button>
       <HeaderSearchList items={foundItems} />
       <br />
