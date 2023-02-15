@@ -6,15 +6,16 @@ import styles from "./bucketButton.module.css"
 
 
 type Props = {
-  item: BucketItem;
+  item?: BucketItem;
 };
 
 function BucketButton({ item }: Props) {
   const dispatch = useDispatch();
+
   return (
     <button
-      disabled={Number.isNaN(item.size.chosen)}
-      onClick={() => dispatch(addItem(item))}
+      disabled={Number.isNaN(item?.size.chosenSizeValue)}
+      onClick={() => item && dispatch(addItem(item))}
       className={styles.buy + " font-inter rounded-lg py-5 px-8"}>
       Добавить в корзину
     </button>)

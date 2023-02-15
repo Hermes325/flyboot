@@ -1,3 +1,4 @@
+import { Sizes } from '@/pages/api/sizes';
 import { createListenerMiddleware, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -8,9 +9,9 @@ export type BucketItem = {
   amount: number
   // Храним все размеры, чтобы изменять в корзине
   size: {
-    chosen: number
-    available: number[]
-    locale: string
+    chosenSizeValue: number
+    chosenSizeKey: string
+    available: Sizes
   }
 }
 

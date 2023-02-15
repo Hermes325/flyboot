@@ -5,7 +5,7 @@ import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
 import { addItem, BucketItem, minusItemAmount, deleteItem } from '@/lib/redux/slices/itemSlice'
 import { useDispatch } from 'react-redux'
-import { Item } from '@/lib/datocms'
+import classnames from "classnames";
 
 type Props = {
   bucketItem: BucketItem
@@ -17,7 +17,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
 
   const price = Math
     .ceil(item.price)
-    .toLocaleString(undefined, {
+    .toLocaleString('ru-RU', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     })
@@ -33,6 +33,8 @@ const BucketItemCard = ({ bucketItem }: Props) => {
   function itemDelete() {
     dispatch(deleteItem(item))
   }
+
+  console.log("size >> ", size);
 
   return (<div className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
     <DatoCMSImage
@@ -52,23 +54,26 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       </p>
       <div className='flex gap-4'>
         <select
-          defaultValue={1}
+          defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
           className="font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5"
         >
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={1}>8 EU (41 RUS)</option>
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={2}>8 EU (41 RUS)</option>
-          <option className='text-[#9A9A9A] bg-[black] text-[16px]' value={3}>8 EU (41 RUS)</option>
+          {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue.map(value =>
+            <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
+              {value} {size.chosenSizeKey}
+            </option>)}
         </select>
 
         <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white'>
           <button
-            className='font-inter font-bold text-[15px]'
+            className={classnames('font-inter font-bold text-[15px] active:scale-110', {
+              "text-[gray]": amount <= 1
+            })}
             disabled={amount <= 1}
             onClick={itemMinus}>-</button>
           <p
             className='font-inter font-bold text-[15px] text-[#03FFF0]'>{amount}</p>
           <button
-            className='font-inter font-bold text-[15px]'
+            className='font-inter font-bold text-[15px] active:scale-110'
             onClick={itemPlus}>+</button>
         </div>
       </div>
@@ -81,7 +86,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     </p>
 
     <NextImage
-      className='absolute bottom-[24px] right-[24px] cursor-pointer'
+      className='absolute bottom-[24px] right-[24px] cursor-pointer hover:brightness-150 active:scale-110 transition-all'
       src={bin}
       onClick={itemDelete}
       alt="Удалить" />

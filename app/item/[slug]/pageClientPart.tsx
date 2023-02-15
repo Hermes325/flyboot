@@ -1,12 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Item } from '@/lib/datocms'
-import { mapSizesToAvailableIndices, SIZES_TABLE } from '@/lib/sizes';
 import type { Sizes } from '@/pages/api/sizes';
 import ChooseColor from "./chooseColor";
 import BucketButton from "./bucketButton";
 import classNames from "classnames";
-import styles from "./pageClientPart.module.css"
 
 type Props = {
   item: Item
@@ -15,34 +13,20 @@ type Props = {
 const ItemPageClientPart = ({ item }: Props) => {
 
   //#region Sizes
-  const [country, setCountry] = useState<keyof typeof SIZES_TABLE>("RU")
-  // TODO: какие размеры есть / каких нет
-  const [fetchedSizes, setFetchedSizes] = useState<number[]>([])
-  // TODO: заблокировать кнопку покупки, пока не выбрано
+  const [country, setCountry] = useState<string>("RU")
+  const [fetchedSizes, setFetchedSizes] = useState<Sizes>()
   const [selectedSize, setSelectedSize] = useState<{
-    selected: number | null,
-    sizeKey: typeof country
+    selected: number,
+    sizeKey: string
   }>({
-    selected: null,
-    sizeKey: "RU"
+    selected: NaN,
+    sizeKey: "null"
   })
 
-  function getCountry(country: "EU" | "RU" | "UK" | "FR" | "US")
-    : keyof typeof SIZES_TABLE {
-    const sex = item.sex.toLowerCase() === "male"
-      ? "male"
-      : "female"
-    const newCountry = country === "US"
-      ? `US_${sex}` as "US_male" | "US_female"
-      : country
-    return newCountry
-  }
-
-  function changeCountry(country: "EU" | "RU" | "UK" | "FR" | "US") {
-    const newCountry = getCountry(country)
-    setCountry(newCountry)
+  function changeCountry(country: string) {
+    setCountry(country)
     // Перевод размеров
-    setSelectedSize(size => ({ ...size, sizeKey: newCountry }))
+    setSelectedSize(size => ({ ...size, sizeKey: country }))
   }
 
   useEffect(() => {
@@ -63,8 +47,8 @@ const ItemPageClientPart = ({ item }: Props) => {
         console.error("/api/sizes", query.statusText)
 
       const newSizes = newContent as Sizes
-      setFetchedSizes(
-        mapSizesToAvailableIndices(newSizes, getCountry(newSizes.sizeKey)))
+      setFetchedSizes(newSizes)
+      setCountry(newSizes[0].sizeKey)
     }
 
     getSizes()
@@ -79,39 +63,36 @@ const ItemPageClientPart = ({ item }: Props) => {
     <div className="flex flex-col w-fit my-[27px] gap-[11px]">
       {/* Смена региона */}
       <div className="flex flex-row space-x-3 items-end">
-        {["EU", "RU", "US", "UK", "FR"].map(size => (
-          <button
-            key={size}
-            disabled={country === size}
-            onClick={_ => changeCountry(size as "EU" | "RU" | "US" | "UK" | "FR")}
-            className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
-              "text-[gray]": country.startsWith(size),
-              "hover:text-[#03FFF0]": !country.startsWith(size),
-            },)}>
-            {size}
-          </button>))}
-        <h4 className="font-lato font-[400] text-white text-[24px] leading-[33px] tracking-[0.01em]">
+        {fetchedSizes === undefined
+          ? <h3>Загружаем размеры с poizon...</h3>
+          : fetchedSizes.map(({ sizeKey }) => (
+            <button
+              key={sizeKey}
+              onClick={_ => changeCountry(sizeKey)}
+              className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
+                "text-[gray]": country?.startsWith(sizeKey),
+                "hover:text-[#03FFF0]": !country?.startsWith(sizeKey),
+              },)}>
+              {sizeKey}
+            </button>))}
+        {/* <h4 className="font-lato font-[400] text-white text-[24px] leading-[33px] tracking-[0.01em]">
           Таблица размеров
-        </h4>
+        </h4> */}
       </div>
 
       {/* Размеры */}
       <div className='mt-0 grid grid-cols-6'>
-        {SIZES_TABLE[country].map((size, i) =>
+        {fetchedSizes?.find(x => x.sizeKey === country)?.sizeValue.map((size, i) =>
           <button
-            key={`${size}-${i}`}
-            disabled={selectedSize.selected === i || !fetchedSizes.includes(i)}
-            onClick={_ => setSelectedSize({
-              selected: i,
-              sizeKey: country
-            })}
+            key={`${country}-${i}`}
+            disabled={selectedSize.selected === i}
+            onClick={_ => setSelectedSize({ sizeKey: country, selected: i })}
             className={classNames("border-2 border-white cursor-pointer",
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
-              "w-full text-white",
+              "w-[4ch] text-white",
               {
-                [styles.unavailable]: !fetchedSizes.includes(i),
-                [styles.selected]: selectedSize.selected === i && fetchedSizes.includes(i),
-                "hover:text-[#03FFF0]": selectedSize.selected !== i && fetchedSizes.includes(i),
+                "!text-[#03FFF0]": selectedSize.selected === i,
+                "hover:text-[#03FFF0]": selectedSize.selected !== i,
               })}>
             {size}
           </button>)}
@@ -122,15 +103,15 @@ const ItemPageClientPart = ({ item }: Props) => {
     {/* colors */}
     <ChooseColor item={item} />
 
-    <BucketButton item={{
+    <BucketButton item={fetchedSizes ? {
       item,
       amount: 1,
       size: {
-        available: fetchedSizes,
-        chosen: selectedSize.selected ?? NaN,
-        locale: selectedSize.sizeKey
+        chosenSizeKey: selectedSize.sizeKey,
+        chosenSizeValue: selectedSize.selected,
+        available: fetchedSizes
       }
-    }} />
+    } : undefined} />
   </>)
 }
 

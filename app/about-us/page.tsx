@@ -10,7 +10,7 @@ import left_hand from "@/public/main-images/left_hand.png"
 
 const About = () => {
   return (
-    <main className={styles.main + '  pt-[7vw]'}>
+    <main className={styles.main + ' relative overflow-hidden pt-[7vw]'}>
       <h2 className={styles.Montserrat700_2 + " font-montserrat"}>
         О нас
       </h2>
@@ -24,7 +24,7 @@ const About = () => {
         <div className={styles.flex_around}>
           <div>
             <div className={styles.bc_block1 +
-              " max-[1450px]:!h-[26vw] max-[1450px]:!w-[25.5vw] max-[1450px]:!translate-x-px-[] max-[1300px]:!w-[28vw] max-[1300px]:!h-[29.6vw] max-[1300px]:!translate-x-px-[]"}></div>
+              " max-[1450px]:!h-[26vw] max-[1450px]:!w-[25.5vw] max-[1450px]:!translate-x-px-[] max-[1300px]:!w-[28vw] max-[1300px]:!h-[29.6vw] max-[1300px]:!translate-x-px-[]"} />
             <Image
               src={new_balance}
               alt="box"
@@ -67,7 +67,7 @@ const About = () => {
             </p>
           </div>
           <div>
-            <div className={styles.bc_block2 + " max-[1450px]:!w-[25.5vw] max-[1450px]:!translate-x-px-[]"}></div>
+            <div className={styles.bc_block2 + " max-[1450px]:!w-[25.5vw] max-[1450px]:!translate-x-px-[]"} />
             <Image
               src={box}
               alt="box"
@@ -75,9 +75,6 @@ const About = () => {
             />
           </div>
         </div>
-      </div>
-      <div className={styles.div_left_hand}>
-
       </div>
 
       <Image

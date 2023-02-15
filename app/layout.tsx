@@ -62,7 +62,8 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head>
-        <script type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript"></script>
+        <script type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript" />
+        <script type="text/javascript" src="https://www.payanyway.ru/assistant-builder" />
       </head>
       <body className="bg-[#0E0E0E]">
         <Providers>

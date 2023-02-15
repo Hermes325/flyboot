@@ -1,6 +1,6 @@
 "use client";
-import { useSelector, useDispatch } from "react-redux";
-import { addItem, deleteItem, deleteAll } from "@/lib/redux/slices/itemSlice";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/lib/redux/slices/itemSlice";
 import React from "react";
 
 
@@ -37,9 +37,9 @@ const TestRedux = () => {
       },
       amount: 1,
       size: {
-        available: [0, 1],
-        chosen: 1,
-        locale: "RU"
+        available: [{ sizeKey: "RU", sizeValue: ["31", "32", "33", "34"] }],
+        chosenSizeKey: "RU",
+        chosenSizeValue: 1
       }
     }))}>
       Добавить предмет в Redux

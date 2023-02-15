@@ -23,7 +23,7 @@
 .flex_around {
     display        : flex;
     justify-content: space-around;
-    align-items: center;
+    align-items    : center;
 }
 
 
@@ -63,7 +63,7 @@
 .left_hand {
     position           : absolute;
     left               : 0;
-    bottom             : 6vh;
+    bottom             : -12%;
     width              : 31vw;
     z-index            : -1;
     -moz-user-select   : none;
@@ -71,16 +71,15 @@
     -khtml-user-select : none;
     -webkit-user-select: none;
     user-select        : none;
-    bottom: -5%;
 }
 
-.div_left_hand{
+.div_left_hand {
 
-    background-image: url("/public/main-images/left_hand.png");
-    background-size: cover;
-    background-attachment: fixed;  
-    background-repeat: no-repeat;
-   
+    background-image     : url("/public/main-images/left_hand.png");
+    background-size      : cover;
+    background-attachment: fixed;
+    background-repeat    : no-repeat;
+
 }
 
 
