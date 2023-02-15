@@ -30,7 +30,8 @@ function DescriptionHandle({ isOpen, description }: { isOpen: boolean; descripti
 function DropDown({ title, description, open = false }: Props) {
   const [isOpen, setIsOpen] = useState(open);
   return (
-    <div className={classNames("flex flex-col w-[450px] border-b-2 border-white", {
+    <div className={classNames(`flex flex-col w-[450px] border-b-2 border-white
+       max-[600px]:w-[100%]`, {
       "border-white pb-[20px]": isOpen,
     })}>
       <div

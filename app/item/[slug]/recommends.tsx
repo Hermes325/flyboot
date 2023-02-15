@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Catalog, Item } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card';
+import arrow_left from "@/public/arrow/arrow-left.svg"
 import arrow_forward from "@/public/arrow/arrow_forward.svg";
 import arrow_backward from "@/public/arrow/arrow_back.svg";
 import Image from "next/image";
@@ -42,17 +43,22 @@ const Recommends = ({ item }: Props) => {
 
   return (<section className="flex flex-col w-full">
     {/* will be interested and nav buttons */}
-    <div className="flex flex-row w-full justify-between">
-      <h2 className="text-white text-5xl my-[37px]">Так же будет интересно</h2>
-      <div className="flex flex-row items-end space-x-5 space-y-5 mb-[37px]">
+    <div className="flex flex-row w-full justify-between max-[600px]:w-[100%]">
+      <h2 className="text-white text-5xl my-[37px]
+        max-[600px]:text-3xl
+        max-[600px]:inline-block
+      ">Так же будет интересно</h2>
+      <div className="flex flex-row items-end gap-x-[5px] mb-[37px]">
         <Image
           alt="назад"
-          src={arrow_backward}
-          className="arrow_backward p-3 border-2 rounded-full border-white w-14 h-14" />
+          src={arrow_left}
+          className="arrow_backward m-[0] p-3 border-2 rounded-full border-white w-14 h-14
+            max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
         <Image
           alt="вперёд"
-          src={arrow_forward}
-          className="arrow_forward p-3 border-2 rounded-full border-white w-14 h-14" />
+          src={arrow_left}
+          className="arrow_forward m-[0] p-3 border-2 rounded-full border-white w-14 h-14 rotate-180
+            max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
       </div>
     </div>
 
