@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import SdekTerminalModal from './SdekTerminalModal';
+import SdekTerminalModal from '../Bucket/SdekTerminalModal';
 
 function TestCDEKPage() {
   const [sdekTerminalData, setSdekTerminalData] = useState<any>(null);

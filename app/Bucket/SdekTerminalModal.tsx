@@ -29,17 +29,12 @@ function SdekTerminalModal({ setSdekTerminalData }: Props) {
     }
   }, [setSdekTerminalData]);
 
-  return (
-    <div id="sdek_terminal_modal" className="modal" ref={modalRef}>
-      <div className="modal-content">
-        <div id="forpvz" style={{ width: "100%", height: "600px" }} />
-      </div>
-      <div className="modal-footer">
-        <button className="modal-close waves-effect waves-darken btn-flat">
-          Close
-        </button>
-      </div>
-    </div>)
+  return (<article className="w-screen h-screen top-0 left-0 fixed z-50">
+    <div
+      ref={modalRef}
+      id="forpvz"
+      className="w-full h-[80vh] fixed z-50" />
+  </article>)
 };
 
 export default SdekTerminalModal;
