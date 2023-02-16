@@ -37,7 +37,11 @@ const TestRedux = () => {
       },
       amount: 1,
       size: {
-        available: [{ sizeKey: "RU", sizeValue: ["31", "32", "33", "34"] }],
+        available: [{
+          sizeKey: "RU",
+          sizeValue: ["31", "32", "33", "34"],
+          available: [true, true, true, true]
+        }],
         chosenSizeKey: "RU",
         chosenSizeValue: 1
       }
