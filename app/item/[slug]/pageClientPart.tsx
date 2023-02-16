@@ -109,7 +109,6 @@ const ItemPageClientPart = ({ item }: Props) => {
           available: fetchedSizes
         }
       } : undefined} />
-
   </>)
 }
 
