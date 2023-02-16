@@ -25,12 +25,6 @@ const ItemPageClientPart = ({ item }: Props) => {
   })
   const countrySizes = fetchedSizes?.find(x => x.sizeKey === country)
 
-  function changeCountry(country: string) {
-    setCountry(country)
-    // Перевод размеров
-    // setSelectedSize(size => ({ ...size, sizeKey: country }))
-  }
-
   useEffect(() => {
     async function getSizes() {
       const query = await fetch("/api/sizes", {
@@ -55,9 +49,6 @@ const ItemPageClientPart = ({ item }: Props) => {
 
     getSizes()
   }, [])
-
-  console.log(country, selectedSize, fetchedSizes);
-
   //#endregion
 
   return (<>
@@ -71,7 +62,7 @@ const ItemPageClientPart = ({ item }: Props) => {
           : fetchedSizes.map(({ sizeKey }) => (
             <button
               key={sizeKey}
-              onClick={_ => changeCountry(sizeKey)}
+              onClick={_ => setCountry(sizeKey)}
               className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
                 "!text-[gray]": country === sizeKey,
                 "hover:text-[#03FFF0]": country !== sizeKey,
@@ -118,6 +109,7 @@ const ItemPageClientPart = ({ item }: Props) => {
           available: fetchedSizes
         }
       } : undefined} />
+
   </>)
 }
 
