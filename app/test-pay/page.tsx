@@ -9,9 +9,10 @@ const PaymentPage = () => {
       account: 25060038,
       amount: 1,
       transactionId: 't-' + Date.now(),
+      subscriberId: "georg3georg3georg@gmail.com",
       testMode: 0,
       customParams: {
-        MNT_CUSTOM3: "georg3georg3georg@gmail.com"
+        MNT_CUSTOM3: "msk.vitaly@gmail.com"
       }
     }
     var assistant = new (window as any).Assistant.Builder();

@@ -10,12 +10,12 @@ type Props = {
 
 const PictureBlock = ({ item }: Props) => {
 
-  const [current, setCurrent] = useState(0)
+  // const [current, setCurrent] = useState(0)
   const [images, setImages] = useState(item.images.map((image, index) => ({ image, index })))
 
   return (<>
     <Image
-      data={images[current].image.responsiveImage}
+      data={images[0].image.responsiveImage}
       className="rounded-[15px]"
       style={{ maxWidth: "none" }}
       pictureClassName="object-cover aspect-[646/532] h-[532px] rounded-[15px]" />
@@ -24,16 +24,23 @@ const PictureBlock = ({ item }: Props) => {
     <div className="flex flex-row justify-start gap-[24px]">
       {images
         .sort((a, b) => a.index - b.index)
-        .filter(({ index }) => index !== current)
+        .slice(1)
         .map(({ image, index }) =>
-          <div key={`small-${index}`}
+          <div
+            key={`small-${index}`}
+            className="rounded-[15px] cursor-pointer"
             onClick={_ => {
               // Меняем номер картинки на current
-              setImages(x => ({ ...x, }))
+              setImages(x => x.map(_x => {
+                switch (_x.index) {
+                  case 0: return { ..._x, index }
+                  case index: return { ..._x, index: 0 }
+                  default: return _x
+                }
+              }))
               // Устанавливаем новый current
-              setCurrent(index)
-            }}
-            className="rounded-[15px] cursor-pointer">
+              // setCurrent(index)
+            }}>
             <Image
               lazyLoad={true}
               data={image.responsiveImage}
