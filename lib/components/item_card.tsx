@@ -38,14 +38,14 @@ const ItemCard = ({ item, className, imageClassName }: Props) => {
 
       <div>
         <h3 className={`${styles["name"]}
-          max-[750px]:text-[15px]
-          max-[750px]:h-[32px]
-          max-[550px]:text-[12px]
-          max-[550px]:h-[32px]
+          max-[750px]:!text-[15px]
+          max-[750px]:!h-[32px]
+          max-[550px]:!text-[12px]
+          max-[550px]:!h-[32px]
           `}>{item.title}</h3>
         <p className={`${styles["price"]}
-          max-[750px]:text-[18px]
-          max-[550px]:text-[15px]
+          max-[750px]:!text-[18px]
+          max-[550px]:!text-[15px]
           `}>{price}&nbsp;руб</p>
       </div>
     </article>
