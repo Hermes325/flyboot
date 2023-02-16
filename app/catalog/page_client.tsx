@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
-import { Catalog, CatalogBrandsAndCategories, SortType } from '@/lib/datocms'
+import React, {useEffect, useRef, useState} from 'react'
+import {Catalog, CatalogBrandsAndCategories, SortType} from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card'
 import Pagination from './Components/pagination'
 import FiltersUI from './Components/filters'
@@ -91,7 +91,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     }
   }
 
-  useEffect(() => { showFilters() }, [])
+  useEffect(() => { showFilters() })
   //#endregion
 
   //#region Queries
@@ -161,8 +161,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         maxPrice: newFilters.priceFilter.max,
       })
     })
-    const newContent: Catalog = await query.json()
-    return newContent
+    return await query.json()
   }
 
   //* Обновляет состояние страницы
@@ -187,7 +186,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
-      <h1 className='font-montserrat text-[80px] font-bold text-[#F5F5F5]'>Каталог</h1>
+      <h1 className='font-montserrat text-[80px] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
     </div>
 
     {/* Sorting */}
@@ -250,8 +249,16 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       {content.items.map(item =>
         <ItemCard
           key={item.poizonArticul}
-          imageClassName='aspect-square h-[320px]'
-          className="min-h-[300px]"
+          imageClassName='aspect-square
+            h-[320px]
+            max-[750px]:h-[220px]
+            max-[550px]:h-[150px]
+          '
+          className="
+            min-h-[300px]
+            max-[750px]:min-h-[200px]
+            max-[550px]:min-h-[130px]
+          "
           item={item} />)}
 
       {content.items.length === 0 &&
