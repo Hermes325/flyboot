@@ -18,7 +18,7 @@ function Catalog({ params }: Props) {
     .keys(catalogMeta.category.categoryJson)
     .includes(params.category)
 
-  if (!isCategoryExists) redirect("/Catalog")
+  if (!isCategoryExists) redirect("/catalog")
 
   // Первая страница с категорией из URL
   const catalog = use(getItems(undefined, [params.category]))

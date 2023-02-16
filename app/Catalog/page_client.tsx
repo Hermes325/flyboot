@@ -209,7 +209,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       justify-center
       font-inter text-white text-[16px]
     ' onClick={changeFiltersVisibility}><span className='pointer-events-none'>Фильтры</span></div>
-    <div className={`col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
+    <div className={`sticky top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
       max-[900px]:hidden 
       ${!isFiltersShown ? 'max-[900px]:hidden' : ''}`}>
       <FiltersUI

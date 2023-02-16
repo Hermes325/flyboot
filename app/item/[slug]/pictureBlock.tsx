@@ -11,7 +11,7 @@ type Props = {
 const PictureBlock = ({ item }: Props) => {
 
   const [current, setCurrent] = useState(0)
-  const images = item.images.map((image, index) => ({ image, index }))
+  const [images, setImages] = useState(item.images.map((image, index) => ({ image, index })))
 
   return (<>
     <Image
@@ -27,7 +27,12 @@ const PictureBlock = ({ item }: Props) => {
         .filter(({ index }) => index !== current)
         .map(({ image, index }) =>
           <div key={`small-${index}`}
-            onClick={_ => setCurrent(index)}
+            onClick={_ => {
+              // Меняем номер картинки на current
+              setImages(x => ({ ...x, }))
+              // Устанавливаем новый current
+              setCurrent(index)
+            }}
             className="rounded-[15px] cursor-pointer">
             <Image
               lazyLoad={true}
