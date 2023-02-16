@@ -190,7 +190,12 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Sorting */}
-    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4 max-[900px]:row-start-2 max-[900px]:row-end-2'>
+    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4
+      max-[900px]:col-start-3
+      max-[900px]:col-end-5
+      max-[900px]:row-start-2
+      max-[900px]:row-end-2
+    '>
       <Sorting
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />
