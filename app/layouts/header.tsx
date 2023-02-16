@@ -15,7 +15,7 @@ import search_path from "@/public/header-images/search.svg";
 import classNames from "classnames";
 
 const links = [
-  { href: "/Catalog", label: "Каталог" },
+  { href: "/catalog", label: "Каталог" },
   { href: "#Как_это_работает?", label: "Как это работает?" },
   { href: "#A_what_with_delivery_?", label: "А что с доставкой?" },
   { href: "/about-us", label: "О нас" },
@@ -107,7 +107,7 @@ function Header() {
       </NavLink>
 
       <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
-        {navLink("/Catalog", "Каталог")}
+        {navLink("/catalog", "Каталог")}
         {navLink("/about-us", "О нас")}
         {navLink("/FAQ", "FAQ")}
       </div>
@@ -130,7 +130,7 @@ function Header() {
             <SearchHandle isSearchOpen={isSearchOpen} />
           </button> */}
 
-        <NavLink href="/Bucket" className="relative">
+        <NavLink href="/bucket" className="relative">
           <Image
             src={bucket}
             alt="bucket page logo"

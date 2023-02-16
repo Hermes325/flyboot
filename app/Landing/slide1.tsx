@@ -26,7 +26,7 @@ function Slide1() {
           Если ты искал, где обновить гардероб, то ты в нужном месте. <br />
           Одевайся так, будто завтра выступаешь в Карнеги-Холл.
         </p>
-        <a href="/Catalog" className="mt-[1vw]">
+        <a href="/catalog" className="mt-[1vw]">
           <button
             className={
               styles.button_main +

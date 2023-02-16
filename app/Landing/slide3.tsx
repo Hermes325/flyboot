@@ -6,15 +6,15 @@ import Link from "next/link";
 
 
 const links = [{
-  href: "/Catalog/apparel",
+  href: "/catalog/apparel",
   name: "Одежда",
   className: styles.ramochka_child
 }, {
-  href: "/Catalog/shoes",
+  href: "/catalog/shoes",
   name: "Обувь",
   className: styles.ramochka_man
 }, {
-  href: "/Catalog/accessory",
+  href: "/catalog/accessory",
   name: "Аксессуары",
   className: styles.ramochka_woman
 }]
@@ -40,7 +40,7 @@ function Slide3() {
         </Link>)}
     </div>
 
-    <Link href="/Catalog" className="mt-[3vw] text-center flex justify-center" >
+    <Link href="/catalog" className="mt-[3vw] text-center flex justify-center" >
       <button className={styles.catalog_button + " font-montserrat"}>
         Каталог
       </button>

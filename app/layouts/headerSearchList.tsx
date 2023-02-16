@@ -11,7 +11,7 @@ const HeaderSearchList = ({ items }: Props) => {
     <ul>
       {items.map((item) => (
         <li key={item.slug}>
-          <NavLink href={`/Catalog/${item.slug}`}>
+          <NavLink href={`/catalog/${item.slug}`}>
             <p className="">{item.title}</p>
           </NavLink>
         </li>
