@@ -23,13 +23,13 @@ export default function Footer() {
         ">
           {/* links to pages */}
           <div className="flex flex-row space-x-20">
-            <NavLink href="/Catalog">
+            <NavLink href="/catalog">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
                 Каталог
               </h2>
             </NavLink>
-            <NavLink href="/About-us">
-              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
+            <NavLink href="/about-us">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px]">
                 О нас
               </h2>
             </NavLink>
@@ -49,23 +49,23 @@ export default function Footer() {
             <div className="flex flex-row space-x-3 items-center">
               <Link href="https://t.me/flybootsfast">
                 {" "}
-                <Image src={telegram_path} alt="telegramlogo" className="w-10 h-10"/>
+                <Image src={telegram_path} alt="telegramlogo" className="w-10 h-10" />
               </Link>
               <Link href={"https://api.whatsapp.com/send?phone=79254538329"}>
                 {''}
                 <Image src={whatsapp_path} alt="whatsapp logo" className="w-10" />
               </Link>
               <Link href={"https://www.avito.ru/user/a098c95004a262748dadc1caa85a103a/profile?src=sharing"}>
-              <Image src={group_path} alt="авито logo" className="w-10"/>
+                <Image src={group_path} alt="авито logo" className="w-10" />
               </Link>
-              
+
             </div>
           </address>
         </div>
 
         <div className="">
-          <p className="font-montserrat text-m text-[#29D9CE]">
-            © 2022 Flyboots. Все права защищены.
+          <p className="font-montserrat text-s text-[#29D9CE] w-[200px] text-center">
+            © 2022 Flyboots. <br /> Все права защищены.
           </p>
         </div>
       </div>
