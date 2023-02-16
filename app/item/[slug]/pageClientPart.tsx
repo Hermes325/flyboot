@@ -23,11 +23,12 @@ const ItemPageClientPart = ({ item }: Props) => {
     selected: NaN,
     sizeKey: "null"
   })
+  const countrySizes = fetchedSizes?.find(x => x.sizeKey === country)
 
   function changeCountry(country: string) {
     setCountry(country)
     // Перевод размеров
-    setSelectedSize(size => ({ ...size, sizeKey: country }))
+    // setSelectedSize(size => ({ ...size, sizeKey: country }))
   }
 
   useEffect(() => {
@@ -55,7 +56,8 @@ const ItemPageClientPart = ({ item }: Props) => {
     getSizes()
   }, [])
 
-  console.log(selectedSize, fetchedSizes);
+  console.log(country, selectedSize, fetchedSizes);
+
   //#endregion
 
   return (<>
@@ -71,8 +73,8 @@ const ItemPageClientPart = ({ item }: Props) => {
               key={sizeKey}
               onClick={_ => changeCountry(sizeKey)}
               className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
-                "text-[gray]": country?.startsWith(sizeKey),
-                "hover:text-[#03FFF0]": !country?.startsWith(sizeKey),
+                "!text-[gray]": country === sizeKey,
+                "hover:text-[#03FFF0]": country !== sizeKey,
               },)}>
               {sizeKey}
             </button>))}
@@ -83,7 +85,7 @@ const ItemPageClientPart = ({ item }: Props) => {
 
       {/* Размеры */}
       <div className='mt-0 grid grid-cols-6'>
-        {fetchedSizes?.find(x => x.sizeKey === country)?.sizeValue.map((size, i) =>
+        {countrySizes?.sizeValue.map((size, i) =>
           <button
             key={`${country}-${i}`}
             disabled={selectedSize.selected === i}
@@ -92,8 +94,8 @@ const ItemPageClientPart = ({ item }: Props) => {
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
               "w-[4ch] text-white",
               {
-                // [styles.unavailable]: 
-                "!text-[#03FFF0]": selectedSize.selected === i,
+                [styles.unavailable]: countrySizes.available[i],
+                "!text-[#03FFF0]": selectedSize.sizeKey === country && selectedSize.selected === i,
                 "hover:text-[#03FFF0]": selectedSize.selected !== i,
               })}>
             {size}
@@ -105,15 +107,17 @@ const ItemPageClientPart = ({ item }: Props) => {
     {/* colors */}
     <ChooseColor item={item} />
 
-    <BucketButton item={fetchedSizes ? {
-      item,
-      amount: 1,
-      size: {
-        chosenSizeKey: selectedSize.sizeKey,
-        chosenSizeValue: selectedSize.selected,
-        available: fetchedSizes
-      }
-    } : undefined} />
+    <BucketButton
+      disabled={Number.isNaN(selectedSize.selected) || selectedSize.sizeKey !== country}
+      item={fetchedSizes ? {
+        item,
+        amount: 1,
+        size: {
+          chosenSizeKey: selectedSize.sizeKey,
+          chosenSizeValue: selectedSize.selected,
+          available: fetchedSizes
+        }
+      } : undefined} />
   </>)
 }
 

@@ -9,12 +9,12 @@ type Props = {
   item?: BucketItem;
 };
 
-function BucketButton({ item }: Props) {
+function BucketButton({ item, disabled }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const dispatch = useDispatch();
 
   return (
     <button
-      disabled={Number.isNaN(item?.size.chosenSizeValue)}
+      disabled={disabled}
       onClick={() => item && dispatch(addItem(item))}
       className={styles.buy + " font-inter rounded-lg py-5 px-8"}>
       Добавить в корзину

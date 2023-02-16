@@ -6,11 +6,6 @@
 })
   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-
-document.addEventListener('yacounter92495027inited', function () {
-  console.log('счетчик yaCounter92495027 можно использовать');
-});
-
 ym(92495027, "init", {
   clickmap: true,
   trackLinks: true,
