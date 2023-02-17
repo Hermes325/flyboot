@@ -1,12 +1,11 @@
 import React from "react";
-import { renderMetaTags } from "react-datocms";
-import { getItem, getCatalogPaths } from "@/lib/datocms";
+import type { Metadata } from 'next'
+import { getItem, getCatalogPaths, getItemSeo } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
-import Head from "next/head";
 
 
 type Props = {
@@ -22,12 +21,9 @@ export default async function ItemPage({ params }: Props) {
     maximumFractionDigits: 0
   })
 
-  console.log(item.seo, item.site);
-
   return (<main className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
       max-[600px]:px-[20px]
     ">
-    {/* <Head>{renderMetaTags(item?.seo?.concat(item?.site?.favicon))}</Head> */}
 
     <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
       max-[600px]:pt-[100px]
@@ -81,3 +77,134 @@ export async function generateStaticParams() {
   const paths = await getCatalogPaths();
   return paths.map((path) => ({ slug: path }));
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const metadata = await getItemSeo(params.slug)
+  const ogs: Metadata["openGraph"] = metadata.seo
+    .filter(x => x.attributes?.property.startsWith("og:"))
+    .map(x => x.attributes)
+
+  const twitter: Metadata["twitter"] = metadata.seo
+    .filter(x => x.attributes?.property.startsWith("twitter:"))
+    .map(x => x.attributes)
+
+  return {
+    twitter: {
+
+    },
+    openGraph: {
+    }
+  }
+}
+
+const example = [
+  {
+    "attributes": null,
+    "content": "Nike Dunk High Retro Orange Blaze",
+    "tag": "title"
+  },
+  {
+    "attributes": {
+      "property": "og:title",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:title",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:image",
+      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:image:alt",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:image",
+      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:image:alt",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:locale",
+      "content": "ru"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:type",
+      "content": "article"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "article:modified_time",
+      "content": "2023-02-17T20:00:39Z"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:card",
+      "content": "summary"
+    },
+    "content": null,
+    "tag": "meta"
+  }
+]

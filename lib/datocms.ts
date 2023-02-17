@@ -19,8 +19,6 @@ export type Item = {
   brand: { name: string, id: string }
   images: { responsiveImage: any }[]
   relatedItems: Item[]
-  seo: any[]
-  site: { favicon: any[] }
 }
 export type Catalog = {
   items: Item[],
@@ -37,6 +35,10 @@ export type CatalogBrandsAndCategories = {
       }
     }
   }
+}
+export type ItemSeo = {
+  seo: any[]
+  site: { favicon: any[] }
 }
 export enum SortType {
   default,
@@ -248,7 +250,41 @@ export async function getItem(slug: string): Promise<Item> {
     variables: { slug },
   });
 
-  return { ...response.item, site: response.site }
+  const data = { ...response.item, site: response.site }
+  console.log("getItem >> ", data.seo);
+
+  return data
+}
+
+export async function getItemSeo(slug: string): Promise<ItemSeo> {
+  const query = gql`
+  query GetItem($slug: String) {
+    item(filter: { slug: { eq: $slug } }) {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
+    site: _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
+  }
+`;
+
+  const response = await graphQLRequest({
+    query,
+    variables: { slug },
+  });
+
+  return {
+    seo: response.item.seo,
+    site: response.site
+  }
 }
 
 export async function getRecommendsHandler(
