@@ -18,10 +18,17 @@ const PictureBlock = ({ item }: Props) => {
       data={images.find(x => x.index === 0)?.image.responsiveImage}
       className="rounded-[15px]"
       style={{ maxWidth: "none" }}
-      pictureClassName="object-cover aspect-[646/532] h-[532px] rounded-[15px]" />
+      pictureClassName="object-cover aspect-[646/532] h-[532px] rounded-[15px]
+        max-[600px]:object-bottom
+        max-[600px]:aspect-[200/140]
+        max-[600px]:h-[auto]
+        max-[600px]:w-[100%]
+      " />
 
     {/* more photos */}
-    <div className="flex flex-row justify-start gap-[24px]">
+    <div className="flex flex-row justify-start gap-[24px]
+      max-[600px]:gap-[12px]
+    ">
       {images
         .sort((a, b) => a.index - b.index)
         .slice(1)
@@ -44,8 +51,12 @@ const PictureBlock = ({ item }: Props) => {
               data={image.responsiveImage}
               objectFit={"cover"}
               usePlaceholder={false}
-              pictureClassName="object-cover aspect-[143/93] rounded-[15px] h-[93px]"
-              className={"transition-[filter] brightness-75 hover:brightness-100"}
+              pictureClassName="object-cover aspect-[143/93] rounded-[15px] h-[93px]
+                max-[600px]:aspect-[100/100]
+                max-[600px]:h-[calc(calc(100vw_-_20px)_/_4_-_12px_-_2px)]
+                max-[600px]:w-[calc(calc(100vw_-_20px)_/_4_-_12px_-_2px)]
+              "
+              className="transition-[filter] brightness-75 hover:brightness-100"
             />
           </div>)}
     </div>

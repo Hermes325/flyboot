@@ -29,13 +29,17 @@ export default async function ItemPage({ params }: Props) {
     ">
     {/* <Head>{renderMetaTags(item?.seo?.concat(item?.site?.favicon))}</Head> */}
 
-    <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10">
+    <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
+      max-[600px]:pt-[100px]
+    ">
       {/* main block item */}
       <div className="flex flex-row w-full space-x-10
         max-[600px]:flex-col
       ">
         {/* images block */}
-        <div className="flex flex-col space-y-5">
+        <div className="flex flex-col space-y-5
+          max-[600px]:space-y-[15px]
+        ">
           <PictureBlock item={item} />
         </div>
 
