@@ -206,8 +206,8 @@ export async function getItem(slug: string): Promise<Item> {
           id
         }
         color
-        description1
-        description2
+        description1(markdown: true)
+        description2(markdown: true)
         poizonArticul
         price
         sex

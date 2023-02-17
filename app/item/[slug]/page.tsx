@@ -63,10 +63,12 @@ export default async function ItemPage({ params }: Props) {
           {/* CSR часть с запросом к Егору */}
           <ItemPageClientPart item={item} />
 
-          <DropDown title="Описание" description={item.description1} />
-          <DropDown title="Характеристика" description={item.description2} />
         </div>
       </div>
+
+
+      <DropDown title="Описание" description={item.description1} />
+      <DropDown title="Характеристика" description={item.description2} />
 
       {/* Will be interested */}
       <Recommends item={item} />
