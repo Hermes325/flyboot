@@ -27,7 +27,8 @@ export default async function ItemPage({ params }: Props) {
     ">
 
     <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
-      max-[600px]:pt-[100px]
+      max-[1000px]:pt-[100px]
+      max-[600px]:pt-[70px]
     ">
       {/* main block item */}
       <div className="flex flex-row w-full space-x-10
@@ -42,7 +43,7 @@ export default async function ItemPage({ params }: Props) {
 
         {/* info block */}
         <div className="
-          max-[600px]:ml-[0_!important]
+          max-[1000px]:!ml-[0]
         ">
           {/* item title and articul */}
           <div>
