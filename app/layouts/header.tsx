@@ -147,7 +147,7 @@ function Header() {
           <Image
             src={menu_path}
             alt="открыть меню"
-            className="w-10 h-10" />
+            className="w-10 h-10 ml-[10px]" />
         </button>
       </div>
     </nav>
