@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from 'next'
+// import type { Metadata } from 'next'
 import { getItem, getCatalogPaths, getItemSeo } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
@@ -78,26 +78,27 @@ export async function generateStaticParams() {
   return paths.map((path) => ({ slug: path }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // TODO: [18.02.2023] DatoCMS не приспособлена под app dir 
+// export async function generateMetadata({ params }: Props) {
+//   // TODO: [18.02.2023] DatoCMS не приспособлена под app dir 
 
-  const metadata = await getItemSeo(params.slug)
-  // const ogs: Metadata["openGraph"] = metadata.seo
-  //   .filter(x => x.attributes?.property.startsWith("og:"))
-  //   .map(x => x.attributes)
+//   const metadata = await getItemSeo(params.slug)
+//   // const ogs: Metadata["openGraph"] = metadata.seo
+//   //   .filter(x => x.attributes?.property.startsWith("og:"))
+//   //   .map(x => x.attributes)
 
-  // const twitter: Metadata["twitter"] = metadata.seo
-  //   .filter(x => x.attributes?.property.startsWith("twitter:"))
-  //   .map(x => x.attributes)
+//   // const twitter: Metadata["twitter"] = metadata.seo
+//   //   .filter(x => x.attributes?.property.startsWith("twitter:"))
+//   //   .map(x => x.attributes)
 
-  return {
-    twitter: {
+//   return {
+//     title: "metadata!",
+//     twitter: {
 
-    },
-    openGraph: {
-    }
-  }
-}
+//     },
+//     openGraph: {
+//     }
+//   }
+// }
 
 const example = [
   {

@@ -14,9 +14,9 @@ const Faq = () => {
     <DropDown title="Почему везем с POIZON?">
       <div>
         {p(`POIZON (DEWU)- это китайский маркетплейс (аналог российского OZON) с двумя большими преимуществами -`)}
-        <ol>
-          <li className='font-montserrat text-white'>1. Привлекательная стоимость товаров</li>
-          <li className='font-montserrat text-white'>2. Многократная проверка всего товара на оригинальность.</li>
+        <ol className='list-decimal list-inside'>
+          <li className='font-montserrat text-white'>Привлекательная стоимость товаров</li>
+          <li className='font-montserrat text-white'>Многократная проверка всего товара на оригинальность.</li>
         </ol>
         {p(`Специальные оценщики проводят зрительный  и лабораторный анализ каждого продукта и помечают его пластиковой биркой с уникальным номером.
           К каждой вещи будет приложен   сертификат об оригинальности с QR кодом`)}
