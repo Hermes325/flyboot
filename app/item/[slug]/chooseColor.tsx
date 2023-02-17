@@ -19,7 +19,9 @@ const ChooseColor: React.FC<Props> = ({ item }) => {
   if (options.length === 1)
     return <></>
 
-  return (<div className='relative w-[50%]'>
+  return (<div className='relative w-[50%]
+    max-[430px]:w-[100%]
+  '>
     <p className='absolute top-2 pl-2.5'>Цвет</p>
     <select
       defaultValue={item.slug}
