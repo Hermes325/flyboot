@@ -23,6 +23,7 @@ export default async function ItemPage({ params }: Props) {
     })
 
   return (<div className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+      max-[1000px]:px-[40px]
       max-[600px]:px-[20px]
     ">
 
