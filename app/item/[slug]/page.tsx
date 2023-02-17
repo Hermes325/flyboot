@@ -80,13 +80,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const metadata = await getItemSeo(params.slug)
-  const ogs: Metadata["openGraph"] = metadata.seo
-    .filter(x => x.attributes?.property.startsWith("og:"))
-    .map(x => x.attributes)
+  // const ogs: Metadata["openGraph"] = metadata.seo
+  //   .filter(x => x.attributes?.property.startsWith("og:"))
+  //   .map(x => x.attributes)
 
-  const twitter: Metadata["twitter"] = metadata.seo
-    .filter(x => x.attributes?.property.startsWith("twitter:"))
-    .map(x => x.attributes)
+  // const twitter: Metadata["twitter"] = metadata.seo
+  //   .filter(x => x.attributes?.property.startsWith("twitter:"))
+  //   .map(x => x.attributes)
 
   return {
     twitter: {
