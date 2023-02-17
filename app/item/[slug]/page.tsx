@@ -1,10 +1,12 @@
 import React from "react";
+import { renderMetaTags } from "react-datocms";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
+import Head from "next/head";
 
 
 type Props = {
@@ -15,16 +17,17 @@ export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
 
-  const price = Math
-    .ceil(item.price)
-    .toLocaleString('ru-RU', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    })
+  const price = Math.ceil(item.price).toLocaleString('ru-RU', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
 
-  return (<div className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+  console.log(item.seo, item.site);
+
+  return (<main className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
       max-[600px]:px-[20px]
     ">
+    {/* <Head>{renderMetaTags(item?.seo?.concat(item?.site?.favicon))}</Head> */}
 
     <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10">
       {/* main block item */}
@@ -65,7 +68,7 @@ export default async function ItemPage({ params }: Props) {
       <Recommends item={item} />
     </div>
 
-  </div>);
+  </main>);
 }
 
 export async function generateStaticParams() {

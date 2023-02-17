@@ -19,6 +19,8 @@ export type Item = {
   brand: { name: string, id: string }
   images: { responsiveImage: any }[]
   relatedItems: Item[]
+  seo: any[]
+  site: { favicon: any[] }
 }
 export type Catalog = {
   items: Item[],
@@ -191,6 +193,64 @@ export async function getItems(
   return response;
 }
 
+
+//* Страница товара
+export async function getItem(slug: string): Promise<Item> {
+  const query = gql`
+    query GetItem($slug: String) {
+      item(filter: { slug: { eq: $slug } }) {
+        title
+        slug
+        id
+        brand {
+          id
+        }
+        color
+        description1
+        description2
+        poizonArticul
+        price
+        sex
+        relatedItems {
+          id
+          slug
+          color
+        }
+        images {
+          responsiveImage(imgixParams: { auto: format }) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }
+  `;
+
+  const response = await graphQLRequest({
+    query,
+    variables: { slug },
+  });
+
+  return { ...response.item, site: response.site }
+}
+
 export async function getRecommendsHandler(
   // Не рекомендуем текущий товар
   currentSlug: string,
@@ -247,52 +307,6 @@ export async function getRecommendsHandler(
   return response;
 }
 
-
-
-//* Товар
-export async function getItem(slug: string): Promise<Item> {
-  const query = gql`
-    query GetItem($slug: String) {
-      item(filter: { slug: { eq: $slug } }) {
-        title
-        slug
-        id
-        brand {
-          id
-        }
-        color
-        description1
-        description2
-        poizonArticul
-        price
-        sex
-        relatedItems {
-          id
-          slug
-          color
-        }
-        images {
-          responsiveImage(imgixParams: { auto: format }) {
-            sizes
-            src
-            width
-            height
-            alt
-            title
-            base64
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await graphQLRequest({
-    query,
-    variables: { slug },
-  });
-
-  return response.item
-}
 
 //* Поиск товара
 export async function searchItem(name: string): Promise<Item[]> {
