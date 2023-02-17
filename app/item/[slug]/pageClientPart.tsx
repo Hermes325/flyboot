@@ -49,6 +49,8 @@ const ItemPageClientPart = ({ item }: Props) => {
 
     getSizes()
   }, [])
+
+  console.log(country, countrySizes, fetchedSizes);
   //#endregion
 
   return (<>
@@ -85,7 +87,7 @@ const ItemPageClientPart = ({ item }: Props) => {
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
               "w-[4ch] text-white",
               {
-                [styles.unavailable]: countrySizes.available[i],
+                [styles.unavailable]: !countrySizes.available[i],
                 "!text-[#03FFF0]": selectedSize.sizeKey === country && selectedSize.selected === i,
                 "hover:text-[#03FFF0]": selectedSize.selected !== i,
               })}>
