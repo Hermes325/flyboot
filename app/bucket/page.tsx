@@ -166,44 +166,46 @@ function BucketPage() {
           max-[1300px]:border-0
         "
           >
-            <div>
-              {h2("Ваш заказ")}
-              <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-                Товары, {finalAmount} шт. {itemsPrice} ₽
-              </p>
-            </div>
+            <div className="space-y-5">
+              <div>
+                {h2("Ваш заказ")}
+                <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
+                  Товары, {finalAmount} шт. {itemsPrice} ₽
+                </p>
+              </div>
 
-            <div>
-              {h2("Выберите способ доставки", "w-[16ch]")}
-              <BucketFormRadio
-                id={"SDEK"}
-                checked={order.delivery === "SDEK"}
-                onChange={(_) => changeOrder("delivery", "SDEK")}
-              >
-                <>
-                  <span className="block">ПВЗ СДЭК - 350 ₽</span>
-                  <button
-                    onClick={openSdekModal}
-                    className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE]"
-                  >
-                    Выбрать на карте...
-                  </button>
-                </>
-              </BucketFormRadio>
-              <BucketFormRadio
-                id={"BoxBerry"}
-                checked={order.delivery === "BoxBerry"}
-                onChange={(_) => changeOrder("delivery", "BoxBerry")}
-              >
-                ПВЗ Boxberry - 350 ₽
-              </BucketFormRadio>
-              <BucketFormRadio
-                id={"personal delivery"}
-                checked={order.delivery === "personal delivery"}
-                onChange={(_) => changeOrder("delivery", "personal delivery")}
-              >
-                Курьер СДЭК - 350 ₽
-              </BucketFormRadio>
+              <div>
+                {h2("Выберите способ доставки", "w-[16ch]")}
+                <BucketFormRadio
+                  id={"SDEK"}
+                  checked={order.delivery === "SDEK"}
+                  onChange={(_) => changeOrder("delivery", "SDEK")}
+                >
+                  <>
+                    <span className="block">ПВЗ СДЭК - 350 ₽</span>
+                    <button
+                      onClick={openSdekModal}
+                      className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE]"
+                    >
+                      Выбрать на карте...
+                    </button>
+                  </>
+                </BucketFormRadio>
+                <BucketFormRadio
+                  id={"BoxBerry"}
+                  checked={order.delivery === "BoxBerry"}
+                  onChange={(_) => changeOrder("delivery", "BoxBerry")}
+                >
+                  ПВЗ Boxberry - 350 ₽
+                </BucketFormRadio>
+                <BucketFormRadio
+                  id={"personal delivery"}
+                  checked={order.delivery === "personal delivery"}
+                  onChange={(_) => changeOrder("delivery", "personal delivery")}
+                >
+                  Курьер СДЭК - 350 ₽
+                </BucketFormRadio>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -212,7 +214,7 @@ function BucketPage() {
               <textarea
                 placeholder="Комментарий к заказу"
                 rows={3}
-                className="block w-full text-[#454545] mt-4 pl-3 pt-2"
+                className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
               />
 
               <button
