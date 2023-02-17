@@ -1,6 +1,6 @@
 "use client"
-import React, {useEffect, useRef, useState} from 'react'
-import {Catalog, CatalogBrandsAndCategories, SortType} from '@/lib/datocms'
+import React, { useEffect, useRef, useState } from 'react'
+import { Catalog, CatalogBrandsAndCategories, PAGE_SIZE, SortType } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card'
 import Pagination from './Components/pagination'
 import FiltersUI from './Components/filters'
@@ -274,7 +274,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         </div>}
 
       {/* Pagination */}
-      {content.all.count > 15 &&
+      {content.all.count > PAGE_SIZE &&
         <div className='col-span-3 max-xl:col-span-2 mt-[3rem] flex justify-center items-center'>
           <Pagination
             page={filters.page}

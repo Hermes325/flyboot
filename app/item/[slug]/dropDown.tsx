@@ -10,23 +10,6 @@ type Props = {
   open?: boolean;
 };
 
-function ExpandHandle({ isOpen }: { isOpen: boolean }): ReactElement {
-  return <Image
-    src={expand}
-    alt="expand less image"
-    className={classNames("select-none transition-transform h-[50px]", {
-      "rotate-180": isOpen
-    })} />
-}
-
-function DescriptionHandle({ isOpen, description }: { isOpen: boolean; description: string; }): ReactElement {
-  return <p className={classNames("font-lato font-[400] text-white text-[15px] leading-[25px] tracking-[0.01em]", {
-    "hidden": !isOpen
-  })}>
-    {description}
-  </p>
-}
-
 function DropDown({ title, description, open = false }: Props) {
   const [isOpen, setIsOpen] = useState(open);
   return (
@@ -39,10 +22,19 @@ function DropDown({ title, description, open = false }: Props) {
         onClick={() => setIsOpen(prev => !prev)}
       >
         <h2 className="font-lato font-[400] text-white text-[20px] leading-[27px] tracking-[0.01em]">{title}</h2>
-        <ExpandHandle isOpen={isOpen} />
+        <Image
+          src={expand}
+          alt="expand less image"
+          className={classNames("select-none transition-transform h-[50px]", {
+            "rotate-180": isOpen
+          })} />
       </div>
       <div className={classNames({ "opacity-0 invisible": !isOpen })}>
-        <DescriptionHandle isOpen={isOpen} description={description} />
+        <p className={classNames("font-lato font-[400] text-white text-[15px] leading-[25px] tracking-[0.01em]", {
+          "hidden": !isOpen
+        })}>
+          {description}
+        </p>
       </div>
     </div>)
 }

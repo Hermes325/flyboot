@@ -1,6 +1,8 @@
 import { GraphQLClient } from "graphql-request";
 import { gql } from "graphql-request";
 
+export const PAGE_SIZE = 18;
+
 // Типы =====================================================
 export type Item = {
   title: string
@@ -116,8 +118,8 @@ export async function getItems(
 ): Promise<Catalog> {
 
   const queryVariables = `
-    $first: IntType = 15, 
-    $skip: IntType = 0, 
+    $first: IntType, 
+    $skip: IntType, 
     $orderBy: [ItemModelOrderBy] = null, 
     ${brands ? '$brands: [ItemId],' : ''} 
     ${categories ? '$categories: [String],' : ''}
@@ -171,7 +173,8 @@ export async function getItems(
   const options = {
     query,
     variables: {
-      skip: page * 15,
+      skip: page * PAGE_SIZE,
+      first: PAGE_SIZE,
       orderBy: orderBy === SortType.default ? null : orderBy,
       brands,
       categories,
