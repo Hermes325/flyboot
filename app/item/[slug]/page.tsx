@@ -79,6 +79,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // TODO: [18.02.2023] DatoCMS не приспособлена под app dir 
+
   const metadata = await getItemSeo(params.slug)
   // const ogs: Metadata["openGraph"] = metadata.seo
   //   .filter(x => x.attributes?.property.startsWith("og:"))
