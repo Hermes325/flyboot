@@ -70,11 +70,22 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   })
   const [isFiltersShown, setIsFiltersShown] = useState(false);
   const filtersMobile = useRef<HTMLDivElement>(null)
-  function changeFiltersVisibility() {
-    setIsFiltersShown(!isFiltersShown);
+  const hiddenFiltersCloseTrigger = useRef<HTMLDivElement>(null)
+  function changeFiltersVisibility(newState?: boolean) {
+    if (newState != null) {
+      setIsFiltersShown(newState)
+    } else {
+      setIsFiltersShown(!isFiltersShown);
+    }
   }
   function showFilters() {
     if (isFiltersShown) {
+      hiddenFiltersCloseTrigger.current?.classList.add(
+        'max-[900px]:block'
+      )
+      hiddenFiltersCloseTrigger.current?.classList.remove(
+        'max-[900px]:hidden'
+      )
       filtersMobile.current?.classList.add(
         'max-[900px]:opacity-90',
         'max-[900px]:pointer-events-all')
@@ -82,6 +93,12 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         'max-[900px]:opacity-0',
         'max-[900px]:pointer-events-none')
     } else {
+      hiddenFiltersCloseTrigger.current?.classList.add(
+        'max-[900px]:hidden'
+      )
+      hiddenFiltersCloseTrigger.current?.classList.remove(
+        'max-[900px]:block'
+      )
       filtersMobile.current?.classList.add(
         'max-[900px]:opacity-0',
         'max-[900px]:pointer-events-none')
@@ -212,10 +229,12 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       flex-col
       justify-center
       font-inter text-white text-[16px]
-    ' onClick={changeFiltersVisibility}><span className='pointer-events-none'>Фильтры</span></div>
-    <div className={`sticky top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
-      max-[900px]:hidden 
-      ${!isFiltersShown ? 'max-[900px]:hidden' : ''}`}>
+    '
+     onClick={() => changeFiltersVisibility()}>
+      <span className='pointer-events-none'>Фильтры</span>
+    </div>
+    <div className="sticky top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
+      max-[900px]:hidden">
       <FiltersUI
         min={firstPage.min?.price ?? 0}
         max={firstPage.max?.price ?? 1000000}
@@ -224,23 +243,35 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         setFiltersWrapper={setFiltersWrapper} />
     </div>
 
-    {/* Catalog */}
+   {/* Catalog */}
+    <div className={`
+        fixed
+        top-[0px]
+        left-[0px]
+        w-[100vw]
+        h-[100vh]
+        z-[101]
+        min-[900px]:hidden
+        max-[900px]:hidden
+        opacity-0
+      `}
+      onClick={() => changeFiltersVisibility(false)}
+      ref={hiddenFiltersCloseTrigger}></div>
     <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]
     max-[900px]:col-start-2 max-[900px]:col-end-5 max-[900px]:relative" style={{ alignItems: "start" }}>
-      <div className={`col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
-        min-[900px]:hidden
-        max-[900px]:col-start-1
-        max-[900px]:max-w-[320px]
-        max-[900px]:absolute
-        max-[900px]:top-[0px]
-        max-[900px]:left-[0px]
-        max-[900px]:z-10
-        max-[900px]:bg-black
-        
-        max-[900px]:block
-        max-[900px]:transition-all
-        max-[900px]:duration-200
-      `}
+      <div className="col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
+          min-[900px]:hidden
+          max-[900px]:grid
+          max-[900px]:col-start-1
+          max-[900px]:col-end-3
+          max-[900px]:absolute
+          max-[900px]:top-[0px]
+          max-[900px]:left-[0px]
+          max-[900px]:z-[102]
+          max-[900px]:bg-black
+          max-[900px]:transition-all
+          max-[900px]:duration-200
+        "
         ref={filtersMobile}>
         <FiltersUI
           min={firstPage.min?.price ?? 0}
