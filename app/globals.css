@@ -10,11 +10,14 @@
 }
 
 body {
-  display    : block;
-  max-width  : 100vw;
-  overflow-x : hidden;
-  position   : relative;
-  line-height: 1.5;
+  display         : block;
+  max-width       : 100vw;
+  overflow-x      : hidden;
+  position        : relative;
+  line-height     : 1.5;
+  /* background-image: url('/public/main-images/BG.png');
+  background-size : cover;
+  height          : 2000px; */
 }
 
 h1,

@@ -14,7 +14,7 @@ function DropDown({ title, children, open = false }: Props) {
   const [isOpen, setIsOpen] = useState(open);
 
   return (<section className={classNames(`flex flex-col w-[100%] border-b-2 border-white
-       max-[600px]:w-[100%] mt-2 pb-5`, {
+       max-[600px]:w-[100%] mt-2 `, {
     "border-white ": isOpen,
   })}>
 
