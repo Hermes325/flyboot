@@ -204,7 +204,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
-      <h1 className='font-montserrat text-[80px] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
+      <h1 className='font-montserrat text-[80px] leading-[1] mt-[2rem] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
     </div>
 
     {/* Sorting */}
@@ -265,7 +265,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
           border-2
           rounded-[15px]
           border-[#909090]
-
           min-[900px]:hidden
           max-[900px]:col-start-1
           max-[900px]:col-end-3
