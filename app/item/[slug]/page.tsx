@@ -21,18 +21,23 @@ export default async function ItemPage({ params }: Props) {
   })
 
   return (<main className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+      max-[1024px]:px-[40px]
       max-[600px]:px-[20px]
     ">
 
     <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
-      max-[600px]:pt-[100px]
+      max-[1024px]:pt-[100px]
+      max-[600px]:pt-[70px]
     ">
       {/* main block item */}
       <div className="flex flex-row w-full space-x-10
-        max-[600px]:flex-col
+        max-[750px]:flex-col
       ">
         {/* images block */}
         <div className="flex flex-col space-y-5
+          max-[1024px]:gap-[12px]
+          max-[1024px]:space-y-[0px]
+          max-[600px]:gap-[0px]
           max-[600px]:space-y-[15px]
         ">
           <PictureBlock item={item} />
@@ -40,7 +45,7 @@ export default async function ItemPage({ params }: Props) {
 
         {/* info block */}
         <div className="
-          max-[600px]:ml-[0_!important]
+          max-[750px]:!ml-[0]
         ">
           {/* item title and articul */}
           <div>
