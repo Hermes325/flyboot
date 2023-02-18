@@ -34,9 +34,10 @@ export default async function ItemPage({ params }: Props) {
         max-[750px]:flex-col
       ">
         {/* images block */}
-        <div className="flex flex-col space-y-5
-          max-[1024px]:gap-[12px]
+        <div className="flex flex-col items-center
+          {/*max-[1024px]:gap-[12px]*/}
           max-[1024px]:space-y-[0px]
+          max-[750px]:items-center
           max-[600px]:gap-[0px]
           max-[600px]:space-y-[15px]
         ">
