@@ -30,12 +30,8 @@ function Slide3() {
     <div className={styles.container}>
       {links.map(({ href, name, className }) =>
         <Link href={href} key={href} className={className}>
-          <button className={styles.btn + " font-jost flex gap-[25px]"}>
+          <button className={styles.btn + " font-jost flex gap-[15px] min-w-[170px] justify-center"}>
             <h3>{name}</h3>
-            <Image
-              src={vector}
-              alt="купить"
-              className="mt-[8px]" />
           </button>
         </Link>)}
     </div>
