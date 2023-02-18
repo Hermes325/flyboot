@@ -12,6 +12,7 @@ const ThankPage = () => {
     <Link className='text-white underline' href='/catalog'>
       Вернуться на каталог
     </Link>
+
   </main>)
 }
 
