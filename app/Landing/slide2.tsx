@@ -12,7 +12,7 @@ const Slide2 = () => {
     <section className="mt-[5vw] grid grid-cols-4 gap-x-3 gap-y-5 px-[13vw] max-[1700px]:mt-[3vw]">
       {items.map(item =>
         <ItemCard
-          className="h-[370px]"
+          className="h-[21vw]"
           item={item}
           key={`item-card-${item.slug}`} />)}
     </section>)

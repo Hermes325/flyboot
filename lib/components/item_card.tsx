@@ -33,7 +33,7 @@ const ItemCard = ({ item, className, imageClassName }: Props) => {
         data={item.images[0].responsiveImage}
         objectFit={"cover"}
         style={{ maxWidth: "none" }}
-        className={`${imageClassName ?? ""} rounded-xl w-full`}
+        className={`${imageClassName ?? ""} rounded-xl`}
       />
 
       <div>
