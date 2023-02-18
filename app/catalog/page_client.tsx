@@ -231,10 +231,10 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       justify-center
       font-inter text-white text-[16px]
     '
-     onClick={() => changeFiltersVisibility()}>
+      onClick={() => changeFiltersVisibility()}>
       <span className='pointer-events-none'>Фильтры</span>
     </div>
-    <div className="sticky top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
+    <div className="top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
       max-[900px]:hidden">
       <FiltersUI
         min={firstPage.min?.price ?? 0}
@@ -244,7 +244,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         setFiltersWrapper={setFiltersWrapper} />
     </div>
 
-   {/* Catalog */}
+    {/* Catalog */}
     <div className={`
         fixed
         top-[0px]
