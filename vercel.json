@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/sizes.js": {
-      "maxDuration": 10
-    }
-  }
-}
