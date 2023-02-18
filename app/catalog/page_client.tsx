@@ -250,7 +250,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         left-[0px]
         w-[100vw]
         h-[100vh]
-        z-[101]
+        z-[9]
         min-[900px]:hidden
         max-[900px]:hidden
         opacity-0
@@ -267,7 +267,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
           max-[900px]:absolute
           max-[900px]:top-[0px]
           max-[900px]:left-[0px]
-          max-[900px]:z-[102]
+          max-[900px]:z-[10]
           max-[900px]:bg-black
           max-[900px]:transition-all
           max-[900px]:duration-200
