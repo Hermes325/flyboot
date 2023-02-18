@@ -142,7 +142,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       {h1("Фильтры")}
 
       {/* Category Filter */}
-      <div className="flex flex-col h-fit mb-[18px]">
+      <div className="flex flex-col h-[min-content] mb-[18px]">
         {h2("Категория")}
         {Object
           .entries(meta.category.categoryJson)
@@ -150,7 +150,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       </div>
 
       {/* Brand Filter */}
-      <div className="flex flex-col h-fit mb-[18px]">
+      <div className="flex flex-col h-[min-content] mb-[18px]">
         {h2("Бренд")}
         {meta.brands.map(x =>
           formCheck(

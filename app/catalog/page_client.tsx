@@ -259,9 +259,13 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       ref={hiddenFiltersCloseTrigger}></div>
     <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]
     max-[900px]:col-start-2 max-[900px]:col-end-5 max-[900px]:relative" style={{ alignItems: "start" }}>
-      <div className="col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
+      <div className="
+          p-[1rem_1.5rem_1.5rem_1.5rem]
+          border-2
+          rounded-[15px]
+          border-[#909090]
+
           min-[900px]:hidden
-          max-[900px]:grid
           max-[900px]:col-start-1
           max-[900px]:col-end-3
           max-[900px]:absolute
