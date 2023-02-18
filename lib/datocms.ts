@@ -38,7 +38,20 @@ export type CatalogBrandsAndCategories = {
 }
 export type ItemSeo = {
   seo: any[]
-  site: { favicon: any[] }
+}
+export type SiteSeo = {
+  site: {
+    favicon: {
+      attributes: {
+        sizes: string
+        type: string
+        rel: string
+        href: string
+      },
+      content: string,
+      tag: string
+    }[]
+  }
 }
 export enum SortType {
   default,
@@ -251,7 +264,6 @@ export async function getItem(slug: string): Promise<Item> {
   });
 
   const data = { ...response.item, site: response.site }
-  console.log("getItem >> ", data.seo);
 
   return data
 }
@@ -281,10 +293,7 @@ export async function getItemSeo(slug: string): Promise<ItemSeo> {
     variables: { slug },
   });
 
-  return {
-    seo: response.item.seo,
-    site: response.site
-  }
+  return response.item
 }
 
 export async function getRecommendsHandler(
@@ -343,6 +352,22 @@ export async function getRecommendsHandler(
   return response;
 }
 
+//* Глобальное SEO
+export async function getSiteSeo(): Promise<SiteSeo> {
+  const query = gql`
+    query {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }
+  `;
+
+  return await graphQLRequest({ query });
+}
 
 //* Поиск товара
 export async function searchItem(name: string): Promise<Item[]> {
