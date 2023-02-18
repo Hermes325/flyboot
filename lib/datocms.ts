@@ -264,7 +264,6 @@ export async function getItem(slug: string): Promise<Item> {
   });
 
   const data = { ...response.item, site: response.site }
-  console.log("getItem >> ", data.seo);
 
   return data
 }
