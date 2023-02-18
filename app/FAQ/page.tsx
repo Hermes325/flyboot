@@ -8,7 +8,7 @@ const Faq = () => {
   const p = (text: string) =>
     <p className='font-montserrat text-white'>{text}</p>
 
-  return (<main className='pt-[90px] min-h-screen  px-[13%] mb-[5vw]'>
+  return (<main className='pt-[90px] min-h-screen  px-[13%] mb-[5vw] max-[600px]:px-[8%]'>
 
     <h1 className={styles.h1 + " max-[1000px]:text-[3rem] max-[800px]:text-[2.5rem] max-[600px]:text-[2rem]"}>FAQ</h1>
     <DropDown title="Почему везем с POIZON?">
