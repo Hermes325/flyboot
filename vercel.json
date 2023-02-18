@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/sizes.ts": {
+      "maxDuration": 30
+    }
+  }
+}
