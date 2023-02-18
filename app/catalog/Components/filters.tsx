@@ -142,7 +142,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       {h1("Фильтры")}
 
       {/* Category Filter */}
-      <div className="flex flex-col mb-[18px]">
+      <div className="flex flex-col h-fit mb-[18px]">
         {h2("Категория")}
         {Object
           .entries(meta.category.categoryJson)
@@ -150,7 +150,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       </div>
 
       {/* Brand Filter */}
-      <div className="flex flex-col mb-[18px]">
+      <div className="flex flex-col h-fit mb-[18px]">
         {h2("Бренд")}
         {meta.brands.map(x =>
           formCheck(
@@ -161,7 +161,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       </div>
 
       {/* Sex filter */}
-      <div className="flex flex-col mb-[18px]">
+      <div className="flex flex-col h-fit mb-[18px]">
         {h2("Пол")}
         {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
         {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
@@ -169,7 +169,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
       </div>
 
       {/* Price Filter */}
-      <div className="flex flex-col">
+      <div className="flex flex-col h-fit">
         {h2("Цена")}
         <FiltersPrice
           min={min ?? 0}
