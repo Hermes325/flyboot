@@ -1,6 +1,8 @@
 import { GraphQLClient } from "graphql-request";
 import { gql } from "graphql-request";
 
+export const PAGE_SIZE = 18;
+
 // Типы =====================================================
 export type Item = {
   title: string
@@ -33,6 +35,10 @@ export type CatalogBrandsAndCategories = {
       }
     }
   }
+}
+export type ItemSeo = {
+  seo: any[]
+  site: { favicon: any[] }
 }
 export enum SortType {
   default,
@@ -116,8 +122,8 @@ export async function getItems(
 ): Promise<Catalog> {
 
   const queryVariables = `
-    $first: IntType = 15, 
-    $skip: IntType = 0, 
+    $first: IntType, 
+    $skip: IntType, 
     $orderBy: [ItemModelOrderBy] = null, 
     ${brands ? '$brands: [ItemId],' : ''} 
     ${categories ? '$categories: [String],' : ''}
@@ -171,7 +177,8 @@ export async function getItems(
   const options = {
     query,
     variables: {
-      skip: page * 15,
+      skip: page * PAGE_SIZE,
+      first: PAGE_SIZE,
       orderBy: orderBy === SortType.default ? null : orderBy,
       brands,
       categories,
@@ -186,6 +193,98 @@ export async function getItems(
 
   const response: Catalog = await graphQLRequest(options);
   return response;
+}
+
+
+//* Страница товара
+export async function getItem(slug: string): Promise<Item> {
+  const query = gql`
+    query GetItem($slug: String) {
+      item(filter: { slug: { eq: $slug } }) {
+        title
+        slug
+        id
+        brand {
+          id
+        }
+        color
+        description1(markdown: true)
+        description2(markdown: true)
+        poizonArticul
+        price
+        sex
+        relatedItems {
+          id
+          slug
+          color
+        }
+        images {
+          responsiveImage(imgixParams: { auto: format }) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }
+  `;
+
+  const response = await graphQLRequest({
+    query,
+    variables: { slug },
+  });
+
+  const data = { ...response.item, site: response.site }
+  console.log("getItem >> ", data.seo);
+
+  return data
+}
+
+export async function getItemSeo(slug: string): Promise<ItemSeo> {
+  const query = gql`
+  query GetItem($slug: String) {
+    item(filter: { slug: { eq: $slug } }) {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
+    site: _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
+  }
+`;
+
+  const response = await graphQLRequest({
+    query,
+    variables: { slug },
+  });
+
+  return {
+    seo: response.item.seo,
+    site: response.site
+  }
 }
 
 export async function getRecommendsHandler(
@@ -244,52 +343,6 @@ export async function getRecommendsHandler(
   return response;
 }
 
-
-
-//* Товар
-export async function getItem(slug: string): Promise<Item> {
-  const query = gql`
-    query GetItem($slug: String) {
-      item(filter: { slug: { eq: $slug } }) {
-        title
-        slug
-        id
-        brand {
-          id
-        }
-        color
-        description1
-        description2
-        poizonArticul
-        price
-        sex
-        relatedItems {
-          id
-          slug
-          color
-        }
-        images {
-          responsiveImage(imgixParams: { auto: format }) {
-            sizes
-            src
-            width
-            height
-            alt
-            title
-            base64
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await graphQLRequest({
-    query,
-    variables: { slug },
-  });
-
-  return response.item
-}
 
 //* Поиск товара
 export async function searchItem(name: string): Promise<Item[]> {

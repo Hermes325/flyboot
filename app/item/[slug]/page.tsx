@@ -1,5 +1,6 @@
 import React from "react";
-import { getItem, getCatalogPaths } from "@/lib/datocms";
+// import type { Metadata } from 'next'
+import { getItem, getCatalogPaths, getItemSeo } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
@@ -15,14 +16,12 @@ export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
 
-  const price = Math
-    .ceil(item.price)
-    .toLocaleString('ru-RU', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    })
+  const price = Math.ceil(item.price).toLocaleString('ru-RU', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
 
-  return (<div className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+  return (<main className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
       max-[1024px]:px-[40px]
       max-[600px]:px-[20px]
     ">
@@ -65,19 +64,155 @@ export default async function ItemPage({ params }: Props) {
           {/* CSR часть с запросом к Егору */}
           <ItemPageClientPart item={item} />
 
-          <DropDown title="Описание" description={item.description1} />
-          <DropDown title="Характеристика" description={item.description2} />
         </div>
       </div>
+
+
+      <DropDown title="Описание" description={item.description1} />
+      <DropDown title="Характеристика" description={item.description2} />
 
       {/* Will be interested */}
       <Recommends item={item} />
     </div>
 
-  </div>);
+  </main>);
 }
 
 export async function generateStaticParams() {
   const paths = await getCatalogPaths();
   return paths.map((path) => ({ slug: path }));
 }
+
+// export async function generateMetadata({ params }: Props) {
+//   // TODO: [18.02.2023] DatoCMS не приспособлена под app dir
+
+//   const metadata = await getItemSeo(params.slug)
+//   // const ogs: Metadata["openGraph"] = metadata.seo
+//   //   .filter(x => x.attributes?.property.startsWith("og:"))
+//   //   .map(x => x.attributes)
+
+//   // const twitter: Metadata["twitter"] = metadata.seo
+//   //   .filter(x => x.attributes?.property.startsWith("twitter:"))
+//   //   .map(x => x.attributes)
+
+//   return {
+//     title: "metadata!",
+//     twitter: {
+
+//     },
+//     openGraph: {
+//     }
+//   }
+// }
+
+const example = [
+  {
+    "attributes": null,
+    "content": "Nike Dunk High Retro Orange Blaze",
+    "tag": "title"
+  },
+  {
+    "attributes": {
+      "property": "og:title",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:title",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:description",
+      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:image",
+      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:image:alt",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:image",
+      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:image:alt",
+      "content": "Nike Dunk High Retro Orange Blaze"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:locale",
+      "content": "ru"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "og:type",
+      "content": "article"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "property": "article:modified_time",
+      "content": "2023-02-17T20:00:39Z"
+    },
+    "content": null,
+    "tag": "meta"
+  },
+  {
+    "attributes": {
+      "name": "twitter:card",
+      "content": "summary"
+    },
+    "content": null,
+    "tag": "meta"
+  }
+]

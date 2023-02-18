@@ -6,7 +6,6 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import { Inter, Jost, Montserrat, Roboto, Lato } from "@next/font/google";
 import { register } from 'swiper/element/bundle';
-import Script from "next/script";
 
 register();
 
@@ -63,9 +62,9 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head>
-        <script type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript" />
-        <script type="text/javascript" src="https://www.payanyway.ru/assistant-builder" />
-        <script type="text/javascript" src="/yandex-metrica.js" />
+        <script defer type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript" />
+        <script defer type="text/javascript" src="https://www.payanyway.ru/assistant-builder" />
+        <script defer type="text/javascript" src="/yandex-metrica.js" />
       </head>
       <body className="bg-[#0E0E0E]">
         <Providers>

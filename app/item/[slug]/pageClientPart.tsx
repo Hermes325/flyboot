@@ -50,7 +50,7 @@ const ItemPageClientPart = ({ item }: Props) => {
     getSizes()
   }, [])
 
-  console.log(country, countrySizes, fetchedSizes);
+  // console.log(country, countrySizes, fetchedSizes);
   //#endregion
 
   return (<>

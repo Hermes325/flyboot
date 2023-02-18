@@ -44,7 +44,7 @@ function Slide1() {
           alt="Волна"
           className={
             styles.waves +
-            " max-[1750px]:!top-[5%] max-[1700px]:!top-[4%] max-[1550px]:!top-[4%]"
+            " max-[1750px]:!top-[5%] max-[1700px]:!top-[5%] max-[1550px]:!top-[6%]"
           }
         />
 

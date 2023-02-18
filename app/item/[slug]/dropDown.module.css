@@ -1,0 +1,22 @@
+.dropDown ul {
+  list-style  : circle;
+  margin-left : 1rem;
+  margin-block: 0.25rem;
+}
+
+.dropDown p,
+.dropDown li {
+  font-family   : var(--font-lato);
+  font-weight   : 400;
+  font-size     : 20px;
+  letter-spacing: 0.01em;
+  color         : white;
+}
+
+.dropDown p {
+  line-height: 35px;
+}
+
+.dropDown li {
+  line-height: 30px;
+}
