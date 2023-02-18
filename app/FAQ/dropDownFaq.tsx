@@ -23,7 +23,7 @@ function DropDown({ title, children, open = false }: Props) {
       className="flex flex-row justify-between items-center cursor-pointer mb-2"
       onClick={() => setIsOpen(prev => !prev)}
     >
-      <h2 className="font-lato font-[400] text-[#29D9CE] text-[1.8rem] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:text-[1.2rem] max-[600px]:leading-[25px]">{title}</h2>
+      <h2 className="font-lato font-[400] text-[#29D9CE] text-[1.8rem] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:leading-[25px]">{title}</h2>
       <Image
         src={expand}
         alt="expand less image"
@@ -33,7 +33,7 @@ function DropDown({ title, children, open = false }: Props) {
     </div>
 
     {/* Внутренний контент */}
-    <div className={classNames({ "  hidden ": !isOpen }, "pb-3 text-[1.3rem] leading-[22px] max-[1000px]:text-[1.1rem] max-[800px]:text-[0.9rem] max-[600px]:text-[0.7rem]")}>
+    <div className={classNames({ "  hidden ": !isOpen }, "pb-3 text-[1.3rem] leading-[22px] max-[1000px]:text-[1.1rem] max-[800px]:text-[1rem]")}>
       {children}
     </div>
 
