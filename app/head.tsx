@@ -1,13 +1,15 @@
 import React from 'react'
+import DefaultTags from './DefaultTags';
 import { getSiteSeo } from '@/lib/datocms';
 
 async function Head() {
   const siteMeta = await getSiteSeo()
 
-  const links = siteMeta.site.favicon
+  const linkTags = siteMeta.site.favicon
 
   return (<>
-    {links.map((link, i) => <link key={i} {...link.attributes} />)}
+    <DefaultTags />
+    {linkTags.map(({ attributes }, i) => <link key={`link-${i}`} {...attributes} />)}
   </>)
 }
 

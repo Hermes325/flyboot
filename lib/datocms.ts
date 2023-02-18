@@ -268,7 +268,7 @@ export async function getItem(slug: string): Promise<Item> {
   return data
 }
 
-export async function getItemSeo(slug: string): Promise<ItemSeo> {
+export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {
   const query = gql`
   query GetItem($slug: String) {
     item(filter: { slug: { eq: $slug } }) {
@@ -293,7 +293,7 @@ export async function getItemSeo(slug: string): Promise<ItemSeo> {
     variables: { slug },
   });
 
-  return response.item
+  return { seo: response.item.seo, site: response.site }
 }
 
 export async function getRecommendsHandler(
