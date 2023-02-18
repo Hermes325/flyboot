@@ -199,7 +199,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 
     max-2xl:grid-cols-[4vw_minmax(0,1fr)_1fr_1fr_1fr_4vw] 
     max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0] 
-    max-[900px]:relative">
+    max-[900px]:relative
+    max-[400px]:gap-x-[15px]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
@@ -293,11 +294,13 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
             h-[320px]
             max-[750px]:h-[220px]
             max-[550px]:h-[150px]
+            max-[400px]:h-[130px]
           '
           className="
             min-h-[300px]
             max-[750px]:min-h-[200px]
             max-[550px]:min-h-[130px]
+            max-[400px]:min-h-[110px]
           "
           item={item} />)}
 
