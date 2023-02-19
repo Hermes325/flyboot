@@ -45,9 +45,13 @@ function BoxBerryModal({ setBoxBerryData, closeModal, isBoxBerryModalOpen }: Pro
     <div
       ref={modalRef}
       id="boxberry"
-      className="absolute p-[2rem] h-min bg-[#e3e3e3] z-[102] top-[108px] left-[10vw] w-[80vw]"
+      className="absolute p-[2rem]
+        h-min bg-[#e3e3e3] z-[102]
+        top-[108px]
+        left-[10vw]
+        w-[80vw]"
       onClick={e => e.stopPropagation()} />
   </section>)
-};
+}
 
 export default BoxBerryModal;

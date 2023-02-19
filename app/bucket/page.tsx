@@ -7,6 +7,7 @@ import BucketItemCard from "./BucketItemCard";
 import BucketFormRadio from "./BucketFormRadio";
 import BoxBerryModal from "./modals/BoxBerryModal";
 import SdekModal from "./modals/SdekModal";
+import OrderModal from "./modals/OrderModal";
 import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
@@ -16,12 +17,19 @@ export type Order = {
   phone: string
   email: string
   city: string
-  delivery: "SDEK" | "BoxBerry" | "personal delivery"
+  street: string
+  build: string
+  apartment: string
+  delivery: "Sdek" | "BoxBerry" | "personal delivery"
   personalDataCheck: boolean
+  Sdek: any
+  BoxBerry: any
 }
 
 function BucketPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenSdek, setIsModalOpenSdek] = useState(false);
+  const [isModalOpenBoxBerry, setIsModalOpenBoxBerry] = useState(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
   //#region Заказ
   const [order, setOrder] = useState<Order>({
@@ -29,8 +37,13 @@ function BucketPage() {
     phone: "",
     email: "",
     city: "",
-    delivery: "SDEK",
+    street: "",
+    build: "",
+    apartment: "",
+    delivery: "Sdek",
     personalDataCheck: true,
+    Sdek: {},
+    BoxBerry: {},
   });
 
   function changeOrder(prop: string, value: any) {
@@ -60,7 +73,7 @@ function BucketPage() {
   const [sdekData, setSdekData] = useState<any>(null);
   function openSdekModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    setIsModalOpen(true);
+    setIsModalOpenSdek(true);
   }
   console.log("sdekData >> ", sdekData);
   //#endregion
@@ -69,7 +82,11 @@ function BucketPage() {
   const [boxBerryData, setBoxBerryData] = useState<any>(null);
   function openBoxBerryModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    setIsModalOpen(true);
+    setIsModalOpenBoxBerry(true);
+  }
+  function openOrderModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    setIsOrderModalOpen(true);
   }
   console.log("boxBerryData >> ", boxBerryData);
   //#endregion
@@ -93,21 +110,28 @@ function BucketPage() {
       max-[600px]:px-[25px]
       max-[550px]:px-[5px]`,
     {
-      relative: isModalOpen === false,
-      "overflow-hidden fixed z-[103]": isModalOpen,
+      relative: !(isModalOpenSdek || isModalOpenBoxBerry),
+      "overflow-hidden fixed z-[103]": 
+        isModalOpenSdek || isModalOpenBoxBerry,
     }
   )}>
 
     <TestRedux />
     <SdekModal
       setSdekData={setSdekData}
-      isSdekModalOpen={isModalOpen}
-      closeModal={() => setIsModalOpen(false)}
+      isSdekModalOpen={isModalOpenSdek}
+      closeModal={() => setIsModalOpenSdek(false)}
     />
     <BoxBerryModal
       setBoxBerryData={setBoxBerryData}
-      isBoxBerryModalOpen={isModalOpen}
-      closeModal={() => setIsModalOpen(false)}
+      isBoxBerryModalOpen={isModalOpenBoxBerry}
+      closeModal={() => setIsModalOpenBoxBerry(false)}
+    />
+    <OrderModal
+      order={order}
+      changeOrder={changeOrder}
+      isOrderModalOpen={isOrderModalOpen}
+      closeModal={() => setIsOrderModalOpen(false)}
     />
 
     <form className="flex flex-col items-center justify-center w-full mb-12">
@@ -117,10 +141,10 @@ function BucketPage() {
       </h1>
 
       {/* items and info block */}
-      <div className="grid grid-cols-[1fr_auto] grid-rows-[1fr_auto] w-full gap-6">
+      <div className="grid grid-cols-[1fr_auto] w-full gap-6">
         {/* Items */}
         <div
-          className="col-span-1 flex flex-col justify-center transition-all border-2 rounded-2xl border-[#919191]
+          className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
           max-[1300px]:col-start-1
           max-[1300px]:col-end-3
           max-[1300px]:row-start-1
@@ -154,13 +178,13 @@ function BucketPage() {
             <div>
               {h2("Выберите способ доставки", "w-[16ch]")}
               <BucketFormRadio
-                id={"SDEK"}
-                checked={order.delivery === "SDEK"}
-                onChange={(_) => changeOrder("delivery", "SDEK")}
+                id={"Sdek"}
+                checked={order.delivery === "Sdek"}
+                onChange={(_) => changeOrder("delivery", "Sdek")}
               >
                 <>
                   <span className="block">ПВЗ СДЭК - 350 ₽</span>
-                  {order.delivery === "SDEK" && <button
+                  {order.delivery === "Sdek" && <button
                     onClick={openSdekModal}
                     className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE]"
                   >
@@ -205,6 +229,7 @@ function BucketPage() {
             <button
               disabled={!order.personalDataCheck || finalAmount === 0}
               className={styles.buy + " font-inter w-full"}
+              onClick={openOrderModal}
             >
               Заказать
             </button>

@@ -16,7 +16,7 @@ function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
   useEffect(() => {
     if (modalRef.current) {
       const widget = new (window as any).ISDEKWidjet({
-        defaultCity: "auto",
+        defaultCity: "Москва",
         cityFrom: "Москва",
         country: "Россия",
         link: "forpvz",
@@ -52,6 +52,6 @@ function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
       className="absolute z-[102] top-[108px] left-[10vw] w-[80vw] h-[80vh]"
       onClick={e => e.stopPropagation()} />
   </section>)
-};
+}
 
 export default SdekModal;
