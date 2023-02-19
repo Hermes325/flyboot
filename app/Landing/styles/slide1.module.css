@@ -42,11 +42,35 @@
 
 /* Задний фон */
 .waves {
+    /* background-image: url("/public/main-images/waves.png");
+    background-size : contain; */
+
     position: absolute;
     width   : 125vw;
+   
     top     : 4.5%;
     left    : 0%;
-    z-index : -1;
+    z-index : 1;
+
+
+    overflow: hidden;
+}
+
+
+.waves1 {
+    background-image: url("../../../public/main-images/waves.png");
+   
+    background-size : cover;
+
+    position: relative;
+
+    height : 200px;
+    top    : 4.5%;
+    left   : 0%;
+    z-index: 1;
+width: 100vw;
+    transform: scale(1.5);
+    overflow : hidden;
 }
 
 .krugmain {
