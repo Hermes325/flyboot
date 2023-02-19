@@ -31,9 +31,12 @@ const ItemCard = ({ item, className, imageClassName }: Props) => {
       <Image
         lazyLoad={true}
         data={item.images[0].responsiveImage}
-        objectFit={"cover"}
+        objectFit={"contain"}
         style={{ maxWidth: "none" }}
         className={`${imageClassName ?? ""} rounded-xl`}
+        pictureClassName="
+          bg-white
+        "
       />
 
       <div>
