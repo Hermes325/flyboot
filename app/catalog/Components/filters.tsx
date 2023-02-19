@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { Filters, SetFiltersWrapper } from '../page_client';
 import { CatalogBrandsAndCategories } from '@/lib/datocms';
 import FiltersPrice from './filters_price';
@@ -13,11 +14,12 @@ type Props = {
 
 const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
+  const [showMore, setShowMore] = useState(false)
+
   //#region Queries
-
   function changeCategory(category: string, value: boolean) {
+    setShowMore(false)
     // console.log("changeCategory", value);
-
     return (filter: Filters): Filters =>
     ({
       ...filter,
@@ -26,7 +28,8 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     })
   }
 
-  function changeSubcategory(category: string, selected: string, all: string[]) {
+  function changeSubcategory(category: string, selected: string) {
+    setShowMore(false)
     // Выбираем все подкатегории 
     const isAll = selected === category
 
@@ -53,8 +56,6 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     }
 
     // console.log("changeSubcategory\n", selectedSubcategories);
-    // console.log("changeSubcategory\n", category, selected, all);
-
     return (filter: Filters): Filters =>
     ({
       ...filter, page: 0, selectedCategories, selectedSubcategories
@@ -62,6 +63,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
   }
 
   function changeSex(sex: string, value: boolean) {
+    setShowMore(false)
     const sexFilter = { ...filters.sexFilter, [sex]: value }
     return (filter: Filters): Filters =>
       ({ ...filter, sexFilter })
@@ -72,7 +74,6 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     return (filter: Filters): Filters =>
       ({ ...filter, selectedBrands: { ...filter.selectedBrands, [brand]: value } })
   }
-
   //#endregion
 
   //#region UI templates
@@ -117,7 +118,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
 
       {/* Подкатегория */}
       <select
-        onChange={(x) => setFiltersWrapper(changeSubcategory(category, x.target.value, subcategories.map(x => x[0])))}
+        onChange={(x) => setFiltersWrapper(changeSubcategory(category, x.target.value))}
         className="overflow-clip inline-block bg-[#0E0E0E] font-inter font-extralight text-white text-[14px] border border-gray-300
                   focus:ring-blue-500 focus:border-blue-500 h-[25px] w-[calc(100%-54px)]"
       >
@@ -134,52 +135,65 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
   //#endregion
 
   //*==================================================================
-  return (
-    <>
+  return (<>
+    {h1("Фильтры")}
 
+    {/* Category Filter */}
+    <div className="flex flex-col mb-[18px]">
+      {h2("Категория")}
+      {Object
+        .entries(meta.category.categoryJson)
+        .map(category => formCategorySelect(category[0], Object.entries(category[1])))}
+    </div>
 
+    {/* Brand Filter */}
+    <div className="flex flex-col mb-[18px]">
+      {h2("Бренд")}
+      <div>
+        {/* первые 6 брендов */}
+        {meta.brands.slice(0, 6).map(x =>
+          formCheck(
+            x.name,
+            x.name,
+            filters.selectedBrands[x.name as keyof typeof filters.selectedBrands],
+            changeBrands))}
 
-      {h1("Фильтры")}
+        {meta.brands.length > 6 && !showMore &&
+          <button
+            className="inline-block font-inter text-[20px] leading-[25px] font-extralight text-left"
+            onClick={() => setShowMore(true)}>
+            показать ещё...
+          </button>}
 
-      {/* Category Filter */}
-      <div className="flex flex-col mb-[18px]">
-        {h2("Категория")}
-        {Object
-          .entries(meta.category.categoryJson)
-          .map(category => formCategorySelect(category[0], Object.entries(category[1])))}
-      </div>
-
-      {/* Brand Filter */}
-      <div className="flex flex-col mb-[18px]">
-        {h2("Бренд")}
-        {meta.brands.map(x =>
+        {/* остальные бренды */}
+        {showMore && meta.brands.slice(6).map(x =>
           formCheck(
             x.name,
             x.name,
             filters.selectedBrands[x.name as keyof typeof filters.selectedBrands],
             changeBrands))}
       </div>
+    </div>
 
-      {/* Sex filter */}
-      <div className="flex flex-col mb-[18px]">
-        {h2("Пол")}
-        {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
-        {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
-        {formCheck("Унисекс", "unisex", filters.sexFilter.unisex, changeSex)}
-      </div>
+    {/* Sex filter */}
+    <div className="flex flex-col mb-[18px]">
+      {h2("Пол")}
+      {formCheck("Мужской", "male", filters.sexFilter.male, changeSex)}
+      {formCheck("Женский", "female", filters.sexFilter.female, changeSex)}
+      {formCheck("Унисекс", "unisex", filters.sexFilter.unisex, changeSex)}
+    </div>
 
-      {/* Price Filter */}
-      <div className="flex flex-col">
-        {h2("Цена")}
-        <FiltersPrice
-          min={min ?? 0}
-          max={max ?? 1000000}
-          filters={filters}
-          setFiltersWrapper={setFiltersWrapper} />
-      </div>
+    {/* Price Filter */}
+    <div className="flex flex-col">
+      {h2("Цена")}
+      <FiltersPrice
+        min={min ?? 0}
+        max={max ?? 1000000}
+        filters={filters}
+        setFiltersWrapper={setFiltersWrapper} />
+    </div>
 
-    </>
-  )
+  </>)
 }
 
 export default Filters

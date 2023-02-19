@@ -27,7 +27,7 @@ const Pagination = ({ setFiltersWrapper, amount, page }: Props) => {
     <button
       key={`page-${page}`}
       disabled={page === currentPage}
-      onClick={() => setFiltersWrapper(changePage(page - 1))}
+      onClick={() => setFiltersWrapper(changePage(page - 1), true)}
       className={classNames(pageBtnClasses, {
         "text-[#29D9CE]": page === currentPage
       })}>

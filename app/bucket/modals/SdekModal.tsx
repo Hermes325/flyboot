@@ -5,17 +5,16 @@ import Image from "next/image";
 
 
 type Props = {
-  setSdekTerminalData: React.SetStateAction<any>
+  setSdekData: React.SetStateAction<any>
   closeModal: () => any,
   isSdekModalOpen: boolean
 }
 
-function SdekTerminalModal({ setSdekTerminalData, closeModal, isSdekModalOpen }: Props) {
+function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
   const modalRef = useRef(null);
 
   useEffect(() => {
     if (modalRef.current) {
-      console.log(typeof (window as any).ISDEKWidjet);
       const widget = new (window as any).ISDEKWidjet({
         defaultCity: "auto",
         cityFrom: "Москва",
@@ -26,15 +25,15 @@ function SdekTerminalModal({ setSdekTerminalData, closeModal, isSdekModalOpen }:
       })
 
       const choosePVZ = (wat: any) => {
-        setSdekTerminalData(wat)
+        setSdekData(wat)
         closeModal()
       };
 
       widget?.binders.add(choosePVZ, "onChoose");
     }
-  }, [setSdekTerminalData]);
+  }, [setSdekData]);
 
-  return (<div className={isSdekModalOpen ? "" : "hidden"}>
+  return (<section className={isSdekModalOpen ? "" : "hidden"}>
 
     <div
       onClick={closeModal}
@@ -52,7 +51,7 @@ function SdekTerminalModal({ setSdekTerminalData, closeModal, isSdekModalOpen }:
       id="forpvz"
       className="absolute z-[102] top-[108px] left-[10vw] w-[80vw] h-[80vh]"
       onClick={e => e.stopPropagation()} />
-  </div>)
+  </section>)
 };
 
-export default SdekTerminalModal;
+export default SdekModal;

@@ -209,6 +209,7 @@ export async function getItem(slug: string): Promise<Item> {
         color
         description1(markdown: true)
         description2(markdown: true)
+        poizonId
         poizonArticul
         price
         sex
@@ -228,18 +229,6 @@ export async function getItem(slug: string): Promise<Item> {
             base64
           }
         }
-        seo: _seoMetaTags {
-          attributes
-          content
-          tag
-        }
-      }
-      site: _site {
-        favicon: faviconMetaTags {
-          attributes
-          content
-          tag
-        }
       }
     }
   `;
@@ -255,7 +244,7 @@ export async function getItem(slug: string): Promise<Item> {
   return data;
 }
 
-export async function getItemSeo(slug: string): Promise<ItemSeo> {
+export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {
   const query = gql`
     query GetItem($slug: String) {
       item(filter: { slug: { eq: $slug } }) {

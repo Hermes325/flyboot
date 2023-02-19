@@ -64,6 +64,7 @@ export default function RootLayout({
       <head>
         <script defer type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js" id="ISDEKscript" />
         <script defer type="text/javascript" src="https://www.payanyway.ru/assistant-builder" />
+        <script defer type="text/javascript" src="https://points.boxberry.ru/js/boxberry.js" />
         <script defer type="text/javascript" src="/yandex-metrica.js" />
       </head>
       <body className="bg-[#0E0E0E]">

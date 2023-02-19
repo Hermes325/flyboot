@@ -25,7 +25,7 @@ export type Filters = {
   };
 }
 export type SetFiltersWrapper =
-  (setNewValue: (filter: Filters) => Filters) => Promise<void>
+  (setNewValue: (filter: Filters) => Filters, scrollTop?: boolean) => Promise<void>
 //#endregion
 
 type Props = {
@@ -35,7 +35,7 @@ type Props = {
 }
 
 const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
-  console.log("CatalogClient reload");
+  // console.log("CatalogClient reload");
   const saved: { content: Catalog, filters: Filters } = JSON.parse(sessionStorage.getItem("catalog") ?? "null")
 
   const [content, setContent] = useState(saved?.content ?? firstPage)
@@ -70,11 +70,27 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   })
   const [isFiltersShown, setIsFiltersShown] = useState(false);
   const filtersMobile = useRef<HTMLDivElement>(null)
-  function changeFiltersVisibility() {
-    setIsFiltersShown(!isFiltersShown);
+  const hiddenFiltersCloseTrigger = useRef<HTMLDivElement>(null)
+  function changeFiltersVisibility(newState?: boolean) {
+    if (newState != null) {
+      setIsFiltersShown(newState)
+    } else {
+      setIsFiltersShown(!isFiltersShown);
+    }
   }
   function showFilters() {
     if (isFiltersShown) {
+      let filtersY = filtersMobile.current?.getBoundingClientRect().y!
+      let necessaryShift = document.querySelector('#layout-header')!.getBoundingClientRect().height
+      let scrollTarget = filtersY - necessaryShift + window.scrollY
+      window.scrollTo(0, scrollTarget)
+
+      hiddenFiltersCloseTrigger.current?.classList.add(
+        'max-[900px]:block'
+      )
+      hiddenFiltersCloseTrigger.current?.classList.remove(
+        'max-[900px]:hidden'
+      )
       filtersMobile.current?.classList.add(
         'max-[900px]:opacity-90',
         'max-[900px]:pointer-events-all')
@@ -82,6 +98,12 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         'max-[900px]:opacity-0',
         'max-[900px]:pointer-events-none')
     } else {
+      hiddenFiltersCloseTrigger.current?.classList.add(
+        'max-[900px]:hidden'
+      )
+      hiddenFiltersCloseTrigger.current?.classList.remove(
+        'max-[900px]:block'
+      )
       filtersMobile.current?.classList.add(
         'max-[900px]:opacity-0',
         'max-[900px]:pointer-events-none')
@@ -95,7 +117,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   //#endregion
 
   //#region Queries
-
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
   async function fetchData(newFilters: Filters): Promise<Catalog> {
 
@@ -165,7 +186,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
 
   //* Обновляет состояние страницы
-  async function setFiltersWrapper(setNewValue: (filter: Filters) => Filters) {
+  async function setFiltersWrapper(setNewValue: (filter: Filters) => Filters, scrollTop: boolean = false) {
     const newFilters = setNewValue(filters)
     setFilters(newFilters)
     const newContent = await fetchData(newFilters)
@@ -174,19 +195,19 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       filters: newFilters,
       content: newContent
     }))
-    window.scrollTo(0, 0)
+    if (scrollTop) window.scrollTo(0, 0)
   }
-
   //#endregion
 
   return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 
     max-2xl:grid-cols-[4vw_minmax(0,1fr)_1fr_1fr_1fr_4vw] 
     max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0] 
-    max-[900px]:relative">
+    max-[900px]:relative
+    max-[400px]:gap-x-[15px]">
 
     {/* Title */}
     <div className='col-start-2 col-span-2'>
-      <h1 className='font-montserrat text-[80px] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
+      <h1 className='font-montserrat text-[80px] leading-[1] mt-[2rem] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
     </div>
 
     {/* Sorting */}
@@ -212,10 +233,13 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       flex-col
       justify-center
       font-inter text-white text-[16px]
-    ' onClick={changeFiltersVisibility}><span className='pointer-events-none'>Фильтры</span></div>
-    <div className={`sticky top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
-      max-[900px]:hidden 
-      ${!isFiltersShown ? 'max-[900px]:hidden' : ''}`}>
+      bg-black
+    '
+      onClick={() => changeFiltersVisibility()}>
+      <span className='pointer-events-none'>Фильтры</span>
+    </div>
+    <div className="top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
+      max-[900px]:hidden">
       <FiltersUI
         min={firstPage.min?.price ?? 0}
         max={firstPage.max?.price ?? 1000000}
@@ -225,22 +249,37 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     </div>
 
     {/* Catalog */}
+    <div className={`
+        fixed
+        top-[0px]
+        left-[0px]
+        w-[100vw]
+        h-[100vh]
+        z-[9]
+        min-[900px]:hidden
+        max-[900px]:hidden
+        opacity-0
+      `}
+      onClick={() => changeFiltersVisibility(false)}
+      ref={hiddenFiltersCloseTrigger}></div>
     <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]
     max-[900px]:col-start-2 max-[900px]:col-end-5 max-[900px]:relative" style={{ alignItems: "start" }}>
-      <div className={`col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] 
-        min-[900px]:hidden
-        max-[900px]:col-start-1
-        max-[900px]:max-w-[320px]
-        max-[900px]:absolute
-        max-[900px]:top-[0px]
-        max-[900px]:left-[0px]
-        max-[900px]:z-10
-        max-[900px]:bg-black
-        
-        max-[900px]:block
-        max-[900px]:transition-all
-        max-[900px]:duration-200
-      `}
+      <div className="
+          p-[1rem_1.5rem_1.5rem_1.5rem]
+          border-2
+          rounded-[15px]
+          border-[#909090]
+          min-[900px]:hidden
+          max-[900px]:col-start-1
+          max-[900px]:col-end-3
+          max-[900px]:absolute
+          max-[900px]:top-[0px]
+          max-[900px]:left-[0px]
+          max-[900px]:z-[10]
+          max-[900px]:bg-black
+          max-[900px]:transition-all
+          max-[900px]:duration-200
+        "
         ref={filtersMobile}>
         <FiltersUI
           min={firstPage.min?.price ?? 0}
@@ -258,11 +297,13 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
             h-[320px]
             max-[750px]:h-[220px]
             max-[550px]:h-[150px]
+            max-[400px]:h-[130px]
           '
           className="
             min-h-[300px]
             max-[750px]:min-h-[200px]
             max-[550px]:min-h-[130px]
+            max-[400px]:min-h-[110px]
           "
           item={item} />)}
 

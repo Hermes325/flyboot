@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { SetFiltersWrapper } from '../page_client';
 import Filters from './filters';
 import styles from "./filters_price.module.css"
@@ -44,7 +44,6 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
   }
   //#endregion
 
-
   return (<>
 
     <div className='flex flex-row justify-between'>
@@ -52,14 +51,14 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
         type="number"
         inputMode="numeric"
         className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
-        value={localFilter.min}
+        value={Math.min(localFilter.min, localFilter.max)}
         onChange={e => setLocalFilter(x => ({ ...x, min: +e.target.value }))}
         onBlur={onPointerUp} />
       <input
         type="number"
         inputMode="numeric"
         className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
-        value={localFilter.max}
+        value={Math.max(localFilter.min, localFilter.max)}
         onChange={e => setLocalFilter(x => ({ ...x, max: +e.target.value }))}
         onBlur={onPointerUp} />
     </div>
