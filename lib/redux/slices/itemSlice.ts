@@ -22,7 +22,10 @@ const itemSlice = createSlice({
     addItem: (state, action: PayloadAction<BucketItem>) => {
       // Прибавляем 1
       const index = state.findIndex(x => x.item.id === action.payload.item.id)
-      if (index !== -1) {
+      if (index !== -1
+        // Разные размеры 1 товара
+        && state[index].size.chosenSizeKey === action.payload.size.chosenSizeKey
+        && state[index].size.chosenSizeValue === action.payload.size.chosenSizeValue) {
         state[index].amount++;
         return
       }
@@ -30,13 +33,30 @@ const itemSlice = createSlice({
       // Добавляем новый
       state.push(action.payload);
     },
-    minusItemAmount: (state, action: PayloadAction<Item>) => {
-      const index = state.findIndex(x => x.item.id === action.payload.id)
-      if (state[index].amount > 0)
+    changeItemSize: (state, action: PayloadAction<{ item: BucketItem, size: BucketItem["size"] }>) => {
+      const index = state.findIndex(x =>
+        x.item.id === action.payload.item.item.id &&
+        x.size.chosenSizeKey === action.payload.size.chosenSizeKey &&
+        x.size.chosenSizeValue === action.payload.size.chosenSizeValue)
+
+      if (index === -1) return;
+
+      state[index].size.chosenSizeValue = action.payload.size.chosenSizeValue
+    },
+    minusItemAmount: (state, action: PayloadAction<BucketItem>) => {
+      const index = state.findIndex(x =>
+        x.item.id === action.payload.item.id &&
+        x.size.chosenSizeKey === action.payload.size.chosenSizeKey &&
+        x.size.chosenSizeValue === action.payload.size.chosenSizeValue)
+
+      if (index > 0 && state[index].amount > 0)
         state[index].amount--;
     },
-    deleteItem: (state, action: PayloadAction<Item>) => {
-      return state.filter(x => x.item.id != action.payload.id);
+    deleteItem: (state, action: PayloadAction<BucketItem>) => {
+      return state.filter(({ item, size }) =>
+        item.id !== action.payload.item.id &&
+        size.chosenSizeKey === action.payload.size.chosenSizeKey &&
+        size.chosenSizeValue === action.payload.size.chosenSizeValue)
     },
     deleteAll: (state) => {
       state = [];
@@ -44,5 +64,5 @@ const itemSlice = createSlice({
   },
 });
 
-export const { addItem, minusItemAmount, deleteItem, deleteAll } = itemSlice.actions;
+export const { addItem, minusItemAmount, changeItemSize, deleteItem, deleteAll } = itemSlice.actions;
 export default itemSlice.reducer;
