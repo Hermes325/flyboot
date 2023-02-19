@@ -80,6 +80,11 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
   function showFilters() {
     if (isFiltersShown) {
+      let filtersY = filtersMobile.current?.getBoundingClientRect().y!
+      let necessaryShift = document.querySelector('#layout-header')!.getBoundingClientRect().height
+      let scrollTarget = filtersY - necessaryShift + window.scrollY
+      window.scrollTo(0, scrollTarget)
+
       hiddenFiltersCloseTrigger.current?.classList.add(
         'max-[900px]:block'
       )
