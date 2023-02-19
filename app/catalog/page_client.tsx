@@ -233,6 +233,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       flex-col
       justify-center
       font-inter text-white text-[16px]
+      bg-black
     '
       onClick={() => changeFiltersVisibility()}>
       <span className='pointer-events-none'>Фильтры</span>
