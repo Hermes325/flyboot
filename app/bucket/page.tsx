@@ -2,22 +2,34 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/lib/redux/store/store";
+import Link from "next/link";
 import BucketItemCard from "./BucketItemCard";
 import BucketFormRadio from "./BucketFormRadio";
-import SdekModal from "./SdekModal";
-import BoxBerryModal from "./BoxBerryModal";
+import BoxBerryModal from "./modals/BoxBerryModal";
+import SdekModal from "./modals/SdekModal";
 import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
 
+export type Order = {
+  name: string
+  phone: string
+  email: string
+  city: string
+  delivery: "SDEK" | "BoxBerry" | "personal delivery"
+  personalDataCheck: boolean
+}
+
 function BucketPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   //#region Заказ
-  const [order, setOrder] = useState({
+  const [order, setOrder] = useState<Order>({
     name: "",
     phone: "",
     email: "",
     city: "",
-    delivery: "SDEK" as "SDEK" | "BoxBerry" | "personal delivery",
+    delivery: "SDEK",
     personalDataCheck: true,
   });
 
@@ -46,20 +58,18 @@ function BucketPage() {
 
   //#region СДЭК
   const [sdekData, setSdekData] = useState<any>(null);
-  const [isSdekModalOpen, setIsSdekModalOpen] = useState(false);
   function openSdekModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    setIsSdekModalOpen(true);
+    setIsModalOpen(true);
   }
   console.log("sdekData >> ", sdekData);
   //#endregion
 
   //#region BoxBerry
   const [boxBerryData, setBoxBerryData] = useState<any>(null);
-  const [isBoxBerryModalOpen, setIsBoxBerryModalOpen] = useState(false);
   function openBoxBerryModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    setIsBoxBerryModalOpen(true);
+    setIsModalOpen(true);
   }
   console.log("boxBerryData >> ", boxBerryData);
   //#endregion
@@ -68,9 +78,6 @@ function BucketPage() {
   //#endregion
 
   //#region UI templates
-  const inputTailwind =
-    "px-[24px] text-[20px] font-lato h-[68px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px]";
-
   const h2 = (text: string, className: string = "") => (
     <h2
       className={`${className} font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]`}
@@ -81,26 +88,26 @@ function BucketPage() {
   //#endregion
 
   return (<main className={classNames(
-    `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] pr-[13vw] pl-[13vw]
-      max-[800px]:pl-[50px] max-[800px]:pr-[50px]
-      max-[600px]:pl-[25px] max-[600px]:pr-[25px]
-      max-[550px]:pl-[5px]  max-[550px]:pr-[5px]`,
+    `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[13vw]
+      max-[800px]:px-[50px]
+      max-[600px]:px-[25px]
+      max-[550px]:px-[5px]`,
     {
-      relative: !isSdekModalOpen && !isBoxBerryModalOpen,
-      "overflow-hidden fixed z-[103]": isSdekModalOpen || isBoxBerryModalOpen,
+      relative: isModalOpen === false,
+      "overflow-hidden fixed z-[103]": isModalOpen,
     }
   )}>
 
     <TestRedux />
     <SdekModal
       setSdekData={setSdekData}
-      isSdekModalOpen={isSdekModalOpen}
-      closeModal={() => setIsSdekModalOpen(false)}
+      isSdekModalOpen={isModalOpen}
+      closeModal={() => setIsModalOpen(false)}
     />
     <BoxBerryModal
       setBoxBerryData={setBoxBerryData}
-      isBoxBerryModalOpen={isBoxBerryModalOpen}
-      closeModal={() => setIsBoxBerryModalOpen(false)}
+      isBoxBerryModalOpen={isModalOpen}
+      closeModal={() => setIsModalOpen(false)}
     />
 
     <form className="flex flex-col items-center justify-center w-full mb-12">
@@ -128,56 +135,13 @@ function BucketPage() {
           ))}
         </div>
 
-        {/* Contacts */}
-        <div
-          className="col-span-1 grid grid-cols-2 h-fit gap-y-6 gap-x-6 text-[#919191]
-          max-[1300px]:col-start-1
-          max-[1300px]:col-end-3
-          max-[1300px]:row-start-2
-          max-[1300px]:grid-cols-1
-        "
-        >
-          <h1 className="font-montserrat w-full font-bold text-4xl text-[#F5F5F5] mt-2 mb-10 min-[1300px]:hidden">
-            Оформление заказа
-          </h1>
-          <input
-            placeholder="Ваше имя"
-            value={order.name}
-            onChange={(x) => changeOrder("name", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
-            type="text"
-          />
-          <input
-            placeholder="Ваш телефон"
-            value={order.phone}
-            onChange={(x) => changeOrder("phone", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
-            type="tel"
-          />
-          <input
-            placeholder="Ваш e-mail"
-            value={order.email}
-            onChange={(x) => changeOrder("email", x.target.value)}
-            className={`${inputTailwind} invalid:border-red-500`}
-            type="email"
-          />
-          <input
-            placeholder="Ваш город"
-            value={order.city}
-            onChange={(x) => changeOrder("city", x.target.value)}
-            className={`${inputTailwind}`}
-          />
-        </div>
-
         {/* Order & Delivery */}
-        <div
-          className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit min-h-full w-fit justify-between border-2 rounded-2xl border-[#919191] px-10 pt-[26px] pb-[34px]
+        <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit min-h-full w-fit justify-between border-2 rounded-2xl border-[#919191] px-10 pt-[26px] pb-[34px]
           max-[1300px]:col-start-1
           max-[1300px]:col-end-3
           max-[1300px]:row-start-3
           max-[1300px]:max-w-[none]
-          max-[1300px]:border-0
-        "
+          max-[1300px]:border-0"
         >
           <div className="space-y-5">
             <div>
@@ -252,9 +216,7 @@ function BucketPage() {
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
                   focus:outline-none transition duration-200"
                 type="checkbox"
-                onChange={(x) =>
-                  changeOrder("personalDataCheck", x.target.checked)
-                }
+                onChange={(x) => changeOrder("personalDataCheck", x.target.checked)}
                 checked={order.personalDataCheck}
                 id="personalDataCheck"
               />
@@ -264,12 +226,11 @@ function BucketPage() {
               >
                 Нажимая «Заказать» Вы даете согласие на хранение и обработку
                 ваших персональных данных в соответствии с&nbsp;
-                <a
-                  href="https://sneakerhead.ru/privacy/"
-                  className="underline focus:text-[gray]"
-                >
+                <Link
+                  href="/privacy"
+                  className="underline focus:text-[gray]">
                   условиями
-                </a>
+                </Link>
                 .
               </label>
             </div>

@@ -1,8 +1,8 @@
 import { Sizes } from '@/pages/api/sizes';
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
 import { Item } from "@/lib/datocms";
+
 
 export type BucketItem = {
   item: Item
@@ -19,6 +19,7 @@ const itemSlice = createSlice({
   name: "bucket",
   initialState: [] as BucketItem[],
   reducers: {
+    // Страница товара & "+" в корзине
     addItem: (state, action: PayloadAction<BucketItem>) => {
       // Прибавляем 1
       const index = state.findIndex(x => x.item.id === action.payload.item.id)
@@ -33,6 +34,7 @@ const itemSlice = createSlice({
       // Добавляем новый
       state.push(action.payload);
     },
+    // Страница корзины
     changeItemSize: (state, action: PayloadAction<{ item: BucketItem, size: BucketItem["size"] }>) => {
       const index = state.findIndex(x =>
         x.item.id === action.payload.item.item.id &&
@@ -43,21 +45,24 @@ const itemSlice = createSlice({
 
       state[index].size.chosenSizeValue = action.payload.size.chosenSizeValue
     },
+    // Страница корзины
     minusItemAmount: (state, action: PayloadAction<BucketItem>) => {
       const index = state.findIndex(x =>
         x.item.id === action.payload.item.id &&
         x.size.chosenSizeKey === action.payload.size.chosenSizeKey &&
         x.size.chosenSizeValue === action.payload.size.chosenSizeValue)
 
-      if (index > 0 && state[index].amount > 0)
+      if (index !== -1 && state[index].amount > 0)
         state[index].amount--;
     },
+    // Страница корзины
     deleteItem: (state, action: PayloadAction<BucketItem>) => {
       return state.filter(({ item, size }) =>
-        item.id !== action.payload.item.id &&
-        size.chosenSizeKey === action.payload.size.chosenSizeKey &&
-        size.chosenSizeValue === action.payload.size.chosenSizeValue)
+        !(item.id === action.payload.item.id
+          && size.chosenSizeKey === action.payload.size.chosenSizeKey
+          && size.chosenSizeValue === action.payload.size.chosenSizeValue))
     },
+    // После оплаты удаляем товары из корзины
     deleteAll: (state) => {
       state = [];
     },

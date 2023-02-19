@@ -158,7 +158,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
             filters.selectedBrands[x.name as keyof typeof filters.selectedBrands],
             changeBrands))}
 
-        {!showMore &&
+        {meta.brands.length > 6 && !showMore &&
           <button
             className="inline-block font-inter text-[20px] leading-[25px] font-extralight text-left"
             onClick={() => setShowMore(true)}>
