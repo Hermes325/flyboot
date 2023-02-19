@@ -25,7 +25,7 @@ export type Filters = {
   };
 }
 export type SetFiltersWrapper =
-  (setNewValue: (filter: Filters) => Filters) => Promise<void>
+  (setNewValue: (filter: Filters) => Filters, scrollTop?: boolean) => Promise<void>
 //#endregion
 
 type Props = {
@@ -35,7 +35,7 @@ type Props = {
 }
 
 const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
-  console.log("CatalogClient reload");
+  // console.log("CatalogClient reload");
   const saved: { content: Catalog, filters: Filters } = JSON.parse(sessionStorage.getItem("catalog") ?? "null")
 
   const [content, setContent] = useState(saved?.content ?? firstPage)

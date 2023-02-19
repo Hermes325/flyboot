@@ -32,7 +32,13 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     dispatch(deleteItem(bucketItem))
   }
   function changeSize(e: React.ChangeEvent<HTMLSelectElement>) {
-    changeItemSize({ item: bucketItem, size: e.target.value })
+    console.log(e.target.value);
+    const sizeNum = bucketItem.size.available
+      .find(x => x.sizeKey === bucketItem.size.chosenSizeKey)?.sizeValue
+      .findIndex(x => x === e.target.value)
+      ?? bucketItem.size.chosenSizeValue
+
+    changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
 
   return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
