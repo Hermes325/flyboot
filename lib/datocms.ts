@@ -345,6 +345,22 @@ export async function getRecommendsHandler(
   return response;
 }
 
+//* Глобальное SEO
+export async function getSiteSeo(): Promise<SiteSeo> {
+  const query = gql`
+    query {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }
+  `;
+  return await graphQLRequest({ query });
+}
+
 //* Поиск товара
 export async function searchItem(name: string): Promise<Item[]> {
   const query = gql`
