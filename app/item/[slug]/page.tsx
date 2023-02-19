@@ -1,6 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
-import { getItem, getCatalogPaths, getItemSeo } from "@/lib/datocms";
+import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
@@ -85,5 +84,4 @@ export default async function ItemPage({ params }: Props) {
 export async function generateStaticParams() {
   const paths = await getCatalogPaths();
   return paths.map((path) => ({ slug: path }));
-<<<<<<< HEAD
 }

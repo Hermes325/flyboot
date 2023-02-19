@@ -15,6 +15,7 @@ export type Item = {
   description1: string;
   description2: string;
   poizonArticul: string;
+  poizonId: string;
   price: number;
   brand: { name: string; id: string };
   images: { responsiveImage: any }[];
@@ -39,6 +40,20 @@ export type CatalogBrandsAndCategories = {
 export type ItemSeo = {
   seo: any[];
   site: { favicon: any[] };
+};
+export type SiteSeo = {
+  site: {
+    favicon: {
+      attributes: {
+        sizes: string;
+        type: string;
+        rel: string;
+        href: string;
+      };
+      content: string;
+      tag: string;
+    }[];
+  };
 };
 export enum SortType {
   default,
