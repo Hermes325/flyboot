@@ -18,6 +18,7 @@ const TestRedux = () => {
         slug: "nike-air-force-1-mid-07",
         title: "Nike Air Force 1 Mid '07",
         poizonArticul: "524037W09E19000",
+        poizonId: "524037W09E19000-id",
         price: 1414,
         sex: "female",
         images: [{
