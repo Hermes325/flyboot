@@ -1,12 +1,11 @@
 import React from "react";
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
 import { getItem, getCatalogPaths, getItemSeo } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
-
 
 type Props = {
   params: { slug: string };
@@ -16,61 +15,71 @@ export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
   if (item === null) notFound();
 
-  const price = Math.ceil(item.price).toLocaleString('ru-RU', {
+  const price = Math.ceil(item.price).toLocaleString("ru-RU", {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  })
+    maximumFractionDigits: 0,
+  });
 
-  return (<main className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+  return (
+    <main
+      className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
       max-[600px]:px-[20px]
-    ">
-
-    <div className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
+    "
+    >
+      <div
+        className="flex flex-col items-center max-w-[1280px] w-full pt-[150px] pb-10 space-y-10
       max-[600px]:pt-[100px]
-    ">
-      {/* main block item */}
-      <div className="flex flex-row w-full space-x-10
+    "
+      >
+        {/* main block item */}
+        <div
+          className="flex flex-row w-full space-x-10
         max-[600px]:flex-col
-      ">
-        {/* images block */}
-        <div className="flex flex-col space-y-5
+      "
+        >
+          {/* images block */}
+          <div
+            className="flex flex-col space-y-5
           max-[600px]:space-y-[15px]
-        ">
-          <PictureBlock item={item} />
-        </div>
-
-        {/* info block */}
-        <div className="
-          max-[600px]:ml-[0_!important]
-        ">
-          {/* item title and articul */}
-          <div>
-            <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">
-              {item.title}
-            </h1>
-            <p className="font-jost text-[18px] text-gray-300">Артикул {item.poizonArticul}</p>
+        "
+          >
+            <PictureBlock item={item} />
           </div>
 
-          {/* item price */}
-          <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#03FFF0]">
-            {price} руб
-          </h2>
+          {/* info block */}
+          <div
+            className="
+          max-[600px]:ml-[0_!important]
+        "
+          >
+            {/* item title and articul */}
+            <div>
+              <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">
+                {item.title}
+              </h1>
+              <p className="font-jost text-[18px] text-gray-300">
+                Артикул {item.poizonArticul}
+              </p>
+            </div>
 
-          {/* CSR часть с запросом к Егору */}
-          <ItemPageClientPart item={item} />
+            {/* item price */}
+            <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#03FFF0]">
+              {price} руб
+            </h2>
 
+            {/* CSR часть с запросом к Егору */}
+            <ItemPageClientPart item={item} />
+          </div>
         </div>
+
+        <DropDown title="Описание" description={item.description1} />
+        <DropDown title="Характеристика" description={item.description2} />
+
+        {/* Will be interested */}
+        <Recommends item={item} />
       </div>
-
-
-      <DropDown title="Описание" description={item.description1} />
-      <DropDown title="Характеристика" description={item.description2} />
-
-      {/* Will be interested */}
-      <Recommends item={item} />
-    </div>
-
-  </main>);
+    </main>
+  );
 }
 
 export async function generateStaticParams() {
@@ -79,9 +88,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // TODO: [18.02.2023] DatoCMS не приспособлена под app dir 
+  // TODO: [18.02.2023] DatoCMS не приспособлена под app dir
 
-  const metadata = await getItemSeo(params.slug)
+  const metadata = await getItemSeo(params.slug);
   // const ogs: Metadata["openGraph"] = metadata.seo
   //   .filter(x => x.attributes?.property.startsWith("og:"))
   //   .map(x => x.attributes)
@@ -91,122 +100,124 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   //   .map(x => x.attributes)
 
   return {
-    twitter: {
-
-    },
-    openGraph: {
-    }
-  }
+    twitter: {},
+    openGraph: {},
+  };
 }
 
 const example = [
   {
-    "attributes": null,
-    "content": "Nike Dunk High Retro Orange Blaze",
-    "tag": "title"
+    attributes: null,
+    content: "Nike Dunk High Retro Orange Blaze",
+    tag: "title",
   },
   {
-    "attributes": {
-      "property": "og:title",
-      "content": "Nike Dunk High Retro Orange Blaze"
+    attributes: {
+      property: "og:title",
+      content: "Nike Dunk High Retro Orange Blaze",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "twitter:title",
-      "content": "Nike Dunk High Retro Orange Blaze"
+    attributes: {
+      name: "twitter:title",
+      content: "Nike Dunk High Retro Orange Blaze",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "description",
-      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    attributes: {
+      name: "description",
+      content:
+        "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт.",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "og:description",
-      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    attributes: {
+      property: "og:description",
+      content:
+        "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт.",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "twitter:description",
-      "content": "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт."
+    attributes: {
+      name: "twitter:description",
+      content:
+        "Кроссовки Nike Dunk High Retro в классическом баскетбольном стиле с мягким высоким бортиком возвращают 80-е на улицы и гарантируют комфорт.",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "og:image",
-      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    attributes: {
+      property: "og:image",
+      content:
+        "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "og:image:alt",
-      "content": "Nike Dunk High Retro Orange Blaze"
+    attributes: {
+      property: "og:image:alt",
+      content: "Nike Dunk High Retro Orange Blaze",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "twitter:image",
-      "content": "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200"
+    attributes: {
+      name: "twitter:image",
+      content:
+        "https://www.datocms-assets.com/94299/1676051879-2023-02-10_205807870.png?auto=format&fit=max&w=1200",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "twitter:image:alt",
-      "content": "Nike Dunk High Retro Orange Blaze"
+    attributes: {
+      name: "twitter:image:alt",
+      content: "Nike Dunk High Retro Orange Blaze",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "og:locale",
-      "content": "ru"
+    attributes: {
+      property: "og:locale",
+      content: "ru",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "og:type",
-      "content": "article"
+    attributes: {
+      property: "og:type",
+      content: "article",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "property": "article:modified_time",
-      "content": "2023-02-17T20:00:39Z"
+    attributes: {
+      property: "article:modified_time",
+      content: "2023-02-17T20:00:39Z",
     },
-    "content": null,
-    "tag": "meta"
+    content: null,
+    tag: "meta",
   },
   {
-    "attributes": {
-      "name": "twitter:card",
-      "content": "summary"
+    attributes: {
+      name: "twitter:card",
+      content: "summary",
     },
-    "content": null,
-    "tag": "meta"
-  }
-]
+    content: null,
+    tag: "meta",
+  },
+];
