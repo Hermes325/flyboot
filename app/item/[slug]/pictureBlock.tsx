@@ -45,11 +45,11 @@ const PictureBlock = ({ item }: Props) => {
       " />
 
     {/* more photos */}
-    <div className="flex flex-row gap-[24px]
-      mt-[24px]
-      max-[1024px]:mt-[12px]
+    <div className="flex flex-row gap-[12px]
+      mt-[12px]
+      max-[1024px]:mt-[6px]
       max-[1024px]:justify-between
-      max-[1024px]:gap-[12px]
+      max-[1024px]:gap-[6px]
     ">
       {images
         .sort((a, b) => a.index - b.index)
@@ -57,7 +57,9 @@ const PictureBlock = ({ item }: Props) => {
         .map(({ image, index }) =>
           <div
             key={`small-${index}`}
-            className="rounded-[15px] cursor-pointer"
+            className="rounded-[15px] cursor-pointer bg-white p-[5px]
+              transition-[filter] brightness-75 hover:brightness-100
+            "
             onClick={_ => {
               setImages(oldImgs => {
                 let imgs = [...oldImgs];
@@ -73,13 +75,14 @@ const PictureBlock = ({ item }: Props) => {
               lazyLoad={true}
               data={image.responsiveImage}
               usePlaceholder={false}
-              pictureClassName="object-cover rounded-[15px]
+              pictureClassName="object-contain rounded-[15px]
+                object-center
                 h-[auto]
                 w-[auto]
-                !max-h-[85%]
+                max-h-[100%]
                 max-w-[100%]
               "
-              className="transition-[filter] brightness-75 hover:brightness-100"
+              className=""
             />
             {/*max-[1024px]:!h-[calc(40vw_/_${mapArray.length})]*/}
             {/*max-[1024px]:!w-[calc(40vw_/_${mapArray.length})]*/}
