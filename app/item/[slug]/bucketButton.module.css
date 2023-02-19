@@ -1,8 +1,7 @@
 .buy {
   background   : linear-gradient(264.63deg, #00EBDD 6.47%, #009692 103.56%);
   border-radius: 8px;
-  margin-top   : -10px;
-  margin-bottom: 24px;
+  margin-top   : 24px;
   padding-block: 17px;
 
   font-weight   : 900;
