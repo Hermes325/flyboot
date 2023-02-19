@@ -60,24 +60,23 @@ function Header() {
   async function searchRequest(event: React.ChangeEvent<HTMLInputElement>) {
     const name = event.target.value;
     setSearch(name);
-    var foundItems: Item[] = [];
-    setFoundItems(foundItems);
 
-    if (search.length < 0) {
+    setFoundItems([] as Item[]);
+
+    if (name.length < 0) {
       setIsSearchOpen(false);
       return;
     }
     // Меньше 3 символов ничего не найдём
-    if (search.length < 3) {
+    if (name.length < 3) {
       setIsSearchOpen(false);
       return;
     }
     setIsSearchOpen(true);
 
-    const found = await fetch(`/api/search?name=${search}`);
-    foundItems = await found.json();
+    const found = await fetch(`/api/search?name=${name}`);
+    setFoundItems(await found.json());
     console.log(foundItems);
-    setFoundItems(foundItems);
   }
 
   async function searchDesktopRequest(
@@ -85,24 +84,22 @@ function Header() {
   ) {
     const name = event.target.value;
     setSearchDesktop(name);
-    var foundItems: Item[] = [];
-    setFoundItemsDesktop(foundItems);
+    setFoundItemsDesktop([] as Item[]);
 
-    if (searchDesktop.length < 0) {
+    if (name.length < 0) {
       setIsSearchDesktopOpen(false);
       return;
     }
     // Меньше 3 символов ничего не найдём
-    if (searchDesktop.length < 3) {
+    if (name.length < 3) {
       setIsSearchDesktopOpen(false);
       return;
     }
     setIsSearchDesktopOpen(true);
 
-    const found = await fetch(`/api/search?name=${search}`);
-    foundItems = await found.json();
-    console.log(foundItems);
-    setFoundItemsDesktop(foundItems);
+    const found = await fetch(`/api/search?name=${searchDesktop}`);
+    setFoundItemsDesktop(await found.json());
+    console.log(foundItemsDesktop);
   }
   //#endregion
 
@@ -131,7 +128,10 @@ function Header() {
           <Image
             src={FlyBoots_logo}
             alt="Fly Boots Logo"
-            className="h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-11 max-mobile:h-12 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-14 object-cover"
+            className={classNames(
+              "h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-11 max-mobile:h-12 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-14 object-cover",
+              { "hidden ": isNavOpen }
+            )}
           />
         </NavLink>
 
@@ -140,6 +140,16 @@ function Header() {
           {navLink("/about-us", "О нас")}
           {navLink("/FAQ", "FAQ")}
         </div>
+
+        <input
+          placeholder="Поиск"
+          className={classNames(
+            "bg-transparent border-b-2 w-full mobile:hidden text-white",
+            { "hidden ": !isNavOpen }
+          )}
+          value={search}
+          onChange={searchRequest}
+        />
 
         <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
           {/* Поиск товаров */}
@@ -152,21 +162,14 @@ function Header() {
             onChange={searchDesktopRequest}
           />
 
-          <input
-            placeholder="Поиск"
-            className={classNames(
-              "bg-transparent border-b-2 w-[200px] mobile:hidden text-white",
-              { "hidden ": !isNavOpen }
-            )}
-            value={search}
-            onChange={searchRequest}
-          />
-
           <NavLink href="/bucket" className="relative">
             <Image
               src={bucket}
               alt="bucket page logo"
-              className="w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-8 object-cover"
+              className={classNames(
+                "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
+                { " hidden": isNavOpen }
+              )}
             />
             {bucketItems > 0 && (
               <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
@@ -210,7 +213,7 @@ function Header() {
       {/* Модальное окно поиска */}
       <div
         className={classNames(
-          "fixed z-[1] top-[108px] h-full w-[100vw] translate-x-0 flex-col justify-center items-center pl-5 pt-10 gap-10 bg-black rounded-xl opacity-0 hidden transition",
+          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[74vw] translate-x-0  flex-col justify-center items-center pt-10 gap-10 bg-black rounded-b-lg opacity-0 hidden transition",
           { "!flex opacity-90": isSearchDesktopOpen }
         )}
       >
@@ -219,7 +222,7 @@ function Header() {
             setSearchDesktop("");
             setIsSearchDesktopOpen(false);
           }}
-          className="fixed right-4 top-4 max-mobile:hidden"
+          className="fixed right-4 top-4"
         >
           <Image src={menu_close_path} alt="close modal search" />
         </button>

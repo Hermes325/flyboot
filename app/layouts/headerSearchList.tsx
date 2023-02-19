@@ -9,22 +9,26 @@ type Props = {
 
 const HeaderSearchList = ({ items }: Props) => {
   return (
-    <ul>
+    <ul className="w-full">
       {items.map((item) => (
         <li key={item.slug}>
           <NavLink href={`/catalog/${item.slug}`}>
-            <div className="flex flex-row w-screen px-10 justify-between ">
-              <div className="space-x-3">
-                {/* <Image
+            <div className="flex flex-row w-full pl-10 pr-10 justify-between ">
+              <div className="flex flex-row space-x-5">
+                <Image
                   lazyLoad={true}
                   data={item.images[0].responsiveImage}
-                  objectFit={"cover"}
-                  className="w-[30px] h-[30px]"
-                /> */}
-                <p className="">{item.title}</p>
+                  objectFit={"contain"}
+                  className="h-[100px] max-[1080px]:h-[70px] aspect-square opacity-100"
+                />
+                <h1 className="flex justify-center items-center whitespace-nowrap font-medium text-2xl max-[1080px]:text-xl">
+                  {item.title}
+                </h1>
               </div>
 
-              <p className="">{item.price}руб</p>
+              <p className="flex justify-center items-center whitespace-nowrap font-medium text-2xl max-[1080px]:text-xl">
+                {item.price}руб
+              </p>
             </div>
           </NavLink>
         </li>

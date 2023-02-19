@@ -5,55 +5,56 @@ export const PAGE_SIZE = 18;
 
 // Типы =====================================================
 export type Item = {
-  title: string
-  slug: string
-  sex: string
-  id: string
-  color: string
-  category: string
-  subcategory: string
-  description1: string
-  description2: string
-  poizonArticul: string
-  poizonId: string
-  price: number
-  brand: { name: string, id: string }
-  images: { responsiveImage: any }[]
-  relatedItems: Item[]
-}
+  title: string;
+  slug: string;
+  sex: string;
+  id: string;
+  color: string;
+  category: string;
+  subcategory: string;
+  description1: string;
+  description2: string;
+  poizonArticul: string;
+  poizonId: string;
+  price: number;
+  brand: { name: string; id: string };
+  images: { responsiveImage: any }[];
+  relatedItems: Item[];
+};
 export type Catalog = {
-  items: Item[],
-  max: { price: number },
-  min: { price: number },
-  all: { count: number }
-}
+  items: Item[];
+  max: { price: number };
+  min: { price: number };
+  all: { count: number };
+};
 export type CatalogBrandsAndCategories = {
-  brands: { name: string, id: string }[],
+  brands: { name: string; id: string }[];
   category: {
     categoryJson: {
       [category: string]: {
-        [subCategory: string]: string
-      }
-    }
-  }
-}
+        [subCategory: string]: string;
+      };
+    };
+  };
+};
 export type ItemSeo = {
-  seo: any[]
-}
+  seo: any[];
+  site: { favicon: any[] };
+};
 export type SiteSeo = {
   site: {
     favicon: {
       attributes: {
-        sizes: string
-        type: string
-        rel: string
-        href: string
-      },
-      content: string,
-      tag: string
-    }[]
-  }
-}
+        sizes: string;
+        type: string;
+        rel: string;
+        href: string;
+      };
+      content: string;
+      tag: string;
+    }[];
+  };
+};
 export enum SortType {
   default,
   price_ASC,
@@ -104,15 +105,16 @@ export async function getCatalogPaths(): Promise<string[]> {
 //* Все бренды и категории для каталога
 export async function getBrandsAndCategories(): Promise<CatalogBrandsAndCategories> {
   const query = gql`
-  {
-    brands: allBrands {
-      name
-      id
+    {
+      brands: allBrands {
+        name
+        id
+      }
+      category {
+        categoryJson
+      }
     }
-    category {
-      categoryJson
-    }
-  }`;
+  `;
   return await graphQLRequest({ query });
 }
 
@@ -134,15 +136,14 @@ export async function getItems(
   // Сортировка по цене
   orderBy: SortType = SortType.default
 ): Promise<Catalog> {
-
   const queryVariables = `
     $first: IntType, 
     $skip: IntType, 
     $orderBy: [ItemModelOrderBy] = null, 
-    ${brands ? '$brands: [ItemId],' : ''} 
-    ${categories ? '$categories: [String],' : ''}
-    ${subcategories ? '$subcategories: [String],' : ''}
-    ${sex ? '$sex: [String],' : ''} 
+    ${brands ? "$brands: [ItemId]," : ""} 
+    ${categories ? "$categories: [String]," : ""}
+    ${subcategories ? "$subcategories: [String]," : ""}
+    ${sex ? "$sex: [String]," : ""} 
     $minPrice: FloatType = 0, 
     $maxPrice: FloatType = 1000000000
   `;
@@ -199,16 +200,15 @@ export async function getItems(
       subcategories,
       sex,
       minPrice,
-      maxPrice
-    }
-  }
+      maxPrice,
+    },
+  };
 
   // console.log(subcategories, JSON.stringify(options.variables, null, 2));
 
   const response: Catalog = await graphQLRequest(options);
   return response;
 }
-
 
 //* Страница товара
 export async function getItem(slug: string): Promise<Item> {
@@ -253,37 +253,41 @@ export async function getItem(slug: string): Promise<Item> {
     variables: { slug },
   });
 
-  const data = { ...response.item, site: response.site }
+  const data = { ...response.item, site: response.site };
+  console.log("getItem >> ", data.seo);
 
-  return data
+  return data;
 }
 
 export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {
   const query = gql`
-  query GetItem($slug: String) {
-    item(filter: { slug: { eq: $slug } }) {
-      seo: _seoMetaTags {
-        attributes
-        content
-        tag
+    query GetItem($slug: String) {
+      item(filter: { slug: { eq: $slug } }) {
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
       }
     }
-    site: _site {
-      favicon: faviconMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
-  }
-`;
+  `;
 
   const response = await graphQLRequest({
     query,
     variables: { slug },
   });
 
-  return { seo: response.item.seo, site: response.site }
+  return {
+    seo: response.item.seo,
+    site: response.site,
+  };
 }
 
 export async function getRecommendsHandler(
@@ -292,9 +296,8 @@ export async function getRecommendsHandler(
   // Не рекомендуем товары одного цвета
   currentRelated: string[],
   // Рекомендуем товары одного бренда
-  brands: string[],
+  brands: string[]
 ): Promise<Catalog> {
-
   const queryVariables = `
     $first: IntType, 
     $slug: String,
@@ -336,8 +339,8 @@ export async function getRecommendsHandler(
       first: 12,
       brands,
       notInRelated: currentRelated,
-      slug: currentSlug
-    }
+      slug: currentSlug,
+    },
   });
   return response;
 }
@@ -355,7 +358,6 @@ export async function getSiteSeo(): Promise<SiteSeo> {
       }
     }
   `;
-
   return await graphQLRequest({ query });
 }
 
@@ -370,6 +372,18 @@ export async function searchItem(name: string): Promise<Item[]> {
       ) {
         slug
         title
+        images {
+          responsiveImage(imgixParams: { auto: format }) {
+            sizes
+            src
+            width
+            height
+            alt
+            title
+            base64
+          }
+        }
+        price
       }
     }
   `;
