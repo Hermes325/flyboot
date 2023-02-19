@@ -36,15 +36,15 @@ export default async function sizes(
   req: NextApiRequest,
   res: NextApiResponse<Sizes | { error: Error }>
 ) {
-  // console.log("/api/sizes REQUEST\n", req.body)
-  // const articul = req.body["articul"]
-  // const price = req.body["price"]
-  // console.log("\narticul >> ", articul)
-  // console.log("\nprice >> ", price)
+  console.log("/api/sizes REQUEST\n", req.body)
+  const poizonId = req.body["poizonId"]
+  const price = req.body["price"]
+  console.log("\narticul >> ", poizonId)
+  console.log("\nprice >> ", price)
 
   try {
     // const responseJSON = await fetch(
-    //   `https://functions.yandexcloud.net/d4etdktavt47h0i8r4u8?articul=${articul}&price=${price}`,
+    //   `https://functions.yandexcloud.net/d4etdktavt47h0i8r4u8?articul=${poizonId}&price=${price}`,
     //   {
     //     method: 'GET',
     //     redirect: 'follow',

@@ -3,7 +3,7 @@ import React from 'react'
 import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
-import { addItem, BucketItem, minusItemAmount, deleteItem } from '@/lib/redux/slices/itemSlice'
+import { addItem, BucketItem, minusItemAmount, deleteItem, changeItemSize } from '@/lib/redux/slices/itemSlice'
 import { useDispatch } from 'react-redux'
 import classnames from "classnames";
 
@@ -26,10 +26,13 @@ const BucketItemCard = ({ bucketItem }: Props) => {
   }
   function itemMinus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
-    dispatch(minusItemAmount(item))
+    dispatch(minusItemAmount(bucketItem))
   }
   function itemDelete() {
-    dispatch(deleteItem(item))
+    dispatch(deleteItem(bucketItem))
+  }
+  function changeSize(e: React.ChangeEvent<HTMLSelectElement>) {
+    changeItemSize({ item: bucketItem, size: e.target.value })
   }
 
   return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
@@ -48,9 +51,11 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       <p className='font-lato text-[12px] leading-[22px] mb-[5px] tracking-[0.01em]'>
         Артикул {item.poizonArticul}
       </p>
+
       <div className='flex gap-4'>
         <select
           defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
+          onChange={changeSize}
           className="font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5"
         >
           {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue.map(value =>

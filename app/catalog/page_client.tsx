@@ -112,7 +112,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   //#endregion
 
   //#region Queries
-
   //* Кидает запрос за товарами при изменении фильтров, сортировки или пагинации
   async function fetchData(newFilters: Filters): Promise<Catalog> {
 
@@ -182,7 +181,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
 
   //* Обновляет состояние страницы
-  async function setFiltersWrapper(setNewValue: (filter: Filters) => Filters) {
+  async function setFiltersWrapper(setNewValue: (filter: Filters) => Filters, scrollTop: boolean = false) {
     const newFilters = setNewValue(filters)
     setFilters(newFilters)
     const newContent = await fetchData(newFilters)
@@ -191,9 +190,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       filters: newFilters,
       content: newContent
     }))
-    window.scrollTo(0, 0)
+    if (scrollTop) window.scrollTo(0, 0)
   }
-
   //#endregion
 
   return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 

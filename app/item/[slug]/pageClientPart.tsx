@@ -34,7 +34,7 @@ const ItemPageClientPart = ({ item }: Props) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          articul: item.poizonArticul,
+          poizonId: item.poizonId,
           price: item.price
         })
       })

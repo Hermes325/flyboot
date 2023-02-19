@@ -15,6 +15,7 @@ export type Item = {
   description1: string
   description2: string
   poizonArticul: string
+  poizonId: string
   price: number
   brand: { name: string, id: string }
   images: { responsiveImage: any }[]
@@ -223,6 +224,7 @@ export async function getItem(slug: string): Promise<Item> {
         color
         description1(markdown: true)
         description2(markdown: true)
+        poizonId
         poizonArticul
         price
         sex
@@ -241,18 +243,6 @@ export async function getItem(slug: string): Promise<Item> {
             title
             base64
           }
-        }
-        seo: _seoMetaTags {
-          attributes
-          content
-          tag
-        }
-      }
-      site: _site {
-        favicon: faviconMetaTags {
-          attributes
-          content
-          tag
         }
       }
     }
