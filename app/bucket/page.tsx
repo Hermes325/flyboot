@@ -95,7 +95,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: finalPrice,
+      amount: 0.1,//finalPrice,
       transactionId: 't-' + Date.now(),
       subscriberId: order.email,
       customParams: {
@@ -115,6 +115,9 @@ function BucketPage() {
         }
       }
     }
+
+    console.log("options >>> ", options);
+
     const assistant = new (window as any).Assistant.Builder();
 
     // платёж прошёл успешно
