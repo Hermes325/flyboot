@@ -119,6 +119,7 @@ function Header() {
     setIsNavOpen(false);
     setFoundItems([] as Item[]);
     setFoundItemsDesktop([] as Item[]);
+    document.body.style.position = "";
   };
 
   //#endregion
