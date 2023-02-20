@@ -36,11 +36,11 @@ body {
   overflow-x: hidden;
   position: relative;
   line-height: 1.5;
-  background-position: center;
+  /* background-position: center;
   background-attachment: fixed;
   background-image: url("../public/main-images/BGF8.jpg");
   background-size: cover;
-  background-repeat: repeat-y;
+  background-repeat: repeat-y; */
 }
 
 h1,
