@@ -175,8 +175,7 @@ function Header() {
 
         <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
           {/* Search items 
-          2 inputs for 1 reason i know its govnocode
-          GMD style code for customers*/}
+          2 inputs for 1 reason i know its govnocode*/}
           <input
             placeholder="Поиск"
             className={classNames(
@@ -221,7 +220,7 @@ function Header() {
       {/* modal window of navigation on mobile version */}
       <nav
         className={classNames(
-          "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center gap-10 bg-black bg-opacity-0 invisible transition mobile:hidden",
+          "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center space-y-5 bg-black bg-opacity-0 invisible transition mobile:hidden",
           {
             "!visible !bg-opacity-90": isNavOpen,
           }
@@ -229,24 +228,26 @@ function Header() {
       >
         <HeaderSearchList items={foundItems} setOpen={setIsNavOpen} />
 
-        {links.map(({ href, label }, i) => (
-          <NavLink
-            key={href}
-            href={href}
-            prefetch={href.startsWith("/")}
-            className="text-[#f9f9f9] hover:text-[#00b5b5] text-2xl"
-            style={{ animationDelay: `0.${i + 1}s` }}
-            setOpen={clearSearch}
-          >
-            {label}
-          </NavLink>
-        ))}
+        <div className="flex flex-col justify-center items-center space-y-2">
+          {links.map(({ href, label }, i) => (
+            <NavLink
+              key={href}
+              href={href}
+              prefetch={href.startsWith("/")}
+              className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
+              style={{ animationDelay: `0.${i + 1}s` }}
+              setOpen={clearSearch}
+            >
+              {label}
+            </NavLink>
+          ))}
+        </div>
       </nav>
 
       {/* modal window of search on desktop version */}
       <div
         className={classNames(
-          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[600px] max-[1600px]:w-[500px] max-[1080px]:w-[400px] max-[720px]:w-[300px] right-[13vw] translate-x-0  flex-col justify-center items-center gap-10 bg-black rounded-b-lg bg-opacity-0 hidden transition",
+          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[600px] max-[1600px]:w-[500px] max-[1080px]:w-[400px] byGMD max-[720px]:w-[300px] right-[13vw] translate-x-0  flex-col justify-center items-center gap-10 bg-black rounded-b-lg bg-opacity-0 hidden transition",
           { "!flex !bg-opacity-90": isSearchDesktopOpen }
         )}
       >

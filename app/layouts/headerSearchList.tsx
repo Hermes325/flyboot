@@ -10,7 +10,7 @@ type Props = {
 
 const HeaderSearchList = ({ items, setOpen }: Props) => {
   return (
-    <ul className="w-full max-h-[600px] max-[1600px]:max-h-[500px] max-[1080px]:max-h-[400px] max-[720px]:max-h-[300px] max-[600px]:max-h-[250px] overflow-y-scroll">
+    <ul className="w-full max-h-[600px] max-[1600px]:max-h-[500px] max-[1080px]:max-h-[400px] max-[720px]:max-h-[300px] max-[600px]:max-h-[350px] overflow-y-scroll">
       {items.map((item) => (
         <li key={item.slug} className="py-3 border-b-2 mx-5">
           <NavLink href={`/item/${item.slug}`} setOpen={setOpen}>
