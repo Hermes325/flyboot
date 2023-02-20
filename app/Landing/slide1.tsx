@@ -11,7 +11,7 @@ function Slide1() {
         <h1
           className={
             styles.h1 +
-            ` pl-[13vw] 
+            ` px-[10vw] 
             font-inter
             min-[2560px]:!text-[6.5rem] 
             max-[1860px]:!text-[4.5rem]
@@ -24,8 +24,16 @@ function Slide1() {
             max-[850px]:!text-[2.3rem]
             max-[780px]:!text-[2.1rem]
             max-[700px]:!text-[1.9rem]
-            max-[700px]:!text-[1.7rem]
-            max-[600px]:!text-[2.5rem]`
+            max-[650px]:!text-[1.7rem]
+            max-[600px]:!text-[2.6rem]
+            max-[550px]:!text-[2.4rem]
+            max-[525px]:!text-[2.2rem]
+            max-[480px]:!text-[2rem]
+            max-[420px]:!text-[1.8rem]
+            max-[380px]:!text-[1.6rem]
+            max-[335px]:!text-[1.4rem]
+            `
+            
           }
         >
           Любимые бренды <br />{" "}
@@ -34,7 +42,7 @@ function Slide1() {
         <p
           className={
             styles.jost_offer +
-            ` pl-[13vw]
+            ` px-[10vw]
              font-jost
             min-[2560px]:!text-[32px] 
             min-[2560px]:!leading-[42px] 
@@ -49,19 +57,25 @@ function Slide1() {
             max-[850px]:!text-[11px] 
             max-[780px]:!text-[10px] 
             max-[700px]:!text-[9px]
-            max-[700px]:!text-[8px] 
+            max-[650px]:!text-[8px] 
             max-[600px]:!text-[1.2rem] 
-            max-[600px]:!leading-[17px] 
-            max-[600px]:!w-[90%] 
-            w-[55%]`
+            max-[550px]:!text-[1.1rem] 
+            max-[525px]:!text-[1rem] 
+            max-[480px]:!text-[0.9rem]
+            max-[420px]:!leading-[14px]  
+            max-[420px]:!text-[0.8rem] 
+            max-[380px]:!text-[0.7rem] 
+            max-[335px]:!text-[0.6rem]
+            max-[600px]:!leading-[20px] 
+            max-[600px]:!w-[86%] 
+            w-[62%]`
           }
         >
           Если ты искал, где обновить гардероб, то ты в нужном месте.
-          Одевайся так, будто завтра выступаешь в Карнеги-Холл.
-
+          Одевайся так, будто завтра выступаешь в Карнеги-Холл !
 
         </p>
-        <a href="/catalog" className="px-[13vw]">
+        <a href="/catalog" className="px-[10vw]">
           <button
             className={
               styles.button_main +
@@ -99,23 +113,23 @@ function Slide1() {
           className={
             styles.waves +
             ` max-[1750px]:!top-[5%]
-             max-[1550px]:!top-[6%]
-             max-[600px]:!top-[25%] 
+             max-[1550px]:!top-[6%] 
              max-[1860px]:!w-[100%]
-             max-[600px]:!scale-5.5
+             max-[600px]:!scale-[2.5]
+             max-[600px]:!top-[125%] 
              `
           }
         />
 
         <div
           className={
-            styles.krugmain}
+            styles.krugmain + ` max-[600px]:!w-[60vw] max-[600px]:!left-[22%] max-[600px]:!top-[75%]`}
         >
           <Image
             src={kross}
             alt="Логотип"
             className={
-              styles.Logotip + ' max-w-[none]'
+              styles.Logotip + ' max-w-[none] max-[600px]:!w-[75vw] max-[600px]:!bottom-[12vw]'
             }
           />
         </div>
