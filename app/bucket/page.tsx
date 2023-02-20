@@ -55,20 +55,21 @@ function BucketPage() {
 
   const bucketItems = useSelector((state: RootState) => state.items);
 
-  const itemsPrice = Math.ceil(
-    bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0)
-  ).toLocaleString("ru-RU", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  // Стоимость товаров и стоимость доставки
+  const itemsPrice = Math.ceil(bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0))
   const deliveryPrice = 350;
-  const finalPrice = Math.ceil(
-    deliveryPrice + bucketItems.reduce((a, v) => a + v.item.price * v.amount, 0)
-  ).toLocaleString("ru-RU", {
+  const finalPrice = deliveryPrice + itemsPrice
+
+  // Количество товаров
+  const itemsAmount = bucketItems.reduce((a, v) => a + v.amount, 0);
+  const itemsPriceStr = itemsPrice.toLocaleString("ru-RU", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
-  const finalAmount = bucketItems.reduce((a, v) => a + v.amount, 0);
+  const finalPriceStr = finalPrice.toLocaleString("ru-RU", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
   function openOrderModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -78,15 +79,40 @@ function BucketPage() {
 
   //#region Оплата
   function payment() {
-    //? Какой параметр отвечает за отправку на email покупателя
+    // items + order → options
+    let delivery = "";
+    switch (order.delivery) {
+      case "Sdek":
+        delivery = `${order.Sdek?.PVZ?.cityName} ${order.Sdek?.PVZ?.Address}`;
+        break;
+      case "BoxBerry":
+        delivery = order?.BoxBerry?.address;
+        break;
+      default:
+        delivery = `${order.city} ${order.street} ${order.build} ${order.apartment}`;
+        break;
+    }
+
     const options = {
       account: 25060038,
-      amount: 1,
+      amount: finalPrice,
       transactionId: 't-' + Date.now(),
-      subscriberId: "georg3georg3georg@gmail.com",
-      testMode: 0,
+      subscriberId: order.email,
       customParams: {
-        MNT_CUSTOM3: "msk.vitaly@gmail.com"
+        // товары
+        items: bucketItems.map(({ item, size, amount }) => ({
+          name: item.title,
+          articul: item.poizonArticul,
+          price: item.price,
+          amount,
+          size: `${size.chosenSizeKey} ${size.chosenSizeValue}`
+        })),
+        // о клиенте
+        client: {
+          delivery,
+          name: order.name,
+          phone: order.phone
+        }
       }
     }
     const assistant = new (window as any).Assistant.Builder();
@@ -209,7 +235,7 @@ function BucketPage() {
             <div>
               {h2("Ваш заказ")}
               <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-                Товары, {finalAmount} шт. {itemsPrice} ₽
+                Товары, {itemsAmount} шт. {itemsPriceStr} ₽
               </p>
             </div>
 
@@ -258,7 +284,7 @@ function BucketPage() {
           </div>
 
           <div className="space-y-4">
-            {h2(`Итого ${finalPrice} ₽`, "mt-[1rem]")}
+            {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
 
             <textarea
               placeholder="Комментарий к заказу"
@@ -267,7 +293,7 @@ function BucketPage() {
             />
 
             <button
-              disabled={!order.personalDataCheck || finalAmount === 0}
+              disabled={!order.personalDataCheck || itemsAmount === 0}
               className={styles.buy + " font-inter w-full"}
               onClick={openOrderModal}
             >

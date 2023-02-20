@@ -51,8 +51,8 @@ export default async function search(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("/api/payurl REQUEST\n", req.body)
-  console.log(JSON.stringify(req.query, null, 2));
+  console.log("/api/payurl REQUEST body\n", req.body)
+  console.log("/api/payurl REQUEST query\n", JSON.stringify(req.query, null, 2));
 
   const MNT_AMOUNT = req.body["MNT_AMOUNT"]//: "1.00",
   const MNT_CUSTOM3 = req.body["MNT_CUSTOM3"]//: "msk.vitaly@gmail.com",
@@ -76,6 +76,6 @@ export default async function search(
     MNT_SIGNATURE,
     MNT_TRANSACTION_ID)
 
-  console.log("payResponse\n", payResponse);
+  console.log("/api/payurl RESPONSE\n", payResponse);
   res.status(200).send(payResponse);
 }
