@@ -7,12 +7,14 @@ import styles from "./item_card.module.css";
 import "../../app/globals.css";
 
 type Props = {
+  h3ClassName?: string;
+  pClassName?: string;
   item: Item;
   className?: string;
   imageClassName?: string;
 };
 
-const ItemCard = ({ item, className, imageClassName }: Props) => {
+const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: Props) => {
 
   const price = Math
     .ceil(item.price)
@@ -41,12 +43,14 @@ const ItemCard = ({ item, className, imageClassName }: Props) => {
 
       <div>
         <h3 className={`${styles["name"]}
+          ${h3ClassName ?? ""} 
           max-[750px]:!text-[15px]
           max-[750px]:!h-[32px]
           max-[550px]:!text-[12px]
           max-[550px]:!h-[32px]
           `}>{item.title}</h3>
         <p className={`${styles["price"]}
+          ${pClassName ?? ""} 
           max-[750px]:!text-[18px]
           max-[550px]:!text-[15px]
           `}>{price}&nbsp;руб</p>

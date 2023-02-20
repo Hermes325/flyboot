@@ -6,12 +6,26 @@ import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section className="w-full px-[13vw]">
+    <section className="w-full  relative">
       <div className="mb-[10vw]">
         <h1
           className={
             styles.h1 +
-            " font-inter min-[2560px]:!text-[6.5rem] max-[1860px]:!text-[4.5rem] max-[1700px]:!text-[4rem] max-[1500px]:!text-[3.7rem] max-[1330px]:!text-[3.3rem] max-[1140px]:!text-[3rem] max-[600px]:!text-[2.5rem]"
+            ` pl-[13vw] 
+            font-inter
+            min-[2560px]:!text-[6.5rem] 
+            max-[1860px]:!text-[4.5rem]
+            max-[1700px]:!text-[4rem]
+            max-[1500px]:!text-[3.7rem] 
+            max-[1330px]:!text-[3.3rem] 
+            max-[1140px]:!text-[3rem] 
+            max-[1100px]:!text-[2.7rem]
+            max-[950px]:!text-[2.5rem]
+            max-[850px]:!text-[2.3rem]
+            max-[780px]:!text-[2.1rem]
+            max-[700px]:!text-[1.9rem]
+            max-[700px]:!text-[1.7rem]
+            max-[600px]:!text-[2.5rem]`
           }
         >
           Любимые бренды <br />{" "}
@@ -20,18 +34,57 @@ function Slide1() {
         <p
           className={
             styles.jost_offer +
-            " font-jost min-[2560px]:!text-[32px] min-[2560px]:!leading-[42px] max-[1860px]:!text-[22px] max-[1700px]:!text-[20px] max-[1500px]:!text-[18px] max-[1330px]:!text-[16.5px] max-[1140px]:!text-[15px] max-[600px]:!text-[1.2rem] max-[600px]:!leading-[17px] max-[600px]:!w-[90%] min-[601px]:!w-[25%]"
+            ` pl-[13vw]
+             font-jost
+            min-[2560px]:!text-[32px] 
+            min-[2560px]:!leading-[42px] 
+            max-[1860px]:!text-[22px] 
+            max-[1700px]:!text-[20px] 
+            max-[1500px]:!text-[18px] 
+            max-[1330px]:!text-[16.5px] 
+            max-[1140px]:!text-[15px] 
+            max-[1100px]:!leading-[17px] 
+            max-[1100px]:!text-[13.5px] 
+            max-[950px]:!text-[12px]
+            max-[850px]:!text-[11px] 
+            max-[780px]:!text-[10px] 
+            max-[700px]:!text-[9px]
+            max-[700px]:!text-[8px] 
+            max-[600px]:!text-[1.2rem] 
+            max-[600px]:!leading-[17px] 
+            max-[600px]:!w-[90%] 
+            w-[55%]`
           }
         >
-          Одевайся так, будто завтра выступаешь в Карнеги-Холл.
           Если ты искал, где обновить гардероб, то ты в нужном месте.
-          
+          Одевайся так, будто завтра выступаешь в Карнеги-Холл.
+
+
         </p>
-        <a href="/catalog" className="mt-[1vw]">
+        <a href="/catalog" className="px-[13vw]">
           <button
             className={
               styles.button_main +
-              " font-montserrat p-[18px_30px_20px_30px] min-[2560px]:!text-[55px] min-[2560px]:!p-[30px_30px_30px_30px] max-[1860px]:!text-[35px] max-[1700px]:!text-[30px] max-[1500px]:!text-[27px] max-[1330px]:!text-[25px] max-[1140px]:!text-[22px] max-[600px]:!text-[15px] max-[600px]:!p-[3px_25px_3px_25px]"
+              ` 
+              mt-[1vw] 
+              font-montserrat 
+              p-[18px_30px_20px_30px] 
+              min-[2560px]:!p-[30px_30px_30px_30px] 
+              max-[600px]:!p-[3px_25px_3px_25px]
+              max-[1100px]:!p-[20px_20px_20px_20px]
+              max-[780px]:!p-[10px_15px_10px_15px]
+              min-[2560px]:!text-[55px] 
+              max-[1860px]:!text-[35px] 
+              max-[1700px]:!text-[30px] 
+              max-[1500px]:!text-[27px] 
+              max-[1330px]:!text-[25px] 
+              max-[1140px]:!text-[22px] 
+              max-[1100px]:!text-[18px] 
+              max-[850px]:!text-[16px] 
+              max-[780px]:!text-[14px] 
+              max-[1100px]:!leading-[17px]
+              max-[600px]:!hidden 
+              `
             }
           >
             Смотреть каталог
@@ -45,21 +98,24 @@ function Slide1() {
           alt="Волна"
           className={
             styles.waves +
-            " max-[1750px]:!top-[5%] max-[1700px]:!top-[5%] max-[1550px]:!top-[6%] min-[601px]:!top-[10%] max-[600px]:!top-[25%] max-[1860px]:!w-[100%]"
+            ` max-[1750px]:!top-[5%]
+             max-[1550px]:!top-[6%]
+             max-[600px]:!top-[25%] 
+             max-[1860px]:!w-[100%]
+             max-[600px]:!scale-5.5
+             `
           }
         />
 
         <div
           className={
-            styles.krugmain +
-            " max-[1860px]:!w-[22vw] max-[1400px]:!left-[65%] max-[1025px]:!top-[4%] max-[600px]:!top-[35%] max-[600px]:!left-[30%] max-[600px]:!w-[40%] max-[600px]:!w-[50vw]"
-          }
+            styles.krugmain}
         >
           <Image
             src={kross}
             alt="Логотип"
             className={
-              styles.Logotip + "  max-w-[unset] max-[1860px]:!w-[24vw] max-[600px]:!w-[60vw] max-[600px]:!bottom-[15vw] "
+              styles.Logotip + ' max-w-[none]'
             }
           />
         </div>
@@ -67,26 +123,22 @@ function Slide1() {
         <div className="max-[600px]:!hidden">
           <div
             className={
-              styles.krug1 +
-              " max-[1860px]:!w-[7vw] max-[1550px]:!w-[9vw] max-[1750px]:!mt-[5%] max-[1700px]:!mt-[0%] max-[1550px]:!mt-[0%] max-[1200px]:!mt-[5%]"
+              styles.krug1
             }
           />
           <div
             className={
-              styles.krug2 +
-              " max-[1860px]:!w-[9vw] max-[1550px]:!w-[7vw] max-[1750px]:!mt-[3%] max-[1700px]:!mt-[1%] max-[1550px]:!mt-[4%] max-[1281px]:!mt-[7%] max-[1200px]:!mt-[9%] max-[1025px]:!mt-[13%]"
+              styles.krug2
             }
+          />
+
+          <div
+            className={
+              styles.krug3}
           />
           <div
             className={
-              styles.krug3 +
-              " max-[1750px]:!mt-[3%] max-[1700px]:!mt-[0%] max-[1550px]:!mt-[5%] max-[1200px]:!mt-[9%]"
-            }
-          />
-          <div
-            className={
-              styles.krug4 +
-              " max-[1750px]:!w-[6vw] max-[1750px]:!mt-[5%] max-[1700px]:!w-[7vw] max-[1550px]:!w-[9vw] max-[1700px]:!mt-[-1%] max-[1550px]:!mt-[0%] max-[1450px]:!w-[7vw] max-[1300px]:!mt-[13%]  max-[1281px]:!mt-[5%]"
+              styles.krug4
             }
           />
         </div>
