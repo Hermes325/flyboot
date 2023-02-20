@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { Order } from '../page';
 import Image from "next/image";
 import menu_close_path from "@/public/header-images/close.svg";
@@ -8,16 +9,26 @@ import styles from "./OrderModal.module.css"
 
 type Props = {
   order: Order
-  changeOrder: (prop: string, value: any) => void
+  setOrder: React.Dispatch<Order>
   closeModal: () => any
   isOrderModalOpen: boolean
-  payment: () => any
 }
 // Модалка с заказом. 
 // Открывается при нажатии кнопки "Заказать"
-const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment }: Props) => {
+const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) => {
   const inputTailwind = "px-[24px] text-[20px] font-lato h-[68px] max-[600px]:h-[50px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px] invalid:border-red-500 text-white";
   const isPickUpPointDelivery = ["BoxBerry", "Sdek"].includes(order.delivery)
+
+  const [localOrder, setLocalOrder] = useState<Order>(order)
+  function changeOrder(prop: string, value: any) {
+    setLocalOrder((x) => ({ ...x, [prop]: value }));
+  }
+
+  function pay(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    setOrder({ ...localOrder, startPayment: order.startPayment + 1 });
+    closeModal();
+  }
 
   return (<section
     className={classNames({
@@ -56,7 +67,7 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
       <input
         placeholder="ФИО"
         type="text"
-        value={order.name}
+        value={localOrder.name}
         onChange={(x) => changeOrder("name", x.target.value)}
         className={classNames(inputTailwind, {
           'col-span-4': isPickUpPointDelivery,
@@ -66,7 +77,7 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
       <input
         placeholder="E-mail"
         type="email"
-        value={order.email}
+        value={localOrder.email}
         onChange={(x) => changeOrder("email", x.target.value)}
         className={classNames(inputTailwind, {
           'col-span-4': isPickUpPointDelivery,
@@ -76,7 +87,7 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
       <input
         placeholder="Телефон"
         type="tel"
-        value={order.phone}
+        value={localOrder.phone}
         onChange={(x) => changeOrder("phone", x.target.value)}
         className={classNames(inputTailwind, {
           'col-span-4': isPickUpPointDelivery,
@@ -86,25 +97,25 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
       {!isPickUpPointDelivery && <>
         <input
           placeholder="Город"
-          value={order.city}
+          value={localOrder.city}
           onChange={(x) => changeOrder("city", x.target.value)}
           className={`${inputTailwind} col-span-2 row-start-1 max-[1000px]:row-start-4 min-[1000px]:ml-[0.8vw]`}
         />
         <input
           placeholder="Улица, дом"
-          value={order.street}
+          value={localOrder.street}
           onChange={(x) => changeOrder("street", x.target.value)}
           className={`${inputTailwind} col-span-2 row-start-2 max-[1000px]:row-start-5 min-[1000px]:ml-[0.8vw]`}
         />
         <input
           placeholder="Корпус"
-          value={order.build}
+          value={localOrder.build}
           onChange={(x) => changeOrder("build", x.target.value)}
           className={`${inputTailwind} col-span-1 row-start-3 max-[1000px]:row-start-6 min-[1000px]:ml-[0.8vw] min-[1000px]:mr-[-1rem]`}
         />
         <input
           placeholder="Кв."
-          value={order.apartment}
+          value={localOrder.apartment}
           onChange={(x) => changeOrder("apartment", x.target.value)}
           className={`${inputTailwind} col-span-1 row-start-3 max-[1000px]:row-start-6 min-[1000px]:ml-[0.8vw]`}
         />
@@ -112,7 +123,7 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
 
       <div className={classNames('flex justify-center col-span-4 max-[1000px]:col-span-2')}>
         <button
-          onClick={(e) => { e.preventDefault(); closeModal(); payment(); }}
+          onClick={pay}
           className={styles.buy + " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8"} >
           Оплатить
         </button>

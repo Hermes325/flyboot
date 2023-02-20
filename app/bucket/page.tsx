@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/lib/redux/store/store";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import OrderModal from "./modals/OrderModal";
 import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
+import { BucketItem } from "@/lib/redux/slices/itemSlice";
 
 // Используется в заказе и при формировании чека
 export type Order = {
@@ -25,6 +26,8 @@ export type Order = {
   personalDataCheck: boolean
   Sdek: any
   BoxBerry: any
+  startPayment: number
+  comment: string
 }
 
 function BucketPage() {
@@ -40,6 +43,7 @@ function BucketPage() {
     name: "",
     phone: "",
     email: "",
+    comment: "",
     city: "",
     street: "",
     build: "",
@@ -48,6 +52,7 @@ function BucketPage() {
     personalDataCheck: true,
     Sdek: {},
     BoxBerry: {},
+    startPayment: 0
   });
   function changeOrder(prop: string, value: any) {
     setOrder((x) => ({ ...x, [prop]: value }));
@@ -83,35 +88,54 @@ function BucketPage() {
     let delivery = "";
     switch (order.delivery) {
       case "Sdek":
-        delivery = `${order.Sdek?.PVZ?.cityName} ${order.Sdek?.PVZ?.Address}`;
+        delivery = `${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`;
         break;
       case "BoxBerry":
         delivery = order?.BoxBerry?.address;
         break;
       default:
-        delivery = `${order.city} ${order.street} ${order.build} ${order.apartment}`;
+        delivery = `г.${order.city} ул.${order.street} к.${order.build} кв.${order.apartment}`;
         break;
     }
 
+    const getSizeName = (size: BucketItem["size"]) => size.available
+      .find(x => x.sizeKey === size.chosenSizeKey)
+      ?.sizeValue[size.chosenSizeValue]
+
     const options = {
       account: 25060038,
-      amount: 0.1,//finalPrice,
+      amount: 1,//finalPrice,
       transactionId: 't-' + Date.now(),
       subscriberId: order.email,
       customParams: {
         // товары
-        items: bucketItems.map(({ item, size, amount }) => ({
-          name: item.title,
-          articul: item.poizonArticul,
-          price: item.price,
-          amount,
-          size: `${size.chosenSizeKey} ${size.chosenSizeValue}`
-        })),
+        items: bucketItems
+          .reduce<BucketItem[]>((arr, curr) => {
+            // Одинаковый элемент
+            const sameIndex = arr.findIndex(({ item, size }) =>
+              item.poizonArticul === curr.item.poizonArticul
+              && size.chosenSizeKey === curr.size.chosenSizeKey
+              && size.chosenSizeValue === curr.size.chosenSizeValue)
+
+            if (sameIndex !== -1) {
+              arr[sameIndex].amount + curr.amount;
+            }
+            else arr.push(curr)
+            return arr;
+          }, [])
+          .map(({ item, size, amount }) => ({
+            name: item.title,
+            articul: item.poizonArticul,
+            price: item.price,
+            amount,
+            size: `${size.chosenSizeKey} ${getSizeName(size)}`
+          })),
         // о клиенте
         client: {
           delivery,
           name: order.name,
-          phone: order.phone
+          phone: order.phone,
+          comment: order.comment
         }
       }
     }
@@ -141,6 +165,10 @@ function BucketPage() {
 
     assistant.build(options);
   }
+
+  useEffect(() => {
+    if (order.startPayment !== 0) payment()
+  }, [order.startPayment])
   //#endregion
 
   //#region СДЭК
@@ -151,7 +179,9 @@ function BucketPage() {
   function setSdekData(sdek: any) {
     changeOrder("Sdek", sdek)
   }
-  console.log("sdekData >> ", order.Sdek);
+  if (order.Sdek.address !== undefined) {
+    console.log("sdekData >> ", order.Sdek);
+  }
   //#endregion
 
   //#region BoxBerry
@@ -162,7 +192,9 @@ function BucketPage() {
   function setBoxBerryData(boxBerry: any) {
     changeOrder("BoxBerry", boxBerry)
   }
-  console.log("boxBerryData >> ", order.BoxBerry);
+  if (order.BoxBerry.address !== undefined) {
+    console.log("boxBerryData >> ", order.BoxBerry);
+  }
   //#endregion
 
   //#region UI templates
@@ -184,23 +216,25 @@ function BucketPage() {
   )}>
 
     <TestRedux />
-    <SdekModal
+    <button
+      onClick={() => setOrder(x => ({ ...x, startPayment: ++x.startPayment }))}
+      className="absolute bg-slate-500 top-[10rem]">Вызов оплаты</button>
+    {isModalOpenSdek && <SdekModal
       setSdekData={setSdekData}
       isSdekModalOpen={isModalOpenSdek}
       closeModal={() => setIsModalOpenSdek(false)}
-    />
-    <BoxBerryModal
+    />}
+    {isModalOpenBoxBerry && <BoxBerryModal
       setBoxBerryData={setBoxBerryData}
       isBoxBerryModalOpen={isModalOpenBoxBerry}
       closeModal={() => setIsModalOpenBoxBerry(false)}
-    />
-    <OrderModal
+    />}
+    {isOrderModalOpen && <OrderModal
       order={order}
-      payment={payment}
-      changeOrder={changeOrder}
+      setOrder={setOrder}
       isOrderModalOpen={isOrderModalOpen}
       closeModal={() => setIsOrderModalOpen(false)}
-    />
+    />}
 
     <form className="flex flex-col items-center justify-center w-full mb-12">
       {/* Bucket text */}
@@ -290,13 +324,19 @@ function BucketPage() {
             {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
 
             <textarea
+              value={order.comment}
               placeholder="Комментарий к заказу"
               rows={3}
               className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
+              onChange={x => changeOrder("comment", x.target.value)}
             />
 
             <button
-              disabled={!order.personalDataCheck || itemsAmount === 0}
+              disabled={
+                !order.personalDataCheck
+                || itemsAmount === 0
+                || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
+                || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
               className={styles.buy + " font-inter w-full"}
               onClick={openOrderModal}
             >
