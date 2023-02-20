@@ -41,20 +41,37 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
 
-  return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3'>
+  return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3
+     max-[650px]:gap-[6px]
+     max-[650px]:grid
+     max-[650px]:grid-cols-10
+  '>
     <DatoCMSImage
-      className="rounded-[13px] "
+      className="rounded-[13px]
+        min-w-[80px]
+        max-[650px]:col-start-1
+        max-[650px]:col-end-4
+        max-[650px]:!w-[auto]
+        max-[650px]:rounded-[13px]
+      "
       style={{ width: "13vw", aspectRatio: "134/88" }}
       objectFit="cover"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='grow'>
-      <h3 className='font-lato text-[20px] leading-[27px] mb-[5px] tracking-[0.01em]'>
+    <div className='grow
+      max-[650px]:col-start-4
+      max-[650px]:col-end-9
+    '>
+      <h3 className='font-lato text-[20px] leading-[27px] mb-[5px] tracking-[0.01em]
+        max-[650px]:text-[15px]
+      '>
         {item.title}
       </h3>
 
-      <p className='font-lato text-[12px] leading-[22px] mb-[5px] tracking-[0.01em]'>
+      <p className='font-lato text-[12px] leading-[22px] mb-[5px] tracking-[0.01em]
+        max-[650px]:text-[8px]
+      '>
         Артикул {item.poizonArticul}
       </p>
 
@@ -86,7 +103,15 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       </div>
     </div>
 
-    <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]'>
+    <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
+      max-[650px]:min-w-[auto]
+      max-[650px]:text-[12px]
+      max-[650px]:mr-[0px]
+      max-[650px]:text-start
+      max-[650px]:col-start-9
+      max-[650px]:col-end-11
+      max-[650px]:align-top
+    '>
       {price} руб
     </p>
 
