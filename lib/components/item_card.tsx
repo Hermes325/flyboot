@@ -36,9 +36,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
         objectFit={"contain"}
         style={{ maxWidth: "none" }}
         className={`${imageClassName ?? ""} rounded-xl`}
-        pictureClassName="
-          bg-white
-        "
+        pictureClassName="bg-white"
       />
 
       <div>

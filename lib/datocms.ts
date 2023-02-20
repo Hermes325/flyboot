@@ -71,7 +71,7 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
         price
         slug
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: { auto: format, borderRadius: "12" }) {
             sizes
             src
             width
@@ -166,7 +166,7 @@ export async function getItems(
         price
         poizonArticul
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: { auto: format, borderRadius: "12" }) {
             sizes
             src
             width
@@ -234,7 +234,7 @@ export async function getItem(slug: string): Promise<Item> {
           color
         }
         images {
-          responsiveImage(imgixParams: { auto: format }) {
+          responsiveImage(imgixParams: { auto: format, borderRadius: "15" }) {
             sizes
             src
             width
@@ -253,10 +253,7 @@ export async function getItem(slug: string): Promise<Item> {
     variables: { slug },
   });
 
-  const data = { ...response.item, site: response.site };
-  console.log("getItem >> ", data.seo);
-
-  return data;
+  return { ...response.item, site: response.site };
 }
 
 export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {

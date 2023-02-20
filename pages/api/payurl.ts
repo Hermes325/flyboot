@@ -18,7 +18,7 @@ const payStr = (id: string, email: string, signature: string, transactionId: str
       "vatTag": "1105", 
       "pm": "full_payment", 
       "po": "service", 
-      "agent_info": {"type": "commission"}, 
+      "agent_info": {"type": "agent"}, 
       "supplier_info": {"phones": ["11111","22222"], "name": "supplier first", "inn": "1215948374"}
     }, 
     {
@@ -28,7 +28,7 @@ const payStr = (id: string, email: string, signature: string, transactionId: str
       "vatTag": "1105", 
       "pm": "full_payment", 
       "po": "service", 
-      "agent_info": {"type": "commission"}, 
+      "agent_info": {"type": "agent"}, 
       "supplier_info": {"phones": ["33333","44444"], "name": "supplier second", "inn": "4756493018"}
     }]</VALUE>
   </ATTRIBUTE>
