@@ -124,12 +124,13 @@ function BucketPage() {
             return arr;
           }, [])
           .map(({ item, size, amount }) => ({
-            name: item.title,
-            articul: item.poizonArticul,
+            title: item.title,
+            poizonArticul: item.poizonArticul,
             price: item.price,
             amount,
             size: `${size.chosenSizeKey} ${getSizeName(size)}`
-          })),
+          }))
+          .map(item => ({ [`item-${item.poizonArticul}`]: JSON.stringify(item) })),
         // о клиенте
         client: {
           delivery,
