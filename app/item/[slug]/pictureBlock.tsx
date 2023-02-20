@@ -33,19 +33,19 @@ const PictureBlock = ({ item }: Props) => {
         className="rounded-[15px]"
         style={{ maxWidth: "none" }}
         pictureClassName=" aspect-[646/532] rounded-[15px]
-        bg-white
-        object-contain
-        object-center
-        h-[auto]
-        w-[auto]
-        max-h-[auto]
-        max-w-[100%]
-        max-[1024px]:h-[auto]
-        max-[1024px]:w-[auto]
-        max-[1024px]:max-h-[45vw]
-        max-[1024px]:max-w-[100%]
-        max-[750px]:max-h-[100vw]
-      "
+          bg-white
+          object-contain
+          object-center
+          h-[auto]
+          w-[auto]
+          max-h-[auto]
+          max-w-[100%]
+          max-[1024px]:h-[auto]
+          max-[1024px]:w-[auto]
+          max-[1024px]:max-h-[45vw]
+          max-[1024px]:max-w-[100%]
+          max-[750px]:max-h-[100vw]
+        "
       />
 
       {/* more photos */}
@@ -83,18 +83,20 @@ const PictureBlock = ({ item }: Props) => {
                 data={image.responsiveImage}
                 usePlaceholder={false}
                 pictureClassName="object-contain rounded-[15px]
-                object-center
-                h-[auto]
-                w-[auto]
-                max-h-[100%]
-                max-w-[100%]
-              "
+                  bg-white
+                  object-center
+                  h-[auto]
+                  w-[auto]
+                  max-h-[30vw]
+                  max-w-[100%]
+                  max-[1024px]:h-[auto]
+                  max-[1024px]:w-[auto]
+                  max-[1024px]:max-h-[45vw]
+                  max-[1024px]:max-w-[100%]
+                  max-[750px]:max-h-[100vw]
+                "
                 className=""
               />
-              {/*max-[1024px]:!h-[calc(40vw_/_${mapArray.length})]*/}
-              {/*max-[1024px]:!w-[calc(40vw_/_${mapArray.length})]*/}
-              {/*max-[750px]:!w-[calc(100vw_/_${mapArray.length})]*/}
-              {/*max-[750px]:!w-[calc(100vw_/_${mapArray.length})]*/}
             </div>
           ))}
       </div>
