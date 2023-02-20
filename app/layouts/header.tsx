@@ -70,6 +70,12 @@ function Header() {
     const found = await fetch(`/api/search?name=${name}`);
     setFoundItems(await found.json());
     console.log(foundItems);
+
+    // if (isNavOpen) {
+    //   document.body.style.position = "fixed";
+    // } else {
+    //   document.body.style.position = "";
+    // }
   }
 
   // search on Desktop
@@ -96,6 +102,12 @@ function Header() {
     const found = await fetch(`/api/search?name=${searchDesktop}`);
     setFoundItemsDesktop(await found.json());
     console.log(foundItemsDesktop);
+
+    if (isSearchDesktopOpen) {
+      document.body.style.position = "fixed";
+    } else {
+      document.body.style.position = "";
+    }
   }
 
   // clear search attributes after routing
@@ -216,6 +228,11 @@ function Header() {
           <button
             onClick={() => {
               setIsNavOpen((prev) => !prev);
+              if (!isNavOpen) {
+                document.body.style.position = "fixed";
+              } else {
+                document.body.style.position = "";
+              }
             }}
             className="mobile:hidden"
           >
@@ -266,6 +283,7 @@ function Header() {
           onClick={() => {
             setSearchDesktop("");
             setIsSearchDesktopOpen(false);
+            document.body.style.position = "";
           }}
           className="fixed right-4 top-4"
         >
