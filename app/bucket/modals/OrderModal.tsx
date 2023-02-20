@@ -112,7 +112,7 @@ const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment 
 
       <div className={classNames('flex justify-center col-span-4 max-[1000px]:col-span-2')}>
         <button
-          onClick={(e) => { e.preventDefault(); closeModal(); }}
+          onClick={(e) => { e.preventDefault(); closeModal(); payment(); }}
           className={styles.buy + " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8"} >
           Оплатить
         </button>
