@@ -7,14 +7,15 @@ import styles from "./OrderModal.module.css"
 
 
 type Props = {
-  order: Order,
-  changeOrder: (prop: string, value: any) => void,
-  closeModal: () => any,
+  order: Order
+  changeOrder: (prop: string, value: any) => void
+  closeModal: () => any
   isOrderModalOpen: boolean
+  payment: () => any
 }
 // Модалка с заказом. 
 // Открывается при нажатии кнопки "Заказать"
-const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen }: Props) => {
+const OrderModal = ({ order, changeOrder, closeModal, isOrderModalOpen, payment }: Props) => {
   const inputTailwind = "px-[24px] text-[20px] font-lato h-[68px] max-[600px]:h-[50px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px] invalid:border-red-500 text-white";
   const isPickUpPointDelivery = ["BoxBerry", "Sdek"].includes(order.delivery)
 

@@ -15,7 +15,6 @@ function BoxBerryModal({ setBoxBerryData, closeModal, isBoxBerryModalOpen }: Pro
 
   useEffect(() => {
     if (modalRef.current) {
-      (window as any).boxberry.displaySettings({ top: 10 });
       (window as any).boxberry.openOnPage('boxberry', null, "Москва");
       (window as any).boxberry.open(callback_function);
     }

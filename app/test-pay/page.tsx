@@ -15,7 +15,7 @@ const PaymentPage = () => {
         MNT_CUSTOM3: "msk.vitaly@gmail.com"
       }
     }
-    var assistant = new (window as any).Assistant.Builder();
+    const assistant = new (window as any).Assistant.Builder();
 
     // платёж прошёл успешно
     assistant.setOnSuccessCallback(function (operationId: string, transactionId: string) {

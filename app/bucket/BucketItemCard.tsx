@@ -112,7 +112,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       max-[650px]:col-end-11
       max-[650px]:align-top
     '>
-      {price} руб
+      {price}&nbsp;руб
     </p>
 
     <NextImage

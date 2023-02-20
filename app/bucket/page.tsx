@@ -49,7 +49,6 @@ function BucketPage() {
     Sdek: {},
     BoxBerry: {},
   });
-
   function changeOrder(prop: string, value: any) {
     setOrder((x) => ({ ...x, [prop]: value }));
   }
@@ -69,43 +68,82 @@ function BucketPage() {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
-
   const finalAmount = bucketItems.reduce((a, v) => a + v.amount, 0);
-  //#endregion
 
-  //#region СДЭК
-  const [sdekData, setSdekData] = useState<any>(null);
-  function openSdekModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    setIsModalOpenSdek(true);
-  }
-  console.log("sdekData >> ", sdekData);
-  //#endregion
-
-  //#region BoxBerry
-  const [boxBerryData, setBoxBerryData] = useState<any>(null);
-  function openBoxBerryModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    setIsModalOpenBoxBerry(true);
-  }
   function openOrderModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     setIsOrderModalOpen(true);
   }
-  console.log("boxBerryData >> ", boxBerryData);
+  //#endregion
+
+  //#region Оплата
+  function payment() {
+    //? Какой параметр отвечает за отправку на email покупателя
+    const options = {
+      account: 25060038,
+      amount: 1,
+      transactionId: 't-' + Date.now(),
+      subscriberId: "georg3georg3georg@gmail.com",
+      testMode: 0,
+      customParams: {
+        MNT_CUSTOM3: "msk.vitaly@gmail.com"
+      }
+    }
+    const assistant = new (window as any).Assistant.Builder();
+
+    // платёж прошёл успешно
+    assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
+      console.log("setOnSuccessCallback");
+      // location.replace("https://domain.domain");
+      alert("setOnSuccessCallback")
+    });
+
+    // платёж не прошёл
+    assistant.setOnFailCallback((operationId: string, transactionId: string) => {
+      console.log("setOnFailCallback");
+      alert("setOnFailCallback")
+    });
+
+    // платёж обрабатывается
+    assistant.setOnInProgressCallback((operationId: string, transactionId: string) => {
+      console.log("setOnInProgressCallback");
+      alert("setOnInProgressCallback")
+    });
+
+    assistant.build(options);
+  }
+  //#endregion
+
+  //#region СДЭК
+  function openSdekModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    setIsModalOpenSdek(true);
+  }
+  function setSdekData(sdek: any) {
+    changeOrder("Sdek", sdek)
+  }
+  console.log("sdekData >> ", order.Sdek);
+  //#endregion
+
+  //#region BoxBerry
+  function openBoxBerryModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    setIsModalOpenBoxBerry(true);
+  }
+  function setBoxBerryData(boxBerry: any) {
+    changeOrder("BoxBerry", boxBerry)
+  }
+  console.log("boxBerryData >> ", order.BoxBerry);
   //#endregion
 
   //#region UI templates
-  const h2 = (text: string, className: string = "") => (
-    <h2
-      className={`${className} font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]`}
-    >
+  const h2 = (text: string, className: string = "") =>
+    <h2 className={`${className} font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]`}>
       {text}
     </h2>
-  );
   //#endregion
 
-  return (<main className={classNames(
+  return <main className={classNames(
     `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[13vw]
       max-[800px]:px-[50px]
       max-[600px]:px-[25px]
@@ -129,6 +167,7 @@ function BucketPage() {
     />
     <OrderModal
       order={order}
+      payment={payment}
       changeOrder={changeOrder}
       isOrderModalOpen={isOrderModalOpen}
       closeModal={() => setIsOrderModalOpen(false)}
@@ -149,8 +188,7 @@ function BucketPage() {
           max-[1300px]:col-end-3
           max-[1300px]:row-start-1
           max-[550px]:border-0
-        "
-        >
+        ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={`${bucketItem.item.id}-${i}`}>
               <BucketItemCard bucketItem={bucketItem} />
@@ -189,7 +227,7 @@ function BucketPage() {
                       onClick={openSdekModal}
                       className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
                     >
-                      {sdekData?.PVZ?.Address ?? <>Выбрать на карте...</>}
+                      {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
                     </button>}
                 </>
               </BucketFormRadio>
@@ -205,7 +243,7 @@ function BucketPage() {
                       onClick={openBoxBerryModal}
                       className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
                     >
-                      {boxBerryData?.address ?? <>Выбрать на карте...</>}
+                      {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
                     </button>}
                 </>
               </BucketFormRadio>
@@ -265,7 +303,7 @@ function BucketPage() {
         </div>
       </div>
     </form>
-  </main>);
+  </main>
 }
 
 export default BucketPage;
