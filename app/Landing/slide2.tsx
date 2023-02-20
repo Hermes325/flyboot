@@ -10,10 +10,11 @@ const Slide2 = () => {
 
   return (
     <section className="mt-[5vw] 
-    grid grid-cols-4 gap-x-3 gap-y-5 px-[13vw]
+    grid grid-cols-4 gap-x-3 gap-y-5 px-[10vw]
     max-[1700px]:mt-[3vw]
     max-[1400px]:!grid-cols-3
-    max-[600px]:!grid-cols-2 ">
+    max-[600px]:!grid-cols-2 
+    max-[600px]:!mt-[55vw] ">
       {items.slice(0, 6).map(item =>
         <ItemCard
           h3ClassName="
@@ -25,7 +26,7 @@ const Slide2 = () => {
           max-[400px]:!leading-[13px]
           max-[385px]:!text-[10px]
           max-[325px]:!text-[9px] "
-          pClassName="max-[1015px]:!text-[17px] max-[835px]:!hidden"
+          pClassName="hidden"
           item={item}
           key={`item-card-${item.slug}`} />)}
 
@@ -40,7 +41,7 @@ const Slide2 = () => {
           max-[400px]:!leading-[13px]
           max-[385px]:!text-[10px]
           max-[325px]:!text-[9px] "
-          pClassName="max-[1015px]:!text-[17px] max-[835px]:!hidden"
+          pClassName="hidden"
           className="max-[1400px]:!hidden max-[600px]:!block"
           item={item}
           key={`item-card-${item.slug}`} />)}
