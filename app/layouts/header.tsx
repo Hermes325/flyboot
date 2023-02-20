@@ -23,9 +23,13 @@ const links = [
 
 function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
   return isNavOpen ? (
-    <Image src={menu_close_path} alt="закрыть меню" className="w-10 h-10" />
+    <Image
+      src={menu_close_path}
+      alt="закрыть меню"
+      className="w-[50px] h-[50px]"
+    />
   ) : (
-    <Image src={menu_path} alt="открыть меню" className="w-10 h-10" />
+    <Image src={menu_path} alt="открыть меню" className="w-[50px] h-[50px]" />
   );
 }
 
@@ -66,6 +70,12 @@ function Header() {
     const found = await fetch(`/api/search?name=${name}`);
     setFoundItems(await found.json());
     console.log(foundItems);
+
+    // if (isNavOpen) {
+    //   document.body.style.position = "fixed";
+    // } else {
+    //   document.body.style.position = "";
+    // }
   }
 
   // search on Desktop
@@ -92,6 +102,12 @@ function Header() {
     const found = await fetch(`/api/search?name=${searchDesktop}`);
     setFoundItemsDesktop(await found.json());
     console.log(foundItemsDesktop);
+
+    if (isSearchDesktopOpen) {
+      document.body.style.position = "fixed";
+    } else {
+      document.body.style.position = "";
+    }
   }
 
   // clear search attributes after routing
@@ -103,6 +119,7 @@ function Header() {
     setIsNavOpen(false);
     setFoundItems([] as Item[]);
     setFoundItemsDesktop([] as Item[]);
+    document.body.style.position = "";
   };
 
   //#endregion
@@ -127,7 +144,10 @@ function Header() {
   return (
     <header
       id="layout-header"
-      className="fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]"
+      className={classNames(
+        "fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]",
+        { "px-[1vw]": isNavOpen }
+      )}
     >
       {/* Logo and burger menu */}
       <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
@@ -173,7 +193,7 @@ function Header() {
           <p>Отмена</p>
         </button>
 
-        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
+        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-4">
           {/* Search items 
           2 inputs for 1 reason i know its govnocode*/}
           <input
@@ -184,7 +204,7 @@ function Header() {
             value={searchDesktop}
             onChange={searchDesktopRequest}
           />
-
+          {/* <div className="flex flex-row space-x-5"> */}
           {/* bucket picture and route to bucket page */}
           <NavLink
             href="/bucket"
@@ -209,11 +229,17 @@ function Header() {
           <button
             onClick={() => {
               setIsNavOpen((prev) => !prev);
+              if (!isNavOpen) {
+                document.body.style.position = "fixed";
+              } else {
+                document.body.style.position = "";
+              }
             }}
             className="mobile:hidden"
           >
             <BurgerHandle isNavOpen={isNavOpen} />
           </button>
+          {/* </div> */}
         </div>
       </nav>
 
@@ -223,25 +249,28 @@ function Header() {
           "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center space-y-5 bg-black bg-opacity-0 invisible transition mobile:hidden",
           {
             "!visible !bg-opacity-90": isNavOpen,
-          }
+          },
+          { "justify-center": foundItems.length === 0 }
         )}
       >
         <HeaderSearchList items={foundItems} setOpen={setIsNavOpen} />
 
-        <div className="flex flex-col justify-center items-center space-y-2">
-          {links.map(({ href, label }, i) => (
-            <NavLink
-              key={href}
-              href={href}
-              prefetch={href.startsWith("/")}
-              className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
-              style={{ animationDelay: `0.${i + 1}s` }}
-              setOpen={clearSearch}
-            >
-              {label}
-            </NavLink>
-          ))}
-        </div>
+        {foundItems.length === 0 && (
+          <div className="flex flex-col justify-center items-center space-y-2">
+            {links.map(({ href, label }, i) => (
+              <NavLink
+                key={href}
+                href={href}
+                prefetch={href.startsWith("/")}
+                className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
+                style={{ animationDelay: `0.${i + 1}s` }}
+                setOpen={clearSearch}
+              >
+                {label}
+              </NavLink>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* modal window of search on desktop version */}
@@ -255,6 +284,7 @@ function Header() {
           onClick={() => {
             setSearchDesktop("");
             setIsSearchDesktopOpen(false);
+            document.body.style.position = "";
           }}
           className="fixed right-4 top-4"
         >
