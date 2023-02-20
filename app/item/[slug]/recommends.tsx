@@ -4,8 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Catalog, Item } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card';
 import arrow_left from "@/public/arrow/arrow-left.svg"
-import arrow_forward from "@/public/arrow/arrow_forward.svg";
-import arrow_backward from "@/public/arrow/arrow_back.svg";
 import Image from "next/image";
 import 'swiper/css';
 import { Navigation } from 'swiper';

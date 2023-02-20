@@ -17,33 +17,31 @@ const Slide2 = () => {
       {items.slice(0, 6).map(item =>
         <ItemCard
           h3ClassName="
-          max-[1015px]:!text-[20px] 
           max-[1015px]:!text-[18px] 
-          max-[835px]:!text-[16px] 
-          max-[835px]:!leading-[19px] 
+          max-[835px]:!text-[16px] max-[835px]:!leading-[19px] 
           max-[775px]:!mt-[2vw] 
           max-[710px]:!text-[14px] 
-          max-[660px]:!text-[12px]
-          max-[385px]:!text-[10px]
+          max-[660px]:!text-[12px] max-[660px]:!leading-[137%]
           max-[400px]:!leading-[13px]
+          max-[385px]:!text-[10px]
           max-[325px]:!text-[9px] "
           pClassName="max-[1015px]:!text-[17px] max-[835px]:!hidden"
-          className="h-[20vw] max-[1400px]:!h-[23vw] max-[600px]:!h-[27vw] max-[400px]:!h-[29vw]"
           item={item}
           key={`item-card-${item.slug}`} />)}
 
       {items.slice(6).map(item =>
         <ItemCard
           h3ClassName="
-          max-[1015px]:!text-[20px]
           max-[1015px]:!text-[18px] 
-          max-[835px]:!text-[16px] 
-          max-[835px]:!leading-[19px] 
+          max-[835px]:!text-[16px] max-[835px]:!leading-[19px] 
           max-[775px]:!mt-[2vw] 
           max-[710px]:!text-[14px] 
-          max-[660px]:!text-[12px]"
+          max-[660px]:!text-[12px] max-[660px]:!leading-[137%]
+          max-[400px]:!leading-[13px]
+          max-[385px]:!text-[10px]
+          max-[325px]:!text-[9px] "
           pClassName="max-[1015px]:!text-[17px] max-[835px]:!hidden"
-          className="h-[20vw] max-[1400px]:!hidden max-[600px]:!block max-[1400px]:!h-[27vw] max-[600px]:!h-[25vw]"
+          className="max-[1400px]:!hidden max-[600px]:!block"
           item={item}
           key={`item-card-${item.slug}`} />)}
     </section>
