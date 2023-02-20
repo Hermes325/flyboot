@@ -23,9 +23,13 @@ const links = [
 
 function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
   return isNavOpen ? (
-    <Image src={menu_close_path} alt="закрыть меню" className="w-10 h-10" />
+    <Image
+      src={menu_close_path}
+      alt="закрыть меню"
+      className="w-[50px] h-[50px]"
+    />
   ) : (
-    <Image src={menu_path} alt="открыть меню" className="w-10 h-10" />
+    <Image src={menu_path} alt="открыть меню" className="w-[50px] h-[50px]" />
   );
 }
 
@@ -127,7 +131,10 @@ function Header() {
   return (
     <header
       id="layout-header"
-      className="fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]"
+      className={classNames(
+        "fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]",
+        { "px-[1vw]": isNavOpen }
+      )}
     >
       {/* Logo and burger menu */}
       <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
@@ -173,7 +180,7 @@ function Header() {
           <p>Отмена</p>
         </button>
 
-        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
+        <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-4">
           {/* Search items 
           2 inputs for 1 reason i know its govnocode*/}
           <input
@@ -184,37 +191,37 @@ function Header() {
             value={searchDesktop}
             onChange={searchDesktopRequest}
           />
-          <div className="flex flex-row space-x-5">
-            {/* bucket picture and route to bucket page */}
-            <NavLink
-              href="/bucket"
-              className={classNames("relative", { " hidden": isNavOpen })}
-              setOpen={clearSearch}
-            >
-              <Image
-                src={bucket}
-                alt="bucket page logo"
-                className={classNames(
-                  "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
-                  { " hidden": isNavOpen }
-                )}
-              />
-              {bucketItems > 0 && (
-                <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
-                  {bucketItems}
-                </p>
+          {/* <div className="flex flex-row space-x-5"> */}
+          {/* bucket picture and route to bucket page */}
+          <NavLink
+            href="/bucket"
+            className={classNames("relative", { " hidden": isNavOpen })}
+            setOpen={clearSearch}
+          >
+            <Image
+              src={bucket}
+              alt="bucket page logo"
+              className={classNames(
+                "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
+                { " hidden": isNavOpen }
               )}
-            </NavLink>
+            />
+            {bucketItems > 0 && (
+              <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
+                {bucketItems}
+              </p>
+            )}
+          </NavLink>
 
-            <button
-              onClick={() => {
-                setIsNavOpen((prev) => !prev);
-              }}
-              className="mobile:hidden"
-            >
-              <BurgerHandle isNavOpen={isNavOpen} />
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              setIsNavOpen((prev) => !prev);
+            }}
+            className="mobile:hidden"
+          >
+            <BurgerHandle isNavOpen={isNavOpen} />
+          </button>
+          {/* </div> */}
         </div>
       </nav>
 
