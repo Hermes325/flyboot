@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-// import { useRouter } from "next/router";
-import { useEffect, ReactNode, HTMLAttributes, Dispatch } from "react";
+import { useEffect, ReactNode, HTMLAttributes } from "react";
 
 type CustomLinkProps = {
   children: ReactNode;
@@ -12,6 +11,7 @@ type CustomLinkProps = {
   setOpen?: any;
 } & HTMLAttributes<HTMLAnchorElement>;
 
+// TODO: удалить и заменить на Link из next/link
 // typically you want to use `next/link` for this usecase
 // but this example shows how you can also access the router
 // and use it manually
