@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, ReactNode, HTMLAttributes } from "react";
+// import { useRouter } from "next/router";
+import { useEffect, ReactNode, HTMLAttributes, Dispatch } from "react";
 
 type CustomLinkProps = {
   children: ReactNode;
@@ -8,6 +9,7 @@ type CustomLinkProps = {
   prefetch?: boolean;
   replace?: boolean;
   shallow?: boolean;
+  setOpen?: any;
 } & HTMLAttributes<HTMLAnchorElement>;
 
 // typically you want to use `next/link` for this usecase
@@ -19,6 +21,7 @@ function NavLink({
   prefetch = false,
   replace = false,
   shallow = false,
+  setOpen,
   ...props
 }: CustomLinkProps) {
   const router = useRouter();
@@ -34,6 +37,9 @@ function NavLink({
       {...props}
       href={href}
       onClick={(event) => {
+        if (setOpen != undefined) {
+          setOpen();
+        }
         event.preventDefault();
         if (replace) {
           router.replace(href, undefined);
@@ -47,4 +53,4 @@ function NavLink({
   );
 }
 
-export default NavLink
+export default NavLink;

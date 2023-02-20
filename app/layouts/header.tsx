@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Item } from "@/lib/datocms";
 import { RootState } from "@/lib/redux/store/store";
 import { useSelector } from "react-redux";
@@ -30,18 +30,6 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
     <Image src={menu_path} alt="открыть меню" className="w-10 h-10" />
   );
 }
-
-// function SearchHandle({ isSearchOpen }: { isSearchOpen: boolean }) {
-//   return isSearchOpen ? (
-//     <Image
-//       src={menu_close_path}
-//       alt="search menu close image"
-//       className="w-5 h-5"
-//     />
-//   ) : (
-//     <Image src={search_path} alt="search menu open image" className="w-5 h-5" />
-//   );
-// }
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -120,11 +108,24 @@ function Header() {
 
   //#endregion
 
+  const clearSearch = () => {
+    setSearch("");
+    setIsSearchOpen(false);
+    setSearchDesktop("");
+    setIsSearchDesktopOpen(false);
+    setIsNavOpen(false);
+    setFoundItems([] as Item[]);
+    setFoundItemsDesktop([] as Item[]);
+  };
+
   return (
-    <header id="layout-header" className="fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]">
+    <header
+      id="layout-header"
+      className="fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]"
+    >
       {/* Logo and burger menu */}
       <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
-        <NavLink prefetch href="/">
+        <NavLink prefetch href="/" setOpen={clearSearch}>
           <Image
             src={FlyBoots_logo}
             alt="Fly Boots Logo"
@@ -151,6 +152,21 @@ function Header() {
           onChange={searchRequest}
         />
 
+        <button
+          className={classNames(
+            "border-2 rounded-lg p-1 ml-2 border-[#919191] hidden",
+            {
+              "!block ": search.length > 0 && isNavOpen,
+            }
+          )}
+          onClick={() => {
+            setSearch("");
+            setFoundItems([] as Item[]);
+          }}
+        >
+          <p>Отмена</p>
+        </button>
+
         <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
           {/* Поиск товаров */}
           <input
@@ -162,7 +178,11 @@ function Header() {
             onChange={searchDesktopRequest}
           />
 
-          <NavLink href="/bucket" className="relative">
+          <NavLink
+            href="/bucket"
+            className={classNames("relative", { " hidden": isNavOpen })}
+            setOpen={clearSearch}
+          >
             <Image
               src={bucket}
               alt="bucket page logo"
@@ -179,7 +199,10 @@ function Header() {
           </NavLink>
 
           <button
-            onClick={() => setIsNavOpen((prev) => !prev)}
+            onClick={() => {
+              setIsNavOpen((prev) => !prev);
+              // setSearch("");
+            }}
             className="mobile:hidden"
           >
             <BurgerHandle isNavOpen={isNavOpen} />
@@ -190,14 +213,14 @@ function Header() {
       {/* Модальное окно навигации */}
       <nav
         className={classNames(
-          "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start pt-10 items-center gap-10 bg-black rounded-xl opacity-0 invisible transition mobile:hidden",
+          "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center gap-10 bg-black bg-opacity-0 invisible transition mobile:hidden",
           {
-            "!visible opacity-90": isNavOpen,
+            "!visible !bg-opacity-90": isNavOpen,
           }
         )}
       >
-        <HeaderSearchList items={foundItems} />
-        <br />
+        <HeaderSearchList items={foundItems} setOpen={setIsNavOpen} />
+
         {links.map(({ href, label }, i) => (
           <NavLink
             key={href}
@@ -205,6 +228,7 @@ function Header() {
             prefetch={href.startsWith("/")}
             className="text-[#f9f9f9] hover:text-[#00b5b5] text-2xl"
             style={{ animationDelay: `0.${i + 1}s` }}
+            setOpen={clearSearch}
           >
             {label}
           </NavLink>
@@ -213,8 +237,8 @@ function Header() {
       {/* Модальное окно поиска */}
       <div
         className={classNames(
-          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[74vw] translate-x-0  flex-col justify-center items-center pt-10 gap-10 bg-black rounded-b-lg opacity-0 hidden transition",
-          { "!flex opacity-90": isSearchDesktopOpen }
+          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[600px] max-[1600px]:w-[500px] max-[1080px]:w-[400px] max-[720px]:w-[300px] right-[13vw] translate-x-0  flex-col justify-center items-center gap-10 bg-black rounded-b-lg bg-opacity-0 hidden transition",
+          { "!flex !bg-opacity-90": isSearchDesktopOpen }
         )}
       >
         <button
@@ -226,7 +250,7 @@ function Header() {
         >
           <Image src={menu_close_path} alt="close modal search" />
         </button>
-        <HeaderSearchList items={foundItemsDesktop} />
+        <HeaderSearchList items={foundItemsDesktop} setOpen={clearSearch} />
       </div>
     </header>
   );

@@ -366,7 +366,7 @@ export async function searchItem(name: string): Promise<Item[]> {
   const query = gql`
     query searchItem($name: String!) {
       allItems(
-        first: 1
+        first: 15
         skip: 0
         filter: { title: { matches: { pattern: $name } } }
       ) {
