@@ -10,8 +10,6 @@ import FlyBoots_logo from "@/public/header-images/FlyBoots_logo.svg";
 import bucket from "@/public/header-images/bucket.svg";
 import menu_path from "@/public/header-images/menu.svg";
 import menu_close_path from "@/public/header-images/close.svg";
-import search_path from "@/public/header-images/search.svg";
-// import styles
 import classNames from "classnames";
 
 const links = [
@@ -45,28 +43,32 @@ function Header() {
   const [foundItems, setFoundItems] = useState<Item[]>([]);
   const [foundItemsDesktop, setFoundItemsDesktop] = useState<Item[]>([]);
 
+  // search on mobile version
   async function searchRequest(event: React.ChangeEvent<HTMLInputElement>) {
     const name = event.target.value;
     setSearch(name);
 
     setFoundItems([] as Item[]);
 
+    // zero symbols = zero search
     if (name.length < 0) {
       setIsSearchOpen(false);
       return;
     }
-    // Меньше 3 символов ничего не найдём
+    // less then 3 symbols is nothing to search
     if (name.length < 3) {
       setIsSearchOpen(false);
       return;
     }
     setIsSearchOpen(true);
 
+    // search items by substring
     const found = await fetch(`/api/search?name=${name}`);
     setFoundItems(await found.json());
     console.log(foundItems);
   }
 
+  // search on Desktop
   async function searchDesktopRequest(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
@@ -74,21 +76,35 @@ function Header() {
     setSearchDesktop(name);
     setFoundItemsDesktop([] as Item[]);
 
+    // zero symbols = zero search
     if (name.length < 0) {
       setIsSearchDesktopOpen(false);
       return;
     }
-    // Меньше 3 символов ничего не найдём
+    // less then 3 symbols is nothing to search
     if (name.length < 3) {
       setIsSearchDesktopOpen(false);
       return;
     }
     setIsSearchDesktopOpen(true);
 
+    // search items by substring
     const found = await fetch(`/api/search?name=${searchDesktop}`);
     setFoundItemsDesktop(await found.json());
     console.log(foundItemsDesktop);
   }
+
+  // clear search attributes after routing
+  const clearSearch = () => {
+    setSearch("");
+    setIsSearchOpen(false);
+    setSearchDesktop("");
+    setIsSearchDesktopOpen(false);
+    setIsNavOpen(false);
+    setFoundItems([] as Item[]);
+    setFoundItemsDesktop([] as Item[]);
+  };
+
   //#endregion
 
   //#region UI
@@ -107,16 +123,6 @@ function Header() {
   );
 
   //#endregion
-
-  const clearSearch = () => {
-    setSearch("");
-    setIsSearchOpen(false);
-    setSearchDesktop("");
-    setIsSearchDesktopOpen(false);
-    setIsNavOpen(false);
-    setFoundItems([] as Item[]);
-    setFoundItemsDesktop([] as Item[]);
-  };
 
   return (
     <header
@@ -168,7 +174,9 @@ function Header() {
         </button>
 
         <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-3">
-          {/* Поиск товаров */}
+          {/* Search items 
+          2 inputs for 1 reason i know its govnocode
+          GMD style code for customers*/}
           <input
             placeholder="Поиск"
             className={classNames(
@@ -178,6 +186,7 @@ function Header() {
             onChange={searchDesktopRequest}
           />
 
+          {/* bucket picture and route to bucket page */}
           <NavLink
             href="/bucket"
             className={classNames("relative", { " hidden": isNavOpen })}
@@ -201,16 +210,15 @@ function Header() {
           <button
             onClick={() => {
               setIsNavOpen((prev) => !prev);
-              // setSearch("");
             }}
             className="mobile:hidden"
           >
             <BurgerHandle isNavOpen={isNavOpen} />
-            {/* <Image src={menu_path} alt="открыть меню" className="w-10 h-10" /> */}
           </button>
         </div>
       </nav>
-      {/* Модальное окно навигации */}
+
+      {/* modal window of navigation on mobile version */}
       <nav
         className={classNames(
           "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center gap-10 bg-black bg-opacity-0 invisible transition mobile:hidden",
@@ -234,7 +242,8 @@ function Header() {
           </NavLink>
         ))}
       </nav>
-      {/* Модальное окно поиска */}
+
+      {/* modal window of search on desktop version */}
       <div
         className={classNames(
           "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[600px] max-[1600px]:w-[500px] max-[1080px]:w-[400px] max-[720px]:w-[300px] right-[13vw] translate-x-0  flex-col justify-center items-center gap-10 bg-black rounded-b-lg bg-opacity-0 hidden transition",
