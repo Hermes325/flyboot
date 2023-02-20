@@ -32,7 +32,7 @@ const PictureBlock = ({ item }: Props) => {
         data={images.find((x) => x.index === 0)?.image.responsiveImage}
         className="rounded-[15px]"
         style={{ maxWidth: "none" }}
-        pictureClassName=" aspect-[646/532]
+        pictureClassName=" aspect-[646/532] rounded-[15px]
         bg-white
         object-contain
         object-center
