@@ -184,36 +184,37 @@ function Header() {
             value={searchDesktop}
             onChange={searchDesktopRequest}
           />
-
-          {/* bucket picture and route to bucket page */}
-          <NavLink
-            href="/bucket"
-            className={classNames("relative", { " hidden": isNavOpen })}
-            setOpen={clearSearch}
-          >
-            <Image
-              src={bucket}
-              alt="bucket page logo"
-              className={classNames(
-                "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
-                { " hidden": isNavOpen }
+          <div className="flex flex-row space-x-5">
+            {/* bucket picture and route to bucket page */}
+            <NavLink
+              href="/bucket"
+              className={classNames("relative", { " hidden": isNavOpen })}
+              setOpen={clearSearch}
+            >
+              <Image
+                src={bucket}
+                alt="bucket page logo"
+                className={classNames(
+                  "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
+                  { " hidden": isNavOpen }
+                )}
+              />
+              {bucketItems > 0 && (
+                <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
+                  {bucketItems}
+                </p>
               )}
-            />
-            {bucketItems > 0 && (
-              <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
-                {bucketItems}
-              </p>
-            )}
-          </NavLink>
+            </NavLink>
 
-          <button
-            onClick={() => {
-              setIsNavOpen((prev) => !prev);
-            }}
-            className="mobile:hidden"
-          >
-            <BurgerHandle isNavOpen={isNavOpen} />
-          </button>
+            <button
+              onClick={() => {
+                setIsNavOpen((prev) => !prev);
+              }}
+              className="mobile:hidden"
+            >
+              <BurgerHandle isNavOpen={isNavOpen} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -223,25 +224,28 @@ function Header() {
           "fixed z-[1] top-[63px] left-[0] w-[100vw] h-full translate-x-0 flex flex-col justify-start items-center space-y-5 bg-black bg-opacity-0 invisible transition mobile:hidden",
           {
             "!visible !bg-opacity-90": isNavOpen,
-          }
+          },
+          { "justify-center": foundItems.length === 0 }
         )}
       >
         <HeaderSearchList items={foundItems} setOpen={setIsNavOpen} />
 
-        <div className="flex flex-col justify-center items-center space-y-2">
-          {links.map(({ href, label }, i) => (
-            <NavLink
-              key={href}
-              href={href}
-              prefetch={href.startsWith("/")}
-              className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
-              style={{ animationDelay: `0.${i + 1}s` }}
-              setOpen={clearSearch}
-            >
-              {label}
-            </NavLink>
-          ))}
-        </div>
+        {foundItems.length === 0 && (
+          <div className="flex flex-col justify-center items-center space-y-2">
+            {links.map(({ href, label }, i) => (
+              <NavLink
+                key={href}
+                href={href}
+                prefetch={href.startsWith("/")}
+                className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
+                style={{ animationDelay: `0.${i + 1}s` }}
+                setOpen={clearSearch}
+              >
+                {label}
+              </NavLink>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* modal window of search on desktop version */}
