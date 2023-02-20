@@ -1,6 +1,4 @@
 import React from "react";
-import Image from 'next/image';
-import vector from '@/public/main-images/Vector.svg'
 import styles from "./styles/slide3.module.css";
 import Link from "next/link";
 
@@ -20,28 +18,40 @@ const links = [{
 }]
 
 function Slide3() {
+  let btnLinkToCatalog = (classMobile: string) => {
+    return <Link href="/catalog" className={`mt-[3vw] text-center flex justify-center
+      ${classMobile}
+    `} >
+      <button className={styles.catalog_button + " font-montserrat" +
+          " max-[950px]:text-[24px]" +
+          " max-[950px]:h-[auto]" +
+          " max-[600px]:h-[60px]" +
+          " max-[600px]:w-[50vw]"}
+      >
+      Каталог
+      </button>
+    </Link>
+  }
   return (<section id="catalog" className="translate-y-5 px-[13vw]">
+    {btnLinkToCatalog(" min-[600px]:hidden")}
 
     <p className={styles.jost_p_center + " font-jost mt-[2vw] text-center flex justify-center"}>
       Неограниченное количество годного шмота представлено в каталоге,
       где найдётся что-то по душе как уже опытному хайпбисту, так и начинающему моднику
     </p>
 
-    <div className={styles.container}>
+    <div className={styles.container + "" +
+      " max-[600px]:hidden"}>
       {links.map(({ href, name, className }) =>
         <Link href={href} key={href} className={className}>
-          <button className={styles.btn + " font-jost flex gap-[15px] min-w-[170px] justify-center"}>
+          <button className={styles.btn + " font-jost flex gap-[15px] min-w-[170px] justify-center" +
+            " max-[950px]:min-w-[100px]"}>
             <h3>{name}</h3>
           </button>
         </Link>)}
     </div>
 
-    <Link href="/catalog" className="mt-[3vw] text-center flex justify-center" >
-      <button className={styles.catalog_button + " font-montserrat"}>
-        Каталог
-      </button>
-    </Link>
-
+    {btnLinkToCatalog(" max-[600px]:hidden")}
   </section>)
 }
 
