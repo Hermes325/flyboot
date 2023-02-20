@@ -77,7 +77,9 @@ const ItemPageClientPart = ({ item }: Props) => {
       </div>
 
       {/* Размеры */}
-      <div className='mt-0 grid grid-cols-6'>
+      <div className='mt-0 grid grid-cols-6
+        max-[400px]:grid-cols-5
+      '>
         {countrySizes?.sizeValue.map((size, i) =>
           <button
             key={`${country}-${i}`}
