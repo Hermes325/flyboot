@@ -133,7 +133,7 @@ function BucketPage() {
             item_amount: amount,
             item_size: `${size.chosenSizeKey} ${getSizeName(size)}`
           }))
-          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizonArticul}`]: JSON.stringify(item) }), {}),
+          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizonArticul}`]: encodeURIComponent(JSON.stringify(item, null, 0)) }), {}),
         // о клиенте
         client: {
           client_delivery: delivery,
