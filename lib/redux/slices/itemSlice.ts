@@ -64,7 +64,7 @@ const itemSlice = createSlice({
     },
     // После оплаты удаляем товары из корзины
     deleteAllItems: (state) => {
-      state = [];
+      return [];
     },
   },
 });

@@ -41,7 +41,7 @@ function BucketPage() {
   //#endregion
 
   //#region Заказ
-  const [order, setOrder] = useState<Order>({
+  const emptyOrder: Order = {
     name: "",
     phone: "",
     email: "",
@@ -55,7 +55,8 @@ function BucketPage() {
     Sdek: {},
     BoxBerry: {},
     startPayment: 0
-  });
+  }
+  const [order, setOrder] = useState<Order>(emptyOrder);
   function changeOrder(prop: string, value: any) {
     setOrder((x) => ({ ...x, [prop]: value }));
   }
@@ -154,6 +155,7 @@ function BucketPage() {
     assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
       console.log("setOnSuccessCallback");
       dispatch(deleteAllItems())
+      setOrder(emptyOrder)
       router.push("/thank-you")
     });
 

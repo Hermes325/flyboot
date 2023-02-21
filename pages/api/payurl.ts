@@ -70,7 +70,7 @@ export default async function search(
   console.log("---------------------------------\n")
 
   const itemsPayAnyWay = itemsPayDto.map(x => ({
-    "name": `${x.item_title} ${x.item_poizon_articul} ${x.item_size}`,
+    "name": `${x.item_title} |\n${x.item_poizon_articul}|\n${x.item_size}`,
     "price": x.item_price,
     "quantity": x.item_amount,
     "vatTag": "1105",
@@ -89,14 +89,15 @@ export default async function search(
 
   // const transporter = nodemailer.createTransport({
   //   service: 'gmail',
+  //   secure: false,
   //   auth: {
-  //     user: 'georg3georg3georg@gmail.com',
-  //     pass: 'пароль',
+  //     user: testEmailAccount.user,
+  //     pass: testEmailAccount.pass,
   //   },
   // })
 
   // const result = await transporter.sendMail({
-  //   from: 'georg3georg3georg@gmail.com',
+  //   from: '"Node js" <nodejs@example.com>',
   //   to: 'georg3georg3georg@gmail.com, msk.vitaly@gmail.com',
   //   subject: `Заказ от ${MNT_SUBSCRIBER_ID}`,
   //   text: `Тест сообщения\n
