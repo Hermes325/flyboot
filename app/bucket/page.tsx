@@ -303,6 +303,7 @@ function BucketPage() {
                   id={"Sdek"}
                   checked={order.delivery === "Sdek"}
                   onChange={(_) => changeOrder("delivery", "Sdek")}
+                  className="min-h-[50px]"
                 >
                   <>
                     <span className="block">ПВЗ СДЭК - 350 ₽</span>
@@ -319,6 +320,7 @@ function BucketPage() {
                   id={"BoxBerry"}
                   checked={order.delivery === "BoxBerry"}
                   onChange={(_) => changeOrder("delivery", "BoxBerry")}
+                  className="min-h-[50px]"
                 >
                   <>
                     <span className="block">ПВЗ Boxberry - 350 ₽</span>

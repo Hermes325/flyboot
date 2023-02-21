@@ -5,10 +5,11 @@ type Props = {
   checked: boolean,
   onChange: React.ChangeEventHandler<HTMLInputElement>
   children: string | JSX.Element | JSX.Element[]
+  className?: string
 }
 
-const BucketFormRadio = ({ id, checked, onChange, children }: Props) => {
-  return (<div className='mt-[14px] flex items-center'>
+const BucketFormRadio = ({ id, checked, onChange, children, className = '' }: Props) => {
+  return (<div className={`mt-[14px] flex items-center ${className}`}>
 
     <input
       className="appearance-none h-[20px] w-[20px] m-0 mr-[14px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
