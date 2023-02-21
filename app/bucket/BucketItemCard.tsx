@@ -75,11 +75,12 @@ const BucketItemCard = ({ bucketItem }: Props) => {
         Артикул {item.poizonArticul}
       </p>
 
-      <div className='flex gap-4'>
+      <div className='flex'>
         <select
           defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
           onChange={changeSize}
-          className="font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5"
+          className="font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px] border border-gray-300
+            focus:ring-blue-500 focus:border-blue-500 py-0.5 pl-1.5 mr-[10px]"
         >
           {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue.map(value =>
             <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
