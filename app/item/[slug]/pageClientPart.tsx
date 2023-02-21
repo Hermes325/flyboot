@@ -78,7 +78,7 @@ const ItemPageClientPart = ({ item }: Props) => {
 
       {/* Размеры */}
       <div className='mt-0 grid grid-cols-6
-        max-[400px]:grid-cols-5
+        max-[400px]:grid-cols-7
       '>
         {countrySizes?.sizeValue.map((size, i) =>
           <button
@@ -88,7 +88,8 @@ const ItemPageClientPart = ({ item }: Props) => {
             className={classNames("border-2 border-white cursor-pointer",
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
               "w-[4ch] text-white" +
-              " max-[400px]:text-[16px] max-[400px]:py-0",
+              " max-[400px]:text-[16px] max-[400px]:py-0" +
+              " max-[400px]:w-[4.6ch]",
               {
                 [styles.unavailable]: !countrySizes.available[i],
                 "!text-[#03FFF0]": selectedSize.sizeKey === country && selectedSize.selected === i,
