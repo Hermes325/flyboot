@@ -12,6 +12,7 @@ import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
 import { BucketItem } from "@/lib/redux/slices/itemSlice";
+import { useRouter } from "next/navigation";
 
 // Используется в заказе и при формировании чека
 export type Order = {
@@ -83,6 +84,8 @@ function BucketPage() {
   //#endregion
 
   //#region Оплата
+  const router = useRouter()
+
   function payment() {
     // items + order → options
     let delivery = "";
@@ -124,19 +127,19 @@ function BucketPage() {
             return arr;
           }, [])
           .map(({ item, size, amount }) => ({
-            title: item.title,
-            poizonArticul: item.poizonArticul,
-            price: item.price,
-            amount,
-            size: `${size.chosenSizeKey} ${getSizeName(size)}`
+            item_title: item.title,
+            item_poizonArticul: item.poizonArticul,
+            item_price: item.price,
+            item_amount: amount,
+            item_size: `${size.chosenSizeKey} ${getSizeName(size)}`
           }))
-          .map(item => ({ [`item-${item.poizonArticul}`]: JSON.stringify(item) })),
+          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizonArticul}`]: JSON.stringify(item) }), {}),
         // о клиенте
         client: {
-          delivery,
-          name: order.name,
-          phone: order.phone,
-          comment: order.comment
+          client_delivery: delivery,
+          client_name: order.name,
+          client_phone: order.phone,
+          client_comment: order.comment
         }
       }
     }
@@ -148,20 +151,17 @@ function BucketPage() {
     // платёж прошёл успешно
     assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
       console.log("setOnSuccessCallback");
-      // location.replace("https://domain.domain");
-      alert("setOnSuccessCallback")
+      router.push("/thank-you")
     });
 
     // платёж не прошёл
     assistant.setOnFailCallback((operationId: string, transactionId: string) => {
       console.log("setOnFailCallback");
-      alert("setOnFailCallback")
     });
 
     // платёж обрабатывается
     assistant.setOnInProgressCallback((operationId: string, transactionId: string) => {
       console.log("setOnInProgressCallback");
-      alert("setOnInProgressCallback")
     });
 
     assistant.build(options);
