@@ -60,7 +60,7 @@ const ItemPageClientPart = ({ item }: Props) => {
       {/* Смена региона */}
       <div className="flex flex-row space-x-3 items-end">
         {fetchedSizes === undefined
-          ? <h3>Загружаем размеры с poizon...</h3>
+          ? <h3>Загружаем размеры...</h3>
           : fetchedSizes.map(({ sizeKey }) => (
             <button
               key={sizeKey}
