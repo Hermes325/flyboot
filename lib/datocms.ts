@@ -253,7 +253,7 @@ export async function getItem(slug: string): Promise<Item> {
     variables: { slug },
   });
 
-  return { ...response.item, site: response.site };
+  return response.item;
 }
 
 export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {
@@ -282,7 +282,7 @@ export async function getItemSeo(slug: string): Promise<ItemSeo & SiteSeo> {
   });
 
   return {
-    seo: response.item.seo,
+    seo: response.item?.seo,
     site: response.site,
   };
 }

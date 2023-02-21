@@ -1,10 +1,12 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
-import { notFound } from "next/navigation";
+// import { redirect } from 'next/navigation';
+// import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
+import CustomNotFound from "@/app/item/[slug]/customNotFound";
 
 type Props = {
   params: { slug: string };
@@ -12,7 +14,11 @@ type Props = {
 
 export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
-  if (item === null) notFound();
+  // TODO вернуть notFound ↓ функции когда это будет в стабильной версии next'а
+  // if (item === null) notFound();
+  if (item === null) {
+    return <CustomNotFound />
+  }
 
   const price = Math.ceil(item.price).toLocaleString("ru-RU", {
     minimumFractionDigits: 0,
