@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/lib/redux/store/store";
 import Link from "next/link";
 import BucketItemCard from "./BucketItemCard";
@@ -11,8 +11,9 @@ import OrderModal from "./modals/OrderModal";
 import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
-import { BucketItem } from "@/lib/redux/slices/itemSlice";
+import { BucketItem, deleteAllItems } from "@/lib/redux/slices/itemSlice";
 import { useRouter } from "next/navigation";
+import { ItemPayDto } from "@/pages/api/payurl";
 
 // Используется в заказе и при формировании чека
 export type Order = {
@@ -85,6 +86,7 @@ function BucketPage() {
 
   //#region Оплата
   const router = useRouter()
+  const dispatch = useDispatch();
 
   function payment() {
     // items + order → options
@@ -107,7 +109,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: 1,//finalPrice,
+      amount: 1,//TODO: finalPrice,
       transactionId: 't-' + Date.now(),
       subscriberId: order.email,
       customParams: {
@@ -126,14 +128,14 @@ function BucketPage() {
             else arr.push(curr)
             return arr;
           }, [])
-          .map(({ item, size, amount }) => ({
+          .map<ItemPayDto>(({ item, size, amount }) => ({
             item_title: item.title,
-            item_poizonArticul: item.poizonArticul,
+            item_poizon_articul: item.poizonArticul,
             item_price: item.price,
             item_amount: amount,
             item_size: `${size.chosenSizeKey} ${getSizeName(size)}`
           }))
-          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizonArticul}`]: encodeURIComponent(JSON.stringify(item, null, 0)) }), {}),
+          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizon_articul}`]: JSON.stringify(item, null, 0) }), {}),
         // о клиенте
         client: {
           client_delivery: delivery,
@@ -151,6 +153,7 @@ function BucketPage() {
     // платёж прошёл успешно
     assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
       console.log("setOnSuccessCallback");
+      dispatch(deleteAllItems())
       router.push("/thank-you")
     });
 

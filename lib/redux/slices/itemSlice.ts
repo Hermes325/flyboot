@@ -63,11 +63,11 @@ const itemSlice = createSlice({
           && size.chosenSizeValue === action.payload.size.chosenSizeValue))
     },
     // После оплаты удаляем товары из корзины
-    deleteAll: (state) => {
+    deleteAllItems: (state) => {
       state = [];
     },
   },
 });
 
-export const { addItem, minusItemAmount, changeItemSize, deleteItem, deleteAll } = itemSlice.actions;
+export const { addItem, minusItemAmount, changeItemSize, deleteItem, deleteAllItems } = itemSlice.actions;
 export default itemSlice.reducer;
