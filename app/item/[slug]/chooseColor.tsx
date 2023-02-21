@@ -20,9 +20,9 @@ const ChooseColor: React.FC<Props> = ({ item }) => {
     return <></>
 
   return (<div className='relative w-[50%]
-    max-[430px]:w-[100%]
+    {/*max-[430px]:w-[100%]*/}
   '>
-    <p className='absolute top-2 pl-2.5'>Цвет</p>
+    <p className='absolute top-2 pl-2.5 max-[430px]:hidden'>Цвет</p>
     <select
       defaultValue={item.slug}
       className="bg-[#0E0E0E] text-end font-inter text-[#9A9A9A] text-[16px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2"

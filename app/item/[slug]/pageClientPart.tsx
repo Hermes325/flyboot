@@ -102,6 +102,7 @@ const ItemPageClientPart = ({ item }: Props) => {
     </div>
 
     {/* colors */}
+    <p className='min-[430px]:hidden mb-[10px]'>Цвет</p>
     <ChooseColor item={item} />
 
     <BucketButton
