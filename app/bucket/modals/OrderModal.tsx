@@ -126,7 +126,8 @@ const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) =>
 
       <div className={classNames('flex justify-center col-span-4 max-[1000px]:col-span-2')}>
         <button
-          disabled={localOrder.name===""||localOrder.email===""||localOrder.phone===""||localOrder.city===""||localOrder.street===""||localOrder.apartment===""}
+          disabled={(localOrder.name===""||localOrder.email===""||localOrder.phone==="")
+          ||!isPickUpPointDelivery&&(localOrder.city===""||localOrder.street===""||localOrder.apartment==="")}
           onClick={pay}
           className={styles.buy + " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8"} >
           Оплатить
