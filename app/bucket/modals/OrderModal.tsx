@@ -57,13 +57,15 @@ const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) =>
           absolute z-[102] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
           h-min bg-[#0E0E0E] p-[2rem] max-[600px]:p-[1rem]
           border-[2px] border-solid border-[#919191] rounded-[15px]
-          grid grid-cols-4
-          max-h-[400px]
-          min-[1000px]:min-w-[600px] 
-          max-[1000px]:min-w-[80vw]
-          max-[1000px]:grid-cols-2 gap-[1.3vw] 
-          max-[1000px]:gap-[10px]
-          max-[600px]:min-w-[90vw]
+          grid grid-cols-4 gap-[1.3vw] 
+          
+          min-[1000px]:!min-w-[600px] 
+          max-[1000px]:!min-w-[80vw]
+          max-[1000px]:!gap-[10px]
+          max-[1000px]:!grid-cols-2 
+          max-[600px]:!min-w-[90vw]
+          max-[600px]:!translate-y-[-20%]
+          
           ">
       <input
         placeholder="ФИО"
