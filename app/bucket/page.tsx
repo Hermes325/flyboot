@@ -263,7 +263,7 @@ function BucketPage() {
           max-[1300px]:col-end-3
           max-[1300px]:row-start-1
           max-[550px]:border-0
-          height: min-content;
+          h-[min-content]
         ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={`${bucketItem.item.id}-${i}`}>
