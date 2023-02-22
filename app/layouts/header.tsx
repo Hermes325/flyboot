@@ -145,7 +145,7 @@ function Header() {
     <header
       id="layout-header"
       className={classNames(
-        "fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[13vw] max-mobile:pr-[20px]",
+        "fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[10vw] max-mobile:pr-[20px]",
         { "px-[1vw]": isNavOpen }
       )}
     >

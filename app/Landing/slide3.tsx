@@ -23,19 +23,26 @@ function Slide3() {
       ${classMobile}
     `} >
       <button className={styles.catalog_button + " font-montserrat" +
-          " max-[950px]:text-[24px]" +
-          " max-[950px]:h-[auto]" +
-          " max-[600px]:h-[60px]" +
-          " max-[600px]:w-[50vw]"}
+        " max-[1100px]:text-[24px]" +
+        " max-[950px]:h-[auto]" +
+        " max-[600px]:h-[60px]" +
+        " max-[600px]:w-[50vw]"}
       >
-      Каталог
+        Каталог
       </button>
     </Link>
   }
-  return (<section id="catalog" className="translate-y-5 px-[13vw]">
+  return (<section id="catalog" className="translate-y-5 px-[10vw]">
     {btnLinkToCatalog(" min-[600px]:hidden")}
 
-    <p className={styles.jost_p_center + " font-jost mt-[2vw] text-center flex justify-center"}>
+    <p className={styles.jost_p_center + ` font-jost mt-[2vw] text-center flex justify-center
+              max-[2000px]:!text-[30px] 
+              max-[1500px]:!text-[27px] 
+              max-[1330px]:!text-[25px] 
+              max-[1140px]:!text-[23px]               
+              max-[850px]:!text-[20px] 
+              max-[600px]:!text-[16px] 
+              max-[1100px]:!leading-[17px]` }>
       Неограниченное количество годного шмота представлено в каталоге,
       где найдётся что-то по душе как уже опытному хайпбисту, так и начинающему моднику
     </p>

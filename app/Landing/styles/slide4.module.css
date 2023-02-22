@@ -12,6 +12,7 @@
     border-radius  : 20px;
     display        : flex;
     flex-direction : column;
+    background-color: black;
 }
 
 .palochka {
@@ -37,6 +38,8 @@
 .grid_hiw_3 {
     display              : grid;
     grid-template-columns: 15vw 1vw 20vw;
+    justify-items: center;
+    align-items: center;
 }
 
 .grid_hiw_4 {
@@ -49,8 +52,8 @@
 .h2 {
     font-style    : normal;
     font-weight   : 700;
-    font-size     : 80px;
-    line-height   : 80px;
+    font-size     : 75px;
+    line-height   : 75px;
     /* or 100% */
     letter-spacing: 0.02em;
     color         : #F5F5F5;

@@ -100,9 +100,8 @@ const BucketItemCard = ({bucketItem}: Props) => {
               h-[auto]
               min-h-[100%]
               border border-gray-300
-              focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none
-            ">
-            {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue.map(value =>
+              focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none">
+            {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.map(value =>
               <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
                 {value} {size.chosenSizeKey}
               </option>)}

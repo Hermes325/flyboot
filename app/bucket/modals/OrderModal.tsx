@@ -61,7 +61,7 @@ const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) =>
           min-[1000px]:min-w-[600px] 
           max-[1000px]:min-w-[80vw]
           max-[1000px]:grid-cols-2 gap-[1.3vw] 
-          max-[1000px]:gap-[25px]
+          max-[1000px]:gap-[10px]
           max-[600px]:min-w-[90vw]
           ">
       <input

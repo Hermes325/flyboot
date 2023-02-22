@@ -10,7 +10,7 @@ import WTF_path from "@/public/footer-images/WTF.svg";
 export default function Footer() {
   return (<footer id="Связаться" className="flex w-full h-[max] justify-center z-[1000] shadow bg-[#000]">
 
-    <div className="flex flex-col w-full px-[13vw] py-[15px] justify-center items-center
+    <div className="flex flex-col w-full px-[10vw] py-[15px] justify-center items-center
         max-[1300px]:gap-2
       ">
       <div className="flex w-full justify-between items-center

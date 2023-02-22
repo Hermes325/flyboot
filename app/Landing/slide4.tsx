@@ -11,46 +11,110 @@ import ic_round_done from "@/public/main-images/ic_round-done.png"
 
 function Slide4() {
   return (
-    <section id="Как_это_работает?" className='flex justify-between px-[13vw] w-full'>
+    <section id="Как_это_работает?" className=' px-[10vw] w-full mt-20'>
 
       <div id='left сторона' >
-        <h2 className={styles.h2 + " font-montserrat"}>Как это <br />работает?</h2>
+        <h2 className={styles.h2 + ` font-montserrat max-[1860px]:!text-[4.5rem]
+            max-[1700px]:!text-[4rem]
+            max-[1500px]:!text-[3.7rem] 
+            max-[1330px]:!text-[3.3rem] 
+            max-[1140px]:!text-[3rem] 
+            max-[1100px]:!text-[2.7rem]
+            max-[950px]:!text-[2.5rem]
+            max-[850px]:!text-[2.3rem]
+            max-[780px]:!text-[2.1rem]
+            max-[700px]:!text-[1.9rem]
+            max-[650px]:!text-[1.7rem]
+            max-[600px]:!text-[2.6rem]
+            max-[550px]:!text-[2.4rem]
+            max-[525px]:!text-[2.2rem]
+            max-[480px]:!text-[2rem]
+            max-[420px]:!text-[1.8rem]
+            max-[380px]:!text-[1.6rem]
+            max-[335px]:!text-[1.4rem]`}>
+          Как это <br />работает?</h2>
         <p className={styles.jost_bledno + " font-jost mt-5"}>* очень просто</p>
 
-        <ul className="mt-[1vw]">
-          <p className={styles.jost_p + " font-jost"}>
+        <ul className="mt-[1vw] w-[80%]">
+          <p className={styles.jost_p + ` font-jost max-[1500px]:!leading-[23px] 
+          max-[2000px]:!text-[30px] 
+          max-[1500px]:!text-[27px] 
+          max-[1330px]:!text-[25px] 
+          max-[1140px]:!text-[23px]               
+          max-[850px]:!text-[20px] 
+          max-[600px]:!text-[16px] 
+          max-[1100px]:!leading-[17px]`}>
             Денег нет, но мы держимся:
           </p>
           <br />
-          <li className={styles.jost_p + " font-jost"}>
+          <li className={styles.jost_p + ` font-jost max-[1500px]:!leading-[23px] 
+          max-[2000px]:!text-[30px] 
+          max-[1500px]:!text-[27px] 
+          max-[1330px]:!text-[25px] 
+          max-[1140px]:!text-[23px]               
+          max-[850px]:!text-[20px] 
+          max-[600px]:!text-[16px] 
+          max-[1100px]:!leading-[17px]`}>
             ⁃ Работаем с сайтом POIZON. Все товары - оригинал, да еще и не по цене почки!
           </li>
           <br />
-          <li className={styles.jost_p + " font-jost"}>
+          <li className={styles.jost_p + ` font-jost max-[1500px]:!leading-[23px] 
+          max-[2000px]:!text-[30px] 
+          max-[1500px]:!text-[27px] 
+          max-[1330px]:!text-[25px] 
+          max-[1140px]:!text-[23px]               
+          max-[850px]:!text-[20px] 
+          max-[600px]:!text-[16px] 
+          max-[1100px]:!leading-[17px]`}>
             ⁃ Доставка входит в стоимость кроссовок: вам не нужно отдельно её считать и
             оплачивать.
           </li>
           <br />
-          <li className={styles.jost_p + " font-jost"}>
+          <li className={styles.jost_p + ` font-jost max-[1500px]:!leading-[23px] 
+          max-[2000px]:!text-[30px] 
+          max-[1500px]:!text-[27px] 
+          max-[1330px]:!text-[25px] 
+          max-[1140px]:!text-[23px]               
+          max-[850px]:!text-[20px] 
+          max-[600px]:!text-[16px] 
+          max-[1100px]:!leading-[17px]`}>
             ⁃ Мы принимаем возврат, если вещи не подошли.
           </li>
         </ul>
-
-        <div className={styles.ramka_hiw + " mt-[15px]"}>
+        {/* <div>
+        <div className={styles.ramka_hiw + " mt-[15px] max-[1500px]:!leading-[17px] "}>
           <Image
             src={switchpng}
             alt="свитч"
           />
 
           <div className={styles.grid_hiw_3}>
-            <h4 className={styles.h4 + " pl-[20px] font-jost"}>
+            <h4 className={styles.h4 + ` pl-[20px] font-jost  
+              max-[1860px]:!text-[30px] 
+              max-[1700px]:!text-[25px] 
+              max-[1500px]:!text-[22px] 
+              max-[1330px]:!text-[20px] 
+              max-[1140px]:!text-[17px] 
+              max-[1100px]:!text-[13px] 
+              max-[850px]:!text-[11px] 
+              max-[780px]:!text-[9px] 
+              max-[1100px]:!leading-[17px]
+               `}>
               Сбор заказа
             </h4>
             <div className={styles.flex_items_center}>
               <div className="border-[2px] border-solid h-[2.5vw]">
               </div>
             </div>
-            <p className={styles.jost_p + " font-jost w-[80%]"}>
+            <p className={styles.jost_p + ` font-jost italic text-[#F5F5F5CC] w-[80%] 
+            max-[2000px]:!text-[20px] 
+            max-[1500px]:!text-[17px]
+            max-[1500px]:!leading-[17px] 
+            max-[1330px]:!text-[15px] 
+            max-[1140px]:!text-[13px]               
+            max-[850px]:!text-[11px] 
+            max-[600px]:!text-[9px] 
+            max-[1100px]:!leading-[17px]`}>
               В течении час вы получите карточку-подтверждение о выкупе товара.
             </p>
           </div>
@@ -66,37 +130,98 @@ function Slide4() {
           <div className={styles.palochka}>
           </div>
         </div>
+        </div> */}
+
       </div>
 
-      <div className={styles.grid_hiw_2} id="праваясторона">
-        <div className={styles.flex_items_center}>
-          <Image
-            src={recept}
-            alt="recept" />
-          &ensp;&ensp;
-          <p className={styles.hiw_list + " font-montserrat"}>Ваш заказ</p>
+
+
+      <div className="grid grid-cols-3 text-center justify-items-center my-20 gap-x-4">
+        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
+          <div className={styles.flex_items_center + " justify-center mt-10"}>
+            <Image
+              src={recept}
+              alt="recept"
+              className="w-[3.6vw]" />
+            &ensp;&ensp;
+            <p className={styles.hiw_list + ` text-center font-montserrat
+           max-[2000px]:!text-[30px] 
+           max-[1700px]:!text-[28px]
+           max-[1100px]:!text-[25px] 
+           max-[950px]:!text-[21px]
+           max-[1100px]:!leading-[17px] font-bold`}>Ваш заказ</p>
+          </div>
+
+          <p className={styles.hiw_list + ` font-montserrat
+           mb-10
+           text-center
+           max-[2000px]:!text-[24px] 
+           max-[2000px]:!leading-[25px]
+           max-[1700px]:!text-[20px]
+           max-[1100px]:!text-[16px] 
+           max-[850px]:!text-[9px] 
+           max-[780px]:!text-[9px] 
+           max-[1100px]:!leading-[17px]`}>
+            Из каталога выбираете полюбившиеся вам товар, оплачиваете и получаете чек.</p>
         </div>
-        <div className={styles.flex_items_center}>
-          <Image
-            src={shopping_bag}
-            alt="shopping_bag" />
-          &ensp;&ensp;
-          <p className={styles.hiw_list + " font-montserrat"}>Сбор заказа</p>
+
+        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
+          <div className={styles.flex_items_center + " justify-center mt-10"}>
+            <Image
+              src={shopping_bag}
+              alt="shopping_bag"
+              className="w-[3.6vw]" />
+            &ensp;&ensp;
+            <p className={styles.hiw_list + ` text-center font-bold font-montserrat
+           max-[2000px]:!text-[30px] 
+           max-[1700px]:!text-[28px]
+           max-[1100px]:!text-[25px]
+           max-[950px]:!text-[21px]        
+           max-[1100px]:!leading-[17px]`}>Сбор заказа</p>
+          </div>
+
+          <p className={styles.hiw_list + ` font-montserrat
+           mb-10
+           text-center
+           max-[2000px]:!text-[24px] 
+           max-[2000px]:!leading-[25px]
+           max-[1700px]:!text-[20px]
+           max-[1100px]:!text-[16px] 
+           max-[850px]:!text-[9px] 
+           max-[780px]:!text-[9px] 
+           max-[1100px]:!leading-[17px]`}>
+            За час вы получите карточку-подтверждение о выкупе товара.</p>
         </div>
-        <div className={styles.flex_items_center}>
-          <Image
-            src={carbon_delivery_parcel}
-            alt="carbon_delivery-parcel" />
-          &ensp;&ensp;
-          <p className={styles.hiw_list + " font-montserrat"}>Доставка до вас</p>
+
+        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
+          <div className={styles.flex_items_center + " justify-center mt-10"}>
+            <Image
+              src={carbon_delivery_parcel}
+              alt="carbon_delivery-parcel"
+              className="w-[3.6vw]" />
+            &ensp;&ensp;
+            <p className={styles.hiw_list + ` font-bold text-center font-montserrat
+           max-[2000px]:!text-[30px] 
+           max-[1700px]:!text-[28px]
+           max-[1100px]:!text-[25px] 
+           max-[950px]:!text-[21px]           
+           max-[1100px]:!leading-[17px]`}>Доставка</p>
+          </div>
+
+          <p className={styles.hiw_list + ` font-montserrat
+           mb-10
+           text-center
+           max-[2000px]:!text-[24px] 
+           max-[2000px]:!leading-[25px]
+           max-[1700px]:!text-[20px]
+           max-[1100px]:!text-[16px] 
+           max-[850px]:!text-[9px] 
+           max-[780px]:!text-[9px] 
+           max-[1100px]:!leading-[17px]`}>
+            Товар поступает на наш склад в Китае в течение 2-3 дней.
+            Дальше дело в руках нашего извозчика на повозке.</p>
         </div>
-        <div className={styles.flex_items_center}>
-          <Image
-            src={ic_round_done}
-            alt="ic_round-done" />
-          &ensp;&ensp;
-          <p className={styles.hiw_list + " font-montserrat"}>Завершение работы</p>
-        </div>
+
       </div>
     </section >)
 }
