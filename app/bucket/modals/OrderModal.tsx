@@ -58,7 +58,7 @@ const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) =>
           h-min bg-[#0E0E0E] p-[2rem] max-[600px]:p-[1rem]
           border-[2px] border-solid border-[#919191] rounded-[15px]
           grid grid-cols-4 gap-[1.3vw] 
-          max-h-[400px]
+          max-h-[500px]
           min-[1000px]:!min-w-[600px] 
           max-[1000px]:!min-w-[80vw]
           max-[1000px]:!gap-[10px]
@@ -126,6 +126,7 @@ const OrderModal = ({ order, setOrder, closeModal, isOrderModalOpen }: Props) =>
 
       <div className={classNames('flex justify-center col-span-4 max-[1000px]:col-span-2')}>
         <button
+          disabled={localOrder.name===""||localOrder.email===""||localOrder.phone===""||localOrder.city===""||localOrder.street===""||localOrder.apartment===""}
           onClick={pay}
           className={styles.buy + " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8"} >
           Оплатить
