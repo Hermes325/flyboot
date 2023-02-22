@@ -112,7 +112,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: 1,//TODO: finalPrice,
+      amount: finalPrice, //TODO: 1руб могу поставить,
       transactionId: 't-' + Date.now(),
       subscriberId: order.email,
       customParams: {
@@ -226,11 +226,11 @@ function BucketPage() {
     }
   )}>
 
-    <TestRedux/>
+    {/* <TestRedux/>
     <button
       onClick={() => setOrder(x => ({...x, startPayment: ++x.startPayment}))}
       className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
-    </button>
+    </button> */}
     {isModalOpenSdek && <SdekModal
         setSdekData={setSdekData}
         isSdekModalOpen={isModalOpenSdek}
