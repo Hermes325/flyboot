@@ -214,7 +214,11 @@ function Slide4() {
         </div>
 
         <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%] 
-        max-[1300px]:!col-end-3 max-[1300px]:!col-start-1
+        max-[1300px]:!col-end-3 
+        max-[1300px]:!col-start-1
+        max-[600px]:!col-start-[none]
+        max-[600px]:!col-end-[none] 
+        
     '>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
