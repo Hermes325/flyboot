@@ -17,10 +17,12 @@ function Slide4() {
         <h2 className={styles.h2 + ` font-montserrat max-[1860px]:!text-[4.5rem]
             max-[1700px]:!text-[4rem]
             max-[1500px]:!text-[3.7rem] 
-            max-[1330px]:!text-[3.3rem] 
+            max-[1330px]:!text-[3.3rem]
+            max-[1300px]:!leading-[55px] 
             max-[1140px]:!text-[3rem] 
             max-[1100px]:!text-[2.7rem]
             max-[950px]:!text-[2.5rem]
+            max-[900px]:!leading-[45px] 
             max-[850px]:!text-[2.3rem]
             max-[780px]:!text-[2.1rem]
             max-[700px]:!text-[1.9rem]
@@ -136,7 +138,7 @@ function Slide4() {
 
 
 
-      <div className="grid grid-cols-3 text-center justify-items-center my-20 gap-x-4">
+      <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 gap-5 text-center justify-items-center my-20 gap-x-4">
         <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
@@ -154,6 +156,7 @@ function Slide4() {
 
           <p className={styles.hiw_list + ` font-montserrat
            mb-10
+           px-5
            text-center
            max-[2000px]:!text-[24px] 
            max-[2000px]:!leading-[25px]
@@ -162,7 +165,10 @@ function Slide4() {
            max-[850px]:!text-[9px] 
            max-[780px]:!text-[9px] 
            max-[1100px]:!leading-[17px]`}>
-            Из каталога выбираете полюбившиеся вам товар, оплачиваете и получаете чек.</p>
+            План такой: в каталоге ищете то, что радует глаз,
+            оплачиваете и получаете чек вместе с карточкой-подтверждением о выкупе товара.
+
+          </p>
         </div>
 
         <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
@@ -182,6 +188,7 @@ function Slide4() {
 
           <p className={styles.hiw_list + ` font-montserrat
            mb-10
+           px-5
            text-center
            max-[2000px]:!text-[24px] 
            max-[2000px]:!leading-[25px]
@@ -190,7 +197,10 @@ function Slide4() {
            max-[850px]:!text-[9px] 
            max-[780px]:!text-[9px] 
            max-[1100px]:!leading-[17px]`}>
-            За час вы получите карточку-подтверждение о выкупе товара.</p>
+            Наши коллеги в Китае ворожат над вашим заказом,
+            проверяют, чтобы все было по высшему разряду и упаковывают так,
+            чтобы не стыдно было потом в Инстаграмчик залить.
+          </p>
         </div>
 
         <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
@@ -209,6 +219,7 @@ function Slide4() {
           </div>
 
           <p className={styles.hiw_list + ` font-montserrat
+          px-5
            mb-10
            text-center
            max-[2000px]:!text-[24px] 
@@ -218,8 +229,9 @@ function Slide4() {
            max-[850px]:!text-[9px] 
            max-[780px]:!text-[9px] 
            max-[1100px]:!leading-[17px]`}>
-            Товар поступает на наш склад в Китае в течение 2-3 дней.
-            Дальше дело в руках нашего извозчика на повозке.</p>
+            Посылка со склада в Китае отправляется в Россию на ковре-самолёте,
+            вся красивая, и застрахованная. В течение 2-3 недель она оказывается
+            у своего счастливого обладателя!</p>
         </div>
 
       </div>
