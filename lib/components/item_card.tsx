@@ -43,7 +43,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
         <h3 className={`${styles["name"]}
           ${h3ClassName ?? ""} 
           max-[750px]:!text-[15px] max-[750px]:!h-[32px]
-          max-[550px]:!text-[12px] max-[550px]:!h-[max(max-content,32px)]
+          max-[550px]:!text-[13px] max-[550px]:!h-[max(max-content,32px)]
           `}>{item.title}</h3>
         <p className={`${styles["price"]}
           ${pClassName ?? ""} 
