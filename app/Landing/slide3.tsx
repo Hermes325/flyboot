@@ -48,7 +48,7 @@ function Slide3() {
     </p>
 
     <div className={styles.container + "" +
-      " max-[600px]:hidden"}>
+      " max-[600px]:!hidden"}>
       {links.map(({ href, name, className }) =>
         <Link href={href} key={href} className={className}>
           <button className={styles.btn + " font-jost flex gap-[15px] min-w-[170px] justify-center" +
