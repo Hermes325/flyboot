@@ -14,7 +14,8 @@ function Slide4() {
     <section id="Как_это_работает?" className=' px-[10vw] w-full mt-20'>
 
       <div id='left сторона' >
-        <h2 className={styles.h2 + ` font-montserrat max-[1860px]:!text-[4.5rem]
+        <h2 className={styles.h2 + ` font-montserrat text-center
+        max-[1860px]:!text-[4.5rem]
             max-[1700px]:!text-[4rem]
             max-[1500px]:!text-[3.7rem] 
             max-[1330px]:!text-[3.3rem]
@@ -37,10 +38,10 @@ function Slide4() {
             max-[420px]:!text-[1.8rem]
             max-[380px]:!text-[1.6rem]
             max-[335px]:!text-[1.4rem]`}>
-          Как это <br />работает?</h2>
-        <p className={styles.jost_bledno + " font-jost mt-5 max-[600px]:!text-[15px]"}>* очень просто</p>
+          Как это работает?</h2>
+        <p className={styles.jost_bledno + " font-jost mt-5 max-[600px]:!text-[15px] text-center"}>* очень просто</p>
 
-        <ul className="mt-[1vw] w-[80%] max-[600px]:!w-[100%] ">
+        {/* <ul className="mt-[1vw] w-[80%] max-[600px]:!w-[100%] ">
           <p className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
           max-[1500px]:!leading-[23px] 
           max-[2000px]:!text-[30px] 
@@ -89,7 +90,7 @@ function Slide4() {
           max-[1100px]:!leading-[17px]`}>
             ⁃ Мы принимаем возврат, если вещи не подошли.
           </li>
-        </ul>
+        </ul> */}
         {/* <div>
         <div className={styles.ramka_hiw + " mt-[15px] max-[1500px]:!leading-[17px] "}>
           <Image
@@ -146,7 +147,7 @@ function Slide4() {
 
 
       <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 max-[600px]:!grid-cols-1 gap-5 text-center justify-items-center my-20 gap-x-4">
-        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
+        <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
               src={recept}
@@ -179,7 +180,7 @@ function Slide4() {
           </p>
         </div>
 
-        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
+        <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
               src={shopping_bag}
@@ -212,7 +213,7 @@ function Slide4() {
           </p>
         </div>
 
-        <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
+        <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
               src={carbon_delivery_parcel}
