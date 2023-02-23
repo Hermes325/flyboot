@@ -113,7 +113,7 @@ function Slide1() {
           className={
             styles.waves +
             ` max-[1750px]:!top-[5%]
-             max-[1550px]:!top-[6%] 
+             max-[1550px]:!top-[5%] 
              max-[1860px]:!w-[100%]
              max-[600px]:!scale-[2.5]
              max-[600px]:!top-[125%] 
