@@ -250,7 +250,7 @@ function BucketPage() {
 
     <form className="flex flex-col items-center justify-center w-full mb-12">
       {/* Bucket text */}
-      <h1 className="font-montserrat w-full font-bold text-7xl text-[#F5F5F5] mt-2 mb-10">
+      <h1 className="font-montserrat w-full ml-3 font-bold text-7xl text-[#F5F5F5] mt-2 mb-10 px-[5px]">
         Корзина
       </h1>
 
@@ -287,8 +287,8 @@ function BucketPage() {
             sticky
             top-[120px]
             border-2 rounded-2xl border-[#919191]
-            px-10 pt-[26px] pb-[34px]
-            max-[1300px]:border-0
+            px-[15px] pt-[26px] pb-[34px]
+            
           ">
             <div className="space-y-5">
               <div>
@@ -347,13 +347,13 @@ function BucketPage() {
             <div className="space-y-4">
               {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
 
-              <textarea
+              {/* <textarea
                 value={order.comment}
                 placeholder="Комментарий к заказу"
                 rows={3}
                 className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
                 onChange={x => changeOrder("comment", x.target.value)}
-              />
+              /> */}
 
               <button
                 disabled={

@@ -58,17 +58,17 @@ function Slide1() {
             max-[780px]:!text-[10px] 
             max-[700px]:!text-[9px]
             max-[650px]:!text-[8px] 
-            max-[600px]:!text-[1.2rem] 
-            max-[550px]:!text-[1.1rem] 
-            max-[525px]:!text-[1rem] 
-            max-[480px]:!text-[0.9rem]
+            max-[600px]:!text-[1.3rem] 
+            max-[550px]:!text-[1.2rem] 
+            max-[525px]:!text-[1.1rem] 
+            max-[480px]:!text-[1rem]
             max-[420px]:!leading-[14px]  
-            max-[420px]:!text-[0.8rem] 
-            max-[380px]:!text-[0.7rem] 
-            max-[335px]:!text-[0.6rem]
+            max-[420px]:!text-[0.9rem] 
+            max-[380px]:!text-[0.8rem] 
+            max-[335px]:!text-[0.7rem]
             max-[600px]:!leading-[20px] 
-            max-[600px]:!w-[86%] 
-            w-[62%]`
+            max-[600px]:!w-[90%] 
+            w-[60%]`
           }
         >
           Если ты искал, где обновить гардероб, то ты в нужном месте.
