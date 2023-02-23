@@ -138,7 +138,7 @@ function Slide4() {
 
 
 
-      <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 gap-5 text-center justify-items-center my-20 gap-x-4">
+      <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 max-[600px]:!grid-cols-1 gap-5 text-center justify-items-center my-20 gap-x-4">
         <div className='flex flex-col gap-y-8 border-solid border-4 rounded-xl border-[#08DAD4] bg-black'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
