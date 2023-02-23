@@ -52,13 +52,13 @@ function Slide3() {
       {links.map(({ href, name, className }) =>
         <Link href={href} key={href} className={className}>
           <button className={styles.btn + " font-jost flex gap-[15px] min-w-[170px] justify-center" +
-            " max-[950px]:min-w-[100px]"}>
+            " max-[950px]:!min-w-[100px]"}>
             <h3>{name}</h3>
           </button>
         </Link>)}
     </div>
 
-    {btnLinkToCatalog(" max-[600px]:hidden")}
+    {btnLinkToCatalog(" max-[600px]:!hidden")}
   </section>)
 }
 
