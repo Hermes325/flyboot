@@ -33,7 +33,7 @@ function Slide3() {
     </Link>
   }
   return (<section id="catalog" className="translate-y-5 px-[10vw]">
-    {btnLinkToCatalog(" min-[600px]:hidden")}
+    {btnLinkToCatalog(" min-[600px]:!hidden")}
 
     <p className={styles.jost_p_center + ` font-jost mt-[2vw] text-center flex justify-center
               max-[2000px]:!text-[30px] 
