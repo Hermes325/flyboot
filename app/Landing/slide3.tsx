@@ -23,10 +23,11 @@ function Slide3() {
       ${classMobile}
     `} >
       <button className={styles.catalog_button + " font-montserrat" +
-        " max-[1100px]:text-[24px]" +
-        " max-[950px]:h-[auto]" +
-        " max-[600px]:h-[60px]" +
-        " max-[600px]:w-[50vw]"}
+        " max-[1100px]:!text-[24px]" +
+        " max-[800px]:!text-[20px]" +
+        " max-[950px]:!h-[auto]" +
+        " max-[600px]:!h-[60px]" +
+        " max-[600px]:!w-[50vw]"}
       >
         Каталог
       </button>

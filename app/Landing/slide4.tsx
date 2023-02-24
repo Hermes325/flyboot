@@ -170,8 +170,8 @@ function Slide4() {
            max-[2000px]:!leading-[25px]
            max-[1700px]:!text-[20px]
            max-[1100px]:!text-[16px] 
-           max-[850px]:!text-[9px] 
-           max-[780px]:!text-[9px] 
+           max-[850px]:!text-[14px] 
+           max-[780px]:!text-[12px] 
            max-[600px]:!text-[16px] 
            max-[1100px]:!leading-[17px]`}>
             План такой: в каталоге ищете то, что радует глаз,
@@ -203,8 +203,8 @@ function Slide4() {
            max-[2000px]:!leading-[25px]
            max-[1700px]:!text-[20px]
            max-[1100px]:!text-[16px] 
-           max-[850px]:!text-[9px] 
-           max-[780px]:!text-[9px] 
+           max-[850px]:!text-[14px] 
+           max-[780px]:!text-[12px] 
            max-[600px]:!text-[16px] 
            max-[1100px]:!leading-[17px]`}>
             Наши коллеги в Китае ворожат над вашим заказом,
@@ -214,12 +214,11 @@ function Slide4() {
         </div>
 
         <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%] 
-        max-[1300px]:!col-end-3 
-        max-[1300px]:!col-start-1
-        max-[600px]:!col-start-[none]
-        max-[600px]:!col-end-[none] 
-        
-    '>
+       min-[1300px]:!col-end-auto 
+       min-[1300px]:!col-start-auto
+       min-[600px]:!col-end-3 
+        min-[600px]:!col-start-1
+        '>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
               src={carbon_delivery_parcel}
@@ -242,8 +241,8 @@ function Slide4() {
            max-[2000px]:!leading-[25px]
            max-[1700px]:!text-[20px]
            max-[1100px]:!text-[16px] 
-           max-[850px]:!text-[9px] 
-           max-[780px]:!text-[9px] 
+           max-[850px]:!text-[14px] 
+           max-[780px]:!text-[12px] 
            max-[600px]:!text-[16px] 
            max-[1100px]:!leading-[17px]`}>
             Посылка со склада отправляется в Россию на ковре-самолёте,
