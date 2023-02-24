@@ -11,7 +11,7 @@ import ic_round_done from "@/public/main-images/ic_round-done.png"
 
 function Slide4() {
   return (
-    <section id="Как_это_работает?" className=' px-[10vw] w-full mt-20'>
+    <section id='#Как_это_работает?' className=' px-[10vw] w-full mt-20'>
 
       <div id='left сторона' >
         <h2 className={styles.h2 + ` font-montserrat text-center

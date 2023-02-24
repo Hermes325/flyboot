@@ -14,10 +14,7 @@ import classNames from "classnames";
 
 const links = [
   { href: "/catalog", label: "Каталог" },
-  { href: "#Как_это_работает?", label: "Как это работает?" },
-  { href: "#A_what_with_delivery_?", label: "А что с доставкой?" },
   { href: "/about-us", label: "О нас" },
-  { href: "#Связаться", label: "Связаться" },
   { href: "/FAQ", label: "FAQ" },
 ];
 
@@ -29,7 +26,7 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
       className="w-[50px] h-[50px]"
     />
   ) : (
-    <Image src={menu_path} alt="открыть меню" className="w-[50px] h-[50px]" />
+    <Image src={menu_path} alt="открыть меню" className="w-[40px] h-[50px]" />
   );
 }
 
