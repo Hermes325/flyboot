@@ -40,7 +40,7 @@ function Slide4() {
             max-[335px]:!text-[1.4rem]`}>
           Как это работает?</h2>
         <p className={styles.jost_bledno + ` font-jost mt-4
-         max-[600px]:!text-[27px] 
+         max-[600px]:!text-[17px] 
          text-center`}>* очень просто</p>
 
         {/* <ul className="mt-[1vw] w-[80%] max-[600px]:!w-[100%] ">
