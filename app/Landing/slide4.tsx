@@ -39,7 +39,9 @@ function Slide4() {
             max-[380px]:!text-[1.6rem]
             max-[335px]:!text-[1.4rem]`}>
           Как это работает?</h2>
-        <p className={styles.jost_bledno + " font-jost mt-5 max-[600px]:!text-[15px] text-center"}>* очень просто</p>
+        <p className={styles.jost_bledno + ` font-jost mt-4
+         max-[600px]:!text-[27px] 
+         text-center`}>* очень просто</p>
 
         {/* <ul className="mt-[1vw] w-[80%] max-[600px]:!w-[100%] ">
           <p className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
@@ -146,7 +148,7 @@ function Slide4() {
 
 
 
-      <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 max-[600px]:!grid-cols-1 gap-5 text-center justify-items-center my-20 gap-x-4">
+      <div className="grid grid-cols-3 max-[1300px]:!grid-cols-2 max-[600px]:!grid-cols-1 gap-5 text-center justify-items-center my-14 gap-x-4">
         <div className='flex flex-col gap-y-8 border-solid border-2 rounded-xl border-[#08DAD4] bg-black max-[600px]:!w-[85%]'>
           <div className={styles.flex_items_center + " justify-center mt-10"}>
             <Image
