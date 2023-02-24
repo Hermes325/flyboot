@@ -66,13 +66,13 @@ const BucketItemCard = ({bucketItem}: Props) => {
       max-[650px]:col-start-4
       max-[650px]:col-end-9
     '>
-      <h3 className='font-lato text-[20px] leading-[27px] mb-[5px] tracking-[0.01em]
+      <h3 className='font-lato text-[20px] leading-[20px] mb-[5px] tracking-[0.01em]
         max-[650px]:text-[15px]
       '>
         {item.title}
       </h3>
 
-      <p className='font-lato text-[12px] leading-[22px] mb-[5px] tracking-[0.01em]
+      <p className='font-lato text-[12px] leading-[8px] mb-[5px] tracking-[0.01em]
         max-[650px]:text-[8px]
       '>
         Артикул {item.poizonArticul}
@@ -98,10 +98,11 @@ const BucketItemCard = ({bucketItem}: Props) => {
             className="
               font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px]
               max-[600px]:!w-[100px]
-              max-[450px]:!w-[85px]
+              max-[450px]:!w-[80px]
               max-[450px]:!min-h-[80%]
               h-[auto]
-              min-h-[100%]
+              min-h-[88%]
+              pt-[3px]
               border border-gray-300
               focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none">
             {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.map(value =>
@@ -114,16 +115,16 @@ const BucketItemCard = ({bucketItem}: Props) => {
         <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white 
         max-[450px]:!min-h-[80%]'>
           <button
-            className={classnames('font-inter font-bold text-[15px] active:scale-110', {
+            className={classnames('font-inter font-bold text-[12px] active:scale-110', {
               "text-[gray]": amount <= 1
             })}
             disabled={amount <= 1}
             onClick={itemMinus}>-
           </button>
           <p
-            className='font-inter font-bold text-[15px] text-[#03FFF0]'>{amount}</p>
+            className='font-inter font-bold text-[12px] text-[#03FFF0]'>{amount}</p>
           <button
-            className='font-inter font-bold text-[15px] active:scale-110'
+            className='font-inter font-bold text-[12px] active:scale-110'
             onClick={itemPlus}>+
           </button>
         </div>
@@ -138,6 +139,7 @@ const BucketItemCard = ({bucketItem}: Props) => {
       max-[650px]:!col-start-9
       max-[650px]:!col-end-11
       max-[650px]:!align-top
+      pb-[30px]
     '>
       {price}&nbsp;руб
     </p>

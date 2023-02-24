@@ -252,7 +252,7 @@ function BucketPage() {
     max-[600px]:!justify-start
     w-full mb-12">
       {/* Bucket text */}
-      <h1 className="font-montserrat w-full ml-3 font-bold text-7xl text-[#F5F5F5] mt-2 mb-10 px-[5px]">
+      <h1 className="font-montserrat w-full ml-3 font-bold text-7xl text-[#F5F5F5] mt-2 mb-10 px-[5px] max-[600px]:!text-[4rem] max-[500px]:!text-[3.5rem] max-[400px]:!text-[3rem]">
         Корзина
       </h1>
 
