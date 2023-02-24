@@ -46,18 +46,21 @@ function Slide1() {
              font-jost
             min-[2560px]:!text-[32px] 
             min-[2560px]:!leading-[42px] 
-            max-[1860px]:!text-[22px] 
-            max-[1700px]:!text-[20px] 
-            max-[1500px]:!text-[18px] 
-            max-[1330px]:!text-[16.5px] 
-            max-[1140px]:!text-[15px] 
+            max-[1960px]:!text-[28px] 
+            max-[1860px]:!text-[25px] 
+            max-[1700px]:!text-[22px] 
+            max-[1500px]:!text-[20.9px] 
+            max-[1400px]:!text-[20px] 
+            max-[1330px]:!text-[18px] 
+            max-[1200px]:!text-[17.5px] 
+            max-[1140px]:!text-[16px] 
             max-[1100px]:!leading-[17px] 
-            max-[1100px]:!text-[13.5px] 
-            max-[950px]:!text-[12px]
-            max-[850px]:!text-[11px] 
-            max-[780px]:!text-[10px] 
-            max-[700px]:!text-[9px]
-            max-[650px]:!text-[8px] 
+            max-[1100px]:!text-[15px] 
+            max-[1000px]:!text-[14.5px] 
+            max-[950px]:!text-[14px] 
+            max-[950px]:!leading-[12px]
+            max-[650px]:!text-[12px] 
+            max-[650px]:!leading-[12px]            
             max-[600px]:!text-[1.3rem] 
             max-[550px]:!text-[1.2rem] 
             max-[525px]:!text-[1.1rem] 
@@ -71,7 +74,7 @@ function Slide1() {
             w-[60%]`
           }
         >
-          Если ты искал, где обновить гардероб, то ты в нужном месте.
+          
           Одевайся так, будто завтра выступаешь в Карнеги-Холл!
 
         </p>
