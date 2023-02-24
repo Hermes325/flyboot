@@ -217,9 +217,9 @@ function BucketPage() {
 
   return <main className={classNames(
     `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[13vw]
-      max-[800px]:px-[50px]
-      max-[600px]:px-[25px]
-      max-[550px]:px-[5px]`,
+      max-[800px]:!px-[50px]
+      max-[600px]:!px-[25px]
+      max-[550px]:!px-[5px]`,
     {
       "relative": !(isAnyModalOpen),
       "overflow-hidden fixed z-[103]": isAnyModalOpen,
@@ -248,7 +248,9 @@ function BucketPage() {
         closeModal={() => setIsOrderModalOpen(false)}
     />}
 
-    <form className="flex flex-col items-center justify-center w-full mb-12">
+    <form className="flex flex-col items-center justify-center 
+    max-[600px]:!justify-start
+    w-full mb-12">
       {/* Bucket text */}
       <h1 className="font-montserrat w-full ml-3 font-bold text-7xl text-[#F5F5F5] mt-2 mb-10 px-[5px]">
         Корзина
@@ -259,10 +261,10 @@ function BucketPage() {
         {/* Items */}
         <div
           className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
-          max-[1300px]:col-start-1
-          max-[1300px]:col-end-3
-          max-[1300px]:row-start-1
-          max-[550px]:border-0
+          max-[1300px]:!col-start-1
+          max-[1300px]:!col-end-3
+          max-[1300px]:!row-start-1
+          max-[550px]:!border-0
           h-[min-content]
         ">
           {bucketItems.map((bucketItem, i, arr) => (
@@ -275,12 +277,13 @@ function BucketPage() {
 
         {/* Order & Delivery */}
         <div className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit w-fit min-h-full justify-between
-          min-[1300px]:row-start-1
-          min-[1300px]:row-end-2
-          max-[1300px]:col-start-1
-          max-[1300px]:col-end-3
-          max-[1300px]:row-start-3
-          max-[1300px]:max-w-[none]
+          min-[1300px]:!row-start-1
+          min-[1300px]:!row-end-2
+          max-[1300px]:!col-start-1
+          max-[1300px]:!col-end-3
+          max-[1300px]:!row-start-3
+          max-[1300px]:!max-w-[none]
+          
         "
         >
           <div className="
@@ -288,6 +291,7 @@ function BucketPage() {
             top-[120px]
             border-2 rounded-2xl border-[#919191]
             px-[15px] pt-[26px] pb-[34px]
+            max-[600px]:!border-0
             
           ">
             <div className="space-y-5">

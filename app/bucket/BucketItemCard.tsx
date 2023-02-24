@@ -97,6 +97,9 @@ const BucketItemCard = ({bucketItem}: Props) => {
             onChange={changeSize}
             className="
               font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px]
+              max-[600px]:!w-[100px]
+              max-[450px]:!w-[85px]
+              max-[450px]:!min-h-[80%]
               h-[auto]
               min-h-[100%]
               border border-gray-300
@@ -108,7 +111,8 @@ const BucketItemCard = ({bucketItem}: Props) => {
           </select>
         </div>
 
-        <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white'>
+        <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white 
+        max-[450px]:!min-h-[80%]'>
           <button
             className={classnames('font-inter font-bold text-[15px] active:scale-110', {
               "text-[gray]": amount <= 1
@@ -127,13 +131,13 @@ const BucketItemCard = ({bucketItem}: Props) => {
     </div>
 
     <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
-      max-[650px]:min-w-[auto]
-      max-[650px]:text-[12px]
-      max-[650px]:mr-[0px]
-      max-[650px]:text-start
-      max-[650px]:col-start-9
-      max-[650px]:col-end-11
-      max-[650px]:align-top
+      max-[650px]:!min-w-[auto]
+      max-[650px]:!text-[12px]
+      max-[650px]:!mr-[0px]
+      max-[650px]:!text-start
+      max-[650px]:!col-start-9
+      max-[650px]:!col-end-11
+      max-[650px]:!align-top
     '>
       {price}&nbsp;руб
     </p>
