@@ -253,13 +253,13 @@ function Header() {
         <HeaderSearchList items={foundItems} setOpen={setIsNavOpen} />
 
         {foundItems.length === 0 && (
-          <div className="flex flex-col justify-center items-center space-y-2">
+          <div className="flex flex-col justify-center items-center space-y-8">
             {links.map(({ href, label }, i) => (
               <NavLink
                 key={href}
                 href={href}
                 prefetch={href.startsWith("/")}
-                className="text-[#f9f9f9] hover:text-[#00b5b5] text-xl"
+                className="text-[#f9f9f9] hover:text-[#00b5b5] text-4xl leading-10"
                 style={{ animationDelay: `0.${i + 1}s` }}
                 setOpen={clearSearch}
               >
