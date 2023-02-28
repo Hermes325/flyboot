@@ -14,6 +14,7 @@ function BucketButton({ item, disabled }: Props & React.ButtonHTMLAttributes<HTM
 
   return (
     <button
+      title="выберите размер"
       disabled={disabled}
       onClick={() => item && dispatch(addItem(item))}
       className={styles.buy + " font-inter rounded-lg py-5 px-8"}>

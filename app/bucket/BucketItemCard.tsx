@@ -1,19 +1,19 @@
 "use client"
 import React from 'react'
-import {Image as DatoCMSImage} from 'react-datocms/image'
+import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
-import {addItem, BucketItem, minusItemAmount, deleteItem, changeItemSize} from '@/lib/redux/slices/itemSlice'
-import {useDispatch} from 'react-redux'
+import { addItem, BucketItem, minusItemAmount, deleteItem, changeItemSize } from '@/lib/redux/slices/itemSlice'
+import { useDispatch } from 'react-redux'
 import classnames from "classnames";
 
 type Props = {
   bucketItem: BucketItem
 }
 
-const BucketItemCard = ({bucketItem}: Props) => {
+const BucketItemCard = ({ bucketItem }: Props) => {
   const dispatch = useDispatch();
-  const {item, amount, size} = bucketItem
+  const { item, amount, size } = bucketItem
 
   const price = Math.ceil(item.price).toLocaleString('ru-RU', {
     minimumFractionDigits: 0,
@@ -37,11 +37,11 @@ const BucketItemCard = ({bucketItem}: Props) => {
   function changeSize(e: React.ChangeEvent<HTMLSelectElement>) {
     console.log(e.target.value);
     const sizeNum = bucketItem.size.available
-        .find(x => x.sizeKey === bucketItem.size.chosenSizeKey)?.sizeValue
-        .findIndex(x => x === e.target.value)
+      .find(x => x.sizeKey === bucketItem.size.chosenSizeKey)?.sizeValue
+      .findIndex(x => x === e.target.value)
       ?? bucketItem.size.chosenSizeValue
 
-    changeItemSize({item: bucketItem, size: {...bucketItem.size, chosenSizeValue: sizeNum}})
+    changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
 
   return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3
@@ -57,10 +57,10 @@ const BucketItemCard = ({bucketItem}: Props) => {
         max-[650px]:!w-[auto]
         max-[650px]:rounded-[13px]
       "
-      style={{width: "13vw", aspectRatio: "134/88"}}
+      style={{ width: "13vw", aspectRatio: "134/88" }}
       objectFit="cover"
       data={item.images[0].responsiveImage}
-      lazyLoad={true}/>
+      lazyLoad={true} />
 
     <div className='grow
       max-[650px]:col-start-4
@@ -72,7 +72,7 @@ const BucketItemCard = ({bucketItem}: Props) => {
         {item.title}
       </h3>
 
-      <p className='font-lato text-[12px] leading-[8px] mb-[5px] tracking-[0.01em]
+      <p className='mt-2 font-lato text-[14px] leading-[8px] mb-[5px] tracking-[0.01em]
         max-[650px]:text-[8px]
       '>
         Артикул {item.poizonArticul}
@@ -83,7 +83,7 @@ const BucketItemCard = ({bucketItem}: Props) => {
           after:absolute
           after:content-['▼']
           after:text-[12px]
-          after:top-[5px]
+          after:top-[13px]
           after:right-[10px]
           after:w-[10px]
           after:h-[10px]
@@ -96,13 +96,13 @@ const BucketItemCard = ({bucketItem}: Props) => {
             defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
             onChange={changeSize}
             className="
-              font-inter font-bold bg-transparent text-[#03FFF0] w-[135px] text-[13px]
+            mt-[5px]
+              font-inter font-bold bg-transparent text-[#03FFF0] w-[85px] text-[14px]
               max-[600px]:!w-[100px]
               max-[450px]:!w-[80px]
               max-[450px]:!min-h-[80%]
               h-[auto]
               min-h-[88%]
-              pt-[3px]
               border border-gray-300
               focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none">
             {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.map(value =>
@@ -112,19 +112,19 @@ const BucketItemCard = ({bucketItem}: Props) => {
           </select>
         </div>
 
-        <div className='flex justify-around items-center w-[4rem] py-[3px] px-[6px] border border-white 
+        <div className=' mt-[5px] flex justify-around items-center w-[4rem] py-[4px] px-[6px] border border-white 
         max-[450px]:!min-h-[80%]'>
           <button
-            className={classnames('font-inter font-bold text-[12px] active:scale-110', {
+            className={classnames('font-inter font-bold text-[13px] active:scale-110', {
               "text-[gray]": amount <= 1
             })}
             disabled={amount <= 1}
             onClick={itemMinus}>-
           </button>
           <p
-            className='font-inter font-bold text-[12px] text-[#03FFF0]'>{amount}</p>
+            className='font-inter font-bold text-[13px] text-[#03FFF0]'>{amount}</p>
           <button
-            className='font-inter font-bold text-[12px] active:scale-110'
+            className='font-inter font-bold text-[13px] active:scale-110'
             onClick={itemPlus}>+
           </button>
         </div>
@@ -148,7 +148,7 @@ const BucketItemCard = ({bucketItem}: Props) => {
       className='absolute bottom-[24px] right-[24px] cursor-pointer hover:brightness-150 active:scale-110 transition-all'
       src={bin}
       onClick={itemDelete}
-      alt="Удалить"/>
+      alt="Удалить" />
 
   </article>)
 }

@@ -216,7 +216,7 @@ function BucketPage() {
   //#endregion
 
   return <main className={classNames(
-    `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[13vw]
+    `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[10vw]
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
       max-[550px]:!px-[5px]`,
