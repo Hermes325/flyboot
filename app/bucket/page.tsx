@@ -290,7 +290,9 @@ function BucketPage() {
             sticky
             top-[120px]
             border-2 rounded-2xl border-[#919191]
-            px-[15px] pt-[26px] pb-[34px]
+            px-[15px] 
+            max-[600px]:!pt-[0px]
+            pt-[26px] pb-[34px]
             max-[600px]:!border-0
             
           ">
