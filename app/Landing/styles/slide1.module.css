@@ -36,6 +36,8 @@
     text-align    : center;
     letter-spacing: 0.04em;
     color         : #FAFAFA;
+    z-index       : 2;
+    position      : relative;
 }
 
 /* Задний фон */
@@ -56,8 +58,8 @@
     position       : absolute;
     left           : 55%;
     width          : 30vw;
-    top            : 2% ;
-    aspect-ratio: 1/1;
+    top            : -5%;
+    aspect-ratio   : 1/1;
     background     : linear-gradient(180deg, rgba(3, 240, 225, 0.85) 47.97%, #010101 100%);
     box-shadow     : 0px -10px 64px #29D9CE;
     border-radius  : 50%;
@@ -95,7 +97,7 @@
     background   : linear-gradient(222.74deg, #29D9CE 16.39%, rgba(14, 143, 184, 0) 88.2%);
     transform    : rotate(-54.33deg);
     border-radius: 50%;
-    
+
 }
 
 .krug3 {

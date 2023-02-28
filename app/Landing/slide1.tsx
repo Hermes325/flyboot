@@ -78,11 +78,12 @@ function Slide1() {
           Одевайся так, будто завтра выступаешь в Карнеги-Холл!
 
         </p>
-        <a href="/catalog" className="px-[10vw]">
+        <a href="/catalog" className="px-[10vw] z-10">
           <button
             className={
               styles.button_main +
               ` 
+              
               mt-[1vw] 
               font-montserrat 
               p-[18px_30px_20px_30px] 
