@@ -18,22 +18,33 @@ export default function Footer() {
           max-[1300px]:gap-5
         ">
         {/* links to pages */}
-        <div className="flex flex-row space-x-20">
-          <NavLink href="/catalog">
-            <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
-              Каталог
-            </h2>
-          </NavLink>
-          <NavLink href="/about-us">
-            <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px]">
-              О нас
-            </h2>
-          </NavLink>
-          <NavLink href="/FAQ">
-            <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
-              FAQ
-            </h2>
-          </NavLink>
+        <div className=" flex gap-5">
+          <div>
+            <NavLink href="/about-us">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px] ">
+                О нас
+              </h2>
+            </NavLink>
+            <NavLink href="/catalog">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] my-2">
+                Каталог
+              </h2>
+            </NavLink>
+          </div>
+          <div>
+            <NavLink href="/FAQ">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
+                FAQ
+              </h2>
+            </NavLink>
+            <NavLink href="/privacy">
+              <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] my-2">
+                Условия
+              </h2>
+            </NavLink>
+          </div>
+
+
         </div>
         {/* gap: 1.5rem;
     margin: 0; */}

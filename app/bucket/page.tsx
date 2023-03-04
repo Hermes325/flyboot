@@ -1,7 +1,7 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import type {RootState} from "@/lib/redux/store/store";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/lib/redux/store/store";
 import Link from "next/link";
 import BucketItemCard from "./BucketItemCard";
 import BucketFormRadio from "./BucketFormRadio";
@@ -11,9 +11,9 @@ import OrderModal from "./modals/OrderModal";
 import TestRedux from "./TestRedux";
 import styles from "./BucketItemCard.module.css";
 import classNames from "classnames";
-import {BucketItem, deleteAllItems} from "@/lib/redux/slices/itemSlice";
-import {useRouter} from "next/navigation";
-import {ItemPayDto} from "@/pages/api/payurl";
+import { BucketItem, deleteAllItems } from "@/lib/redux/slices/itemSlice";
+import { useRouter } from "next/navigation";
+import { ItemPayDto } from "@/pages/api/payurl";
 
 // Используется в заказе и при формировании чека
 export type Order = {
@@ -31,6 +31,7 @@ export type Order = {
   startPayment: number
   comment: string
 }
+
 
 function BucketPage() {
   //#region Модалки
@@ -59,7 +60,7 @@ function BucketPage() {
   const [order, setOrder] = useState<Order>(emptyOrder);
 
   function changeOrder(prop: string, value: any) {
-    setOrder((x) => ({...x, [prop]: value}));
+    setOrder((x) => ({ ...x, [prop]: value }));
   }
 
   const bucketItems = useSelector((state: RootState) => state.items);
@@ -120,7 +121,7 @@ function BucketPage() {
         items: bucketItems
           .reduce<BucketItem[]>((arr, curr) => {
             // Одинаковый элемент
-            const sameIndex = arr.findIndex(({item, size}) =>
+            const sameIndex = arr.findIndex(({ item, size }) =>
               item.poizonArticul === curr.item.poizonArticul
               && size.chosenSizeKey === curr.size.chosenSizeKey
               && size.chosenSizeValue === curr.size.chosenSizeValue)
@@ -130,14 +131,14 @@ function BucketPage() {
             } else arr.push(curr)
             return arr;
           }, [])
-          .map<ItemPayDto>(({item, size, amount}) => ({
+          .map<ItemPayDto>(({ item, size, amount }) => ({
             item_title: item.title,
             item_poizon_articul: item.poizonArticul,
             item_price: item.price,
             item_amount: amount,
             item_size: `${size.chosenSizeKey} ${getSizeName(size)}`
           }))
-          .reduce((arr, item) => ({...arr, [`item_${item.item_poizon_articul}`]: JSON.stringify(item, null, 0)}), {}),
+          .reduce((arr, item) => ({ ...arr, [`item_${item.item_poizon_articul}`]: JSON.stringify(item, null, 0) }), {}),
         // о клиенте
         client: {
           client_delivery: delivery,
@@ -232,20 +233,20 @@ function BucketPage() {
       className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
     </button> */}
     {isModalOpenSdek && <SdekModal
-        setSdekData={setSdekData}
-        isSdekModalOpen={isModalOpenSdek}
-        closeModal={() => setIsModalOpenSdek(false)}
+      setSdekData={setSdekData}
+      isSdekModalOpen={isModalOpenSdek}
+      closeModal={() => setIsModalOpenSdek(false)}
     />}
     {isModalOpenBoxBerry && <BoxBerryModal
-        setBoxBerryData={setBoxBerryData}
-        isBoxBerryModalOpen={isModalOpenBoxBerry}
-        closeModal={() => setIsModalOpenBoxBerry(false)}
+      setBoxBerryData={setBoxBerryData}
+      isBoxBerryModalOpen={isModalOpenBoxBerry}
+      closeModal={() => setIsModalOpenBoxBerry(false)}
     />}
     {isOrderModalOpen && <OrderModal
-        order={order}
-        setOrder={setOrder}
-        isOrderModalOpen={isOrderModalOpen}
-        closeModal={() => setIsOrderModalOpen(false)}
+      order={order}
+      setOrder={setOrder}
+      isOrderModalOpen={isOrderModalOpen}
+      closeModal={() => setIsOrderModalOpen(false)}
     />}
 
     <form className="flex flex-col items-center justify-center 
@@ -269,8 +270,8 @@ function BucketPage() {
         ">
           {bucketItems.map((bucketItem, i, arr) => (
             <div key={`${bucketItem.item.id}-${i}`}>
-              <BucketItemCard bucketItem={bucketItem}/>
-              {i !== arr.length - 1 && <hr className="mx-[24px]"/>}
+              <BucketItemCard bucketItem={bucketItem} />
+              {i !== arr.length - 1 && <hr className="mx-[24px]" />}
             </div>
           ))}
         </div>
@@ -315,12 +316,12 @@ function BucketPage() {
                   <>
                     <span className="block">ПВЗ СДЭК - 350 ₽</span>
                     {order.delivery === "Sdek" &&
-                        <button
-                            onClick={openSdekModal}
-                            className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-                        >
-                          {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
-                        </button>}
+                      <button
+                        onClick={openSdekModal}
+                        className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                      >
+                        {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
+                      </button>}
                   </>
                 </BucketFormRadio>
                 <BucketFormRadio
@@ -332,12 +333,12 @@ function BucketPage() {
                   <>
                     <span className="block">ПВЗ Boxberry - 350 ₽</span>
                     {order.delivery === "BoxBerry" &&
-                        <button
-                            onClick={openBoxBerryModal}
-                            className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-                        >
-                          {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
-                        </button>}
+                      <button
+                        onClick={openBoxBerryModal}
+                        className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                      >
+                        {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
+                      </button>}
                   </>
                 </BucketFormRadio>
                 <BucketFormRadio
@@ -369,9 +370,23 @@ function BucketPage() {
                   || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
                 className={styles.buy + " font-inter w-full"}
                 onClick={openOrderModal}
+                
+                // if ( itemsAmount === 0 ) {
+                //   openOrderModal
+                // }
               >
                 Заказать
               </button>
+
+
+
+
+
+
+
+
+
+
 
               {/* TODO: Впилить ссылку */}
               <div className="flex flex-row gap-[14px]">
@@ -403,7 +418,7 @@ function BucketPage() {
         </div>
       </div>
     </form>
-  </main>
+  </main >
 }
 
 export default BucketPage;
