@@ -13,6 +13,7 @@ const inter = Inter({
   subsets: ["cyrillic", "latin"],
   variable: "--font-inter",
   display: "optional",
+  
 });
 
 const jost = Jost({
