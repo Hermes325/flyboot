@@ -55,7 +55,7 @@ export default async function sizes(
     const response: Sizes = await responseJSON.json()
     // const response: Sizes = mock;
 
-    console.log("/api/sizes RESPONSE", JSON.stringify(response, null, 2))
+    // console.log("/api/sizes RESPONSE", JSON.stringify(response, null, 2))
     res.status(200).json(response);
   } catch (e) {
     res.status(500).json({ error: e as Error });
