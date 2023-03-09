@@ -43,7 +43,7 @@ const ItemPageClientPart = ({ item }: Props) => {
         console.error("/api/sizes", query.statusText)
         return
       }
-
+      console.log(newContent)
       const newSizes = newContent as Sizes
       setFetchedSizes(newSizes)
       setCountry(newSizes[0].sizeKey)
