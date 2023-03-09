@@ -40,7 +40,9 @@ const ItemPageClientPart = ({ item }: Props) => {
       })
       const newContent = await query.json()
       if (!query.ok)
-        console.error("/api/sizes", query.statusText)
+       { console.error("/api/sizes", query.statusText)
+       return
+      }
 
       const newSizes = newContent as Sizes
       setFetchedSizes(newSizes)
