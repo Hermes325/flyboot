@@ -46,7 +46,7 @@ const ItemPageClientPart = ({ item }: Props) => {
       console.log(newContent)
       const newSizes = newContent as Sizes
       setFetchedSizes(newSizes)
-      setCountry(newSizes[0].sizeKey)
+      setCountry(newSizes?.[0]?.sizeKey)
     }
 
     getSizes()
