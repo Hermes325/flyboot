@@ -23,7 +23,7 @@ const ItemPageClientPart = ({ item }: Props) => {
     selected: NaN,
     sizeKey: "null"
   })
-  const countrySizes = fetchedSizes?.find(x => x.sizeKey === country)
+  const countrySizes = fetchedSizes?.find(x => x?.sizeKey === country)
 
   useEffect(() => {
     async function getSizes() {
