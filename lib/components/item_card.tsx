@@ -28,7 +28,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
     <article
       className={`${styles.item_card} ${className ?? ""} 
         bg-[#003E3E] rounded-2xl flex flex-col p-[0.75vw] justify-between
-        hover:bg-[#07b8b88e] hover:transition-colors h-[100%]`}
+        hover:bg-[#07b8b88e] hover:transition-colors `}
     >
       <Image
         lazyLoad={true}
