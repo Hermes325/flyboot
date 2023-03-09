@@ -39,9 +39,9 @@ const ItemPageClientPart = ({ item }: Props) => {
         })
       })
       const newContent = await query.json()
-      if (!query.ok)
-       { console.error("/api/sizes", query.statusText)
-       return
+      if (!query.ok) {
+        console.error("/api/sizes", query.statusText)
+        return
       }
 
       const newSizes = newContent as Sizes
@@ -70,7 +70,7 @@ const ItemPageClientPart = ({ item }: Props) => {
               className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
                 "!text-[gray]": country === sizeKey,
                 "hover:text-[#03FFF0]": country !== sizeKey,
-              },)}>
+              })}>
               {sizeKey}
             </button>))}
         {/* <h4 className="font-lato font-[400] text-white text-[24px] leading-[33px] tracking-[0.01em]">
