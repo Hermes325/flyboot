@@ -168,7 +168,7 @@ function Header() {
         <input
           placeholder="Поиск"
           className={classNames(
-            "bg-transparent border-b-2 w-full mobile:hidden text-white",
+            "bg-transparent border-b-2 w-full mobile:hidden text-white outline-0",
             { "hidden ": !isNavOpen }
           )}
           value={search}
