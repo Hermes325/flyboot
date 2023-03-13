@@ -137,6 +137,51 @@ const OrderModal = ({
           })}
           name="phone"
         />
+        <input
+          type="text"
+          value={bucketItems
+            .map(
+              (e) =>
+                `
+                poizonArticul: "${e.item.poizonArticul}",
+                title: "${e.item.title}",
+                price: "${e.item.price}",
+                amount: "${e.amount}",
+                Size: "${
+                  e.size?.available?.find(
+                    (x) => x.sizeKey === e.size.chosenSizeKey
+                  )?.sizeValue?.[e.size.chosenSizeValue]
+                }",
+                `
+            )
+            .join(" ")}
+          className="hidden"
+          name="list"
+        />
+        <input
+          type="text"
+          value={order.delivery}
+          className="hidden"
+          name="delivery"
+        />
+        <input
+          type="text"
+          value={`${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`}
+          className="hidden"
+          name="Sdek"
+        />
+        <input
+          type="text"
+          value={order?.BoxBerry?.address}
+          className="hidden"
+          name="BoxBerry"
+        />
+        <input
+          type="text"
+          value={order.comment}
+          className="hidden"
+          name="comment"
+        />
         {!isPickUpPointDelivery && (
           <>
             <input
@@ -166,36 +211,6 @@ const OrderModal = ({
               onChange={(x) => changeOrder("apartment", x.target.value)}
               className={`${inputTailwind} col-span-1 row-start-3 max-[1000px]:row-start-6 min-[1000px]:ml-[0.8vw]`}
               name="appartament"
-            />
-            <input
-              type="text"
-              value={bucketItems.toString()}
-              className="hidden"
-              name="list"
-            />
-            <input
-              type="text"
-              value={order.delivery}
-              className="hidden"
-              name="delivery"
-            />
-            <input
-              type="text"
-              value={order.Sdek.toString()}
-              className="hidden"
-              name="Sdek"
-            />
-            <input
-              type="text"
-              value={order.BoxBerry.toString()}
-              className="hidden"
-              name="BoxBerry"
-            />
-            <input
-              type="text"
-              value={order.comment}
-              className="hidden"
-              name="comment"
             />
           </>
         )}
