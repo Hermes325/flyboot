@@ -18,7 +18,7 @@ export default function Footer() {
           max-[1300px]:gap-5
         ">
         {/* links to pages */}
-        <div className=" flex gap-5">
+        <div className=" flex gap-5 max-[1300px]:w-[80%] max-[1600px]:gap-0 max-[600px]:justify-between">
           <div>
             <NavLink href="/about-us">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px] ">
@@ -70,9 +70,12 @@ export default function Footer() {
         </address>
       </div>
 
-      <div className="">
-        <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#29D9CE] w-[200px] text-center">
-          © 2022 Flyboots. <br /> Все права защищены.
+      <div className="flex">
+        <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#29D9CE]  text-center">
+          © 2022 Flyboots.&nbsp;
+        </p>
+        <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#29D9CE]  text-center">
+           Все права защищены.
         </p>
       </div>
     </div>

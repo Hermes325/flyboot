@@ -18,6 +18,9 @@ const Slide2 = () => {
       {items.slice(0, 6).map(item =>
         <ItemCard
           h3ClassName="
+          flex
+          justify-center
+          items-center
           max-[1015px]:!text-[18px] 
           max-[835px]:!text-[16px] 
           max-[835px]:!leading-[19px] 
@@ -35,6 +38,9 @@ const Slide2 = () => {
       {items.slice(6).map(item =>
         <ItemCard
           h3ClassName="
+          flex
+          justify-center
+          items-center
           max-[1015px]:!text-[18px] 
           max-[835px]:!text-[16px] max-[835px]:!leading-[19px] 
           max-[775px]:!mt-[2vw] 
