@@ -62,6 +62,7 @@ export default async function search(
   const client_name = req.query["client_name"]
   const client_comment = req.query["client_comment"]
   const client_phone = req.query["client_phone"]
+  const client_delivery_method = req.query["client_delivery_method"]
 
 
   const itemsPayDto = Object.entries(req.query)
@@ -87,24 +88,22 @@ export default async function search(
 
   //#region Отправить на почту
 
+  const emailList = itemsPayDto.map(x => ({
+    "name": `${x.item_title} |\n${x.item_poizon_articul}|\n${x.item_size}`,
+    "price": x.item_price,
+    "quantity": x.item_amount,
+  }))
+
+
   const orderData = {
 
-    'FIO': "",
-    'Email': "",
-    'phone': "",
-    'city': "",
-    'address': "",
-    'build': "",
-    'appartament': "",
-    'list': "",
-    'delivery': "",
-    'Sdek': "",
-    'BoxBerry': "",
-    'comment': "",
-
-
-
-
+    'FIO': client_name,
+    'Email': MNT_SUBSCRIBER_ID,
+    'phone': client_phone,
+    'list': JSON.stringify(emailList,null,2),
+    'delivery_method': client_delivery_method,
+    'address': client_delivery,
+    'comment': client_comment,
   }
   emailjs
     .send(

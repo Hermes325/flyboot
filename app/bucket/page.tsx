@@ -96,16 +96,16 @@ function BucketPage() {
 
   function payment() {
     // items + order → options
-    let delivery;
+    let clientDelivery;
     switch (order.delivery) {
       case "Sdek":
-        delivery = `${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`;
+        clientDelivery = `${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`;
         break;
       case "BoxBerry":
-        delivery = order?.BoxBerry?.address;
+        clientDelivery = order?.BoxBerry?.address;
         break;
       default:
-        delivery = `г.${order.city} ул.${order.street} к.${order.build} кв.${order.apartment}`;
+        clientDelivery = `г.${order.city} ул.${order.street} к.${order.build} кв.${order.apartment}`;
         break;
     }
 
@@ -156,10 +156,11 @@ function BucketPage() {
           ),
         // о клиенте
         client: {
-          client_delivery: delivery,
+          client_delivery: clientDelivery,
           client_name: order.name,
           client_phone: order.phone,
           client_comment: order.comment,
+          client_delivery_method: order.delivery,
         },
       },
     };
