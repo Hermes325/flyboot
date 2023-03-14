@@ -39,6 +39,7 @@ const OrderModal = ({
     e.preventDefault();
 
     if (form.current) {
+      console.log("наш лог",new FormData(form.current))
       emailjs
         .sendForm(
           "service_meeb64l",
@@ -103,6 +104,7 @@ const OrderModal = ({
           
           "
         ref={form}
+        
       >
         <input
           placeholder="ФИО"
@@ -143,18 +145,18 @@ const OrderModal = ({
             .map(
               (e) =>
                 `
-                poizonArticul: "${e.item.poizonArticul}",
-                title: "${e.item.title}",
-                price: "${e.item.price}",
-                amount: "${e.amount}",
-                Size: "${
+                "${e.item.poizonArticul}",
+                "${e.item.title}",
+                "${e.item.price}",
+                "${e.amount}",
+                "${
                   e.size?.available?.find(
                     (x) => x.sizeKey === e.size.chosenSizeKey
                   )?.sizeValue?.[e.size.chosenSizeValue]
                 }",
                 `
             )
-            .join(" ")}
+            .join("\n")}
           className="hidden"
           name="list"
         />

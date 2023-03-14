@@ -111,7 +111,7 @@ function BucketPage() {
 
     const getSizeName = (size: BucketItem["size"]) =>
       size.available.find((x) => x.sizeKey === size.chosenSizeKey)?.sizeValue[
-        size.chosenSizeValue
+      size.chosenSizeValue
       ];
 
     const options = {
@@ -395,6 +395,7 @@ function BucketPage() {
                 </div>
               </div>
 
+
               <div className="space-y-4">
                 {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
 
@@ -403,76 +404,26 @@ function BucketPage() {
                   placeholder="Комментарий к заказу"
                   rows={3}
                   className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
-                  onChange={(x) => changeOrder("comment", x.target.value)}
+                  onChange={x => changeOrder("comment", x.target.value)}
                 />
 
                 <button
                   disabled={
-                    !order.personalDataCheck ||
-                    itemsAmount === 0 ||
-                    (order.delivery === "Sdek" &&
-                      order.Sdek?.PVZ?.Address === undefined) ||
-                    (order.delivery === "BoxBerry" &&
-                      order.BoxBerry?.address === undefined)
-                  }
+                    !order.personalDataCheck
+                    || itemsAmount === 0
+                    || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
+                    || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
                   className={styles.buy + " font-inter w-full"}
                   onClick={openOrderModal}
 
-                  // if ( itemsAmount === 0 ) {
-                  //   openOrderModal
-                  // }
+                //TODO сделать модальное окно//
                 >
                   Заказать
                 </button>
 
-<<<<<<< HEAD
-                {/* TODO: Впилить ссылку */}
                 <div className="flex flex-row gap-[14px]">
                   <input
                     className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
-=======
-            <div className="space-y-4">
-              {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
-
-              <textarea
-                value={order.comment}
-                placeholder="Комментарий к заказу"
-                rows={3}
-                className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
-                onChange={x => changeOrder("comment", x.target.value)}
-              />
-
-              <button
-                disabled={
-                  !order.personalDataCheck
-                  || itemsAmount === 0
-                  || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
-                  || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
-                className={styles.buy + " font-inter w-full"}
-                onClick={openOrderModal}
-
-              // if ( itemsAmount === 0 ) {
-              //   openOrderModal
-              // }
-              >
-                Заказать
-              </button>
-
-
-
-
-
-
-
-
-
-
-
-              {/* TODO: Впилить ссылку */}
-              <div className="flex flex-row gap-[14px]">
-                <input
-                  className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
->>>>>>> 49ffe8d (some fix)
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)]
                   focus:outline-none transition duration-200"
                     type="checkbox"
@@ -497,7 +448,9 @@ function BucketPage() {
                     .
                   </label>
                 </div>
+
               </div>
+
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from 'nodemailer';
+import emailjs from "@emailjs/browser";
 
 export type ItemPayDto = {
   item_title: string
@@ -46,7 +47,7 @@ export default async function search(
   console.log("/api/payurl REQUEST body\n", req.body)
   console.log("/api/payurl REQUEST query\n", JSON.stringify(req.query, null, 2));
 
-  // const MNT_AMOUNT = req.query["MNT_AMOUNT"]//: "1.00",
+  const MNT_AMOUNT = req.query["MNT_AMOUNT"]//: "1.00",
   // const MNT_TEST_MODE = req.query["MNT_TEST_MODE"]//: "0",
   const MNT_TRANSACTION_ID = req.query["MNT_TRANSACTION_ID"]//: "t-1676554259242",
   // const MNT_CURRENCY_CODE = req.query["MNT_CURRENCY_CODE"]//: "RUB",
@@ -85,29 +86,41 @@ export default async function search(
   //#endregion
 
   //#region Отправить на почту
-  // const testEmailAccount = await nodemailer.createTestAccount()
 
-  // const transporter = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   secure: false,
-  //   auth: {
-  //     user: testEmailAccount.user,
-  //     pass: testEmailAccount.pass,
-  //   },
-  // })
+  const orderData = {
 
-  // const result = await transporter.sendMail({
-  //   from: '"Node js" <nodejs@example.com>',
-  //   to: 'georg3georg3georg@gmail.com, msk.vitaly@gmail.com',
-  //   subject: `Заказ от ${MNT_SUBSCRIBER_ID}`,
-  //   text: `Тест сообщения\n
-  //   Клиент: ${client_name} ${client_phone} ${client_delivery} ${client_comment} 
-  //   ${JSON.stringify(itemsPayDto, null, 2)}`,
-  //   html:
-  //     '<strong>TODO:</strong> сделать таблицу <i>товаров клиента и данных клиента</i>.',
-  // })
+    'FIO': "",
+    'Email': "",
+    'phone': "",
+    'city': "",
+    'address': "",
+    'build': "",
+    'appartament': "",
+    'list': "",
+    'delivery': "",
+    'Sdek': "",
+    'BoxBerry': "",
+    'comment': "",
 
-  // console.log(result)
+
+
+
+  }
+  emailjs
+    .send(
+      "service_meeb64l",
+      "template_3i6j7qf",
+      orderData,
+      "Igg7aXsdDmTo0FNZG"
+    )
+    .then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
 
   //#endregion
 
