@@ -78,6 +78,7 @@ function BucketPage() {
         BoxBerry: {},
         startPayment: 0,
       };
+
   const [order, setOrder] = useState<Order>(emptyOrder);
 
   function changeOrder(prop: string, value: any) {
