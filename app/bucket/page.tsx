@@ -44,21 +44,40 @@ function BucketPage() {
   //#endregion
 
   //#region Заказ
-  const emptyOrder: Order = {
-    name: "",
-    phone: "",
-    email: "",
-    comment: "",
-    city: "",
-    street: "",
-    build: "",
-    apartment: "",
-    delivery: "Sdek",
-    personalDataCheck: true,
-    Sdek: {},
-    BoxBerry: {},
-    startPayment: 0,
-  };
+  const emptyOrder: Order =
+    process.env.NEXT_PUBLIC_IS_PROD === undefined ?
+      //* TEST 
+      {
+        name: "имя",
+        phone: "+719581958",
+        email: "тест@gmail.com",
+        comment: "тестовый комментарий",
+        city: "город",
+        street: "улица",
+        build: "строение",
+        apartment: "квартира",
+        delivery: "personal delivery",
+        personalDataCheck: true,
+        Sdek: {},
+        BoxBerry: {},
+        startPayment: 0,
+      } :
+      //* PROD
+      {
+        name: "",
+        phone: "",
+        email: "",
+        comment: "",
+        city: "",
+        street: "",
+        build: "",
+        apartment: "",
+        delivery: "Sdek",
+        personalDataCheck: true,
+        Sdek: {},
+        BoxBerry: {},
+        startPayment: 0,
+      };
   const [order, setOrder] = useState<Order>(emptyOrder);
 
   function changeOrder(prop: string, value: any) {
@@ -118,7 +137,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: finalPrice, //TODO: 1руб могу поставить,
+      amount: finalPrice, // 1руб,
       transactionId: "t-" + Date.now(),
       subscriberId: order.email,
       customParams: {
@@ -307,11 +326,13 @@ function BucketPage() {
         }
       )}
     >
-      {/* <TestRedux/>
-    <button
-      onClick={() => setOrder(x => ({...x, startPayment: ++x.startPayment}))}
-      className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
-    </button> */}
+
+      {process.env.NEXT_PUBLIC_IS_PROD === undefined && <TestRedux />}
+      {process.env.NEXT_PUBLIC_IS_PROD === undefined && <button
+        onClick={() => setOrder(x => ({ ...x, startPayment: ++x.startPayment }))}
+        className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
+      </button>}
+
       {isModalOpenSdek && (
         <SdekModal
           setSdekData={setSdekData}

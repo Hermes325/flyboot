@@ -1,7 +1,7 @@
 import { Item } from "@/lib/datocms";
+import Link from "next/link";
 import React from "react";
 import { Image } from "react-datocms/image";
-import NavLink from "./link";
 
 type Props = {
   items: Item[];
@@ -13,7 +13,7 @@ const HeaderSearchList = ({ items, setOpen }: Props) => {
     <ul className="w-full max-h-[600px] max-[1600px]:max-h-[500px] max-[1080px]:max-h-[400px] max-[720px]:max-h-[300px] max-[600px]:max-h-[400px] overflow-y-scroll">
       {items.map((item) => (
         <li key={item.slug} className="py-3 border-b-2 mx-5">
-          <NavLink href={`/item/${item.slug}`} setOpen={setOpen}>
+          <Link href={`/item/${item.slug}`} onClick={setOpen}>
             <div className="flex flex-row w-full space-x-5 justify-start">
               {/* <div className="flex flex-row space-x-5"> */}
               <Image
@@ -41,7 +41,7 @@ const HeaderSearchList = ({ items, setOpen }: Props) => {
                 {item.price}руб
               </p> */}
             </div>
-          </NavLink>
+          </Link>
         </li>
       ))}
     </ul>

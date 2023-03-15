@@ -1,6 +1,5 @@
 import * as React from "react";
 import Image from "next/image";
-import NavLink from "./link";
 import Link from "next/link";
 import whatsapp_path from "@/public/footer-images/whatsapp.svg";
 import telegram_path from "@/public/footer-images/telegram.svg";
@@ -20,28 +19,28 @@ export default function Footer() {
         {/* links to pages */}
         <div className=" flex gap-5 max-[1300px]:w-[80%] max-[1600px]:gap-0 max-[600px]:justify-between">
           <div>
-            <NavLink href="/about-us">
+            <Link href="/about-us">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px] ">
                 О нас
               </h2>
-            </NavLink>
-            <NavLink href="/catalog">
+            </Link>
+            <Link href="/catalog">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] my-2">
                 Каталог
               </h2>
-            </NavLink>
+            </Link>
           </div>
           <div>
-            <NavLink href="/FAQ">
+            <Link href="/FAQ">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0]">
                 FAQ
               </h2>
-            </NavLink>
-            <NavLink href="/privacy">
+            </Link>
+            <Link href="/privacy">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] my-2">
                 Условия
               </h2>
-            </NavLink>
+            </Link>
           </div>
 
 
@@ -75,7 +74,7 @@ export default function Footer() {
           © 2022 Flyboots.&nbsp;
         </p>
         <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#29D9CE]  text-center">
-           Все права защищены.
+          Все права защищены.
         </p>
       </div>
     </div>

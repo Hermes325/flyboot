@@ -38,7 +38,6 @@ const payStr = (id: string, email: string, signature: string, transactionId: str
   </MNT_ATTRIBUTES>
 </MNT_RESPONSE>`
 
-// TODO: отправить на почту данные о заказе
 export default async function search(
   req: NextApiRequest,
   res: NextApiResponse
@@ -84,12 +83,6 @@ export default async function search(
   const itemsPayAnyWayJSON = JSON.stringify(itemsPayAnyWay, null, 0)
 
   console.log(itemsPayAnyWayJSON);
-  //#endregion
-
-  //#region Отправить на почту
-
- 
-
   //#endregion
 
   //#region Ответить в PayAnyWay 

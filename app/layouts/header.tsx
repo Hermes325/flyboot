@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Item } from "@/lib/datocms";
 import { RootState } from "@/lib/redux/store/store";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import NavLink from "./link";
+import Link from "next/link"
 import HeaderSearchList from "./headerSearchList";
 import FlyBoots_logo from "@/public/header-images/FlyBoots_logo.svg";
 import bucket from "@/public/header-images/bucket.svg";
@@ -122,8 +122,8 @@ function Header() {
   //#endregion
 
   //#region UI
-  const navLink = (href: string, label: string) => (
-    <NavLink href={href} className="max-mobile:hidden">
+  const desktopLink = (href: string, label: string) => (
+    <Link href={href} className="max-mobile:hidden">
       <h2
         className="font-montserrat text-2xl tracking-wide hover:text-[#03FFF0]
         max-[1500px]:text-xl 
@@ -133,7 +133,7 @@ function Header() {
       >
         {label}
       </h2>
-    </NavLink>
+    </Link>
   );
 
   //#endregion
@@ -148,7 +148,7 @@ function Header() {
     >
       {/* Logo and burger menu */}
       <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
-        <NavLink prefetch href="/" setOpen={clearSearch}>
+        <Link prefetch={process.env.NEXT_PUBLIC_IS_PROD !== undefined} href="/" onClick={clearSearch}>
           <Image
             src={FlyBoots_logo}
             alt="Fly Boots Logo"
@@ -157,12 +157,12 @@ function Header() {
               { "hidden ": isNavOpen }
             )}
           />
-        </NavLink>
+        </Link>
 
         <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
-          {navLink("/catalog", "Каталог")}
-          {navLink("/about-us", "О нас")}
-          {navLink("/FAQ", "FAQ")}
+          {desktopLink("/catalog", "Каталог")}
+          {desktopLink("/about-us", "О нас")}
+          {desktopLink("/FAQ", "FAQ")}
         </div>
 
         <input
@@ -203,10 +203,10 @@ function Header() {
           />
           {/* <div className="flex flex-row space-x-5"> */}
           {/* bucket picture and route to bucket page */}
-          <NavLink
+          <Link
             href="/bucket"
             className={classNames("relative", { " hidden": isNavOpen })}
-            setOpen={clearSearch}
+            onClick={clearSearch}
           >
             <Image
               src={bucket}
@@ -221,7 +221,7 @@ function Header() {
                 {bucketItems}
               </p>
             )}
-          </NavLink>
+          </Link>
 
           <button
             onClick={() => {
@@ -255,16 +255,16 @@ function Header() {
         {foundItems.length === 0 && (
           <div className="flex flex-col justify-center items-center space-y-8">
             {links.map(({ href, label }, i) => (
-              <NavLink
+              <Link
                 key={href}
                 href={href}
-                prefetch={href.startsWith("/")}
+                prefetch={process.env.NEXT_PUBLIC_IS_PROD !== undefined && href.startsWith("/")}
                 className="text-[#f9f9f9] hover:text-[#00b5b5] text-4xl leading-10"
                 style={{ animationDelay: `0.${i + 1}s` }}
-                setOpen={clearSearch}
+                onClick={clearSearch}
               >
                 {label}
-              </NavLink>
+              </Link>
             ))}
           </div>
         )}
