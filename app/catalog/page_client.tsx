@@ -75,7 +75,6 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
   const filtersMobile = useRef<HTMLDivElement>(null)
   function showFilters() {
-    console.log("showFilters");
     if (isFiltersShown) {
       const filtersY = filtersMobile.current?.getBoundingClientRect().y!
       const necessaryShift = document.querySelector('#layout-header')!.getBoundingClientRect().height
