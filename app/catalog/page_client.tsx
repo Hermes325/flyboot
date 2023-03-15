@@ -192,7 +192,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         setFiltersWrapper={setFiltersWrapper} />
     </div>
 
-    {/* Filters */}
+    {/* кнопка для фильтров mobile */}
     <div className='
       min-[900px]:hidden 
       max-[900px]:flex
@@ -209,7 +209,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       <span className='pointer-events-none'>Фильтры</span>
     </div>
 
-    {/* каталог desktop */}
+    {/* фильтры desktop */}
     <div className="bg-[#0e0e0e] top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
       max-[900px]:hidden">
       <FiltersUI
@@ -221,17 +221,28 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         closeMobileFilters={() => changeFiltersVisibility(false)} />
     </div>
 
-    {/* каталог mobile */}
-    <div className={classNames(`fixed top-0 left-0 w-screen h-screen z-[9]
+    {/* фильтры mobile задник */}
+    <div
+      onClick={() => changeFiltersVisibility(false)}
+      className={classNames(`fixed top-0 left-0 w-screen h-screen z-[9]
         min-[900px]:hidden
         opacity-0
       `, {
-      'max-[900px]:block': isFiltersShown,
-      'max-[900px]:hidden': !isFiltersShown,
-    })}
-      onClick={() => changeFiltersVisibility(false)} />
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] max-xl:col-span-2 max-xl:grid-cols-[1fr_1fr]
-    max-[900px]:col-start-2 max-[900px]:col-end-5 max-[900px]:relative" style={{ alignItems: "start" }}>
+        'max-[900px]:block': isFiltersShown,
+        'max-[900px]:hidden': !isFiltersShown,
+      })} />
+
+    {/* Товары */}
+    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] 
+                  max-xl:col-span-2 
+                  max-xl:grid-cols-[1fr_1fr]
+                  max-[900px]:col-start-2 
+                  max-[900px]:col-end-5
+                  max-[900px]:min-h-screen
+                  max-[900px]:relative"
+      style={{ alignItems: "start" }}>
+
+      {/* фильтры mobile */}
       <div className={classNames(`
           p-[1rem_1.5rem_1.5rem_1.5rem]
           border-2
@@ -263,7 +274,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         />
       </div>
 
-      {/* Items */}
+      {/* Карточки с товарами */}
       {content.items.map(item =>
         <ItemCard
           key={item.poizonArticul}
