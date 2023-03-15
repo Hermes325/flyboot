@@ -92,7 +92,10 @@ export async function getHotItemsForLanding(): Promise<Item[]> {
 export async function getCatalogPaths(): Promise<string[]> {
   const query = gql`
     {
-      allItems {
+      // TODO: билдить всё. 
+      //? 100 - максимум у DatoCMS
+      //? можно кинуть несколько запросов
+      allItems(first:100) {
         slug
       }
     }
