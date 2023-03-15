@@ -289,7 +289,7 @@ function Header() {
         </button>
         <HeaderSearchList items={foundItemsDesktop} setOpen={clearSearch} />
       </div>
-    </header>
+    </header >
   );
 }
 
