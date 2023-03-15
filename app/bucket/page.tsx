@@ -118,7 +118,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: 1, //TODO: 1руб могу поставить,
+      amount: finalPrice, //TODO: 1руб могу поставить,
       transactionId: "t-" + Date.now(),
       subscriberId: order.email,
       customParams: {
