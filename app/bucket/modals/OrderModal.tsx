@@ -38,24 +38,24 @@ const OrderModal = ({
   function pay(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
-    if (form.current) {
-      console.log("наш лог",new FormData(form.current))
-      emailjs
-        .sendForm(
-          "service_meeb64l",
-          "template_3i6j7qf",
-          form.current,
-          "Igg7aXsdDmTo0FNZG"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-    }
+    // if (form.current) {
+      // console.log("наш лог",new FormData(form.current))
+      // emailjs
+      //   .sendForm(
+      //     "service_meeb64l",
+      //     "template_3i6j7qf",
+      //     form.current,
+      //     "Igg7aXsdDmTo0FNZG"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       console.log(result.text);
+      //     },
+      //     (error) => {
+      //       console.log(error.text);
+      //     }
+      //   );
+    // }
 
     setOrder({ ...localOrder, startPayment: order.startPayment + 1 });
     closeModal();
@@ -104,7 +104,7 @@ const OrderModal = ({
           
           "
         ref={form}
-        
+
       >
         <input
           placeholder="ФИО"

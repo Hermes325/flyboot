@@ -6,7 +6,7 @@ const ThankPage = () => {
     <h1 className='font-montserrat'>Благодарим за покупку ♥</h1>
     <p className='font-roboto'>Мы отправили чек на вашу почту</p>
     <address>
-      <p>За помощью с заказом обращайтесь {"<... Куда? ...>"}</p>
+      <p>За помощью с заказом обращайтесь <a href="https://t.me/FlyBootsSupport">@FlyBootsSupport</a> </p>
     </address>
 
     <Link className='text-white underline' href='/catalog'>

@@ -14,6 +14,8 @@ import classNames from "classnames";
 import { BucketItem, deleteAllItems } from "@/lib/redux/slices/itemSlice";
 import { useRouter } from "next/navigation";
 import { ItemPayDto } from "@/pages/api/payurl";
+import emailjs from "@emailjs/browser";
+
 
 // Используется в заказе и при формировании чека
 export type Order = {
@@ -96,7 +98,7 @@ function BucketPage() {
 
   function payment() {
     // items + order → options
-    let clientDelivery;
+    let clientDelivery: string;
     switch (order.delivery) {
       case "Sdek":
         clientDelivery = `${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`;
@@ -116,7 +118,7 @@ function BucketPage() {
 
     const options = {
       account: 25060038,
-      amount: finalPrice, //TODO: 1руб могу поставить,
+      amount: 1, //TODO: 1руб могу поставить,
       transactionId: "t-" + Date.now(),
       subscriberId: order.email,
       customParams: {
@@ -188,8 +190,57 @@ function BucketPage() {
 
     // платёж обрабатывается
     assistant.setOnInProgressCallback(
-      (operationId: string, transactionId: string) => {
+      function (operationId: string, transactionId: string) {
         console.log("setOnInProgressCallback");
+        const emailList = bucketItems
+          .reduce<BucketItem[]>((arr, curr) => {
+            // Одинаковый элемент
+            const sameIndex = arr.findIndex(
+              ({ item, size }) =>
+                item.poizonArticul === curr.item.poizonArticul &&
+                size.chosenSizeKey === curr.size.chosenSizeKey &&
+                size.chosenSizeValue === curr.size.chosenSizeValue
+            );
+
+            if (sameIndex !== -1) {
+              arr[sameIndex].amount + curr.amount;
+            } else arr.push(curr);
+            return arr;
+          }, [])
+          .map<ItemPayDto>(({ item, size, amount }) => ({
+            item_title: item.title,
+            item_poizon_articul: item.poizonArticul,
+            item_price: item.price,
+            item_amount: amount,
+            item_size: `${size.chosenSizeKey} ${getSizeName(size)}`,
+          }))
+          .map(x => ({
+            "name": `${x.item_title} | ${x.item_poizon_articul} | ${x.item_size}`,
+            "price": x.item_price,
+            "quantity": x.item_amount,
+          }))
+
+
+        const orderData = {
+
+          'FIO': order.name,
+          'Email': order.email,
+          'phone': order.phone,
+          'list': JSON.stringify(emailList, null, 2),
+          'delivery_method': order.delivery,
+          'address': clientDelivery,
+          'comment': order.comment,
+        }
+        emailjs
+          .send(
+            "service_meeb64l",
+            "template_3i6j7qf",
+            orderData,
+            "Igg7aXsdDmTo0FNZG"
+          )
+          .then((result: any) => console.log("result.text", result.text))
+          .catch((error: any) => console.error("catch error.text", JSON.stringify(error)))
+          .finally(() => console.log("finally"));
       }
     );
 

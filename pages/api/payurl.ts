@@ -88,38 +88,7 @@ export default async function search(
 
   //#region Отправить на почту
 
-  const emailList = itemsPayDto.map(x => ({
-    "name": `${x.item_title} |\n${x.item_poizon_articul}|\n${x.item_size}`,
-    "price": x.item_price,
-    "quantity": x.item_amount,
-  }))
-
-
-  const orderData = {
-
-    'FIO': client_name,
-    'Email': MNT_SUBSCRIBER_ID,
-    'phone': client_phone,
-    'list': JSON.stringify(emailList,null,2),
-    'delivery_method': client_delivery_method,
-    'address': client_delivery,
-    'comment': client_comment,
-  }
-  emailjs
-    .send(
-      "service_meeb64l",
-      "template_3i6j7qf",
-      orderData,
-      "Igg7aXsdDmTo0FNZG"
-    )
-    .then(
-      (result) => {
-        console.log(result.text);
-      },
-      (error) => {
-        console.log(error.text);
-      }
-    );
+ 
 
   //#endregion
 
