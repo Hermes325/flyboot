@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { Filters, SetFiltersWrapper } from '../page_client';
 import { CatalogBrandsAndCategories } from '@/lib/datocms';
 import FiltersPrice from './filters_price';
+import styles from './filters.module.css'
+import classNames from 'classnames';
 
 type Props = {
   min?: number;
@@ -10,9 +12,10 @@ type Props = {
   meta: CatalogBrandsAndCategories;
   filters: Filters;
   setFiltersWrapper: SetFiltersWrapper;
+  closeMobileFilters: () => void;
 }
 
-const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
+const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilters }: Props) => {
 
   const [showMore, setShowMore] = useState(false)
 
@@ -192,6 +195,16 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
         filters={filters}
         setFiltersWrapper={setFiltersWrapper} />
     </div>
+
+    <button
+      onClick={closeMobileFilters}
+      className={classNames(
+        styles.closeFilterBtn,
+        "font-inter rounded-lg py-5 px-8 w-full",
+        "min-[900px]:hidden")}
+    >
+      Применить
+    </button>
 
   </>)
 }
