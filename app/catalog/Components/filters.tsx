@@ -23,8 +23,8 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     return (filter: Filters): Filters =>
     ({
       ...filter,
+      selectedCategories: { ...filter.selectedCategories, [category]: value },
       page: 0,
-      selectedCategories: { ...filter.selectedCategories, [category]: value }
     })
   }
 
@@ -58,7 +58,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     // console.log("changeSubcategory\n", selectedSubcategories);
     return (filter: Filters): Filters =>
     ({
-      ...filter, page: 0, selectedCategories, selectedSubcategories
+      ...filter, selectedCategories, selectedSubcategories, page: 0
     })
   }
 
@@ -66,13 +66,13 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper }: Props) => {
     setShowMore(false)
     const sexFilter = { ...filters.sexFilter, [sex]: value }
     return (filter: Filters): Filters =>
-      ({ ...filter, sexFilter })
+      ({ ...filter, sexFilter, page: 0 })
   }
 
   function changeBrands(brand: string, value: boolean) {
     // console.log("changeBrands", brand, value);
     return (filter: Filters): Filters =>
-      ({ ...filter, selectedBrands: { ...filter.selectedBrands, [brand]: value } })
+      ({ ...filter, selectedBrands: { ...filter.selectedBrands, [brand]: value }, page: 0 })
   }
   //#endregion
 

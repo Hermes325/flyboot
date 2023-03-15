@@ -32,7 +32,7 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
     if (priceFilter["max"] === priceFilter["min"])
       priceFilter["min"] = 0
 
-    return (filter: Filters): Filters => ({ ...filter, priceFilter })
+    return (filter: Filters): Filters => ({ ...filter, priceFilter, page: 0 })
   }
   //#endregion
 
