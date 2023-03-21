@@ -17,7 +17,7 @@ export default function Footer() {
           max-[1300px]:gap-5
         ">
         {/* links to pages */}
-        <div className=" flex gap-5 max-[1300px]:w-[80%] max-[1600px]:gap-0 max-[600px]:justify-between">
+        <div className=" flex gap-5 max-[1300px]:w-[80%] max-[600px]:justify-between">
           <div>
             <Link href="/about-us">
               <h2 className="font-montserrat text-xl text-white hover:text-[#03FFF0] w-[60px] ">
@@ -45,6 +45,7 @@ export default function Footer() {
 
 
         </div>
+
         {/* gap: 1.5rem;
     margin: 0; */}
         <address className="flex flex-row space-x-6 items-center
@@ -67,6 +68,7 @@ export default function Footer() {
             </Link>
           </div>
         </address>
+      
       </div>
 
       <div className="flex">
@@ -81,3 +83,9 @@ export default function Footer() {
 
   </footer>)
 }
+
+
+
+
+
+
