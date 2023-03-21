@@ -187,11 +187,11 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         <a className='underline' title='Менеджер' href='https://t.me/MrCubik'>
           @MrCubik
         </a>
-        <Image
-          alt='менеджер QR в TG'
-          src={QR}
-          className="rounded-[15px] max-[900px]:hidden" />
       </p>
+      <Image
+        alt='менеджер QR в TG'
+        src={QR}
+        className="rounded-[15px] max-[900px]:hidden" />
     </div>
   //#endregion
 
