@@ -6,6 +6,9 @@ import Pagination from './Components/pagination'
 import FiltersUI from './Components/filters'
 import Sorting from './Components/sorting'
 import classNames from 'classnames'
+import Image from 'next/image'
+import QR from "@/public/qrcode_t.me.png"
+
 
 //#region Filters
 export type Filters = {
@@ -169,31 +172,56 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
   }
   //#endregion
 
+  //#region UI
+  const MVP_QR =
+    <div className="bg-[#0e0e0e] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] my-[29px]">
+      <h3 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>
+        Нет желаемого товара?
+      </h3>
+      <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2'>
+        Каталог в разработке 🏗
+      </p>
+
+      <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2 min-[900px]:mb-4'>
+        Напишите нам&nbsp;
+        <a className='underline' title='Менеджер' href='https://t.me/MrCubik'>
+          @MrCubik
+        </a>
+        <Image
+          alt='менеджер QR в TG'
+          src={QR}
+          className="rounded-[15px] max-[900px]:hidden" />
+      </p>
+    </div>
+  //#endregion
+
   return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 
     max-2xl:grid-cols-[4vw_minmax(0,1fr)_1fr_1fr_1fr_4vw] 
     max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0] 
     max-[900px]:relative
     max-[400px]:gap-x-[15px]">
 
-    {/* Title */}
-    <div className='col-start-2 col-span-2'>
-      <h1 className='font-montserrat text-[80px] leading-[1] mt-[2rem] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
-    </div>
+    {/*//* =========================  верх  ========================= */}
+    <>
+      {/* Title */}
+      <div className='col-start-2 col-span-2'>
+        <h1 className='font-montserrat text-[80px] leading-[1] mt-[2rem] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
+      </div>
 
-    {/* Sorting */}
-    <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4
+      {/* Sorting */}
+      <div className='col-start-5 col-span-1 flex items-end max-xl:col-start-4
       max-[900px]:col-start-3
       max-[900px]:col-end-5
       max-[900px]:row-start-2
       max-[900px]:row-end-2
     '>
-      <Sorting
-        filters={filters}
-        setFiltersWrapper={setFiltersWrapper} />
-    </div>
+        <Sorting
+          filters={filters}
+          setFiltersWrapper={setFiltersWrapper} />
+      </div>
 
-    {/* кнопка для фильтров mobile */}
-    <div className='
+      {/* кнопка для фильтров mobile */}
+      <div className='
       min-[900px]:hidden 
       max-[900px]:flex
       col-start-2
@@ -205,45 +233,52 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       font-inter text-white text-[16px]
       bg-[#0e0e0e]
     '
-      onClick={() => changeFiltersVisibility()}>
-      <span className='pointer-events-none'>Фильтры</span>
-    </div>
+        onClick={() => changeFiltersVisibility()}>
+        <span className='pointer-events-none'>Фильтры</span>
+      </div>
+    </>
 
-    {/* фильтры desktop */}
-    <div className="bg-[#0e0e0e] top-[120px] col-start-2 col-span-1 h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]
-      max-[900px]:hidden">
-      <FiltersUI
-        min={firstPage.min?.price ?? 0}
-        max={firstPage.max?.price ?? 1000000}
-        meta={meta}
-        filters={filters}
-        setFiltersWrapper={setFiltersWrapper}
-        closeMobileFilters={() => changeFiltersVisibility(false)} />
-    </div>
+    {/*//* ========================= товары ========================= */}
+    <>
+      {/* фильтры desktop */}
+      <div className='max-[900px]:hidden top-[120px] col-start-2 col-span-1'>
+        <div className="bg-[#0e0e0e] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
+          <FiltersUI
+            min={firstPage.min?.price ?? 0}
+            max={firstPage.max?.price ?? 1000000}
+            meta={meta}
+            filters={filters}
+            setFiltersWrapper={setFiltersWrapper}
+            closeMobileFilters={() => changeFiltersVisibility(false)} />
+        </div>
 
-    {/* фильтры mobile задник */}
-    <div
-      onClick={() => changeFiltersVisibility(false)}
-      className={classNames(`fixed top-0 left-0 w-screen h-screen z-[9]
+        {/*//? MVP: СВЯЗЬ */}
+        {MVP_QR}
+      </div>
+
+      {/* фильтры mobile задник (закрыть) */}
+      <div
+        onClick={() => changeFiltersVisibility(false)}
+        className={classNames(`fixed top-0 left-0 w-screen h-screen z-[9]
         min-[900px]:hidden
         opacity-0
       `, {
-        'max-[900px]:block': isFiltersShown,
-        'max-[900px]:hidden': !isFiltersShown,
-      })} />
+          'max-[900px]:block': isFiltersShown,
+          'max-[900px]:hidden': !isFiltersShown,
+        })} />
 
-    {/* Товары */}
-    <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] 
+      {/* каталог */}
+      <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] 
                   max-xl:col-span-2 
                   max-xl:grid-cols-[1fr_1fr]
                   max-[900px]:col-start-2 
                   max-[900px]:col-end-5
                   max-[900px]:min-h-screen
                   max-[900px]:relative"
-      style={{ alignItems: "start" }}>
+        style={{ alignItems: "start" }}>
 
-      {/* фильтры mobile */}
-      <div className={classNames(`
+        {/* фильтры mobile */}
+        <div className={classNames(`
           p-[1rem_1.5rem_1.5rem_1.5rem]
           border-2
           rounded-[15px]
@@ -259,56 +294,63 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
           max-[900px]:bg-[#0e0e0e] 
           max-[900px]:transition-all
           max-[900px]:duration-200`,
-        {
-          'max-[900px]:pointer-events-all': isFiltersShown,
-          'max-[900px]:pointer-events-none max-[900px]:opacity-0': !isFiltersShown
-        })}
-        ref={filtersMobile}>
-        <FiltersUI
-          min={firstPage.min?.price ?? 0}
-          max={firstPage.max?.price ?? 1000000}
-          meta={meta}
-          filters={filters}
-          setFiltersWrapper={setFiltersWrapper}
-          closeMobileFilters={() => changeFiltersVisibility(false)}
-        />
-      </div>
+          {
+            'max-[900px]:pointer-events-all': isFiltersShown,
+            'max-[900px]:pointer-events-none max-[900px]:opacity-0': !isFiltersShown
+          })}
+          ref={filtersMobile}>
+          <FiltersUI
+            min={firstPage.min?.price ?? 0}
+            max={firstPage.max?.price ?? 1000000}
+            meta={meta}
+            filters={filters}
+            setFiltersWrapper={setFiltersWrapper}
+            closeMobileFilters={() => changeFiltersVisibility(false)}
+          />
+        </div>
 
-      {/* Карточки с товарами */}
-      {content.items.map(item =>
-        <ItemCard
-          key={item.poizonArticul}
-          imageClassName='aspect-square
+        {/* Карточки с товарами */}
+        {content.items.map(item =>
+          <ItemCard
+            key={item.poizonArticul}
+            imageClassName='aspect-square
             h-[320px]
             max-[750px]:h-[220px]
             max-[550px]:h-[150px]
             max-[400px]:h-[130px]
           '
-          className="
+            className="
             min-h-[300px]
             max-[750px]:min-h-[200px]
             max-[550px]:min-h-[130px]
             max-[400px]:min-h-[110px]
           "
-          item={item} />)}
+            item={item} />)}
 
-      {content.items.length === 0 &&
-        <div className='col-span-3 flex items-center justify-center h-[50vh]'>
-          <h2 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>
-            Таких товаров нет... Потыкайте фильтры
-          </h2>
-        </div>}
+        {/* Товаров нет */}
+        {content.items.length === 0 &&
+          <div className='col-span-3 flex items-center justify-center h-[50vh]'>
+            <h2 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>
+              Таких товаров нет... Потыкайте фильтры
+            </h2>
+          </div>}
 
-      {/* Pagination */}
-      {content.all.count > PAGE_SIZE &&
-        <div className='col-span-3 max-xl:col-span-2 mt-[3rem] flex justify-center items-center'>
-          <Pagination
-            page={filters.page}
-            amount={content.all.count}
-            setFiltersWrapper={setFiltersWrapper} />
-        </div>}
-    </div>
+        {/* Pagination */}
+        {content.all.count > PAGE_SIZE &&
+          <div className='col-span-3 max-xl:col-span-2 mt-[3rem] flex justify-center items-center'>
+            <Pagination
+              page={filters.page}
+              amount={content.all.count}
+              setFiltersWrapper={setFiltersWrapper} />
+          </div>}
+      </div>
 
+
+      {/*//? MVP: СВЯЗЬ */}
+      <div className="col-span-3 col-start-2 row-auto min-[900px]:hidden">
+        {MVP_QR}
+      </div>
+    </>
   </main>)
 }
 

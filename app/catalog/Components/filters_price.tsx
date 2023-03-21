@@ -48,6 +48,7 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
 
     <div className='flex flex-row justify-between'>
       <input
+        step="100"
         type="number"
         inputMode="numeric"
         className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
@@ -55,6 +56,7 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
         onChange={e => setLocalFilter(x => ({ ...x, min: +e.target.value }))}
         onBlur={onPointerUp} />
       <input
+        step="100"
         type="number"
         inputMode="numeric"
         className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
