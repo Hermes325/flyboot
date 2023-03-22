@@ -184,8 +184,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
       <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2 min-[900px]:mb-4'>
         Напишите нам&nbsp;
-        <a className='underline' title='Менеджер' href='https://t.me/MrCubik'>
-          @MrCubik
+        <a className='underline' title='Менеджер' href='https://t.me/FlyBootsSupport'>
+          @FlyBootsSupport
         </a>
       </p>
       <Image
