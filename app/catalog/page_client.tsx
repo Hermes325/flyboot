@@ -7,7 +7,7 @@ import FiltersUI from './Components/filters'
 import Sorting from './Components/sorting'
 import classNames from 'classnames'
 import Image from 'next/image'
-import QR from "@/public/qrcode_t.me.png"
+import QR from "@/public/qrcode_t.me.jpg"
 
 
 //#region Filters
