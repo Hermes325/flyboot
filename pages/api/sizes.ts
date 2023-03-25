@@ -41,9 +41,9 @@ export default async function sizes(
   const poizonId = req.body["poizonId"]
   const price = req.body["price"]
   console.log(`
-    \ncategory >> ${category}
-    \narticul >> ${poizonId}
-    \nprice >> ${price}
+    category >> ${category}
+    articul >> ${poizonId}
+    price >> ${price}
   `);
 
   try {

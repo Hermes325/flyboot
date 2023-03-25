@@ -221,6 +221,7 @@ export async function getItem(slug: string): Promise<Item> {
         title
         slug
         id
+        category
         brand {
           id
         }
