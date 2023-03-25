@@ -26,7 +26,10 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
       className="w-[50px] h-[50px]"
     />
   ) : (
-    <Image src={menu_path} alt="открыть меню" className="w-[40px] h-[50px]" />
+    <Image
+      src={menu_path}
+      alt="открыть меню"
+      className="w-[40px] h-[50px]" />
   );
 }
 
@@ -168,7 +171,7 @@ function Header() {
         <input
           placeholder="Поиск"
           className={classNames(
-            "bg-transparent border-b-2 w-full mobile:hidden text-white outline-0" ,
+            "bg-transparent border-b-2 w-full mobile:hidden text-white outline-0",
             { "hidden ": !isNavOpen }
           )}
           value={search}
@@ -205,7 +208,10 @@ function Header() {
           {/* bucket picture and route to bucket page */}
           <Link
             href="/bucket"
-            className={classNames("relative", { " hidden": isNavOpen })}
+            className={classNames("relative", {
+              "hidden": isNavOpen,
+              "pointer-events-none opacity-30": bucketItems === 0,
+            })}
             onClick={clearSearch}
           >
             <Image
@@ -226,11 +232,7 @@ function Header() {
           <button
             onClick={() => {
               setIsNavOpen((prev) => !prev);
-              if (!isNavOpen) {
-                document.body.style.position = "fixed";
-              } else {
-                document.body.style.position = "";
-              }
+              document.body.style.position = !isNavOpen ? "fixed" : "";
             }}
             className="mobile:hidden"
           >

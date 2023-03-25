@@ -15,10 +15,15 @@ const BucketItemCard = ({ bucketItem }: Props) => {
   const dispatch = useDispatch();
   const { item, amount, size } = bucketItem
 
+  console.log("size >> ", size);
+
   const price = Math.ceil(item.price).toLocaleString('ru-RU', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   })
+
+  const regionSizes = size.available
+    .find(x => x.sizeKey === size.chosenSizeKey)
 
   function itemPlus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
@@ -78,6 +83,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
         Артикул {item.poizonArticul}
       </p>
       <div className='flex gap-4'>
+        {/* Размер */}
         <div className="
           relative
           after:absolute
@@ -105,13 +111,18 @@ const BucketItemCard = ({ bucketItem }: Props) => {
               min-h-[88%]
               border border-gray-300
               focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none">
-            {size.available.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.map(value =>
-              <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
-                {value} {size.chosenSizeKey}
-              </option>)}
+            {regionSizes
+              // Доступность размера
+              ?.sizeValue.filter((_, i) => regionSizes.available[i])
+              // Вывод опций
+              ?.map(value =>
+                <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
+                  {value} {size.chosenSizeKey}
+                </option>)}
           </select>
         </div>
 
+        {/* Количество */}
         <div className=' mt-[5px] flex justify-around items-center w-[4rem] py-[4px] px-[6px] border border-white 
         max-[450px]:!min-h-[80%]'>
           <button

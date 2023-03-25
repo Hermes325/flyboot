@@ -72,7 +72,7 @@ function BucketPage() {
         street: "",
         build: "",
         apartment: "",
-        delivery: "Sdek",
+        delivery: "personal delivery",
         personalDataCheck: true,
         Sdek: {},
         BoxBerry: {},
@@ -460,9 +460,8 @@ function BucketPage() {
                   <BucketFormRadio
                     id={"personal delivery"}
                     checked={order.delivery === "personal delivery"}
-                    onChange={(_) =>
-                      changeOrder("delivery", "personal delivery")
-                    }
+                    onChange={(_) => changeOrder("delivery", "personal delivery")}
+                    className="min-h-[50px]"
                   >
                     Курьер СДЭК - 350 ₽
                   </BucketFormRadio>

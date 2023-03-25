@@ -268,7 +268,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
         })} />
 
       {/* каталог */}
-      <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] 
+      <div className="col-span-3 row-auto	grid grid-cols-3 gap-[10px] mb-[10vh] h-fit
                   max-xl:col-span-2 
                   max-xl:grid-cols-[1fr_1fr]
                   max-[900px]:col-start-2 
