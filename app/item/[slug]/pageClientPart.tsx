@@ -34,6 +34,7 @@ const ItemPageClientPart = ({ item }: Props) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          category: item.category,
           poizonId: item.poizonId,
           price: item.price
         })
@@ -85,7 +86,7 @@ const ItemPageClientPart = ({ item }: Props) => {
         {countrySizes?.sizeValue.map((size, i) =>
           <button
             key={`${country}-${i}`}
-            disabled={selectedSize.selected === i}
+            disabled={selectedSize.selected === i || !countrySizes.available[i]}
             onClick={_ => setSelectedSize({ sizeKey: country, selected: i })}
             className={classNames("border-2 border-white cursor-pointer",
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",

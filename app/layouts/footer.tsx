@@ -68,7 +68,7 @@ export default function Footer() {
             </Link>
           </div>
         </address>
-      
+
       </div>
 
       <div className="flex">

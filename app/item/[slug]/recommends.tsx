@@ -43,19 +43,19 @@ const Recommends = ({ item }: Props) => {
     {/* will be interested and nav buttons */}
     <div className="flex flex-row w-full justify-between max-[600px]:w-[100%]">
       <h2 className="text-white text-5xl my-[37px]
-        max-[600px]:text-3xl
+        max-[600px]:text-3xl 
         max-[600px]:inline-block
       ">Так же будет интересно</h2>
       <div className="flex flex-row items-end gap-x-[5px] mb-[37px]">
         <Image
           alt="назад"
           src={arrow_left}
-          className="arrow_backward m-[0] p-3 border-2 rounded-full border-white w-14 h-14
+          className="arrow_backward cursor-pointer m-0 p-3 border-2 rounded-full border-white w-14 h-14
             max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
         <Image
           alt="вперёд"
           src={arrow_left}
-          className="arrow_forward m-[0] p-3 border-2 rounded-full border-white w-14 h-14 rotate-180
+          className="arrow_forward cursor-pointer m-0 p-3 border-2 rounded-full border-white w-14 h-14 rotate-180
             max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
       </div>
     </div>
