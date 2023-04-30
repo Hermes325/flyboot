@@ -1,12 +1,13 @@
 .h1 {
-    font-style    : normal;
-    font-weight   : 900;
-    font-size     : 5rem;
-    line-height   : 107.02%;
-    /* or 86px */
-    letter-spacing: 0.01em;
+    font-family: 'Noto Sans';
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 62px;
+    line-height: 74px;
+    /* or 119% */
+
     text-transform: uppercase;
-    color         : #FFFFFF;
+    color         : #000000;
 }
 
 
@@ -14,18 +15,25 @@
     color: #29D9CE;
 }
 
-.jost_offer {
-    font-style    : normal;
-    font-weight   : 400;
-    font-size     : 25px;
-    line-height   : 26px;
-    /* or 106% */
-    letter-spacing: 0.04em;
-    color         : #F5F5F5;
+.noto_offer {
+    font-family: 'Noto Sans';
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 22px;
+    line-height: 32px;
+    /* or 145% */
+
+
+    color: #000000;
+}
+.noto_font {
+    font-family: 'Noto Sans';
+    font-style : normal;
+    color: #000000;
 }
 
 .button_main {
-    background    : linear-gradient(32.57deg, #006B68 24.41%, #00BCB1 101.79%);
+    background    : black;
     border-radius : 8px;
     margin-top    : 5px;
     font-style    : normal;
@@ -73,7 +81,7 @@
     position : absolute;
     bottom   : 6vw;
     z-index  : 1;
-    left     : -14%;
+    right    : 10%;
     transform: rotate(-26.72deg);
 }
 

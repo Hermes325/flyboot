@@ -128,7 +128,7 @@ function Header() {
   const desktopLink = (href: string, label: string) => (
     <Link href={href} className="max-mobile:hidden">
       <h2
-        className="font-montserrat text-2xl tracking-wide hover:text-[#03FFF0]
+        className="font-montserrat text-2xl tracking-wide 
         max-[1500px]:text-xl 
         max-[1330px]:text-lg 
         max-[1140px]:text-base 
@@ -145,24 +145,25 @@ function Header() {
     <header
       id="layout-header"
       className={classNames(
-        "fixed w-full flex justify-center z-[100] shadow bg-[#000000] px-[10vw] max-mobile:pr-[20px]",
+        "fixed w-full flex justify-center z-[100] shadow bg-[#FFFFFF] px-[5vw] max-mobile:pr-[20px]",
         { "px-[1vw]": isNavOpen }
       )}
     >
       {/* Logo and burger menu */}
-      <nav className="flex flex-row items-center justify-between w-full h-[108px] max-[1080px]:h-[95px] max-[720px]:h-[85px] max-mobile:h-[63px]">
-        <Link prefetch={process.env.NEXT_PUBLIC_IS_PROD !== undefined} href="/" onClick={clearSearch}>
-          <Image
-            src={FlyBoots_logo}
-            alt="Fly Boots Logo"
-            className={classNames(
-              "h-16 max-[1440px]:h-14 max-[1080px]:h-12 max-[720px]:h-11 max-mobile:h-12 w-20 max-[1440px]:w-[4.5rem] max-[1080px]:w-16 max-[720px]:w-14 max-mobile:w-14 object-cover",
-              { "hidden ": isNavOpen }
-            )}
-          />
-        </Link>
+      <nav className="flex flex-row items-center justify-between w-full h-[60px] max-[1080px]:h-[55px] max-[720px]:h-[50px] max-mobile:h-[63px]">
 
-        <div className="flex flex-row space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
+
+        <div className="flex flex-row items-center space-x-[6vw] max-[1860px]:space-x-[5vw] max-[1440px]:space-x-[4vw] max-[1080px]:space-x-[3vw] max-[720px]:space-x-[2vw]">
+          <Link prefetch={process.env.NEXT_PUBLIC_IS_PROD !== undefined} href="/" onClick={clearSearch}>
+            <Image
+              src={FlyBoots_logo}
+              alt="Fly Boots Logo"
+              className={classNames(
+                "h-12 max-[1440px]:h-12 max-[1080px]:h-12 max-[720px]:h-11 max-mobile:h-12 w-12 max-[1440px]:w-[3rem] max-mobile:w-14 object-cover",
+                { "hidden ": isNavOpen }
+              )}
+            />
+          </Link>
           {desktopLink("/catalog", "Каталог")}
           {desktopLink("/about-us", "О нас")}
           {desktopLink("/FAQ", "FAQ")}
@@ -171,7 +172,7 @@ function Header() {
         <input
           placeholder="Поиск"
           className={classNames(
-            "bg-transparent border-b-2 w-full mobile:hidden text-white outline-0",
+            "bg-transparent border-b-2 w-full mobile:hidden text-black outline-0",
             { "hidden ": !isNavOpen }
           )}
           value={search}
@@ -199,7 +200,7 @@ function Header() {
           <input
             placeholder="Поиск"
             className={classNames(
-              "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden text-white outline-0"
+              "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden text-black outline-0"
             )}
             value={searchDesktop}
             onChange={searchDesktopRequest}
@@ -218,7 +219,7 @@ function Header() {
               src={bucket}
               alt="bucket page logo"
               className={classNames(
-                "w-11 max-[1440px]:w-10 max-[1080px]:w-8 max-[720px]:w-[1.6rem] max-mobile:w-9 h-10 max-[1440px]:h-9 max-[1080px]:h-[1.85rem] max-[720px]:h-6 max-mobile:h-[2.05rem] object-cover",
+                "w-7 max-[1440px]:w-7 max-[1080px]:w-7 max-[720px]:w-[1.6rem] max-mobile:w-9 h-7 max-mobile:h-[2.05rem] object-cover",
                 { " hidden": isNavOpen }
               )}
             />
@@ -275,7 +276,7 @@ function Header() {
       {/* modal window of search on desktop version */}
       <div
         className={classNames(
-          "fixed z-[1] top-[108px] max-[1080px]:top-[95px] max-[720px]:top-[85px] max-[600px]:!hidden min-h-[150px] h-fit w-[600px] max-[1600px]:w-[500px] max-[1080px]:w-[400px] byGMD max-[720px]:w-[300px] right-[13vw] translate-x-0  flex-col justify-center items-center gap-10 bg-black rounded-b-lg bg-opacity-0 hidden transition",
+          "fixed z-[1] top-[70px]  max-[600px]:!hidden min-h-[150px] h-fit w-[94%]  byGMD max-[720px]:w-[900px] right-[3vw] translate-x-0  flex-col justify-center items-center gap-10 bg-[#F5F5F5] border-solid border-2 border-black rounded-b-lg bg-opacity-0 hidden transition",
           { "!flex !bg-opacity-90": isSearchDesktopOpen }
         )}
       >

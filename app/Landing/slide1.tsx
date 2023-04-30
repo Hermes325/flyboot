@@ -1,18 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import waves from "@/public/main-images/waves.png";
 import kross from "@/public/main-images/14.webp";
 import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section className="w-full  relative">
+    <section className="w-full  relative ">
       <div className="mb-[10vw]">
         <h1
           className={
             styles.h1 +
-            ` px-[10vw] 
-            font-inter
+            ` px-[5vw] 
             min-[2560px]:!text-[6.5rem] 
             max-[1860px]:!text-[4.5rem]
             max-[1700px]:!text-[4rem]
@@ -33,23 +31,19 @@ function Slide1() {
             max-[380px]:!text-[1.6rem]
             max-[335px]:!text-[1.4rem]
             `
-            
           }
         >
           Любимые бренды <br />{" "}
-          <span className={styles.span}>возвращаются</span>
+          в Flyboots
         </h1>
         <p
           className={
-            styles.jost_offer +
-            ` px-[10vw]
-             font-jost
+            styles.noto_offer +
+            ` pl-[5vw]
             min-[2560px]:!text-[32px] 
             min-[2560px]:!leading-[42px] 
             max-[1960px]:!text-[28px] 
-            max-[1860px]:!text-[25px] 
-            max-[1700px]:!text-[22px] 
-            max-[1500px]:!text-[20.9px] 
+            max-[1500px]:!text-[24px] 
             max-[1400px]:!text-[20px] 
             max-[1330px]:!text-[18px] 
             max-[1200px]:!text-[17.5px] 
@@ -71,21 +65,19 @@ function Slide1() {
             max-[335px]:!text-[0.7rem]
             max-[600px]:!leading-[20px] 
             max-[600px]:!w-[90%] 
-            w-[60%]`
+            w-[43%]
+            mt-[25px]`
           }
         >
-          
-          Одевайся так, будто завтра выступаешь в Карнеги-Холл!
-
+          Новая ресейл-платформа с выгодными ценами
+          и быстрой доставкой по России
         </p>
-        <a href="/catalog" className="px-[10vw] z-10">
+        <a href="/catalog" className="px-[5vw] z-10">
           <button
             className={
               styles.button_main +
               ` 
-              
-              mt-[1vw] 
-              font-montserrat 
+              mt-[40px]
               p-[18px_30px_20px_30px] 
               min-[2560px]:!p-[30px_30px_30px_30px] 
               max-[600px]:!p-[3px_25px_3px_25px]
@@ -105,62 +97,17 @@ function Slide1() {
               `
             }
           >
-            Смотреть каталог
+            ПЕРЕЙТИ В КАТАЛОГ
           </button>
         </a>
       </div>
-
-      <div>
-        <Image
-          src={waves}
-          alt="Волна"
-          className={
-            styles.waves +
-            ` max-[1750px]:!top-[5%]
-             max-[1550px]:!top-[5%] 
-             max-[1860px]:!w-[100%]
-             max-[600px]:!scale-[2.5]
-             max-[600px]:!top-[125%] 
-             `
-          }
-        />
-
-        <div
-          className={
-            styles.krugmain + ` max-[600px]:!w-[60vw] max-[600px]:!left-[22%] max-[600px]:!top-[75%]`}
-        >
-          <Image
-            src={kross}
-            alt="Логотип"
-            className={
-              styles.Logotip + ' max-w-[none] max-[600px]:!w-[75vw] max-[600px]:!bottom-[12vw]'
-            }
-          />
-        </div>
-
-        <div className="max-[600px]:!hidden">
-          <div
-            className={
-              styles.krug1
-            }
-          />
-          <div
-            className={
-              styles.krug2
-            }
-          />
-
-          <div
-            className={
-              styles.krug3}
-          />
-          <div
-            className={
-              styles.krug4
-            }
-          />
-        </div>
-      </div>
+      <Image
+        src={kross}
+        alt="Логотип"
+        className={
+          styles.Logotip + ' max-w-[none] max-[600px]:!w-[75vw] max-[600px]:!bottom-[12vw]'
+        }
+      />
     </section>
   );
 }

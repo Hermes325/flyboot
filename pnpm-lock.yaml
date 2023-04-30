@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@emailjs/browser': ^3.10.0
+  '@fontsource/noto-sans': ^4.5.11
   '@next/font': ^13.1.6
   '@reduxjs/toolkit': ^1.9.2
   '@types/node': ^18.11.18
@@ -30,6 +31,7 @@ specifiers:
 
 dependencies:
   '@emailjs/browser': 3.10.0
+  '@fontsource/noto-sans': 4.5.11
   '@next/font': 13.1.6
   '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
   '@types/node': 18.11.18
@@ -87,6 +89,10 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
     dev: false
 
   /@graphql-typed-document-node/core/3.1.1_graphql@16.6.0:

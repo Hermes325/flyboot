@@ -5,13 +5,13 @@
 
 
 .ramka_hiw {
-    border         : 2px solid rgba(245, 245, 245, 0.2);
-    backdrop-filter: blur(42px);
-    /* Note        : backdrop-filter has minimal browser support */
-    width          : 35.3vw;
-    border-radius  : 20px;
-    display        : flex;
-    flex-direction : column;
+    border          : 2px solid rgba(245, 245, 245, 0.2);
+    backdrop-filter : blur(42px);
+    /* Note         : backdrop-filter has minimal browser support */
+    width           : 35.3vw;
+    border-radius   : 20px;
+    display         : flex;
+    flex-direction  : column;
     background-color: black;
 }
 
@@ -38,8 +38,8 @@
 .grid_hiw_3 {
     display              : grid;
     grid-template-columns: 15vw 1vw 20vw;
-    justify-items: center;
-    align-items: center;
+    justify-items        : center;
+    align-items          : center;
 }
 
 .grid_hiw_4 {
@@ -50,13 +50,16 @@
 
 /* Текст */
 .h2 {
+
+    font-family   : 'Noto Sans';
     font-style    : normal;
-    font-weight   : 700;
-    font-size     : 75px;
-    line-height   : 75px;
-    /* or 100% */
-    letter-spacing: 0.02em;
-    color         : #F5F5F5;
+    font-weight   : 500;
+    font-size     : 62px;
+    line-height   : 84px;
+    text-transform: uppercase;
+
+    color: #000000;
+
 }
 
 .h4 {
@@ -77,25 +80,4 @@
     /* identical to box height */
     letter-spacing: 0.04em;
     color         : #F5F5F5;
-}
-
-.jost_p {
-    font-style    : normal;
-    font-weight   : 400;
-    font-size     : 25px;
-    line-height   : 29px;
-    /* or 116% */
-    letter-spacing: 0.04em;
-    width         : 88%;
-    color         : rgba(245, 245, 245, 0.9);
-}
-
-.jost_bledno {
-    font-style    : italic;
-    font-weight   : 400;
-    font-size     : 28px;
-    line-height   : 32px;
-    /* or 152% */
-    letter-spacing: 0.03em;
-    color         : rgba(245, 245, 245, 0.6);
 }

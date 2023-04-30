@@ -81,7 +81,7 @@ export default function RootLayout({
         />
         <script defer type="text/javascript" src="/yandex-metrica.js" />
       </head>
-      <body className="bg-[#0E0E0E]">
+      <body className="bg-[#F5F5F5]">
         <Providers>
           <Header />
           <Suspense fallback={<Loading />}>{children}</Suspense>

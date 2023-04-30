@@ -11,10 +11,12 @@ import ic_round_done from "@/public/main-images/ic_round-done.png"
 
 function Slide4() {
   return (
-    <section id='#Как_это_работает?' className=' px-[10vw] w-full mt-20'>
+    <section id='#Как_это_работает?' className=' px-[5vw] w-full mt-20'>
 
       <div id='left сторона' >
-        <h2 className={styles.h2 + ` font-montserrat text-center
+
+        <h2 className={styles.h2 + ` 
+        noto_offer text-center
         max-[1860px]:!text-[4.5rem]
             max-[1700px]:!text-[4rem]
             max-[1500px]:!text-[3.7rem] 
@@ -38,112 +40,7 @@ function Slide4() {
             max-[420px]:!text-[1.8rem]
             max-[380px]:!text-[1.6rem]
             max-[335px]:!text-[1.4rem]`}>
-          Как это работает?</h2>
-        <p className={styles.jost_bledno + ` font-jost mt-4
-         max-[600px]:!text-[17px] 
-         max-[600px]:!mt-3
-         text-center`}>* очень просто</p>
-
-        {/* <ul className="mt-[1vw] w-[80%] max-[600px]:!w-[100%] ">
-          <p className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
-          max-[1500px]:!leading-[23px] 
-          max-[2000px]:!text-[30px] 
-          max-[1500px]:!text-[27px] 
-          max-[1330px]:!text-[25px] 
-          max-[1140px]:!text-[23px]               
-          max-[850px]:!text-[20px] 
-          max-[600px]:!text-[18px] 
-          max-[1100px]:!leading-[17px]`}>
-            Денег нет, но мы держимся:
-          </p>
-          <br />
-          <li className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
-          max-[1500px]:!leading-[23px] 
-          max-[2000px]:!text-[30px] 
-          max-[1500px]:!text-[27px] 
-          max-[1330px]:!text-[25px] 
-          max-[1140px]:!text-[23px]               
-          max-[850px]:!text-[20px] 
-          max-[600px]:!text-[18px] 
-          max-[1100px]:!leading-[17px]`}>
-            ⁃ Работаем с сайтом POIZON. Все товары - оригинал, да еще и не по цене почки!
-          </li>
-          <br />
-          <li className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
-          max-[1500px]:!leading-[23px] 
-          max-[2000px]:!text-[30px] 
-          max-[1500px]:!text-[27px] 
-          max-[1330px]:!text-[25px] 
-          max-[1140px]:!text-[23px]               
-          max-[850px]:!text-[20px] 
-          max-[600px]:!text-[18px] 
-          max-[1100px]:!leading-[17px]`}>
-            ⁃ Доставка входит в стоимость кроссовок: вам не нужно отдельно её считать и
-            оплачивать.
-          </li>
-          <br />
-          <li className={styles.jost_p + ` font-jost max-[600px]:!w-[100%]
-          max-[1500px]:!leading-[23px] 
-          max-[2000px]:!text-[30px] 
-          max-[1500px]:!text-[27px] 
-          max-[1330px]:!text-[25px] 
-          max-[1140px]:!text-[23px]               
-          max-[850px]:!text-[20px] 
-          max-[600px]:!text-[18px] 
-          max-[1100px]:!leading-[17px]`}>
-            ⁃ Мы принимаем возврат, если вещи не подошли.
-          </li>
-        </ul> */}
-        {/* <div>
-        <div className={styles.ramka_hiw + " mt-[15px] max-[1500px]:!leading-[17px] "}>
-          <Image
-            src={switchpng}
-            alt="свитч"
-          />
-
-          <div className={styles.grid_hiw_3}>
-            <h4 className={styles.h4 + ` pl-[20px] font-jost  
-              max-[1860px]:!text-[30px] 
-              max-[1700px]:!text-[25px] 
-              max-[1500px]:!text-[22px] 
-              max-[1330px]:!text-[20px] 
-              max-[1140px]:!text-[17px] 
-              max-[1100px]:!text-[13px] 
-              max-[850px]:!text-[11px] 
-              max-[780px]:!text-[9px] 
-              max-[1100px]:!leading-[17px]
-               `}>
-              Сбор заказа
-            </h4>
-            <div className={styles.flex_items_center}>
-              <div className="border-[2px] border-solid h-[2.5vw]">
-              </div>
-            </div>
-            <p className={styles.jost_p + ` font-jost italic text-[#F5F5F5CC] w-[80%] 
-            max-[2000px]:!text-[20px] 
-            max-[1500px]:!text-[17px]
-            max-[1500px]:!leading-[17px] 
-            max-[1330px]:!text-[15px] 
-            max-[1140px]:!text-[13px]               
-            max-[850px]:!text-[11px] 
-            max-[600px]:!text-[9px] 
-            max-[1100px]:!leading-[17px]`}>
-              В течении час вы получите карточку-подтверждение о выкупе товара.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <div className={styles.grid_hiw_4 + " mt-[2vw]"}>
-            <p className={styles.jost_p + " ml-20"}>1</p>
-            <p className={styles.jost_p + " ml-20"}>2</p>
-            <p className={styles.jost_p + " ml-20"}>3</p>
-            <p className={styles.jost_p + " ml-20"}>4</p>
-          </div>
-          <div className={styles.palochka}>
-          </div>
-        </div>
-        </div> */}
+          Как это работает? <br /> очень просто </h2>
 
       </div>
 
@@ -157,7 +54,7 @@ function Slide4() {
               alt="recept"
               className="w-[3.6vw] max-[600px]:!w-[5vw] max-[500px]:!w-[6vw] max-[400px]:!w-[8vw]" />
             &ensp;&ensp;
-            <p className={styles.hiw_list + ` text-center font-montserrat
+            <p className={styles.hiw_list + ` text-center noto_offer
            max-[2000px]:!text-[30px] 
            max-[1700px]:!text-[28px]
            max-[1100px]:!text-[25px] 
@@ -165,7 +62,7 @@ function Slide4() {
            max-[1100px]:!leading-[17px] font-bold`}>Ваш заказ</p>
           </div>
 
-          <p className={styles.hiw_list + ` font-montserrat
+          <p className={styles.hiw_list + ` noto_offer
            mb-10
            px-5
            text-center
@@ -190,7 +87,7 @@ function Slide4() {
               alt="shopping_bag"
               className="w-[3.6vw] max-[600px]:!w-[5vw] max-[500px]:!w-[6vw] max-[400px]:!w-[8vw]" />
             &ensp;&ensp;
-            <p className={styles.hiw_list + ` text-center font-bold font-montserrat
+            <p className={styles.hiw_list + ` text-center font-bold noto_offer
            max-[2000px]:!text-[30px] 
            max-[1700px]:!text-[28px]
            max-[1100px]:!text-[25px]
@@ -198,7 +95,7 @@ function Slide4() {
            max-[1100px]:!leading-[17px]`}>Сбор заказа</p>
           </div>
 
-          <p className={styles.hiw_list + ` font-montserrat
+          <p className={styles.hiw_list + ` noto_offer
            mb-10
            px-5
            text-center
@@ -228,7 +125,7 @@ function Slide4() {
               alt="carbon_delivery-parcel"
               className="w-[3.6vw] max-[600px]:!w-[5vw] max-[500px]:!w-[6vw] max-[400px]:!w-[8vw]" />
             &ensp;&ensp;
-            <p className={styles.hiw_list + ` font-bold text-center font-montserrat
+            <p className={styles.hiw_list + ` font-bold text-center noto_offer
            max-[2000px]:!text-[30px] 
            max-[1700px]:!text-[28px]
            max-[1100px]:!text-[25px] 
@@ -236,7 +133,7 @@ function Slide4() {
            max-[1100px]:!leading-[17px]`}>Доставка</p>
           </div>
 
-          <p className={styles.hiw_list + ` font-montserrat
+          <p className={styles.hiw_list + ` noto_offer
           px-5
            mb-10
            text-center

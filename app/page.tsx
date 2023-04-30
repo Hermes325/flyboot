@@ -5,7 +5,7 @@ import Slide3 from "./Landing/slide3";
 import Slide4 from "./Landing/slide4";
 
 const Landing = () => (
-  <main className="min-h-screen flex flex-col items-center justify-start pt-[158px] max-[600px]:!pt-[110px] overflow-x-hidden bg-[url('../public/main-images/BGF8.jpg')] bg-cover bg-repeat-y ">
+  <main className="min-h-screen flex flex-col items-center justify-start pt-[158px] max-[600px]:!pt-[110px] overflow-x-hidden">
     {/* Entry page slide */}
     <Slide1 />
     {/* Demo Catalog Boots */}

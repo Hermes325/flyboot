@@ -27,21 +27,22 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
 
     <article
       className={`${styles.item_card} ${className ?? ""} 
-        bg-[#003E3E] rounded-2xl flex flex-col p-[0.75vw] justify-between
-        hover:bg-[#07b8b88e] hover:transition-colors `}
+        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between
+        hover:border-4 `}
     >
       <Image
         lazyLoad={true}
         data={item.images[0].responsiveImage}
         objectFit={"contain"}
         style={{ maxWidth: "none" }}
-        className={`${imageClassName ?? ""} rounded-xl`}
-        pictureClassName="bg-white rounded-xl"
+        className={`${imageClassName ?? ""} rounded-xl `}
+        pictureClassName="bg-white rounded-xl outline-[20px]"
       />
 
       <div>
         <h3 className={`${styles["name"]}
           ${h3ClassName ?? ""} 
+          text-[#AEAEAE]
           max-[750px]:!text-[15px] max-[750px]:!h-[32px]
           max-[550px]:!text-[13px] max-[550px]:!h-[max(max-content,32px)]
           `}>{item.title}</h3>

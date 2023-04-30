@@ -13,3 +13,4 @@ ym(92495027, "init", {
   webvisor: true,
   triggerEvent: true
 });
+

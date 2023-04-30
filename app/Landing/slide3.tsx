@@ -33,21 +33,10 @@ function Slide3() {
       </button>
     </Link>
   }
-  return (<section id="catalog" className="translate-y-5 px-[10vw]">
+  return (<section id="catalog" className="translate-y-5 px-[5vw] w-full">
     {btnLinkToCatalog(" min-[600px]:!hidden")}
 
-    <p className={styles.jost_p_center + ` font-jost mt-[2vw] text-center flex justify-center
-              max-[2000px]:!text-[30px] 
-              max-[1500px]:!text-[27px] 
-              max-[1330px]:!text-[25px] 
-              max-[1140px]:!text-[23px]               
-              max-[850px]:!text-[20px] 
-              max-[600px]:!text-[16px]
-              max-[600px]:!mt-[4vw]
-              max-[1100px]:!leading-[17px]` }>
-      Неограниченное количество годного шмота представлено в каталоге,
-      где найдётся что-то по душе как уже опытному хайпбисту, так и начинающему моднику
-    </p>  
+    
 
     <div className={styles.container + "" +
       " max-[600px]:!hidden"}>
