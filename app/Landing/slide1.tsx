@@ -5,12 +5,12 @@ import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section className="w-full  relative ">
+    <section className="w-full  relative px-[3vw]">
       <div className="mb-[10vw]">
         <h1
           className={
             styles.h1 +
-            ` px-[5vw] 
+            `  
             min-[2560px]:!text-[6.5rem] 
             max-[1860px]:!text-[4.5rem]
             max-[1700px]:!text-[4rem]
@@ -39,7 +39,7 @@ function Slide1() {
         <p
           className={
             styles.noto_offer +
-            ` pl-[5vw]
+            ` 
             min-[2560px]:!text-[32px] 
             min-[2560px]:!leading-[42px] 
             max-[1960px]:!text-[28px] 
@@ -72,7 +72,7 @@ function Slide1() {
           Новая ресейл-платформа с выгодными ценами
           и быстрой доставкой по России
         </p>
-        <a href="/catalog" className="px-[5vw] z-10">
+        <a href="/catalog" className=" z-10">
           <button
             className={
               styles.button_main +

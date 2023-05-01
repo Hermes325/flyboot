@@ -27,8 +27,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
 
     <article
       className={`${styles.item_card} ${className ?? ""} 
-        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between
-        hover:border-4 `}
+        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between`}
     >
       <Image
         lazyLoad={true}
@@ -36,7 +35,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
         objectFit={"contain"}
         style={{ maxWidth: "none" }}
         className={`${imageClassName ?? ""} rounded-xl `}
-        pictureClassName="bg-white rounded-xl outline-[20px]"
+        pictureClassName="bg-white rounded-xl "
       />
 
       <div>

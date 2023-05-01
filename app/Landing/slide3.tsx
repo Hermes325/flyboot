@@ -33,7 +33,7 @@ function Slide3() {
       </button>
     </Link>
   }
-  return (<section id="catalog" className="translate-y-5 px-[5vw] w-full">
+  return (<section id="catalog" className="translate-y-5 px-[3vw] w-full">
     {btnLinkToCatalog(" min-[600px]:!hidden")}
 
     

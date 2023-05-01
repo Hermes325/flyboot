@@ -10,7 +10,7 @@ const Slide2 = () => {
 
   return (
     <section className="mt-[5vw] 
-    grid grid-cols-4 gap-x-3 gap-y-5 px-[5vw]
+    grid grid-cols-4 gap-x-3 gap-y-5 px-[3vw]
     max-[1700px]:mt-[3vw]
     max-[1400px]:!grid-cols-3
     max-[600px]:!grid-cols-2 

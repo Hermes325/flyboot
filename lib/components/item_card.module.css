@@ -1,8 +1,6 @@
 .item_card:hover {
-  border: 1 px solid black;
+  border: 1px solid black;
 }
-
-
 
 .name {
   margin-top    : 10px;
