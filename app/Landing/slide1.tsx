@@ -5,7 +5,7 @@ import styles from "./styles/slide1.module.css";
 
 function Slide1() {
   return (
-    <section className="w-full  relative px-[3vw]">
+    <section className="w-full  relative px-[5vw]">
       <div className="mb-[10vw]">
         <h1
           className={

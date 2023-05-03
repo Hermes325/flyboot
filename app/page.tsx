@@ -3,6 +3,7 @@ import Slide1 from "./Landing/slide1";
 import Slide2 from "./Landing/slide2";
 import Slide3 from "./Landing/slide3";
 import Slide4 from "./Landing/slide4";
+import Slide5 from "./Landing/slide5";
 
 const Landing = () => (
   <main className="min-h-screen flex flex-col items-center justify-start pt-[158px] max-[600px]:!pt-[110px] overflow-x-hidden">
@@ -14,6 +15,8 @@ const Landing = () => (
     <Slide3 />
     {/* How it works */}
     <Slide4 />
+    {/* Feedback */}
+    <Slide5 />
   </main>
 );
 

@@ -13,7 +13,7 @@ const links = [{
   className: styles.ramochka_man
 }, {
   href: "/catalog/accessory",
-  name: "Аксессуары",
+  name: "Другое",
   className: styles.ramochka_woman
 }]
 
@@ -33,10 +33,8 @@ function Slide3() {
       </button>
     </Link>
   }
-  return (<section id="catalog" className="translate-y-5 px-[3vw] w-full">
+  return (<section id="catalog" className="translate-y-5 px-[5vw] w-full h-[70vh] mt-[5vw]">
     {btnLinkToCatalog(" min-[600px]:!hidden")}
-
-    
 
     <div className={styles.container + "" +
       " max-[600px]:!hidden"}>
@@ -49,8 +47,8 @@ function Slide3() {
         </Link>)}
     </div>
 
-    {btnLinkToCatalog(" max-[600px]:!hidden")}
-  </section>)
+    
+  </section >)
 }
 
 export default Slide3;
