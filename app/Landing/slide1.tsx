@@ -22,6 +22,7 @@ function Slide1() {
             max-[850px]:!text-[2.3rem]
             max-[780px]:!text-[2.1rem]
             max-[700px]:!text-[1.9rem]
+            max-[700px]:!leading-[1.9rem]
             max-[650px]:!text-[1.7rem]
             max-[600px]:!text-[2.6rem]
             max-[550px]:!text-[2.4rem]
@@ -105,7 +106,7 @@ function Slide1() {
         src={kross}
         alt="Логотип"
         className={
-          styles.Logotip + ' max-w-[none] max-[600px]:!w-[75vw] max-[600px]:!bottom-[12vw]'
+          styles.Logotip + ' max-w-[none] max-[600px]:!w-[75vw] max-[600px]:!bottom-[-40vw]'
         }
       />
     </section>

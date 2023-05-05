@@ -6,7 +6,7 @@ import Slide4 from "./Landing/slide4";
 import Slide5 from "./Landing/slide5";
 
 const Landing = () => (
-  <main className="min-h-screen flex flex-col items-center justify-start pt-[158px] max-[600px]:!pt-[110px] overflow-x-hidden">
+  <main className="min-h-screen flex flex-col items-center justify-start pt-[158px] max-[600px]:!pt-[90px] overflow-x-hidden">
     {/* Entry page slide */}
     <Slide1 />
     {/* Demo Catalog Boots */}

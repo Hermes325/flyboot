@@ -89,7 +89,7 @@ function Slide4() {
            max-[1100px]:!text-[16px] 
            max-[850px]:!text-[14px] 
            max-[780px]:!text-[12px] 
-           max-[600px]:!text-[16px] 
+           max-[600px]:!text-[11px] 
            max-[1100px]:!leading-[17px]`}>
             Оплата заказа и получение карточки-подтверждения о выкупе товара
 
@@ -117,7 +117,7 @@ function Slide4() {
            max-[1100px]:!text-[16px] 
            max-[850px]:!text-[14px] 
            max-[780px]:!text-[12px] 
-           max-[600px]:!text-[16px] 
+           max-[600px]:!text-[11px] 
            max-[1100px]:!leading-[17px]`}>
             На данном этапе ваш заказ проходит подготовку
             к отправке в стране отправления
@@ -146,7 +146,7 @@ function Slide4() {
            max-[1100px]:!text-[16px] 
            max-[850px]:!text-[14px] 
            max-[780px]:!text-[12px] 
-           max-[600px]:!text-[16px] 
+           max-[600px]:!text-[11px] 
            max-[1100px]:!leading-[17px]`}>
             Посылка со склада отправляется в Россию,
             ориентировочный срок доставки 2-3 недели</p>
@@ -179,7 +179,7 @@ function Slide4() {
            max-[1100px]:!text-[16px] 
            max-[850px]:!text-[14px] 
            max-[780px]:!text-[12px] 
-           max-[600px]:!text-[16px] 
+           max-[600px]:!text-[11px] 
            max-[1100px]:!leading-[17px]`}>
             Посылка прибыла в Россию
             и ее можно забирать</p>

@@ -16,7 +16,8 @@ const Slide2 = () => {
     max-[1400px]:!grid-cols-3
     max-[600px]:!grid-cols-2 
     max-[600px]:!mt-[55vw] 
-    h-[70vh]
+    
+    
     ">
         {items.slice(0, 6).map(item =>
           <ItemCard

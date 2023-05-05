@@ -12,7 +12,7 @@
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: darkgray blackg;
+  scrollbar-color: darkgray ;
 }
 
 /* Works on Chrome, Edge, and Safari */
