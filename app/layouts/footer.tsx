@@ -1,10 +1,10 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import whatsapp_path from "@/public/footer-images/whatsapp.svg";
-import telegram_path from "@/public/footer-images/telegram.svg";
-import group_path from "@/public/footer-images/Group.svg";
-import WTF_path from "@/public/footer-images/WTF.svg";
+import whatsapp_path from "@/public/footer-images/what.svg";
+import telegram_path from "@/public/footer-images/tg.svg";
+import group_path from "@/public/footer-images/avito.svg";
+
 
 export default function Footer() {
   return (<footer id="Связаться" className="flex w-full h-[max] justify-center z-[1000] shadow bg-[#EFEFEF]">
@@ -20,22 +20,22 @@ export default function Footer() {
         <div className=" flex gap-5 max-[1300px]:w-[80%] max-[600px]:justify-between">
           <div>
             <Link href="/catalog">
-              <h2 className="font-montserrat text-xl text-black hover:text-[#03FFF0] ">
+              <h2 className="font-montserrat text-xl text-black hover:underline ">
                 Каталог
               </h2>
             </Link>
             <Link href="/about-us">
-              <h2 className="font-montserrat text-xl text-black hover:text-[#03FFF0] w-[60px] ">
+              <h2 className="font-montserrat text-xl text-black hover:underline w-[60px] ">
                 О нас
               </h2>
             </Link>
             <Link href="/FAQ">
-              <h2 className="font-montserrat text-xl text-black hover:text-[#03FFF0]">
+              <h2 className="font-montserrat text-xl text-black hover:underline">
                 FAQ
               </h2>
             </Link>
             <Link href="/privacy">
-              <h2 className="font-montserrat text-xl text-black hover:text-[#03FFF0] ">
+              <h2 className="font-montserrat text-xl text-black  hover:underline">
                 Условия
               </h2>
             </Link>

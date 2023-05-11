@@ -191,7 +191,9 @@ function Slide4() {
           <button
             className={
               styles.button_main +
-              ` uppercase
+              ` 
+              uppercase
+              hover:underline
               p-[18px_30px_20px_30px] 
               min-[2560px]:!p-[30px_30px_30px_30px] 
               max-[600px]:!p-[3px_25px_3px_25px]
