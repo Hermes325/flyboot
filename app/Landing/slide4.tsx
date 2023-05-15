@@ -186,7 +186,7 @@ function Slide4() {
         </div>
 
       </div>
-      <div className="flex justify-center mt-[6vh]">
+      <div className="flex justify-center mt-[6vh]  max-[600px]:!hidden ">
         <a href="/catalog" >
           <button
             className={
@@ -204,7 +204,7 @@ function Slide4() {
               max-[850px]:!text-[16px] 
               max-[780px]:!text-[14px] 
               max-[1100px]:!leading-[17px]
-              max-[600px]:!hidden 
+             
               `
             }
           >
@@ -212,6 +212,7 @@ function Slide4() {
           </button>
         </a>
       </div>
-    </section >)
+    </section >
+  )
 }
 export default Slide4;

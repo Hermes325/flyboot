@@ -7,7 +7,7 @@ import group_path from "@/public/footer-images/avito.svg";
 
 
 export default function Footer() {
-  return (<footer id="Связаться" className="flex w-full h-[max] justify-center z-[1000] shadow bg-[#EFEFEF]">
+  return (<footer id="Связаться" className="flex w-full justify-center shadow bg-[#EFEFEF]">
 
     <div className="flex flex-col w-full px-[5vw] py-[25px] justify-center items-center
         max-[1300px]:gap-2
@@ -46,12 +46,11 @@ export default function Footer() {
         <div className="flex flex-col items-start">
           <p>Контакты</p>
           <p>+7 (495) 000 00 68</p>
-          <p>+7 (495) 000 00 68</p>
         </div>
 
         <div className="flex flex-col items-start">
           <p>ПН-ВС с 10:00 до 22:00</p>
-          <p>Email: info@flyboots.com</p> 
+          <p>Email: info@flyboots.com</p>
         </div>
 
 
@@ -62,16 +61,18 @@ export default function Footer() {
             max-[1300px]:flex-col
             max-[1300px]:gap-3
             max-[1300px]:space-x-0
+            max-[700px]:justify-center
+            max-[1300px]:w-full
           ">
           <div className="flex flex-column space-x-3 items-center">
             <Link href="https://t.me/flybootsfast">
-              <Image src={telegram_path} alt="telegramlogo" className="w-10 h-10" />
+              <Image src={telegram_path} alt="telegramlogo" className="w-8 h-8" />
             </Link>
             <Link href="https://api.whatsapp.com/send?phone=79254538329">
-              <Image src={whatsapp_path} alt="whatsapp logo" className="w-10 h-10" />
+              <Image src={whatsapp_path} alt="whatsapp logo" className="w-8 h-8" />
             </Link>
             <Link href="https://www.avito.ru/user/a098c95004a262748dadc1caa85a103a/profile?src=sharing">
-              <Image src={group_path} alt="авито logo" className="w-10 h-10" />
+              <Image src={group_path} alt="авито logo" className="w-8 h-8" />
             </Link>
           </div>
 

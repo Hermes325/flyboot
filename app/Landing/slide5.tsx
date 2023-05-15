@@ -8,7 +8,7 @@ import carbon_delivery_parcel from "@/public/main-images/carbon_delivery-parcel.
 
 function Slide5() {
     return (
-        <section className=' px-[5vw] w-full mt-20 h-[60vh] max-[700px]:!h-[0vh]'>
+        <section className=' px-[5vw] w-full mt-20  max-[700px]:!h-[5vh] '>
             <h2 className={styles.h2 + ` 
             max-[1920px]:!text-[4rem]
             noto_offer text-center
@@ -36,9 +36,9 @@ function Slide5() {
                 ваши <b>отзывы</b>
             </h2>
 
-            <div className="grid grid-cols-[27%_27%_27%] justify-center max-[700px]:!grid-cols-1 gap-5 text-center justify-items-start my-8 gap-x-4">
+            <div className="grid grid-cols-[27%_27%_27%] justify-center max-[700px]:!grid-cols-1 gap-5 text-center justify-items-start my-8 gap-x-4 ">
 
-                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full '>
+                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full min-h-[200px]'>
                     <p className={styles.hiw_list +
                         ` 
                     noto_offer
@@ -62,7 +62,7 @@ function Slide5() {
                         Максим
                     </p>
                 </div>
-                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full '>
+                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full min-h-[200px]'>
                     <p className={styles.hiw_list +
                         ` 
                     noto_offer
@@ -85,7 +85,7 @@ function Slide5() {
                         Александра
                     </p>
                 </div>
-                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full '>
+                <div className='flex flex-col justify-evenly px-[5%] shadow_border rounded-[10px] bg-[#fff] w-full min-h-[200px]'>
                     <p className={styles.hiw_list +
                         ` 
                     noto_offer

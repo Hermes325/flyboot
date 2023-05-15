@@ -15,13 +15,13 @@ const Pagination = ({ setFiltersWrapper, amount, page }: Props) => {
   const lastPage: number = Math.ceil(amount / PAGE_SIZE)
 
   //#region Queries
-  function changePage(value: number) {
-    return (filter: Filters): Filters => ({ ...filter, page: value })
+  function  changePage(value: number ) {
+    return (filter: Filters): Filters => ({ ...filter, page: value  })
   }
   //#endregion
 
   //#region UI templates
-  const pageBtnClasses = "font-inter text-[24px] leading-[27px] mx-[0.5rem] hover:underline";
+  const pageBtnClasses = "font-inter text-[24px] text-[#B3B3B3] leading-[27px] mx-[0.5rem] hover:underline ";
 
   const pageBtn = (page: number) =>
     <button
@@ -29,13 +29,13 @@ const Pagination = ({ setFiltersWrapper, amount, page }: Props) => {
       disabled={page === currentPage}
       onClick={() => setFiltersWrapper(changePage(page - 1), true)}
       className={classNames(pageBtnClasses, {
-        "text-[#29D9CE]": page === currentPage
+        " text-[black] ": page === currentPage
       })}>
       {page}
     </button>
 
   const pageEllipsis = () =>
-    <span className={pageBtnClasses + " hover:no-underline"}>...</span>
+    <span className={pageBtnClasses + " hover:no-underline "}>...</span>
   //#endregion
 
   //*==================================================================

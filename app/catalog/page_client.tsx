@@ -174,28 +174,34 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
 
   //#region UI
   const MVP_QR =
-    <div className="bg-[#0e0e0e] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] my-[29px]">
-      <h3 className='font-inter font-light leading-[26px] text-[24px] mb-[13px]'>
-        Нет желаемого товара?
+    <div className="bg-[#fff] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090] my-[29px]">
+      <h3 className='font-inter font-bold leading-[26px] text-[24px] mb-[13px] uppercase 
+      max-[1515px]:!text-[22px] 
+      max-[1015px]:!text-[20px] 
+      max-[835px]:!text-[18px] 
+      max-[835px]:!leading-[19px] 
+      max-[775px]:!mt-[2vw] 
+      max-[710px]:!text-[8px] 
+      max-[660px]:!leading-[137%]
+      max-[400px]:!leading-[14px]'>
+        не нашли модель, которую искали?
       </h3>
       <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2'>
-        Каталог в разработке 🏗
+        Наш ассортимент регулярно
+        пополняется, напишите нам @FlyBootsSupport
       </p>
 
-      <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2 min-[900px]:mb-4'>
-        Напишите нам&nbsp;
-        <a className='underline' title='Менеджер' href='https://t.me/FlyBootsSupport'>
-          @FlyBootsSupport
-        </a>
-      </p>
-      <Image
-        alt='менеджер QR в TG'
-        src={QR}
-        className="rounded-[15px] max-[900px]:hidden" />
+      <div className='flex justify-end mt-2'>
+
+        <Image
+          alt='менеджер QR в TG'
+          src={QR}
+          className="rounded-[15px] w-[10vw] max-[900px]:hidden  " />
+      </div>
     </div>
   //#endregion
 
-  return (<main className="w-screen min-h-screen grid grid-cols-[9vw_1fr_1fr_1fr_1fr_9vw] auto-rows-min pt-[12.5vh] gap-x-[29px] gap-y-[23px] 
+  return (<main className="w-screen min-h-screen grid grid-cols-[3vw_1fr_1fr_1fr_1fr_3vw] auto-rows-min pt-[8.5vh] gap-x-[29px] gap-y-[23px] 
     max-2xl:grid-cols-[4vw_minmax(0,1fr)_1fr_1fr_1fr_4vw] 
     max-xl:grid-cols-[0_minmax(0,1fr)_1fr_1fr_0] 
     max-[900px]:relative
@@ -205,7 +211,36 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     <>
       {/* Title */}
       <div className='col-start-2 col-span-2'>
-        <h1 className='font-montserrat text-[80px] leading-[1] mt-[2rem] font-bold text-[#F5F5F5] max-[550px]:text-[60px]'>Каталог</h1>
+        <h1 className='
+        w-[50vw]
+        font-montserrat text-[80px] 
+        leading-[1] 
+        mt-[2rem] 
+        font-bold
+        text-[#000000] 
+        min-[2560px]:!text-[6.5rem] 
+        max-[1860px]:!text-[4.5rem]
+        max-[1700px]:!text-[4rem]
+        max-[1500px]:!text-[3.7rem] 
+        max-[1330px]:!text-[3.3rem] 
+        max-[1140px]:!text-[3rem] 
+        max-[1100px]:!text-[2.7rem]
+        max-[950px]:!text-[2.5rem]
+        max-[850px]:!text-[2.3rem]
+        max-[780px]:!text-[2.1rem]
+        max-[700px]:!text-[1.9rem]
+        max-[700px]:!leading-[1.9rem]
+        max-[650px]:!text-[1.7rem]
+        max-[600px]:!text-[2.6rem]
+        max-[550px]:!text-[2.4rem]
+        max-[525px]:!text-[2.2rem]
+        max-[480px]:!text-[2rem]
+        max-[420px]:!text-[1.8rem]
+        max-[380px]:!text-[1.6rem]
+        max-[335px]:!text-[1.4rem]
+        '>
+          Каталог <span className='uppercase'> flyboots</span>
+        </h1>
       </div>
 
       {/* Sorting */}
@@ -242,7 +277,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
     <>
       {/* фильтры desktop */}
       <div className='max-[900px]:hidden top-[120px] col-start-2 col-span-1'>
-        <div className="bg-[#0e0e0e] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
+        <div className="bg-[#fff] h-fit p-[1rem_1.5rem_1.5rem_1.5rem] border-2 rounded-[15px] border-[#909090]">
           <FiltersUI
             min={firstPage.min?.price ?? 0}
             max={firstPage.max?.price ?? 1000000}

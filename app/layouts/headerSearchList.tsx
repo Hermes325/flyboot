@@ -10,11 +10,21 @@ type Props = {
 
 const HeaderSearchList = ({ items, setOpen }: Props) => {
   return (
-    <ul className="w-full max-h-[600px] max-[1600px]:max-h-[500px] max-[1080px]:max-h-[400px] max-[720px]:max-h-[300px] max-[600px]:max-h-[400px] overflow-y-scroll">
+    <div className="w-full
+    grid
+    grid-cols-4 
+    
+    max-h-[600px] 
+    max-[1600px]:max-h-[500px] 
+    max-[1080px]:max-h-[400px] 
+    max-[720px]:max-h-[300px] 
+    max-[600px]:max-h-[400px] 
+    overflow-y-scroll
+    ">
       {items.map((item) => (
-        <li key={item.slug} className="py-3 border-b-2 mx-5">
+        <div key={item.slug} className="py-3 mx-5">
           <Link href={`/item/${item.slug}`} onClick={setOpen}>
-            <div className="flex flex-row w-full space-x-5 justify-start">
+            <div className="bg-white flex flex-col w-full justify-start items-center h-full rounded-[5px]">
               {/* <div className="flex flex-row space-x-5"> */}
               <Image
                 lazyLoad={true}
@@ -32,7 +42,25 @@ const HeaderSearchList = ({ items, setOpen }: Props) => {
                 !max-h-[200px]
                 !max-w-[200px]"
               />
-              <h1 className="flex justify-start items-center font-medium text-lg max-[1080px]:text-base max-[720px]:text-sm w-[300px] max-[1600px]:w-[250px] max-[1080px]:w-[200px] max-[720px]:w-[150px]">
+              <h1 className="
+              flex 
+              justify-center 
+              items-center 
+              font-medium 
+              text-center
+              max-[1920px]:!text-[14px] 
+              max-[1015px]:!text-[10px] 
+              max-[835px]:!text-[8px] 
+              max-[835px]:!leading-[19px] 
+              max-[775px]:!mt-[2vw] 
+              max-[710px]:!text-[8px] 
+              max-[660px]:!leading-[137%]
+              max-[400px]:!leading-[14px]     
+              max-[1080px]:text-base 
+              max-[720px]:text-sm w-[300px]
+              max-[1600px]:w-[250px]
+              max-[1080px]:w-[200px] 
+              max-[720px]:w-[150px]">
                 {item.title}
               </h1>
               {/* </div> */}
@@ -42,9 +70,9 @@ const HeaderSearchList = ({ items, setOpen }: Props) => {
               </p> */}
             </div>
           </Link>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

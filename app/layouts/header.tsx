@@ -276,7 +276,7 @@ function Header() {
       {/* modal window of search on desktop version */}
       <div
         className={classNames(
-          "fixed z-[1] top-[70px]  max-[600px]:!hidden min-h-[150px] h-fit w-[94%]  byGMD max-[720px]:w-[900px] right-[3vw] translate-x-0  flex-col justify-center items-center gap-10 bg-[#F5F5F5] border-solid border-2 border-black rounded-b-lg bg-opacity-0 hidden transition",
+          "fixed z-[1] top-[70px]  max-[600px]:!hidden min-h-[150px] h-fit w-[94%]  byGMD max-[720px]:w-[900px] right-[3vw] translate-x-0  flex-col justify-center items-center gap-10 bg-[#F5F5F5] border-solid border-2 rounded-[0px_0px_20px_20px] border-black rounded-b-lg bg-opacity-0 hidden transition",
           { "!flex !bg-opacity-90": isSearchDesktopOpen }
         )}
       >

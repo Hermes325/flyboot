@@ -93,7 +93,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilter
   const formCheck = (text: string, prop: string, checked: boolean, onChange: (prop: string, checked: boolean) => (filter: Filters) => Filters) =>
     <div className='mb-1.5' key={prop}>
       <input
-        className="appearance-none h-[25px] w-[25px] m-0 mr-[29px] border border-gray-300 rounded-sm align-top cursor-pointer
+        className="appearance-none h-[25px] w-[25px] m-0 mr-[29px] border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
                   focus:outline-none transition duration-200"
         type="checkbox"
@@ -108,10 +108,10 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilter
     </div>
 
   const formCategorySelect = (category: string, subcategories: [string, string][]) =>
-    <div className='mb-1.5 flex justify-between gap-[22px]' key={category}>
+    <div className='mb-1.5 flex gap-[25px]' key={category}>
       {/* Категория */}
       <input
-        className="appearance-none h-[25px] w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
+        className="appearance-none h-[25px] w-[25px] m-0 border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
                   focus:outline-none transition duration-200"
         type="checkbox"
@@ -122,8 +122,8 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilter
       {/* Подкатегория */}
       <select
         onChange={(x) => setFiltersWrapper(changeSubcategory(category, x.target.value))}
-        className="overflow-clip inline-block bg-[#0E0E0E] font-inter font-extralight text-white text-[14px] border border-gray-300
-                  focus:ring-blue-500 focus:border-blue-500 h-[25px] w-[calc(100%-54px)]"
+        className="overflow-clip inline-block bg-[#fff] font-inter font-extralight text-black text-[14px] border border-black
+                  focus:ring-blue-500 focus:border-blue-500 h-[25px] w-[200px]"
       >
         {subcategories.map((subcategory) =>
           <option

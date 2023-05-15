@@ -53,7 +53,7 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
         step="100"
         type="number"
         inputMode="numeric"
-        className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
+        className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-black border-2 rounded-[5px] bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
         value={Math.min(localFilter.min, localFilter.max)}
         onChange={e => {
           if (Number(e.target.value) < min) return
@@ -67,7 +67,7 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
         step="100"
         type="number"
         inputMode="numeric"
-        className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-[#FFFFFF] border-2 bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
+        className={styles.valueInput + ' text-[#979797] text-xl font-inter font-light text-center border-black border-2 rounded-[5px] bg-transparent w-[45%] tracking-[0.01em] after:content-none'}
         value={Math.max(localFilter.min, localFilter.max)}
         onChange={e => {
           if (Number(e.target.value) < min) return
@@ -81,12 +81,17 @@ const FiltersPrice = ({ min, max, filters, setFiltersWrapper }: Props) => {
       <input type="range" step="100" min={min === max ? 0 : min} max={max + 100}
         value={localFilter.min}
         onChange={e => setLocalFilter(x => ({ ...x, min: +e.target.value }))}
-        onPointerUp={onPointerUp} />
+        onPointerUp={onPointerUp}
+        className={'bg-black'}
+      />
+
 
       <input type="range" step="100" min={min === max ? 0 : min} max={max + 100}
         value={localFilter.max}
         onChange={e => setLocalFilter(x => ({ ...x, max: +e.target.value }))}
-        onPointerUp={onPointerUp} />
+        onPointerUp={onPointerUp}
+        className={'bg-black'}
+      />
     </div>
 
   </>)
