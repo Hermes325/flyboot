@@ -68,9 +68,9 @@ const ItemPageClientPart = ({ item }: Props) => {
             <button
               key={sizeKey}
               onClick={_ => setCountry(sizeKey)}
-              className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-white", {
-                "!text-[gray]": country === sizeKey,
-                "hover:text-[#03FFF0]": country !== sizeKey,
+              className={classNames("font-lato font-[900] text-[24px] leading-[33px] tracking-[0.01em] text-black", {
+                "!text-[black]": country === sizeKey,
+                "hover:text-[#black]": country !== sizeKey,
               })}>
               {sizeKey}
             </button>))}
@@ -88,15 +88,15 @@ const ItemPageClientPart = ({ item }: Props) => {
             key={`${country}-${i}`}
             disabled={selectedSize.selected === i || !countrySizes.available[i]}
             onClick={_ => setSelectedSize({ sizeKey: country, selected: i })}
-            className={classNames("border-2 border-white cursor-pointer",
+            className={classNames("border-2 border-black cursor-pointer",
               "font-lato py-2 font-[900] text-[24px] leading-[40px] tracking-[0.01em]",
-              "w-[4ch] text-white" +
+              "w-[4ch] text-black" +
               " max-[400px]:text-[16px] max-[400px]:py-0" +
               " max-[400px]:w-[4.6ch]",
               {
                 [styles.unavailable]: !countrySizes.available[i],
-                "!text-[#03FFF0]": selectedSize.sizeKey === country && selectedSize.selected === i,
-                "hover:text-[#03FFF0]": selectedSize.selected !== i,
+                "text-[#fff] bg-[grey]": selectedSize.sizeKey === country && selectedSize.selected === i,
+                "hover:text-[#fff] hover:bg-[grey]": selectedSize.selected !== i,
               })}>
             {size}
           </button>)}

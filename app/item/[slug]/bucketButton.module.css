@@ -1,9 +1,11 @@
 .buy {
-  background   : linear-gradient(264.63deg, #00EBDD 6.47%, #009692 103.56%);
+  background   : black;
   border-radius: 8px;
   margin-top   : 24px;
   padding-block: 17px;
+  margin-bottom: 2px;
 
+  border        : 1px solid black;
   font-weight   : 900;
   font-size     : 17px;
   line-height   : 21px;
@@ -11,20 +13,28 @@
   text-transform: uppercase;
   color         : white;
   cursor        : pointer;
+
 }
 
+
 .buy:disabled {
-  filter: brightness(0.8);
+  background: grey;
+  border    : grey;
+  cursor    : not-allowed;
 }
 
 .buy:not(:disabled):hover {
-  filter: brightness(0.9);
+  background: white;
+  border    : 1px solid black;
+  color     : black
 }
 
 .buy:not(:disabled):focus {
-  background: blueviolet;
+  background: green;
+  border    : green;
 }
 
 .buy:not(:disabled):active {
-  background: red;
+  background: green;
+  border    : green;
 }

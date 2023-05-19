@@ -170,6 +170,7 @@ function Header() {
         </div>
 
         <input
+          type={"search"}
           placeholder="Поиск"
           className={classNames(
             "bg-transparent border-b-2 w-full mobile:hidden text-black outline-0",
@@ -198,6 +199,7 @@ function Header() {
           {/* Search items 
           2 inputs for 1 reason i know its govnocode*/}
           <input
+            type={"search"}
             placeholder="Поиск"
             className={classNames(
               "bg-transparent border-b-2 w-[200px] max-[1920px]:w-[180px] max-[1440px]:w-[160px] max-[1080px]:w-[120px] max-[720px]:w-[100px] max-mobile:hidden text-black outline-0"

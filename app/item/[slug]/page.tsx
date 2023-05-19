@@ -24,10 +24,11 @@ export default async function ItemPage({ params }: Props) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  
 
   return (
     <main
-      className=" w-screen min-h-screen flex justify-center bg-[#0E0E0E]
+      className=" w-screen min-h-screen flex justify-center bg-[#F5F5F5]
       max-[600px]:px-[20px]
     "
     >
@@ -46,6 +47,7 @@ export default async function ItemPage({ params }: Props) {
           <div
             className="flex flex-col space-y-5
           max-[600px]:space-y-[15px]
+          
         "
           >
             <PictureBlock item={item} />
@@ -55,30 +57,40 @@ export default async function ItemPage({ params }: Props) {
           <div
             className="
           max-[600px]:ml-[0_!important]
+          w-[40vw]
+          
         "
           >
+            
             {/* item title and articul */}
-            <div>
-              <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-white">
+            <div className="sticky top-[50px]">
+              <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-black">
                 {item.title}
               </h1>
-              <p className="font-jost text-[18px] text-gray-300">
+              <p className="font-jost text-[18px] text-[#AEAEAE]">
                 Артикул {item.poizonArticul}
               </p>
+              {/* Описание */}
+              {item.description1}
             </div>
 
             {/* item price */}
-            <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#03FFF0]">
+            <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#000000]">
               {price} руб
             </h2>
+            
 
             {/* CSR часть с запросом к Егору */}
             <ItemPageClientPart item={item} />
+            {/* Характеристика */}
+            <p>{item.description2}</p>
+            
           </div>
         </div>
 
-        <DropDown title="Описание" description={item.description1} />
-        <DropDown title="Характеристика" description={item.description2} />
+
+        {/* <DropDown title="Описание" description={item.description1} /> */}
+        {/* <DropDown title="Характеристика" description={item.description2} /> */}
 
         {/* Will be interested */}
         <Recommends item={item} />

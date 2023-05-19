@@ -95,6 +95,7 @@ function Slide1() {
               max-[780px]:!text-[14px] 
               max-[1100px]:!leading-[17px]
               max-[600px]:!hidden 
+              border-[1px]
               hover:bg-[#f5f5f5]
               hover:text-black
               hover:border-[1px]

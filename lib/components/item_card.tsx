@@ -27,7 +27,7 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
 
     <article
       className={`${styles.item_card} ${className ?? ""} 
-        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between`}
+        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between border-[1px]`}
     >
       <Image
         lazyLoad={true}

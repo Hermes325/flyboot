@@ -317,7 +317,7 @@ function BucketPage() {
   return (
     <main
       className={classNames(
-        `w-screen min-h-screen flex bg-[#0E0E0E] pt-[108px] px-[10vw]
+        `w-screen min-h-screen flex bg-[#f5f5f5] pt-[108px] px-[10vw]
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
       max-[550px]:!px-[5px]`,
@@ -363,8 +363,8 @@ function BucketPage() {
     w-full mb-12"
       >
         {/* Bucket text */}
-        <h1 className="font-montserrat w-full ml-3 font-bold text-7xl text-[#F5F5F5] mt-2 mb-10 px-[5px] max-[600px]:!text-[4rem] max-[500px]:!text-[3.5rem] max-[400px]:!text-[3rem]">
-          Корзина
+        <h1 className="font-montserrat uppercase w-full ml-3 font-medium text-6xl text-[#000] mt-2 mb-10 px-[5px] max-[600px]:!text-[4rem] max-[500px]:!text-[3.5rem] max-[400px]:!text-[3rem]">
+          ваш <span className="font-bold">заказ</span> 
         </h1>
 
         {/* items and info block */}
@@ -486,12 +486,12 @@ function BucketPage() {
                     || itemsAmount === 0
                     || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
                     || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
-                  className={styles.buy + " font-inter w-full"}
+                  className={styles.buy + "uppercase font-inter w-full"}
                   onClick={openOrderModal}
 
                 //TODO сделать модальное окно//
                 >
-                  Заказать
+                  оформить заказ
                 </button>
 
                 <div className="flex flex-row gap-[14px]">
