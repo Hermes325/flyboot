@@ -7,17 +7,17 @@ import styles from "./faq.module.css";
 const FaqPageClient = () => {
   const [activeTab, setActiveTab] = useState('')
   const p = (text: string) =>
-    <p className='font-montserrat text-white'>{text}</p>
+    <p className='font-montserrat text-black pl-[5%] '>{text}</p>
 
-  return (<main className='pt-[90px] min-h-screen  px-[13%] mb-[5vw] max-[600px]:px-[8%]'>
+  return (<main className='pt-[90px] min-h-screen  px-[13%] mb-[5vw] max-[600px]:px-[5vw]'>
 
     <h1 className={styles.h1 + " max-[1000px]:text-[3rem] max-[800px]:text-[2.5rem] max-[600px]:text-[1.6rem]"}>FAQ</h1>
     <DropDown activeTab={activeTab} setActiveTab={setActiveTab} title="Почему везем с POIZON?">
       <div>
         {p(`POIZON (DEWU)- это китайский маркетплейс (аналог российского OZON) с двумя большими преимуществами -`)}
-        <ol className='list-decimal list-inside my-[10px]'>
-          <li className='font-montserrat text-white my-[15px]'>Привлекательная стоимость товаров</li>
-          <li className='font-montserrat text-white my-[15px]'>Многократная проверка всего товара на оригинальность.</li>
+        <ol className='list-decimal list-inside my-[10px] pl-[5%]'>
+          <li className='font-montserrat text-black my-[15px]'>Привлекательная стоимость товаров</li>
+          <li className='font-montserrat text-black my-[15px]'>Многократная проверка всего товара на оригинальность.</li>
         </ol>
         {p(`Специальные оценщики проводят зрительный  и лабораторный анализ каждого продукта и помечают его пластиковой биркой с уникальным номером.
           К каждой вещи будет приложен   сертификат об оригинальности с QR кодом`)}

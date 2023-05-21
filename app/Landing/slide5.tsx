@@ -6,9 +6,11 @@ import carbon_delivery_parcel from "@/public/main-images/carbon_delivery-parcel.
 
 
 
+
+
 function Slide5() {
     return (
-        <section className=' px-[5vw] w-full mt-20  max-[700px]:!h-[5vh] '>
+        <section className=' px-[5vw] w-full mt-20   '>
             <h2 className={styles.h2 + ` 
             max-[1920px]:!text-[4rem]
             noto_offer text-center

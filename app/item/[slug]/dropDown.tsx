@@ -14,21 +14,21 @@ type Props = {
 
 function DropDown({ title, description, open = false }: Props) {
   const [isOpen, setIsOpen] = useState(open);
-  return (<section className={classNames(`flex flex-col w-[40vw] border-b-2 border-white transition-all duration-500
+  return (<section className={classNames(`flex flex-col w-[40vw] transition-all duration-500
        max-[1000px]:w-[100%]`, {
-    "border-white pb-[20px]": isOpen,
+    "border-black pb-[20px]": isOpen,
   })}>
 
     <div
-      className="flex flex-row justify-between items-center cursor-pointer"
+      className="flex flex-row justify-center items-center cursor-pointer"
       onClick={() => setIsOpen(prev => !prev)}
     >
-      <h2 className="font-lato font-[900] text-white text-[24px] leading-[27px] tracking-[0.01em]">{title}</h2>
+      <h2 className="font-lato font-[900] text-[#AEAEAE] text-[24px] max-[600px]:!text-[15px] leading-[27px] tracking-[0.01em]">{title}</h2>
       <Image
         src={expand}
         alt="expand less image"
-        className={classNames("select-none transition-transform duration-500 h-[50px]", {
-          "rotate-180": isOpen
+        className={classNames("select-none transition-transform duration-500 h-[50px] ", {
+          "rotate-180 ": isOpen
         })} />
     </div>
 

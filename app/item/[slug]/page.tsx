@@ -24,7 +24,7 @@ export default async function ItemPage({ params }: Props) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
-  
+
 
   return (
     <main
@@ -58,16 +58,21 @@ export default async function ItemPage({ params }: Props) {
             className="
           max-[600px]:ml-[0_!important]
           w-[40vw]
-          
+          max-[600px]:w-[90vw]
+          bg-white
+          rounded-[15px]
+          max-[600px]:mt-[2%]
+          px-[15px]
+          pt-[15px]
         "
           >
-            
+
             {/* item title and articul */}
-            <div className="sticky top-[50px]">
-              <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-black">
+            <div>
+              <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-black max-[600px]:!text-[20px] max-[600px]:!leading-5	 max-[600px]:!font-bold">
                 {item.title}
               </h1>
-              <p className="font-jost text-[18px] text-[#AEAEAE]">
+              <p className="font-jost max-[600px]:!text-[12px] text-[18px] text-[#AEAEAE]">
                 Артикул {item.poizonArticul}
               </p>
               {/* Описание */}
@@ -78,19 +83,23 @@ export default async function ItemPage({ params }: Props) {
             <h2 className="font-lato font-[900] mt-[18px] tracking-[0.01em] text-[28px] text-[#000000]">
               {price} руб
             </h2>
-            
 
             {/* CSR часть с запросом к Егору */}
             <ItemPageClientPart item={item} />
             {/* Характеристика */}
-            <p>{item.description2}</p>
-            
+            <div className="mt-[2%]">
+              <p className="max-[600px]:hidden">{item.description2}</p>
+              <div className="hidden max-[600px]:block">
+                <DropDown title="Подробнее о  товаре" description={item.description2} />
+              </div>
+            </div>
+
           </div>
         </div>
 
 
         {/* <DropDown title="Описание" description={item.description1} /> */}
-        {/* <DropDown title="Характеристика" description={item.description2} /> */}
+
 
         {/* Will be interested */}
         <Recommends item={item} />

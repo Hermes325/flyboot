@@ -226,7 +226,7 @@ function Header() {
               )}
             />
             {bucketItems > 0 && (
-              <p className="w-[1.5rem] h-[1.5rem] text-center absolute top-[-10px] right-[-20px] rounded-[50%] bg-[red]">
+              <p className="w-[1.5rem] h-[1.5rem] text-white text-center absolute top-[5px] right-[-15px] rounded-[4px] bg-[#000]">
                 {bucketItems}
               </p>
             )}

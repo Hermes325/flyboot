@@ -25,9 +25,9 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
     }
   }, [activeTab])
 
-  return (<section className={classNames(`flex flex-col w-[100%] border-b-2 border-white
+  return (<section className={classNames(`flex flex-col w-[100%] rounded-[10px] bg-white
        max-[600px]:w-[100%] mt-2 `, {
-    "border-white ": isOpen,
+    "border-white ": isOpen,  
   })}>
 
     {/* Заголовок */}
@@ -35,7 +35,7 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
       className="flex flex-row justify-between items-center cursor-pointer mb-2"
       onClick={() => changeTab()}
     >
-      <h2 className="font-lato font-[400] text-[#29D9CE] text-[1.8rem] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:text-[1.2rem] max-[600px]:leading-[25px]">{title}</h2>
+      <h2 className="font-lato font-[400] text-[#000] text-[1.8rem] pl-[5%] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:text-[1.2rem] max-[600px]:leading-[25px]">{title}</h2>
       <Image
         src={expand}
         alt="expand less image"
@@ -45,7 +45,7 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
     </div>
 
     {/* Внутренний контент */}
-    <div className={classNames({ "  hidden ": !isOpen }, "pb-3 text-[1.3rem] leading-[22px] max-[1000px]:text-[1.1rem] max-[800px]:text-[0.9rem] ")}>
+    <div className={classNames({ "  hidden ": !isOpen }, "pb-3 text-[1.3rem] !text-[#000] leading-[22px] max-[1000px]:text-[1.1rem] max-[800px]:text-[0.9rem] ")}>
       {children}
     </div>
 
