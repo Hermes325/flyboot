@@ -261,12 +261,13 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       max-[900px]:flex
       col-start-2
       border-[1px]
-      border-white
+      border-black
+      rounded-[10px]
       text-center
       flex-col
       justify-center
       font-inter text-white text-[16px]
-      bg-[#0e0e0e]
+      
     '
         onClick={() => changeFiltersVisibility()}>
         <span className='pointer-events-none'>Фильтры</span>
@@ -325,8 +326,8 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
           max-[900px]:top-[0px]
           max-[900px]:left-[0px]
           max-[900px]:z-[10]
-          max-[900px]:!bg-opacity-90
-          max-[900px]:bg-[#0e0e0e] 
+          
+          max-[900px]:bg-[#fff] 
           max-[900px]:transition-all
           max-[900px]:duration-200`,
           {

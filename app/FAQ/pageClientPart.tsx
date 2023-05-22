@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import DropDown from "app/FAQ/dropDownFaq";
 import styles from "./faq.module.css";
 
@@ -9,9 +9,11 @@ const FaqPageClient = () => {
   const p = (text: string) =>
     <p className='font-montserrat text-black pl-[5%] '>{text}</p>
 
-  return (<main className='pt-[90px] min-h-screen  px-[13%] mb-[5vw] max-[600px]:px-[5vw]'>
+  return (<main className='pt-[90px] min-h-screen  px-[5%] mb-[5vw] max-[600px]:px-[5vw]'>
 
-    <h1 className={styles.h1 + " max-[1000px]:text-[3rem] max-[800px]:text-[2.5rem] max-[600px]:text-[1.6rem]"}>FAQ</h1>
+    <h1 className={styles.h1 + " max-[1000px]:text-[3rem] max-[800px]:text-[2.5rem] max-[600px]:text-[1.6rem]"}>
+      <span className='font-normal'>часто задаваемые</span> <br /> вопросы
+    </h1>
     <DropDown activeTab={activeTab} setActiveTab={setActiveTab} title="Почему везем с POIZON?">
       <div>
         {p(`POIZON (DEWU)- это китайский маркетплейс (аналог российского OZON) с двумя большими преимуществами -`)}

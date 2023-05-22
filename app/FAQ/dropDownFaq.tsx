@@ -25,14 +25,14 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
     }
   }, [activeTab])
 
-  return (<section className={classNames(`flex flex-col w-[100%] rounded-[10px] bg-white
-       max-[600px]:w-[100%] mt-2 `, {
+  return (<section className={classNames(`flex flex-col w-[80%] rounded-[10px] bg-white
+       max-[600px]:w-[100%] mt-2 ml-[20%]`, {
     "border-white ": isOpen,  
   })}>
 
     {/* Заголовок */}
     <div
-      className="flex flex-row justify-between items-center cursor-pointer mb-2"
+      className="flex flex-row justify-between items-center cursor-pointer mb-2  "
       onClick={() => changeTab()}
     >
       <h2 className="font-lato font-[400] text-[#000] text-[1.8rem] pl-[5%] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:text-[1.2rem] max-[600px]:leading-[25px]">{title}</h2>

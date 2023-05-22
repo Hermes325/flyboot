@@ -1,6 +1,7 @@
 .main {
-    padding: 12vw 9vw 0;
+    padding: 10vw 9vw 0;
 }
+
 
 
 .Montserrat700_2 {
@@ -10,9 +11,14 @@
     line-height   : 80px;
     /* or 100% */
     letter-spacing: 0.02em;
-    color         : #F5F5F5;
+    color         : black;
     text-align    : center;
     margin-bottom : 5vw;
+}
+
+.bg_sky {
+    background-image: url(/public/main-images/sky.png);
+    background-size : contain;
 }
 
 
@@ -32,7 +38,7 @@
 }
 
 .left_hand {
-    left: 0;
+    left     : 0;
     transform: rotate(-6deg);
     width    : 28%;
 }
@@ -50,6 +56,6 @@
 
     letter-spacing: 0.03em;
 
-    color: #F5F5F5;
+    color: black;
 
 }

@@ -2,138 +2,126 @@ import React from 'react'
 import styles from "../about-us/about_us.module.css"
 import Image from 'next/image'
 import box from "@/public/main-images/whitenike.png"
-import new_balance from "@/public/main-images/new_balance.png"
-import right_hand from "@/public/main-images/righthand.png"
 import left_hand from "@/public/main-images/lefthand.png"
+import sky from "@/public/main-images/sky.png"
+import brownshoes from "@/public/main-images/brownshoes.png"
+import fila from "@/public/main-images/fila.png"
+import team from "@/public/main-images/team.png"
 
 
 
 const About = () => {
   return (
-    <main className={styles.main + ' relative overflow-hidden'}>
-      <h1 className={styles.Montserrat700_2 + " font-montserrat max-[1300px]:!mt-[5vw] min-[2560px]:!text-[6.5rem] max-[1860px]:!text-[4.5rem] max-[1700px]:!text-[4rem] max-[1500px]:!text-[3.7rem] max-[1330px]:!text-[3.3rem] max-[1140px]:!text-[3rem] max-[600px]:!text-[2rem] max-[430px]:!text-[1.7rem] max-[350px]:!text-[1.4rem]"}>
-        О нас
+    <main className={styles.main + ' relative overflow-hidden max-[1300px]:!px-[5%]'}>
+      <h1 className={styles.Montserrat700_2 + 'max-[1300px]:!leading-6 uppercase max-[1300px]:!mt-[5vw] min-[2560px]:!text-[6.5rem] max-[1860px]:!text-[4.5rem] max-[1700px]:!text-[4rem] max-[1500px]:!text-[3.7rem] max-[1330px]:!text-[3.3rem] max-[1140px]:!text-[2.8rem] max-[600px]:!text-[2rem] max-[430px]:!text-[1.7rem] max-[350px]:!text-[1.4rem]'}>
+        ресейл-платформа <b> flyboots</b>
       </h1>
 
-      <Image
-        src={right_hand}
-        alt="правая рука"
-        className={styles.right_hand + " max-[1700px]:!top-[7%] max-[1400px]:!top-[8%] max-[1300px]:!top-[9%] max-[1000px]:!top-[11%] max-[1300px]:!w-[35%] max-[800px]:!top-[9%] max-[550px]:!top-[7%] max-[390px]:!top-[6%] max-[340px]:!top-[5%]"}
-      />
-      <div className='mt-[2vw] mb-[15vw]'>
-        <div className='float-left w-[35%] max-[800px]:!hidden' >
-          <Image
-            src={box}
-            alt="box"
-            
-          />
+      <div className='mt-[2vw] grid grid-cols-[60%_35%] items-center max-[800px]:!grid-cols-1 gap-[5%] max-[1300px]:!gap-5 '>
+        <div className=' max-[800px]:!py-5 bg-white rounded-[15px] px-10 py-5 flex flex-col justify-between max-[900px]:!gap-5 max-[900px]:!px-5 h-full'>
+          <h2 className='uppercase font-bold text-2xl'>онлайн-магазин flyboots</h2>
+          <p className='text-base max-[1300px]:!text-[15px]'>Привет! Ты на сайте <b>FlyBoots</b> — идеальной платформе для поиска кроссовок.
+            У нас есть все — от классики до лимитированных коллекций <b>Nike, Adidas, New Balance</b>
+            и других брендов. Теперь можно легко найти модель, которая подойдет именно тебе.
+            Мы гарантируем оригинальность каждой пары и оперативную доставку в Россию.
+          </p>
+          <p className='max-[1300px]:!text-[15px]'>
+            Радуйся покупкам и наслаждайся любимыми брендами с FlyBoots!
+          </p>
         </div>
-        <div>
-          <p className={styles.font_au + " font-montserrat text-justify min-[2560px]:!text-[6.5rem] max-[1650px]:!text-[22px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
-            Не так давно нам пришла идея сделать доставку в Россию качественной брендовой одежды по
-            демократичным ценам доступной.
-          </p>
-          <p className={styles.font_au + " mt-[2.5vw] text-justify font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
-
-            Наше главное преимущество заключается в том, что мы доставляем оригинал по ценам,
-            которых нет у других реселлеров. Подлинность всей продукции подтвердил бы даже
-            Канье Вест клятвой на паре Yeezy.
-          </p>
-          <p className={styles.font_au + " mt-[2.5vw] text-justify font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
-            Нами движет желание продавать качественную обувь в России в условиях ее дефицита. Для этого мы
-            проделали большую работу и сделали все, чтобы доставка была быстрой, а шоппинг комфортным
-            благодаря
-            удобному интерфейсу.
-          </p>
-          <p className={styles.font_au + " mt-[2.5vw] text-justify font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
-            Над тем, чтобы процесс выбора вами был удобным, трудится команда людей, которые не только
-            разбираются в том, что делают, но и любят своё дело, поэтому служба поддержки магазина всегда
-            готова
-            помочь разобраться с возникающими вопросами, ведь мы всегда открыты к диалогу.
-          </p>
-          <p className={styles.font_au + " mt-[2.5vw] text-justify font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-            Наша команда собирает для вас последние новости из мира стритвира и моды в целом, чтобы помогать
-            вам
-            с идеями и облегчать выбор, среди большого ассортимента товаров.
-          </p>
+        <div className=' w-full' >
+          <Image
+            src={sky}
+            alt="sky"
+            className='bg-cover'
+          />
         </div>
       </div>
 
-      <Image
-        src={left_hand}
-        alt="левая рука"
-        className={styles.left_hand + " max-[1700px]:!top-[7%] max-[1400px]:!top-[8%] max-[1300px]:!top-[10%] max-[1300px]:!w-[35%] max-[800px]:!top-[9%] max-[550px]:!top-[7%] max-[390px]:!top-[6%] max-[340px]:!top-[5%]"}
-      />
+      <div className='mt-[5vw] grid grid-cols-[60%_35%] items-center max-[800px]:!grid-cols-1 gap-[5%] max-[1300px]:!gap-5'>
+        <div className='grid grid-rows-2 gap-5 h-full'>
+          <div className=' max-[800px]:!py-5 bg-white rounded-[15px] px-10 py-5 flex flex-col justify-between max-[900px]:!px-5 '>
+            <h2 className='uppercase font-bold text-2xl'>миссия flyboots</h2>
+            <p className='text-base max-[1300px]:!text-[15px]'>
+              Мы знаем, как трудно найти качественную обувь в России.
+              Поэтому наша команда приложила максимум усилий, чтобы сделать ваш шоппинг в <b>FlyBoots</b> приятным и
+              комфортным и доставлять оригинальные бренды в любую точку России!
+            </p>
+          </div>
+          <div className=' max-[800px]:!py-5 bg-white rounded-[15px] px-10 py-5 flex flex-col justify-between max-[900px]:!gap-5 max-[900px]:!px-5'>
+            <h2 className='uppercase font-bold text-2xl'>наше преимущество</h2>
+            <p className='text-base max-[1300px]:!text-[15px]'>
+              <b>FlyBoots предлагает только оригинальные бренды.</b> Товар проходит сертификацию и тестирование
+              на платформе Poizon, через которую мы заказываем все наши товары. Вы можете быть уверены в том,
+              что покупаете оригинальный товар.
+            </p>
+          </div>
+        </div>
+
+        <div className=' w-full' >
+          <Image
+            src={brownshoes}
+            alt="brownshoes"
+            className='bg-cover'
+          />
+        </div>
+      </div>
+
+      <div className='mt-[5vw] grid grid-cols-[35%_60%] items-center max-[800px]:!grid-cols-1 max-[800px]:!flex max-[800px]:!flex-col-reverse gap-[5%] max-[1300px]:!gap-5'>
+        <div className=' w-full' >
+          <Image
+            src={fila}
+            alt="fila"
+            className='bg-cover'
+          />
+        </div>
+        <div className=' bg-white rounded-[15px] pt-5 flex flex-col justify-between max-[900px]:!gap-5 h-full'>
+          <h2 className='uppercase font-bold text-2xl px-10 max-[900px]:!px-5'>быстрый и удобный шоппинг</h2>
+          <p className='text-base max-[1300px]:!text-[15px] px-10 max-[900px]:!px-5'>
+            <b>Наша цель — сделать шопинг в условиях дефицита комфортным.</b>
+            Знаем, что тебе не терпится получить заказ, поэтому мы делаем все, чтобы оформить его было легко,
+            а доставка осуществлялась как можно быстрее.
+          </p>
+          <a href="/catalog" className='flex justify-center bg-black hover:bg-white border-[1px] border-black h-[50px] rounded-b-[15px]'>
+            <button className='text-white uppercase w-full hover:text-black'>
+              перейти в каталог
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <div className='mt-[5vw] grid grid-cols-[35%_60%] items-center max-[800px]:!flex max-[800px]:!flex-col-reverse gap-[5%] max-[1300px]:!gap-5 mb-10'>
+        <div className=' w-full' >
+          <Image
+            src={team}
+            alt="team"
+            className='bg-cover'
+          />
+        </div>
+
+        <div className='grid grid-rows-2 gap-5 h-full'>
+          <div className=' max-[800px]:!py-5 bg-white rounded-[15px] px-10 py-5 flex flex-col justify-between max-[900px]:!gap-5 max-[900px]:!px-5'>
+            <h2 className='uppercase font-bold text-2xl'>наша Команда</h2>
+            <p className='text-base max-[1300px]:!text-[15px]'>
+              Команда FlyBoots – профессионалы своего дела.
+              Мы отвечаем за качество товара в магазине и следим за последними тенденциями в мире моды,
+              чтобы предлагать вам самые актуальные новинки <b>Adidas, Nike, New Balance, Jordan, Tom Ford</b> и
+              других брендов!
+            </p>
+          </div>
+
+          <div className=' max-[800px]:!py-5 bg-white rounded-[15px] px-10 py-5 flex flex-col justify-center gap-8 max-[900px]:!px-5'>
+            <h2 className='uppercase font-bold text-2xl'>Всегда НА СВЯЗИ</h2>
+            <p className='text-base max-[1300px]:!text-[15px]'>
+              Мы готовы ответить на любые вопросы в  <a href="https://t.me/flybootsfast"> <b>Telegram</b></a>. Напиши нам,
+              если хочешь оставить отзыв или получить помощь по поиску нужного товара.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </main>);
 }
 
 export default About
 
-
-
-   {/* <Image
-        src={right_hand}
-        alt="правая рука"
-        className={styles.right_hand}
-      />
-      <div className='mt-[5vw] mb-[15vw]'>
-        <div className={styles.flex_around}>
-          <div className='w-[35%] relative'>
-            <div className={styles.bc_block1} />
-            <Image
-              src={new_balance}
-              alt="box"
-              className="w-[75%]" />
-          </div>
-          <div className={styles.flex_colomn + " w-[62%]"}>
-            <p className={styles.font_au + " font-montserrat  min-[2560px]:!text-[6.5rem] max-[1650px]:!text-[22px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-              Не так давно нам пришла идея сделать доставку в Россию качественной брендовой одежды по
-              демократичным ценам доступной.
-            </p>
-            <p className={styles.font_au + " mt-[2.5vw] font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-
-              Наше главное преимущество заключается в том, что мы доставляем оригинал по ценам,
-              которых нет у других реселлеров. Подлинность всей продукции подтвердил бы даже
-              Канье Вест клятвой на паре Yeezy.
-            </p>
-            <p className={styles.font_au + " mt-[2.5vw] font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-              Нами движет желание продавать качественную обувь в России в условиях ее дефицита. Для этого мы
-              проделали большую работу и сделали все, чтобы доставка была быстрой, а шоппинг комфортным
-              благодаря
-              удобному интерфейсу.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.flex_around + " mt-2"}>
-          <div className={styles.flex_colomn + " w-[68%]"}>
-
-            <p className={styles.font_au + " font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-              Над тем, чтобы процесс выбора вами был удобным, трудится команда людей, которые не только
-              разбираются в том, что делают, но и любят своё дело, поэтому служба поддержки магазина всегда
-              готова
-              помочь разобраться с возникающими вопросами, ведь мы всегда открыты к диалогу.
-            </p>
-
-            <p className={styles.font_au + " mt-[2.5vw] font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[28px]"}>
-              Наша команда собирает для вас последние новости из мира стритвира и моды в целом, чтобы помогать
-              вам
-              с идеями и облегчать выбор, среди большого ассортимента товаров.
-            </p>
-          </div>
-          <div className='w-[30%] relative'>
-            <div className={styles.bc_block2} />
-            <Image
-              src={box}
-              alt="box"
-              className="w-[85%]"
-            />
-          </div>
-        </div>
-      </div>
-
-      <Image
-        src={left_hand}
-        alt="левая рука"
-        className={styles.left_hand}
-      /> */}
