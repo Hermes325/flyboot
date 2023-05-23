@@ -26,10 +26,11 @@
 
     color: #000000;
 }
+
 .noto_font {
     font-family: 'Noto Sans';
     font-style : normal;
-    color: #000000;
+    color      : #000000;
 }
 
 .button_main {
@@ -52,11 +53,11 @@
 
 
 .Logotip {
-    position : absolute;
-    width    : 38vw;
-    height   : auto;
-    bottom   : 12vw;
-    z-index  : 1;
-    right    : 10%;
-    transform: rotate(-26.72deg);
+    position: absolute;
+    width   : 65vw;
+    height  : auto;
+    bottom  : 12vh;
+    z-index : -1;
+    right   : 0%;
+    top     : -15%;
 }

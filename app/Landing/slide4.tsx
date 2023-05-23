@@ -7,11 +7,11 @@ import recept from "@/public/main-images/recept.svg"
 import shopping_bag from "@/public/main-images/shopping_bag.svg"
 import carbon_delivery_parcel from "@/public/main-images/carbon_delivery-parcel.svg"
 import ic_round_done from "@/public/main-images/ic_round-done.png"
-
+import wings_left from "@/public/main-images/wings_left.png";
 
 function Slide4() {
   return (
-    <section className=' px-[5vw] w-full mt-20'>
+    <section className=' px-[5vw] w-full mt-20 relative'>
       <h2 className={styles.h2 + ` 
         noto_offer text-start
         max-[1920px]:!text-[4rem]
@@ -49,7 +49,8 @@ function Slide4() {
             max-[950px]:!text-[2.5rem]
             max-[900px]:!leading-[45px] 
             max-[800px]:!leading-[40px]
-            max-[700px]:!leading-[35px] 
+            max-[700px]:!leading-[35px]
+            max-[700px]:!mt-5 
             max-[400px]:!leading-[30px]
             max-[850px]:!text-[2.3rem]
             max-[780px]:!text-[2.1rem]
@@ -64,9 +65,14 @@ function Slide4() {
             max-[335px]:!text-[1.4rem]`}>
         очень просто
       </h2>
-
+      <Image
+        src={wings_left}
+        alt="Крылья"
+        className={
+          styles.Logotip + ' max-w-[90vw] absolute top-24 left-[-5vw] z-[-1] max-[700px]:!top-5 '
+        }
+      />
       <div className="grid grid-cols-4 max-[900px]:!grid-cols-2 gap-5 text-center justify-items-start my-8 gap-x-4">
-
         <div className='flex flex-col gap-y-8 shadow_border rounded-[10px] bg-[#fff] w-full '>
           <div className={styles.flex_items_center + " justify-start mt-10"}>
             <p className={styles.hiw_list + ` pl-5 uppercase text-start noto_offer text-black
@@ -95,7 +101,6 @@ function Slide4() {
 
           </p>
         </div>
-
         <div className='flex flex-col gap-y-8 shadow_border rounded-[10px] bg-[#fff] w-full '>
           <div className={styles.flex_items_center + " justify-start mt-10"}>
             <p className={styles.hiw_list + ` pl-5 uppercase text-center font-bold noto_offer
@@ -123,7 +128,6 @@ function Slide4() {
             к отправке в стране отправления
           </p>
         </div>
-
         <div className='flex flex-col gap-y-8 shadow_border rounded-[10px] bg-[#fff] w-full '>
           <div className={styles.flex_items_center + " justify-start mt-10"}>
             <p className={styles.hiw_list + ` pl-5 text-black uppercase font-bold text-center noto_offer
@@ -151,7 +155,6 @@ function Slide4() {
             Посылка со склада отправляется в Россию,
             ориентировочный срок доставки 2-3 недели</p>
         </div>
-
         <div className='flex flex-col gap-y-8 shadow_border rounded-[10px] bg-[#fff] w-full '>
           <div className={styles.flex_items_center + " justify-start mt-10"}>
             <Image
@@ -184,8 +187,8 @@ function Slide4() {
             Посылка прибыла в Россию
             и ее можно забирать</p>
         </div>
-
       </div>
+
       <div className="flex justify-center mt-[6vh]  max-[600px]:!hidden ">
         <a href="/catalog" >
           <button
@@ -211,6 +214,7 @@ function Slide4() {
             Каталог товаров
           </button>
         </a>
+        
       </div>
     </section >
   )

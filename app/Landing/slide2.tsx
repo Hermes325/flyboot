@@ -10,12 +10,11 @@ const Slide2 = () => {
 
   return (
     <section>
-      <div className="mt-[5vw] 
+      <div className=" 
     grid grid-cols-4 gap-x-3 gap-y-5 px-[5vw]
-    max-[1700px]:mt-[3vw]
     max-[1400px]:!grid-cols-3
     max-[600px]:!grid-cols-2 
-    max-[600px]:!mt-[55vw] 
+    max-[600px]:!mt-[75%] 
     
     
     ">
