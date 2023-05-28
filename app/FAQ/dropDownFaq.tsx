@@ -39,7 +39,7 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
       <Image
         src={expand}
         alt="expand less image"
-        className={classNames("select-none transition-transform h-[50px]", {
+        className={classNames("select-none transition-transform h-[50px] fill-black", {
           "rotate-180": isOpen
         })} />
     </div>
