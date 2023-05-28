@@ -24,7 +24,7 @@ const OrderModal = ({
   isOrderModalOpen,
 }: Props) => {
   const inputTailwind =
-    "px-[24px] text-[20px] font-lato h-[68px] max-[600px]:h-[50px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px] invalid:border-red-500 text-white";
+    "px-[24px] text-[20px] font-lato h-[68px] max-[600px]:h-[50px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px] invalid:border-red-500 text-black";
   const isPickUpPointDelivery = ["BoxBerry", "Sdek"].includes(order.delivery);
 
   const form = useRef<HTMLFormElement>(null);
@@ -91,8 +91,8 @@ const OrderModal = ({
       <form
         className=" 
           absolute z-[102] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-          h-min bg-[#0E0E0E] p-[2rem] max-[600px]:p-[1rem]
-          border-[2px] border-solid border-[#919191] rounded-[15px]
+          h-min bg-[#fff] p-[2rem] max-[600px]:p-[1rem]
+          border-[2px] border-solid border-[#000] rounded-[15px]
           grid grid-cols-4 gap-[1.3vw] 
           max-h-[400px]
           min-[1000px]:!min-w-[600px] 
@@ -101,6 +101,7 @@ const OrderModal = ({
           max-[1000px]:!grid-cols-2 
           max-[600px]:!min-w-[90vw]
           max-[600px]:!translate-y-[-75%]
+          text-black  
           
           "
         ref={form}
@@ -235,7 +236,7 @@ const OrderModal = ({
             onClick={pay}
             className={
               styles.buy +
-              " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8"
+              " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8 text-white"
             }
           >
             Оплатить

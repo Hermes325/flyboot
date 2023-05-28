@@ -94,7 +94,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
           after:w-[10px]
           after:h-[10px]
           after:bg-transparent
-          after:text-[#03FFF0]
+          after:text-[#000]
           after:block
           after:pointer-events-none
         ">
@@ -103,7 +103,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
             onChange={changeSize}
             className="
             mt-[5px]
-              font-inter font-bold bg-transparent text-[#03FFF0] w-[85px] text-[14px]
+              font-inter font-bold bg-transparent text-[#000000] w-[85px] text-[14px]
               max-[600px]:!w-[100px]
               max-[450px]:!w-[80px]
               max-[450px]:!min-h-[80%]
@@ -133,7 +133,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
             onClick={itemMinus}>-
           </button>
           <p
-            className='font-inter font-bold text-[13px] text-[#03FFF0]'>{amount}</p>
+            className='font-inter font-bold text-[13px] text-[#000000]'>{amount}</p>
           <button
             className='font-inter font-bold text-[13px] active:scale-110'
             onClick={itemPlus}>+
@@ -142,7 +142,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       </div>
     </div>
 
-    <p className='font-lato text-end font-extrabold text-[#03FFF0] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
+    <p className='font-lato text-end font-extrabold text-[#000] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
       max-[650px]:!min-w-[auto]
       max-[650px]:!text-[12px]
       max-[650px]:!mr-[0px]

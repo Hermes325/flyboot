@@ -26,7 +26,7 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
   }, [activeTab])
 
   return (<section className={classNames(`flex flex-col w-[80%] rounded-[10px] bg-white
-       max-[600px]:w-[100%] mt-2 ml-[20%]`, {
+       max-[600px]:!w-[100%] mt-2 min-[700px]:!ml-[20%]`, {
     "border-white ": isOpen,  
   })}>
 

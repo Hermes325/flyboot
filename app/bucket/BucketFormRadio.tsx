@@ -9,11 +9,12 @@ type Props = {
 }
 
 const BucketFormRadio = ({ id, checked, onChange, children, className = '' }: Props) => {
-  return (<div className={`mt-[14px] flex items-center ${className}`}>
+  return (<div className={`mt-[14px] flex items-start ${className}`}>
 
     <input
       className="appearance-none h-[20px] w-[20px] m-0 mr-[14px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
-                  checked:bg-transparent checked:before:color-white checked:bg-[#29D9CE] 
+      border-2 border-solid border-black
+                  checked:bg-transparent checked:before:color-white checked:bg-[#000] 
                   focus:outline-none transition duration-200"
       type="radio"
       onChange={onChange}

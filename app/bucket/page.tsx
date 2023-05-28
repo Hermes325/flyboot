@@ -317,7 +317,7 @@ function BucketPage() {
   return (
     <main
       className={classNames(
-        `w-screen min-h-screen flex bg-[#f5f5f5] pt-[108px] px-[10vw]
+        `w-screen min-h-screen flex bg-[#f5f5f5] pt-[108px] px-[5vw]
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
       max-[550px]:!px-[5px]`,
@@ -432,7 +432,7 @@ function BucketPage() {
                       {order.delivery === "Sdek" && (
                         <button
                           onClick={openSdekModal}
-                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
                         >
                           {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
                         </button>
@@ -450,7 +450,7 @@ function BucketPage() {
                       {order.delivery === "BoxBerry" && (
                         <button
                           onClick={openBoxBerryModal}
-                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#29D9CE] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
                         >
                           {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
                         </button>
@@ -486,7 +486,7 @@ function BucketPage() {
                     || itemsAmount === 0
                     || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
                     || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
-                  className={styles.buy + "uppercase font-inter w-full"}
+                  className={styles.buy + "uppercase font-inter w-full bg-white border-2 border-solid border-black rounded-[15px]"}
                   onClick={openOrderModal}
 
                 //TODO сделать модальное окно//
