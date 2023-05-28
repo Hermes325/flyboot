@@ -8,7 +8,7 @@ import Link from "next/link"
 import HeaderSearchList from "./headerSearchList";
 import FlyBoots_logo from "@/public/header-images/FlyBoots_logo.svg";
 import bucket from "@/public/header-images/bucket.svg";
-import menu_path from "@/public/header-images/menu.svg";
+import menu_path from "@/public/header-images/menu_b.png";
 import menu_close_path from "@/public/header-images/close.svg";
 import classNames from "classnames";
 
@@ -29,7 +29,7 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
     <Image
       src={menu_path}
       alt="открыть меню"
-      className="w-[40px] h-[50px]" />
+      className="w-[25px] h-[25px] ml-1" />
   );
 }
 

@@ -2,7 +2,7 @@
 import React, {ReactElement, useEffect, useState} from "react";
 import Image from "next/image";
 import classNames from "classnames";
-import expand from "@/public/arrow/ArrowDropdown.svg"
+import plus from "@/public/arrow/+.png"
 
 type Props = {
   title: string
@@ -37,10 +37,10 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
     >
       <h2 className="font-lato font-[400] text-[#000] text-[1.8rem] pl-[5%] leading-[45px] tracking-[0.01em] max-[1000px]:text-[1.8rem] max-[800px]:text-[1.5rem] max-[600px]:text-[1.2rem] max-[600px]:leading-[25px]">{title}</h2>
       <Image
-        src={expand}
+        src={plus}
         alt="expand less image"
-        className={classNames("select-none transition-transform h-[50px] fill-black", {
-          "rotate-180": isOpen
+        className={classNames("select-none transition-transform h-[13px] mr-[10px]", {
+          "rotate-45": isOpen
         })} />
     </div>
 
