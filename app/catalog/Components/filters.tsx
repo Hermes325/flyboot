@@ -95,7 +95,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilter
       <input
         className="appearance-none h-[25px] w-[25px] m-0 mr-[29px] border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
-                  focus:outline-none transition duration-200"
+                  focus:outline-none transition duration-200 pl-[4px]"
         type="checkbox"
         checked={checked}
         onChange={(x) => setFiltersWrapper(onChange(prop, x.target.checked))}
@@ -113,7 +113,7 @@ const Filters = ({ min, max, meta, filters, setFiltersWrapper, closeMobileFilter
       <input
         className="appearance-none h-[25px] w-[25px] m-0 border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)] 
-                  focus:outline-none transition duration-200"
+                  focus:outline-none transition duration-200 pl-[4px]"
         type="checkbox"
         checked={filters.selectedCategories[category as keyof typeof filters.selectedCategories]}
         onChange={(x) => setFiltersWrapper(changeCategory(category, x.target.checked))}

@@ -16,8 +16,7 @@ const Privacy = () => {
       max-[1500px]:!text-[3rem] 
       max-[1330px]:!text-[2.8rem] 
       max-[1400px]:!leading-[2.8rem] 
-      max-[1400px]:!mt-[10vw] 
-      max-[820px]:!mt-[13vw] 
+      
       
       max-[1140px]:!text-[2.5rem] 
       max-[950px]:!text-[2.3rem] 

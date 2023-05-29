@@ -27,14 +27,14 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
 
     <article
       className={`${styles.item_card} ${className ?? ""} 
-        bg-[#fff] rounded-2xl flex flex-col p-[0.75vw] justify-between border-[1px]`}
+        bg-[#fff] rounded-2xl flex flex-col justify-between border-[1px] `}
     >
       <Image
         lazyLoad={true}
         data={item.images[0].responsiveImage}
         objectFit={"contain"}
         style={{ maxWidth: "none" }}
-        className={`${imageClassName ?? ""} rounded-xl `}
+        className={`${imageClassName ?? ""} rounded-[15px] px-[0.75vw]`}
         pictureClassName="bg-white rounded-xl "
       />
 
@@ -44,9 +44,15 @@ const ItemCard = ({ item, className, imageClassName, h3ClassName, pClassName }: 
           text-[#AEAEAE]
           max-[750px]:!text-[15px] max-[750px]:!h-[32px]
           max-[550px]:!text-[13px] max-[550px]:!h-[max(max-content,32px)]
+          px-[0.75vw]
           `}>{item.title}</h3>
+
+      </div>
+      <div>
         <p className={`${styles["price"]}
           ${pClassName ?? ""} 
+          
+          rounded-b-[15px]
           max-[750px]:!text-[18px]
           max-[550px]:!text-[15px]
           `}>{price}&nbsp;руб</p>
