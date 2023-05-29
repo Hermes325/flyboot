@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Catalog, Item } from '@/lib/datocms'
 import ItemCard from '@/lib/components/item_card';
-import arrow_left from "@/public/arrow/arrow-left.svg"
+import arrow_left from "@/public/arrow/Arrow.png"
 import Image from "next/image";
 import 'swiper/css';
 import { Navigation } from 'swiper';
@@ -50,12 +50,12 @@ const Recommends = ({ item }: Props) => {
         <Image
           alt="назад"
           src={arrow_left}
-          className="arrow_backward cursor-pointer m-0 p-3 border-2 rounded-full border-black w-14 h-14
+          className="arrow_backward cursor-pointer m-0 p-3 border-2 rounded-full border-black w-12 h-12
             max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
         <Image
           alt="вперёд"
           src={arrow_left}
-          className="arrow_forward cursor-pointer m-0 p-3 border-2 rounded-full border-black w-14 h-14 rotate-180
+          className="arrow_forward cursor-pointer m-0 p-3 border-2 rounded-full border-black w-12 h-12 rotate-180
             max-[600px]:w-[35px] max-[600px]:h-[35px] max-[600px]:p-[5px]" />
       </div>
     </div>

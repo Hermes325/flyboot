@@ -1,6 +1,6 @@
 "use client"
 import React, { useRef, useEffect } from "react";
-import menu_close_path from "@/public/header-images/close.svg";
+import menu_close_path from "@/public/header-images/close_bl.png";
 import Image from "next/image";
 
 
@@ -38,7 +38,7 @@ function BoxBerryModal({ setBoxBerryData, closeModal, isBoxBerryModalOpen }: Pro
       onClick={closeModal}
       className="cursor-pointer fixed z-[103] right-[5vw] translate-x-[50%] top-[108px] max-mobile:hidden"
     >
-      <Image src={menu_close_path} width={100} height={100} alt="закрыть модальное окно" />
+      <Image src={menu_close_path} width={50} height={50} alt="закрыть модальное окно" />
     </button>
 
     <div

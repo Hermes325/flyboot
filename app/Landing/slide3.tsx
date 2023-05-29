@@ -19,7 +19,7 @@ const links = [{
 
 function Slide3() {
   let btnLinkToCatalog = (classMobile: string) => {
-    return <Link href="/catalog" className={`mt-[3vw] text-center flex justify-center
+    return <Link href="/catalog" className={`mt-[3vw] text-center  justify-center hidden
       ${classMobile}
     `} >
       <button className={styles.catalog_button + " font-montserrat" +

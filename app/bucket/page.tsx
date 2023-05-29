@@ -491,12 +491,12 @@ function BucketPage() {
 
                 //TODO сделать модальное окно//
                 >
-                  оформить заказ
+                  ОФОРМИТЬ ЗАКАЗ
                 </button>
 
                 <div className="flex flex-row gap-[14px]">
                   <input
-                    className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-gray-300 rounded-sm align-top cursor-pointer
+                    className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)]
                   focus:outline-none transition duration-200"
                     type="checkbox"

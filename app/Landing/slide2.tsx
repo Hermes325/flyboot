@@ -74,7 +74,7 @@ const Slide2 = () => {
               max-[850px]:!text-[16px] 
               max-[780px]:!text-[14px] 
               max-[1100px]:!leading-[17px]
-              max-[600px]:!hidden 
+              
               `
             }
           >

@@ -9,7 +9,7 @@ import HeaderSearchList from "./headerSearchList";
 import FlyBoots_logo from "@/public/header-images/FlyBoots_logo.svg";
 import bucket from "@/public/header-images/bucket.svg";
 import menu_path from "@/public/header-images/menu_b.png";
-import menu_close_path from "@/public/header-images/close.svg";
+import menu_close_path from "@/public/header-images/close_bl.png";
 import classNames from "classnames";
 
 const links = [
@@ -23,7 +23,7 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
     <Image
       src={menu_close_path}
       alt="закрыть меню"
-      className="w-[50px] h-[50px]"
+      className="w-[24px] h-[22px]"
     />
   ) : (
     <Image
@@ -180,7 +180,7 @@ function Header() {
           onChange={searchRequest}
         />
 
-        <button
+        {/* <button
           className={classNames(
             "border-2 rounded-lg p-1 ml-2 border-[#919191] hidden",
             {
@@ -193,7 +193,7 @@ function Header() {
           }}
         >
           <p>Отмена</p>
-        </button>
+        </button> */}
 
         <div className="flex flex-row justify-center items-center space-x-10 max-[1080px]:space-x-5 max-[720px]:space-x-4">
           {/* Search items 

@@ -10,32 +10,10 @@
     line-height   : 3.5rem;
     /* or 100% */
     letter-spacing: 0.02em;
-    color         : #F5F5F5;
+    color         : #000;
     text-align    : center;
     margin-bottom : 5vw;
 }
-
-
-.right_hand,
-.left_hand {
-    position           : absolute;
-    right              : 0;
-    top                : 1%;
-    z-index            : -1;
-    width              : 27%;
-    -moz-user-select   : none;
-    -o-user-select     : none;
-    -khtml-user-select : none;
-    -webkit-user-select: none;
-    user-select        : none;
-}
-
-.left_hand {
-    left     : 0;
-    transform: rotate(-6deg);
-    width    : 28%;
-}
-
 
 
 
@@ -49,6 +27,6 @@
 
     letter-spacing: 0.03em;
 
-    color: #F5F5F5;
+    color: #000;
 
 }

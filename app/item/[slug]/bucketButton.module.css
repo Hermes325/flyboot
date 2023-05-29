@@ -29,11 +29,11 @@
 }
 
 .buy:not(:disabled):focus {
-  background: green;
-  border    : green;
+  background: gray;
+  border    : gray;
 }
 
 .buy:not(:disabled):active {
-  background: green;
-  border    : green;
+  background: gray;
+  border    : gray;
 }

@@ -76,7 +76,9 @@ export default async function ItemPage({ params }: Props) {
                 Артикул {item.poizonArticul}
               </p>
               {/* Описание */}
-              {item.description1}
+              <p>
+                {item.description1.replace("<p>","").replace("</p>","")}
+              </p>
             </div>
 
             {/* item price */}
@@ -88,9 +90,9 @@ export default async function ItemPage({ params }: Props) {
             <ItemPageClientPart item={item} />
             {/* Характеристика */}
             <div className="mt-[2%]">
-              <p className="max-[600px]:hidden">{item.description2}</p>
+              <p className="max-[600px]:hidden">{item.description2.replace("<p>","").replace("</p>","").replace("<ul>","").replace("</ul>","").replaceAll("<li>","").replaceAll("</li>","")}</p>
               <div className="hidden max-[600px]:block">
-                <DropDown title="Подробнее о  товаре" description={item.description2} />
+                <DropDown title="Подробнее о  товаре" description={item.description2.replace("<p>","").replace("</p>","").replace("<ul>","").replace("</ul>","").replaceAll("<li>","").replaceAll("</li>","")} />
               </div>
             </div>
 

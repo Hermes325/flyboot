@@ -32,18 +32,6 @@ const Privacy = () => {
         Политика <br /> конфиденциальности
       </h1>
 
-      <Image
-        src={right_hand}
-        alt="правая рука"
-        className={styles.right_hand +
-          ` max-[1300px]:!w-[30%] 
-          max-[1300px]:!top-[1.5%] 
-          max-[750px]:!top-[1.3%] 
-          max-[600px]:!top-[1%]
-          max-[450px]:!top-[0.8%]  
-            `}
-      />
-
       <div className='mt-[2vw] mb-[15vw]'>
         <p className={styles.font_au + " font-montserrat  min-[2560px]:!text-[6.5rem] max-[1650px]:!text-[22px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
           Настоящая Политика конфиденциальности персональных данных (далее – Политика конфиденциальности) действует в отношении всей информации,
@@ -367,17 +355,7 @@ const Privacy = () => {
         </div>
       </div>
 
-      <Image
-        src={left_hand}
-        alt="левая рука"
-        className={styles.left_hand + `
-        max-[1300px]:!w-[30%] 
-        max-[1300px]:!top-[1.5%] 
-        max-[750px]:!top-[1.3%] 
-        max-[600px]:!top-[1%] 
-        max-[450px]:!top-[0.8%]  
-        `}
-      />
+   
 
     </main>)
 }

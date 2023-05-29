@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { Order } from "../page";
 import Image from "next/image";
-import menu_close_path from "@/public/header-images/close.svg";
+import menu_close_path from "@/public/header-images/close_bl.png";
 import classNames from "classnames";
 import styles from "./OrderModal.module.css";
 import emailjs from "@emailjs/browser";
@@ -82,8 +82,8 @@ const OrderModal = ({
       >
         <Image
           src={menu_close_path}
-          width={100}
-          height={100}
+          width={50}
+          height={50}
           alt="закрыть модальное окно"
         />
       </button>

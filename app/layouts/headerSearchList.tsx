@@ -13,13 +13,14 @@ const HeaderSearchList = ({ items, setOpen }: Props) => {
     <div className="w-full
     grid
     grid-cols-4 
-    
+    max-[600px]:grid-cols-2
     max-h-[600px] 
     max-[1600px]:max-h-[500px] 
     max-[1080px]:max-h-[400px] 
     max-[720px]:max-h-[300px] 
     max-[600px]:max-h-[400px] 
     overflow-y-scroll
+    overflow-x-hidden
     ">
       {items.map((item) => (
         <div key={item.slug} className="py-3 mx-5">

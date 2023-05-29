@@ -45,7 +45,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-start">
           <p>Контакты</p>
-          <p>+7 (495) 000 00 68</p>
+          <p>+7 (925) 453 83 29</p>
         </div>
 
         <div className="flex flex-col items-start">
