@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from "../privacy/privacy.module.css"
-import Image from 'next/image'
-import right_hand from "@/public/main-images/righthand.png"
-import left_hand from "@/public/main-images/lefthand.png"
+// import right_hand from "@/public/main-images/righthand.png"
+// import left_hand from "@/public/main-images/lefthand.png"
 
 const Privacy = () => {
   return (
@@ -129,7 +128,7 @@ const Privacy = () => {
           </p>
           <p className={styles.font_au + " mt-[1.5vw]  font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
             3.3. Интернет-магазин защищает Данные, которые автоматически передаются в процессе просмотра рекламных блоков и при посещении страниц,
-            на которых установлен статистический скрипт системы ("пиксель"):
+            на которых установлен статистический скрипт системы (&quot;пиксель&quot;):
             <ol>
               <li className={styles.font_au + " mt-[1.5vw]  font-montserrat  max-[1700px]:!mt-[25px] max-[1650px]:!text-[22px] max-[1550px]:!mt-[20px] max-[1400px]:!text-[20px] max-[1300px]:!text-[16px] max-[1250px]:!leading-[22px]"}>
                 IP адрес;

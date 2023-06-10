@@ -1,5 +1,5 @@
 "use client";
-import React, {ReactElement, useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import plus from "@/public/arrow/+.png"
@@ -27,7 +27,7 @@ function DropDown({ title, children, open = false, activeTab, setActiveTab }: Pr
 
   return (<section className={classNames(`flex flex-col w-[80%] rounded-[10px] bg-white
        max-[600px]:!w-[100%] mt-2 min-[700px]:!ml-[20%]`, {
-    "border-white ": isOpen,  
+    "border-white ": isOpen,
   })}>
 
     {/* Заголовок */}
