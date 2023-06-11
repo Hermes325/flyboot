@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function () {
+export default function NotFound() {
   return <main className='
     min-h-screen
     flex flex-col items-center justify-start pt-[30vh]'
