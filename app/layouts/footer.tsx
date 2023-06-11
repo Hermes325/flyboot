@@ -82,7 +82,7 @@ export default function Footer() {
 
       <div className="flex">
         <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#B5B5B5]  text-center">
-          © 2022 Flyboots.&nbsp;
+          © 2023 Flyboots.&nbsp;
         </p>
         <p className="font-montserrat text-base max-[600px]:text-sm max-[400px]:text-xs text-[#B5B5B5]  text-center">
           Все права защищены.

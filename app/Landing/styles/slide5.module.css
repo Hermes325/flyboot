@@ -1,0 +1,33 @@
+.pagination-bullet {
+  background   : #DEDEDE;
+  width        : 58px;
+  height       : 9px;
+  border-radius: 2px;
+  display      : inline-block;
+  cursor       : pointer;
+
+}
+
+.pagination {
+  padding-inline       : 5vw;
+  gap                  : 27px;
+  grid-template-columns: repeat(auto-fit, 58px);
+}
+
+
+@media screen and (max-width: 600px) {
+  .pagination-bullet {
+    width: 29px;
+  }
+
+  .pagination {
+    padding-inline       : 20vw;
+    gap                  : 19px;
+    grid-template-columns: repeat(auto-fit, 27px);
+  }
+}
+
+.pagination-bullet-active {
+  background: black;
+  cursor    : default;
+}
