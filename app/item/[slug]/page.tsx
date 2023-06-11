@@ -1,12 +1,11 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 // import { redirect } from 'next/navigation';
-// import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
-import CustomNotFound from "@/app/item/[slug]/customNotFound";
 
 type Props = {
   params: { slug: string };
@@ -14,11 +13,7 @@ type Props = {
 
 export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
-  // TODO вернуть notFound ↓ функции когда это будет в стабильной версии next'а
-  // if (item === null) notFound();
-  if (item === null) {
-    return <CustomNotFound />
-  }
+  if (item === null) notFound();
 
   const price = Math.ceil(item.price).toLocaleString("ru-RU", {
     minimumFractionDigits: 0,
@@ -77,7 +72,7 @@ export default async function ItemPage({ params }: Props) {
               </p>
               {/* Описание */}
               <p>
-                {item.description1.replace("<p>","").replace("</p>","")}
+                {item.description1.replace("<p>", "").replace("</p>", "")}
               </p>
             </div>
 
@@ -90,9 +85,9 @@ export default async function ItemPage({ params }: Props) {
             <ItemPageClientPart item={item} />
             {/* Характеристика */}
             <div className="mt-[2%]">
-              <p className="max-[600px]:hidden">{item.description2.replace("<p>","").replace("</p>","").replace("<ul>","").replace("</ul>","").replaceAll("<li>","").replaceAll("</li>","")}</p>
+              <p className="max-[600px]:hidden">{item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")}</p>
               <div className="hidden max-[600px]:block">
-                <DropDown title="Подробнее о  товаре" description={item.description2.replace("<p>","").replace("</p>","").replace("<ul>","").replace("</ul>","").replaceAll("<li>","").replaceAll("</li>","")} />
+                <DropDown title="Подробнее о  товаре" description={item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")} />
               </div>
             </div>
 
