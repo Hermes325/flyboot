@@ -8,6 +8,7 @@ import Sorting from './Components/sorting'
 import classNames from 'classnames'
 import Image from 'next/image'
 import QR from "@/public/qrcode_t.me.jpg"
+import Link from 'next/link'
 
 
 //#region Filters
@@ -188,7 +189,7 @@ const CatalogClient = ({ firstPage, meta, initialCategory }: Props) => {
       </h3>
       <p className='font-inter text-[20px] leading-[25px] font-extralight mt-2'>
         Наш ассортимент регулярно
-        пополняется, напишите нам @FlyBootsSupport
+        пополняется, напишите нам <Link href={"https://t.me/FlyBootsSupport"}>@FlyBootsSupport</Link>
       </p>
 
       <div className='flex justify-end mt-2'>

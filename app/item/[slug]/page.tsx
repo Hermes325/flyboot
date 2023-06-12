@@ -1,6 +1,5 @@
 import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
-// import { redirect } from 'next/navigation';
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
 import Recommends from "./recommends";
@@ -9,11 +8,10 @@ import ItemPageClientPart from "./pageClientPart";
 
 type Props = {
   params: { slug: string };
-};
-
+}
 export default async function ItemPage({ params }: Props) {
   const item = await getItem(params.slug);
-  if (item === null) notFound();
+  if (item === null) notFound(); // → not-found.tsx
 
   const price = Math.ceil(item.price).toLocaleString("ru-RU", {
     minimumFractionDigits: 0,
@@ -83,6 +81,7 @@ export default async function ItemPage({ params }: Props) {
 
             {/* CSR часть с запросом к Егору */}
             <ItemPageClientPart item={item} />
+
             {/* Характеристика */}
             <div className="mt-[2%]">
               <p className="max-[600px]:hidden">{item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")}</p>
@@ -97,8 +96,6 @@ export default async function ItemPage({ params }: Props) {
 
         {/* <DropDown title="Описание" description={item.description1} /> */}
 
-
-        {/* Will be interested */}
         <Recommends item={item} />
       </div>
     </main>
