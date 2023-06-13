@@ -2,7 +2,7 @@ import React from "react";
 import { getItem, getCatalogPaths } from "@/lib/datocms";
 import { notFound } from "next/navigation";
 import DropDown from "./dropDown";
-import Recommends from "./recommends";
+import Recommends from "@/lib/components/recommends/Recommends";
 import PictureBlock from "./pictureBlock";
 import ItemPageClientPart from "./pageClientPart";
 
@@ -31,18 +31,9 @@ export default async function ItemPage({ params }: Props) {
     "
       >
         {/* main block item */}
-        <div
-          className="flex flex-row w-full space-x-10
-        max-[600px]:flex-col
-      "
-        >
+        <div className="flex flex-row w-full space-x-10 max-[600px]:flex-col">
           {/* images block */}
-          <div
-            className="flex flex-col space-y-5
-          max-[600px]:space-y-[15px]
-          
-        "
-          >
+          <div className="flex flex-col space-y-5 max-[600px]:space-y-[15px]">
             <PictureBlock item={item} />
           </div>
 
@@ -86,17 +77,16 @@ export default async function ItemPage({ params }: Props) {
             <div className="mt-[2%]">
               <p className="max-[600px]:hidden">{item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")}</p>
               <div className="hidden max-[600px]:block">
-                <DropDown title="Подробнее о  товаре" description={item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")} />
+                <DropDown title="Подробнее о товаре" description={item.description2.replace("<p>", "").replace("</p>", "").replace("<ul>", "").replace("</ul>", "").replaceAll("<li>", "").replaceAll("</li>", "")} />
               </div>
             </div>
-
           </div>
         </div>
 
 
         {/* <DropDown title="Описание" description={item.description1} /> */}
 
-        <Recommends item={item} />
+        <Recommends fromItem item={item} />
       </div>
     </main>
   );

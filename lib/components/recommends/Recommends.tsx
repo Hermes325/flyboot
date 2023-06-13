@@ -10,26 +10,38 @@ import { Navigation } from 'swiper';
 
 
 type Props = {
+  fromItem: true
   item: Item
+} | {
+  fromItem: false
+  brands: string[]
 }
 
-const Recommends = ({ item }: Props) => {
+const Recommends = (props: Props) => {
   const [recommends, setRecommends] = useState<Item[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function getRecommends() {
+      const body = props.fromItem
+        ? {
+          brands: [props.item.brand.id],
+          related: [props.item.id, ...props.item.relatedItems.map(x => x.id)],
+          slug: props.item.slug
+        }
+        : {
+          brands: props.brands,
+          related: [],
+          slug: ""
+        }
+
       const query = await fetch("/api/recommends", {
         method: "POST",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          "brands": [item.brand.id],
-          "related": [item.id, ...item.relatedItems.map(x => x.id)],
-          "slug": item.slug
-        })
+        body: JSON.stringify(body)
       })
       const newContent: Catalog = await query.json()
       setRecommends(newContent.items)
@@ -78,10 +90,10 @@ const Recommends = ({ item }: Props) => {
             prevEl: '.arrow_backward',
             nextEl: '.arrow_forward'
           }}>
-          {recommends.map(item =>
-            <SwiperSlide key={item.poizonArticul} className="cursor-pointer">
+          {recommends.map(recommendation =>
+            <SwiperSlide key={recommendation.poizonArticul} className="cursor-pointer">
               <ItemCard
-                item={item}
+                item={recommendation}
                 className="min-h-[300px]"
                 imageClassName='aspect-square h-[200px]' />
             </SwiperSlide>)}
