@@ -1,11 +1,11 @@
 "use client";
-import { useDispatch } from "react-redux";
-import { addItem } from "@/lib/redux/slices/itemSlice";
 import React from "react";
+import { addItem } from "@/lib/redux/slices/itemSlice";
+import { useAppDispatch } from "@/lib/redux/store/hooks";
 
 
 const TestRedux = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (<div className="w-[100px] p-[10px] border bg-slate-500 rounded-sm absolute left-0 top-32">
     <button onClick={() => dispatch(addItem({

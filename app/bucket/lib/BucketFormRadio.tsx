@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 
 type Props = {
@@ -9,8 +10,7 @@ type Props = {
 }
 
 const BucketFormRadio = ({ id, checked, onChange, children, className = '' }: Props) => {
-  return (<div className={`mt-[14px] flex items-start ${className}`}>
-
+  return (<div className={classNames("mt-[14px] flex items-start", className)}>
     <input
       className="appearance-none h-[20px] w-[20px] m-0 mr-[14px] bg-[#F5F5F533] rounded-full align-top cursor-pointer
       border-2 border-solid border-black

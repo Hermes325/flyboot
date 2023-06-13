@@ -4,18 +4,18 @@ import { Image as DatoCMSImage } from 'react-datocms/image'
 import NextImage from 'next/image'
 import bin from '@/public/bin.svg'
 import { addItem, BucketItem, minusItemAmount, deleteItem, changeItemSize } from '@/lib/redux/slices/itemSlice'
-import { useDispatch } from 'react-redux'
 import classnames from "classnames";
+import { useAppDispatch } from '@/lib/redux/store/hooks'
 
 type Props = {
   bucketItem: BucketItem
 }
 
 const BucketItemCard = ({ bucketItem }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { item, amount, size } = bucketItem
 
-  console.log("size >> ", size);
+  // console.log("size >> ", size);
 
   const price = Math.ceil(item.price).toLocaleString('ru-RU', {
     minimumFractionDigits: 0,

@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { Item } from "@/lib/datocms";
-import { RootState } from "@/lib/redux/store/store";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link"
 import HeaderSearchList from "./headerSearchList";
@@ -11,6 +9,7 @@ import bucket from "@/public/header-images/bucket.svg";
 import menu_path from "@/public/header-images/menu_b.png";
 import menu_close_path from "@/public/header-images/close_bl.png";
 import classNames from "classnames";
+import { useAppSelector } from "@/lib/redux/store/hooks";
 
 const links = [
   { href: "/catalog", label: "Каталог" },
@@ -35,8 +34,8 @@ function BurgerHandle({ isNavOpen }: { isNavOpen: boolean }) {
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const bucketItems = useSelector((state: RootState) =>
-    state.items.reduce((sum, v) => sum + v.amount, 0)
+  const bucketItems = useAppSelector(({ items }) =>
+    items.reduce((sum, v) => sum + v.amount, 0)
   );
 
   //#region Search

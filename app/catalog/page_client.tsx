@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { Catalog, CatalogBrandsAndCategories, PAGE_SIZE, SortType } from '@/lib/datocms'
-import ItemCard from '@/lib/components/item_card'
+import ItemCard from '@/lib/components/itemCard/ItemCard'
 import Pagination from './Components/pagination'
 import FiltersUI from './Components/filters'
 import Sorting from './Components/sorting'

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Catalog, Item } from '@/lib/datocms'
-import ItemCard from '@/lib/components/item_card';
+import ItemCard from '@/lib/components/itemCard/ItemCard';
 import arrow_left from "@/public/arrow/Arrow.png"
 import Image from "next/image";
 import 'swiper/css';
