@@ -15,24 +15,8 @@ import { BucketItem, deleteAllItems } from "@/lib/redux/slices/itemSlice";
 import { useRouter } from "next/navigation";
 import { ItemPayDto } from "@/pages/api/payurl";
 import emailjs from "@emailjs/browser";
+import { Order } from "./types";
 
-
-// Используется в заказе и при формировании чека
-export type Order = {
-  name: string;
-  phone: string;
-  email: string;
-  city: string;
-  street: string;
-  build: string;
-  apartment: string;
-  delivery: "Sdek" | "BoxBerry" | "personal delivery";
-  personalDataCheck: boolean;
-  Sdek: any;
-  BoxBerry: any;
-  startPayment: number;
-  comment: string;
-};
 
 function BucketPage() {
   //#region Модалки
@@ -45,9 +29,9 @@ function BucketPage() {
 
   //#region Заказ
   const emptyOrder: Order =
-    process.env.NEXT_PUBLIC_IS_PROD === undefined ?
+    process.env.NEXT_PUBLIC_IS_PROD === undefined
       //* TEST 
-      {
+      ? {
         name: "имя",
         phone: "+719581958",
         email: "тест@gmail.com",
@@ -61,9 +45,9 @@ function BucketPage() {
         Sdek: {},
         BoxBerry: {},
         startPayment: 0,
-      } :
+      }
       //* PROD
-      {
+      : {
         name: "",
         phone: "",
         email: "",
@@ -132,9 +116,7 @@ function BucketPage() {
     }
 
     const getSizeName = (size: BucketItem["size"]) =>
-      size.available.find((x) => x.sizeKey === size.chosenSizeKey)?.sizeValue[
-      size.chosenSizeValue
-      ];
+      size.available.find((x) => x.sizeKey === size.chosenSizeKey)?.sizeValue[size.chosenSizeValue];
 
     const options = {
       account: 25060038,
@@ -146,16 +128,15 @@ function BucketPage() {
         items: bucketItems
           .reduce<BucketItem[]>((arr, curr) => {
             // Одинаковый элемент
-            const sameIndex = arr.findIndex(
-              ({ item, size }) =>
-                item.poizonArticul === curr.item.poizonArticul &&
-                size.chosenSizeKey === curr.size.chosenSizeKey &&
-                size.chosenSizeValue === curr.size.chosenSizeValue
+            const sameIndex = arr.findIndex(({ item, size }) =>
+              item.poizonArticul === curr.item.poizonArticul &&
+              size.chosenSizeKey === curr.size.chosenSizeKey &&
+              size.chosenSizeValue === curr.size.chosenSizeValue
             );
 
-            if (sameIndex !== -1) {
-              arr[sameIndex].amount + curr.amount;
-            } else arr.push(curr);
+            if (sameIndex === -1) arr.push(curr);
+            else arr[sameIndex].amount += curr.amount;
+
             return arr;
           }, [])
           .map<ItemPayDto>(({ item, size, amount }) => ({
@@ -165,17 +146,9 @@ function BucketPage() {
             item_amount: amount,
             item_size: `${size.chosenSizeKey} ${getSizeName(size)}`,
           }))
-          .reduce(
-            (arr, item) => ({
-              ...arr,
-              [`item_${item.item_poizon_articul}`]: JSON.stringify(
-                item,
-                null,
-                0
-              ),
-            }),
-            {}
-          ),
+          .reduce((arr, item) => ({
+            ...arr, [`item_${item.item_poizon_articul}`]: JSON.stringify(item, null, 0)
+          }), {}),
         // о клиенте
         client: {
           client_delivery: clientDelivery,
@@ -192,77 +165,70 @@ function BucketPage() {
     const assistant = new (window as any).Assistant.Builder();
 
     // платёж прошёл успешно
-    assistant.setOnSuccessCallback(
-      (operationId: string, transactionId: string) => {
-        console.log("setOnSuccessCallback");
-        dispatch(deleteAllItems());
-        setOrder(emptyOrder);
-        router.push("/thank-you");
-      }
-    );
+    assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
+      console.log("setOnSuccessCallback");
+      dispatch(deleteAllItems());
+      setOrder(emptyOrder);
+      router.push("/thank-you");
+    });
 
     // платёж не прошёл
-    assistant.setOnFailCallback(
-      (operationId: string, transactionId: string) => {
-        console.log("setOnFailCallback");
-      }
-    );
+    assistant.setOnFailCallback((operationId: string, transactionId: string) => {
+      console.log("setOnFailCallback");
+    });
 
     // платёж обрабатывается
-    assistant.setOnInProgressCallback(
-      function (operationId: string, transactionId: string) {
-        console.log("setOnInProgressCallback");
-        const emailList = bucketItems
-          .reduce<BucketItem[]>((arr, curr) => {
-            // Одинаковый элемент
-            const sameIndex = arr.findIndex(
-              ({ item, size }) =>
-                item.poizonArticul === curr.item.poizonArticul &&
-                size.chosenSizeKey === curr.size.chosenSizeKey &&
-                size.chosenSizeValue === curr.size.chosenSizeValue
-            );
+    assistant.setOnInProgressCallback((operationId: string, transactionId: string) => {
+      console.log("setOnInProgressCallback");
+      const emailList = bucketItems
+        .reduce<BucketItem[]>((arr, curr) => {
+          // Одинаковый элемент
+          const sameIndex = arr.findIndex(
+            ({ item, size }) =>
+              item.poizonArticul === curr.item.poizonArticul &&
+              size.chosenSizeKey === curr.size.chosenSizeKey &&
+              size.chosenSizeValue === curr.size.chosenSizeValue
+          );
 
-            if (sameIndex !== -1) {
-              arr[sameIndex].amount + curr.amount;
-            } else arr.push(curr);
-            return arr;
-          }, [])
-          .map<ItemPayDto>(({ item, size, amount }) => ({
-            item_title: item.title,
-            item_poizon_articul: item.poizonArticul,
-            item_price: item.price,
-            item_amount: amount,
-            item_size: `${size.chosenSizeKey} ${getSizeName(size)}`,
-          }))
-          .map(x => ({
-            "name": `${x.item_title} | ${x.item_poizon_articul} | ${x.item_size}`,
-            "price": x.item_price,
-            "quantity": x.item_amount,
-          }))
+          if (sameIndex !== -1) {
+            arr[sameIndex].amount + curr.amount;
+          } else arr.push(curr);
+          return arr;
+        }, [])
+        .map<ItemPayDto>(({ item, size, amount }) => ({
+          item_title: item.title,
+          item_poizon_articul: item.poizonArticul,
+          item_price: item.price,
+          item_amount: amount,
+          item_size: `${size.chosenSizeKey} ${getSizeName(size)}`,
+        }))
+        .map(x => ({
+          "name": `${x.item_title} | ${x.item_poizon_articul} | ${x.item_size}`,
+          "price": x.item_price,
+          "quantity": x.item_amount,
+        }))
 
 
-        const orderData = {
-
-          'FIO': order.name,
-          'Email': order.email,
-          'phone': order.phone,
-          'list': JSON.stringify(emailList, null, 2),
-          'delivery_method': order.delivery,
-          'address': clientDelivery,
-          'comment': order.comment,
-        }
-        emailjs
-          .send(
-            "service_meeb64l",
-            "template_3i6j7qf",
-            orderData,
-            "Igg7aXsdDmTo0FNZG"
-          )
-          .then((result: any) => console.log("result.text", result.text))
-          .catch((error: any) => console.error("catch error.text", JSON.stringify(error)))
-          .finally(() => console.log("finally"));
+      const orderData = {
+        'FIO': order.name,
+        'Email': order.email,
+        'phone': order.phone,
+        'list': JSON.stringify(emailList, null, 2),
+        'delivery_method': order.delivery,
+        'address': clientDelivery,
+        'comment': order.comment,
       }
-    );
+      emailjs
+        .send(
+          "service_meeb64l",
+          "template_3i6j7qf",
+          orderData,
+          "Igg7aXsdDmTo0FNZG"
+        )
+        .then((result: any) => console.log("result.text", result.text))
+        .catch((error: any) => console.error("catch error.text", JSON.stringify(error)))
+        .finally(() => console.log("finally"));
+    });
 
     assistant.build(options);
   }
@@ -288,9 +254,7 @@ function BucketPage() {
   //#endregion
 
   //#region BoxBerry
-  function openBoxBerryModal(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
+  function openBoxBerryModal(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     setIsModalOpenBoxBerry(true);
   }
@@ -305,91 +269,61 @@ function BucketPage() {
   //#endregion
 
   //#region UI templates
-  const h2 = (text: string, className: string = "") => (
-    <h2
-      className={`${className} font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]`}
-    >
+  const h2 = (text: string, className: string = "") =>
+    <h2 className={classNames(className, "font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]")}>
       {text}
     </h2>
-  );
   //#endregion
 
-  return (
-    <main
-      className={classNames(
-        `w-screen min-h-screen flex bg-[#f5f5f5] pt-[108px] px-[5vw]
+  return <main className={classNames(
+    `w-screen min-h-screen flex bg-[#f5f5f5] pt-[108px] px-[5vw]
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
       max-[550px]:!px-[5px]`,
-        {
-          relative: !isAnyModalOpen,
-          "overflow-hidden fixed z-[103]": isAnyModalOpen,
-        }
-      )}
-    >
+    {
+      relative: !isAnyModalOpen,
+      "overflow-hidden fixed z-[103]": isAnyModalOpen,
+    }
+  )}>
 
-      {process.env.NEXT_PUBLIC_IS_PROD === undefined && <TestRedux />}
-      {process.env.NEXT_PUBLIC_IS_PROD === undefined && <button
-        onClick={() => setOrder(x => ({ ...x, startPayment: ++x.startPayment }))}
-        className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
-      </button>}
+    {process.env.NEXT_PUBLIC_IS_PROD === undefined && <TestRedux />}
+    {process.env.NEXT_PUBLIC_IS_PROD === undefined && <button
+      onClick={() => setOrder(x => ({ ...x, startPayment: ++x.startPayment }))}
+      className="absolute bg-slate-500 top-[10rem]">Вызов оплаты
+    </button>}
 
-      {isModalOpenSdek && (
-        <SdekModal
-          setSdekData={setSdekData}
-          isSdekModalOpen={isModalOpenSdek}
-          closeModal={() => setIsModalOpenSdek(false)}
-        />
-      )}
-      {isModalOpenBoxBerry && (
-        <BoxBerryModal
-          setBoxBerryData={setBoxBerryData}
-          isBoxBerryModalOpen={isModalOpenBoxBerry}
-          closeModal={() => setIsModalOpenBoxBerry(false)}
-        />
-      )}
-      {isOrderModalOpen && (
-        <OrderModal
-          order={order}
-          setOrder={setOrder}
-          isOrderModalOpen={isOrderModalOpen}
-          closeModal={() => setIsOrderModalOpen(false)}
-        />
-      )}
+    {isModalOpenSdek && <SdekModal setSdekData={setSdekData} isSdekModalOpen={isModalOpenSdek} closeModal={() => setIsModalOpenSdek(false)} />}
+    {isModalOpenBoxBerry && <BoxBerryModal setBoxBerryData={setBoxBerryData} isBoxBerryModalOpen={isModalOpenBoxBerry} closeModal={() => setIsModalOpenBoxBerry(false)} />}
+    {isOrderModalOpen && <OrderModal order={order} setOrder={setOrder} isOrderModalOpen={isOrderModalOpen} closeModal={() => setIsOrderModalOpen(false)} />}
 
-      <form
-        className="flex flex-col items-center justify-center 
+    <form
+      className="flex flex-col items-center justify-center 
     max-[600px]:!justify-start
     w-full mb-12"
-      >
-        {/* Bucket text */}
-        <h1 className="font-montserrat uppercase w-full ml-3 font-medium text-6xl text-[#000] mt-2 mb-10 px-[5px] max-[600px]:!text-[4rem] max-[500px]:!text-[3.5rem] max-[400px]:!text-[3rem]">
-          ваш <span className="font-bold">заказ</span> 
-        </h1>
-
-        {/* items and info block */}
-        <div className="grid grid-cols-[1fr_auto] w-full gap-6">
-          {/* Items */}
-          <div
-            className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
+    >
+      {/* items and info block */}
+      <div className="grid grid-cols-[1fr_auto] w-full gap-6">
+        {/* Items */}
+        <div
+          className="col-span-1 flex flex-col transition-all border-2 rounded-2xl border-[#919191]
           max-[1300px]:!col-start-1
           max-[1300px]:!col-end-3
           max-[1300px]:!row-start-1
           max-[550px]:!border-0
           h-[min-content]
         "
-          >
-            {bucketItems.map((bucketItem, i, arr) => (
-              <div key={`${bucketItem.item.id}-${i}`}>
-                <BucketItemCard bucketItem={bucketItem} />
-                {i !== arr.length - 1 && <hr className="mx-[24px]" />}
-              </div>
-            ))}
-          </div>
+        >
+          {bucketItems.map((bucketItem, i, arr) => (
+            <div key={`${bucketItem.item.id}-${i}`}>
+              <BucketItemCard bucketItem={bucketItem} />
+              {i !== arr.length - 1 && <hr className="mx-[24px]" />}
+            </div>
+          ))}
+        </div>
 
-          {/* Order & Delivery */}
-          <div
-            className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit w-fit min-h-full justify-between
+        {/* Order & Delivery */}
+        <div
+          className="col-start-2 col-span-1 row-start-1 row-span-2 flex flex-col h-fit w-fit min-h-full justify-between
           min-[1300px]:!row-start-1
           min-[1300px]:!row-end-2
           max-[1300px]:!col-start-1
@@ -398,9 +332,9 @@ function BucketPage() {
           max-[1300px]:!max-w-[none]
           
         "
-          >
-            <div
-              className="
+        >
+          <div
+            className="
             sticky
             top-[120px]
             border-2 rounded-2xl border-[#919191]
@@ -410,126 +344,123 @@ function BucketPage() {
             max-[600px]:!border-0
             
           "
-            >
-              <div className="space-y-5">
-                <div>
-                  {h2("Ваш заказ")}
-                  <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
-                    Товары, {itemsAmount} шт. {itemsPriceStr} ₽
-                  </p>
-                </div>
-
-                <div>
-                  {h2("Выберите способ доставки", "w-[16ch]")}
-                  <BucketFormRadio
-                    id={"Sdek"}
-                    checked={order.delivery === "Sdek"}
-                    onChange={(_) => changeOrder("delivery", "Sdek")}
-                    className="min-h-[50px]"
-                  >
-                    <>
-                      <span className="block">ПВЗ СДЭК - 350 ₽</span>
-                      {order.delivery === "Sdek" && (
-                        <button
-                          onClick={openSdekModal}
-                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-                        >
-                          {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
-                        </button>
-                      )}
-                    </>
-                  </BucketFormRadio>
-                  <BucketFormRadio
-                    id={"BoxBerry"}
-                    checked={order.delivery === "BoxBerry"}
-                    onChange={(_) => changeOrder("delivery", "BoxBerry")}
-                    className="min-h-[50px]"
-                  >
-                    <>
-                      <span className="block">ПВЗ Boxberry - 350 ₽</span>
-                      {order.delivery === "BoxBerry" && (
-                        <button
-                          onClick={openBoxBerryModal}
-                          className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-                        >
-                          {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
-                        </button>
-                      )}
-                    </>
-                  </BucketFormRadio>
-                  <BucketFormRadio
-                    id={"personal delivery"}
-                    checked={order.delivery === "personal delivery"}
-                    onChange={(_) => changeOrder("delivery", "personal delivery")}
-                    className="min-h-[50px]"
-                  >
-                    Курьер СДЭК - 350 ₽
-                  </BucketFormRadio>
-                </div>
+          >
+            <div className="space-y-5">
+              <div>
+                {h2("Ваш заказ")}
+                <p className="font-lato text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] mb-3">
+                  Товары, {itemsAmount} шт. {itemsPriceStr} ₽
+                </p>
               </div>
 
-
-              <div className="space-y-4">
-                {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
-
-                <textarea
-                  value={order.comment}
-                  placeholder="Комментарий к заказу"
-                  rows={3}
-                  className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
-                  onChange={x => changeOrder("comment", x.target.value)}
-                />
-
-                <button
-                  disabled={
-                    !order.personalDataCheck
-                    || itemsAmount === 0
-                    || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
-                    || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
-                  className={styles.buy + "uppercase font-inter w-full bg-white border-2 border-solid border-black rounded-[15px]"}
-                  onClick={openOrderModal}
-
-                //TODO сделать модальное окно//
+              <div>
+                {h2("Выберите способ доставки", "w-[16ch]")}
+                <BucketFormRadio
+                  id={"Sdek"}
+                  checked={order.delivery === "Sdek"}
+                  onChange={(_) => changeOrder("delivery", "Sdek")}
+                  className="min-h-[50px]"
                 >
-                  ОФОРМИТЬ ЗАКАЗ
-                </button>
+                  <>
+                    <span className="block">ПВЗ СДЭК - 350 ₽</span>
+                    {order.delivery === "Sdek" && (
+                      <button
+                        onClick={openSdekModal}
+                        className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                      >
+                        {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
+                      </button>
+                    )}
+                  </>
+                </BucketFormRadio>
+                <BucketFormRadio
+                  id={"BoxBerry"}
+                  checked={order.delivery === "BoxBerry"}
+                  onChange={(_) => changeOrder("delivery", "BoxBerry")}
+                  className="min-h-[50px]"
+                >
+                  <>
+                    <span className="block">ПВЗ Boxberry - 350 ₽</span>
+                    {order.delivery === "BoxBerry" && (
+                      <button
+                        onClick={openBoxBerryModal}
+                        className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                      >
+                        {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
+                      </button>
+                    )}
+                  </>
+                </BucketFormRadio>
+                <BucketFormRadio
+                  id={"personal delivery"}
+                  checked={order.delivery === "personal delivery"}
+                  onChange={(_) => changeOrder("delivery", "personal delivery")}
+                  className="min-h-[50px]"
+                >
+                  Курьер СДЭК - 350 ₽
+                </BucketFormRadio>
+              </div>
+            </div>
 
-                <div className="flex flex-row gap-[14px]">
-                  <input
-                    className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-black rounded-sm align-top cursor-pointer
+
+            <div className="space-y-4">
+              {h2(`Итого ${finalPriceStr} ₽`, "mt-[1rem]")}
+
+              <textarea
+                value={order.comment}
+                placeholder="Комментарий к заказу"
+                rows={3}
+                className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
+                onChange={x => changeOrder("comment", x.target.value)}
+              />
+
+              <button
+                disabled={
+                  !order.personalDataCheck
+                  || itemsAmount === 0
+                  || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
+                  || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)}
+                className={styles.buy + "uppercase font-inter w-full bg-white border-2 border-solid border-black rounded-[15px]"}
+                onClick={openOrderModal}
+              >
+                ОФОРМИТЬ ЗАКАЗ
+              </button>
+
+              <div className="flex flex-row gap-[14px]">
+                <input
+                  className="appearance-none h-[25px] w-[25px] min-w-[25px] m-0 border border-black rounded-sm align-top cursor-pointer
                   checked:bg-transparent checked:before:color-white checked:before:content-[url(/check.svg)]
                   focus:outline-none transition duration-200"
-                    type="checkbox"
-                    onChange={(x) =>
-                      changeOrder("personalDataCheck", x.target.checked)
-                    }
-                    checked={order.personalDataCheck}
-                    id="personalDataCheck"
-                  />
-                  <label
-                    className="font-inter text-[10px] leading-[12.1px] font-extrabold tracking-[0.01em] max-w-[35ch]"
-                    htmlFor="personalDataCheck"
+                  type="checkbox"
+                  onChange={(x) =>
+                    changeOrder("personalDataCheck", x.target.checked)
+                  }
+                  checked={order.personalDataCheck}
+                  id="personalDataCheck"
+                />
+                <label
+                  className="font-inter text-[10px] leading-[12.1px] font-extrabold tracking-[0.01em] max-w-[35ch]"
+                  htmlFor="personalDataCheck"
+                >
+                  Нажимая «Заказать» Вы даете согласие на хранение и обработку
+                  ваших персональных данных в соответствии с&nbsp;
+                  <Link
+                    href="/privacy"
+                    className="underline focus:text-[gray]"
                   >
-                    Нажимая «Заказать» Вы даете согласие на хранение и обработку
-                    ваших персональных данных в соответствии с&nbsp;
-                    <Link
-                      href="/privacy"
-                      className="underline focus:text-[gray]"
-                    >
-                      условиями
-                    </Link>
-                    .
-                  </label>
-                </div>
-
+                    условиями
+                  </Link>
+                  .
+                </label>
               </div>
 
             </div>
+
           </div>
         </div>
-      </form>
-    </main>
-  );
+      </div>
+    </form>
+  </main>
 }
 
 export default BucketPage;

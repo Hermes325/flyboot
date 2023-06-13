@@ -1,13 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { Order } from "../page";
+import { Order } from "../types";
 import Image from "next/image";
 import menu_close_path from "@/public/header-images/close_bl.png";
 import classNames from "classnames";
 import styles from "./OrderModal.module.css";
-import emailjs from "@emailjs/browser";
 import type { RootState } from "@/lib/redux/store/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 type Props = {
   order: Order;
@@ -15,8 +14,11 @@ type Props = {
   closeModal: () => any;
   isOrderModalOpen: boolean;
 };
-// Модалка с заказом.
-// Открывается при нажатии кнопки "Заказать"
+
+/**
+ * Модалка с заказом
+ * Открывается при нажатии кнопки "Заказать"
+ */
 const OrderModal = ({
   order,
   setOrder,
@@ -37,26 +39,6 @@ const OrderModal = ({
 
   function pay(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-
-    // if (form.current) {
-      // console.log("наш лог",new FormData(form.current))
-      // emailjs
-      //   .sendForm(
-      //     "service_meeb64l",
-      //     "template_3i6j7qf",
-      //     form.current,
-      //     "Igg7aXsdDmTo0FNZG"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       console.log(result.text);
-      //     },
-      //     (error) => {
-      //       console.log(error.text);
-      //     }
-      //   );
-    // }
-
     setOrder({ ...localOrder, startPayment: order.startPayment + 1 });
     closeModal();
   }
@@ -89,6 +71,7 @@ const OrderModal = ({
       </button>
 
       <form
+        ref={form}
         className=" 
           absolute z-[102] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
           h-min bg-[#fff] p-[2rem] max-[600px]:p-[1rem]
@@ -101,11 +84,7 @@ const OrderModal = ({
           max-[1000px]:!grid-cols-2 
           max-[600px]:!min-w-[90vw]
           max-[600px]:!translate-y-[-75%]
-          text-black  
-          
-          "
-        ref={form}
-
+          text-black"
       >
         <input
           placeholder="ФИО"
@@ -133,7 +112,7 @@ const OrderModal = ({
           placeholder="Телефон"
           type="tel"
           value={localOrder.phone}
-          onChange={(x) => changeOrder("phone", x.target.value)}
+          onChange={({ target }) => changeOrder("phone", target.value)}
           className={classNames(inputTailwind, {
             "col-span-4": isPickUpPointDelivery,
             "col-span-2 row-start-3 mr-[0.8vw]": !isPickUpPointDelivery,
@@ -143,20 +122,12 @@ const OrderModal = ({
         <input
           type="text"
           value={bucketItems
-            .map(
-              (e) =>
-                `
+            .map(e => `
                 "${e.item.poizonArticul}",
                 "${e.item.title}",
                 "${e.item.price}",
                 "${e.amount}",
-                "${
-                  e.size?.available?.find(
-                    (x) => x.sizeKey === e.size.chosenSizeKey
-                  )?.sizeValue?.[e.size.chosenSizeValue]
-                }",
-                `
-            )
+                "${e.size?.available?.find(({ sizeKey }) => sizeKey === e.size.chosenSizeKey)?.sizeValue?.[e.size.chosenSizeValue]}",`)
             .join("\n")}
           className="hidden"
           name="list"
