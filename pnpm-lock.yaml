@@ -4,9 +4,6 @@ dependencies:
   '@emailjs/browser':
     specifier: ^3.10.0
     version: 3.10.0
-  '@fontsource/noto-sans':
-    specifier: ^4.5.11
-    version: 4.5.11
   '@reduxjs/toolkit':
     specifier: ^1.9.2
     version: 1.9.2(react-redux@8.0.5)(react@18.2.0)
@@ -114,10 +111,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@fontsource/noto-sans@4.5.11:
-    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
     dev: false
 
   /@graphql-typed-document-node/core@3.1.1(graphql@16.6.0):

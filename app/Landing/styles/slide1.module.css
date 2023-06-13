@@ -1,5 +1,5 @@
 .h1 {
-    font-family: 'Noto Sans';
+    font-family: var(--font-noto);
     font-style : normal;
     font-weight: 500;
     font-size  : 62px;
@@ -16,7 +16,7 @@
 }
 
 .noto_offer {
-    font-family: 'Noto Sans';
+    font-family: var(--font-noto);
     font-style : normal;
     font-weight: 400;
     font-size  : 22px;
@@ -28,7 +28,7 @@
 }
 
 .noto_font {
-    font-family: 'Noto Sans';
+    font-family: var(--font-noto);
     font-style : normal;
     color      : #000000;
 }
