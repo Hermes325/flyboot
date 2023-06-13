@@ -7,8 +7,9 @@ import { useAppDispatch } from "@/lib/redux/store/hooks";
 const TestRedux = () => {
   const dispatch = useAppDispatch();
 
-  return (<div className="w-[100px] p-[10px] border bg-slate-500 rounded-sm absolute left-0 top-32">
-    <button onClick={() => dispatch(addItem({
+  return <button
+    className="text-white"
+    onClick={() => dispatch(addItem({
       item: {
         brand: { id: "1", name: "Nike" },
         category: "category",
@@ -47,9 +48,8 @@ const TestRedux = () => {
         chosenSizeValue: 1
       }
     }))}>
-      Добавить предмет в Redux
-    </button>
-  </div>)
+    Добавить предмет в Redux
+  </button>
 }
 
 export default TestRedux

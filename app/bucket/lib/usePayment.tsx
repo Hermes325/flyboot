@@ -11,7 +11,7 @@ type Props = {
   order: Order
   setOrder: React.Dispatch<React.SetStateAction<Order>>
 }
-const usePayment = ({ order, setOrder }: Props) => {
+function usePayment({ order, setOrder }: Props): () => void {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const bucketItems = useAppSelector(({ items }) => items);
@@ -156,9 +156,15 @@ const usePayment = ({ order, setOrder }: Props) => {
     assistant.build(options);
   }
 
+  function startPayment() {
+    setOrder(x => ({ ...x, startPayment: x.startPayment + 1 }))
+  }
+
   useEffect(() => {
     if (order.startPayment !== 0) payment();
   }, [order.startPayment]);
+
+  return startPayment
 }
 
 export default usePayment

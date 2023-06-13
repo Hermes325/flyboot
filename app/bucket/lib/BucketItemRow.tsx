@@ -11,7 +11,7 @@ type Props = {
   bucketItem: BucketItem
 }
 
-const BucketItemCard = ({ bucketItem }: Props) => {
+const BucketItemRow = ({ bucketItem }: Props) => {
   const dispatch = useAppDispatch();
   const { item, amount, size } = bucketItem
 
@@ -49,10 +49,8 @@ const BucketItemCard = ({ bucketItem }: Props) => {
     changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
 
-  return (<article className='relative flex flex-row items-center py-[15px] px-[7px] max-h-[250px] gap-[24px] ml-3
-     max-[650px]:gap-[6px]
-     max-[650px]:grid
-     max-[650px]:grid-cols-10
+  return (<article className='relative flex flex-row items-center w-full p-[15px_7px] max-h-[250px] ml-3
+  gap-[24px] max-[650px]:gap-[6px]
   '>
     <DatoCMSImage
       className="rounded-[13px]
@@ -67,10 +65,7 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='grow
-      max-[650px]:col-start-4
-      max-[650px]:col-end-9
-    '>
+    <div className='grow max-[650px]:flex-col bg-white rounded]'>
       <h3 className='font-lato text-[20px] leading-[20px] mb-[5px] tracking-[0.01em]
         max-[650px]:text-[15px]
       '>
@@ -82,6 +77,8 @@ const BucketItemCard = ({ bucketItem }: Props) => {
       '>
         Артикул {item.poizonArticul}
       </p>
+
+      {/* Изменить товар */}
       <div className='flex gap-4'>
         {/* Размер */}
         <div className="
@@ -140,28 +137,26 @@ const BucketItemCard = ({ bucketItem }: Props) => {
           </button>
         </div>
       </div>
-    </div>
 
-    <p className='font-lato text-end font-extrabold text-[#000] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
+      <p className='font-lato text-end font-extrabold text-[#000] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
       max-[650px]:!min-w-[auto]
       max-[650px]:!text-[12px]
       max-[650px]:!mr-[0px]
       max-[650px]:!text-start
-      max-[650px]:!col-start-9
-      max-[650px]:!col-end-11
       max-[650px]:!align-top
       pb-[30px]
     '>
-      {price}&nbsp;руб
-    </p>
+        {price}&nbsp;руб
+      </p>
 
-    <NextImage
-      className='absolute bottom-[24px] right-[24px] cursor-pointer hover:brightness-150 active:scale-110 transition-all'
-      src={bin}
-      onClick={itemDelete}
-      alt="Удалить" />
+      <NextImage
+        className='absolute bottom-[24px] right-[24px] cursor-pointer hover:brightness-150 active:scale-110 transition-all'
+        src={bin}
+        onClick={itemDelete}
+        alt="Удалить" />
+    </div>
 
   </article>)
 }
 
-export default BucketItemCard
+export default BucketItemRow

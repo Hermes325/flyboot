@@ -1,12 +1,11 @@
 "use client";
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import BucketFormRadio from './BucketFormRadio'
 import BoxBerryModal from "../modals/BoxBerryModal";
 import SdekModal from "../modals/SdekModal";
 import { Order } from '../model/types'
 import { useAppSelector } from '@/lib/redux/store/hooks';
-import classNames from 'classnames';
-import styles from "./OrderForm.module.css"
+import OrderInput from './OrderInput';
 
 type Props = {
   order: Order
@@ -14,14 +13,10 @@ type Props = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
-  const [isModalOpenSdek, setIsModalOpenSdek] = useState(false);
-  const [isModalOpenBoxBerry, setIsModalOpenBoxBerry] = useState(false);
-
-  function changeOrder(prop: string, value: any) {
-    setOrder(x => ({ ...x, [prop]: value }));
-  }
-
   //#region Modals
+  const [isModalOpenSdek, setIsModalOpenSdek] = useState(false)
+  const [isModalOpenBoxBerry, setIsModalOpenBoxBerry] = useState(false)
+
   function setSdekData(sdek: any) {
     changeOrder("Sdek", sdek);
   }
@@ -50,20 +45,14 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
   //#endregion
 
   //#region Order
-  const inputTailwind =
-    "px-[24px] text-[20px] font-lato h-[68px] max-[600px]:h-[50px] border-2 rounded-2xl border-[#919191] bg-transparent max-[1300px]:rounded-[30px] invalid:border-red-500 text-black";
-  const isPickUpPointDelivery = ["BoxBerry", "Sdek"].includes(order.delivery);
-
-  const form = useRef<HTMLFormElement>(null);
   const bucketItems = useAppSelector(({ items }) => items);
 
-  function pay(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    setOrder(x => ({ ...x, startPayment: x.startPayment + 1 }));
+  function changeOrder(prop: string, value: any) {
+    setOrder(x => ({ ...x, [prop]: value }));
   }
   //#endregion
 
-  return <section>
+  return <section id='orderForm' className='pt-[5rem]'>
     {isModalOpenSdek &&
       <SdekModal
         setSdekData={setSdekData}
@@ -77,204 +66,155 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
         closeModal={closeModals}
       />}
 
-    <h1 className="font-lato text-[25px] uppercase font-extrabold leading-[26px] tracking-[0.01em]">
-      <b>Оформление</b> заказа
+    <h1 className="font-noto text-[25px] uppercase font-[500] leading-[26px] tracking-[0.01em]">
+      <b className='font-[900]'>Оформление</b> заказа
     </h1>
 
-    <div>
-      <h2 className="w-[16ch] font-lato text-[25px] font-extrabold leading-[26px] tracking-[0.01em]">
-        Выберите способ доставки
-      </h2>
+    <div className='flex'>
+      {/* Выбрать способ доставки */}
+      <aside className='w-fit'>
+        <h2 className="w-[16ch] font-noto text-[25px] font-extrabold leading-[26px] tracking-[0.01em]">
+          Способ оплаты
+        </h2>
+        <BucketFormRadio
+          id="card"
+          checked={true}
+          onChange={() => { }}
+          className="min-h-[50px]"
+        >
+          <span className="block">Картой онлайн</span>
+        </BucketFormRadio>
 
-      <BucketFormRadio
-        id="Sdek"
-        checked={order.delivery === "Sdek"}
-        onChange={_ => changeOrder("delivery", "Sdek")}
-        className="min-h-[50px]"
-      >
-        <>
-          <span className="block">ПВЗ СДЭК - 350 ₽</span>
-          {order.delivery === "Sdek" &&
-            <button
-              onClick={e => openModal(e, "Sdek")}
-              className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-            >
-              {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
-            </button>}
-        </>
-      </BucketFormRadio>
-      <BucketFormRadio
-        id="BoxBerry"
-        checked={order.delivery === "BoxBerry"}
-        onChange={_ => changeOrder("delivery", "BoxBerry")}
-        className="min-h-[50px]"
-      >
-        <>
-          <span className="block">ПВЗ Boxberry - 350 ₽</span>
-          {order.delivery === "BoxBerry" &&
-            <button
-              onClick={e => openModal(e, "BoxBerry")}
-              className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
-            >
-              {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
-            </button>}
-        </>
-      </BucketFormRadio>
-      <BucketFormRadio
-        id="personal delivery"
-        checked={order.delivery === "personal delivery"}
-        onChange={_ => changeOrder("delivery", "personal delivery")}
-        className="min-h-[50px]"
-      >
-        Курьер СДЭК - 350 ₽
-      </BucketFormRadio>
 
-      <textarea
-        value={order.comment}
-        placeholder="Комментарий к заказу"
-        rows={3}
-        className="block w-full text-[#454545] mt-4 pl-3 pt-2 rounded-sm"
-        onChange={x => changeOrder("comment", x.target.value)}
-      />
-    </div>
+        <h2 className="w-[16ch] font-noto text-[25px] font-extrabold leading-[26px] tracking-[0.01em]">
+          Выберите способ доставки
+        </h2>
 
-    <form
-      ref={form}
-      className=" 
-          absolute z-[102] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-          h-min bg-[#fff] p-[2rem] max-[600px]:p-[1rem]
-          border-[2px] border-solid border-[#000] rounded-[15px]
-          grid grid-cols-4 gap-[1.3vw] 
-          max-h-[400px]
-          min-[1000px]:!min-w-[600px] 
+        <BucketFormRadio
+          id="Sdek"
+          checked={order.delivery === "Sdek"}
+          onChange={_ => changeOrder("delivery", "Sdek")}
+          className="min-h-[50px]"
+        >
+          <>
+            <span className="block">ПВЗ СДЭК - 350 ₽</span>
+            {order.delivery === "Sdek" &&
+              <button
+                onClick={e => openModal(e, "Sdek")}
+                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+              >
+                {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
+              </button>}
+          </>
+        </BucketFormRadio>
+        <BucketFormRadio
+          id="BoxBerry"
+          checked={order.delivery === "BoxBerry"}
+          onChange={_ => changeOrder("delivery", "BoxBerry")}
+          className="min-h-[50px]"
+        >
+          <>
+            <span className="block">ПВЗ Boxberry - 350 ₽</span>
+            {order.delivery === "BoxBerry" &&
+              <button
+                onClick={e => openModal(e, "BoxBerry")}
+                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+              >
+                {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
+              </button>}
+          </>
+        </BucketFormRadio>
+        <BucketFormRadio
+          id="personal delivery"
+          checked={order.delivery === "personal delivery"}
+          onChange={_ => changeOrder("delivery", "personal delivery")}
+          className="min-h-[50px]"
+        >
+          Курьер СДЭК - 350 ₽
+        </BucketFormRadio>
+      </aside>
+
+      {/* Заполнить данные заказа  */}
+      <form className=" 
+          h-min
+          grid grid-cols-2 gap-[1.3vw] 
+          p-[2rem] max-[600px]:p-[1rem]
           max-[1000px]:!min-w-[80vw]
           max-[1000px]:!gap-[10px]
-          max-[1000px]:!grid-cols-2 
           max-[600px]:!min-w-[90vw]
-          max-[600px]:!translate-y-[-75%]
-          text-black"
-    >
-      <input
-        placeholder="ФИО"
-        type="text"
-        value={order.name}
-        onChange={(x) => changeOrder("name", x.target.value)}
-        className={classNames(inputTailwind, {
-          "col-span-4": isPickUpPointDelivery,
-          "col-span-2 row-start-1 mr-[0.8vw]": !isPickUpPointDelivery,
-        })}
-        name="FIO"
-      />
-      <input
-        placeholder="E-mail"
-        type="email"
-        value={order.email}
-        onChange={(x) => changeOrder("email", x.target.value)}
-        className={classNames(inputTailwind, {
-          "col-span-4": isPickUpPointDelivery,
-          "col-span-2 row-start-2 mr-[0.8vw]": !isPickUpPointDelivery,
-        })}
-        name="Email"
-      />
-      <input
-        placeholder="Телефон"
-        type="tel"
-        value={order.phone}
-        onChange={({ target }) => changeOrder("phone", target.value)}
-        className={classNames(inputTailwind, {
-          "col-span-4": isPickUpPointDelivery,
-          "col-span-2 row-start-3 mr-[0.8vw]": !isPickUpPointDelivery,
-        })}
-        name="phone"
-      />
-      <input
-        type="text"
-        value={bucketItems
-          .map(e => `
-                "${e.item.poizonArticul}",
-                "${e.item.title}",
-                "${e.item.price}",
-                "${e.amount}",
-                "${e.size?.available?.find(({ sizeKey }) => sizeKey === e.size.chosenSizeKey)?.sizeValue?.[e.size.chosenSizeValue]}",`)
-          .join("\n")}
-        className="hidden"
-        name="list"
-      />
-      <input
-        type="text"
-        value={order.delivery}
-        className="hidden"
-        name="delivery"
-      />
-      <input
-        type="text"
-        value={`${order.Sdek?.cityName} ${order.Sdek?.PVZ?.Address}`}
-        className="hidden"
-        name="Sdek"
-      />
-      <input
-        type="text"
-        value={order?.BoxBerry?.address}
-        className="hidden"
-        name="BoxBerry"
-      />
-      <input
-        type="text"
-        value={order.comment}
-        className="hidden"
-        name="comment"
-      />
-      {!isPickUpPointDelivery && (
-        <>
-          <input
+          text-black">
+
+        {/* Адрес доставки */}
+        <div className='flex flex-col space-y-5'>
+          <h2>Адрес доставки</h2>
+
+          <OrderInput
             placeholder="Город"
             value={order.city}
             onChange={(x) => changeOrder("city", x.target.value)}
-            className={`${inputTailwind} col-span-2 row-start-1 max-[1000px]:row-start-4 min-[1000px]:ml-[0.8vw]`}
             name="city"
           />
-          <input
+          <OrderInput
             placeholder="Улица, дом"
             value={order.street}
             onChange={(x) => changeOrder("street", x.target.value)}
-            className={`${inputTailwind} col-span-2 row-start-2 max-[1000px]:row-start-5 min-[1000px]:ml-[0.8vw]`}
             name="address"
           />
-          <input
-            placeholder="Корпус"
-            value={order.build}
-            onChange={(x) => changeOrder("build", x.target.value)}
-            className={`${inputTailwind} col-span-1 row-start-3 max-[1000px]:row-start-6 min-[1000px]:ml-[0.8vw] min-[1000px]:mr-[-1rem]`}
-            name="build"
-          />
-          <input
-            placeholder="Кв."
-            value={order.apartment}
-            onChange={(x) => changeOrder("apartment", x.target.value)}
-            className={`${inputTailwind} col-span-1 row-start-3 max-[1000px]:row-start-6 min-[1000px]:ml-[0.8vw]`}
-            name="appartament"
-          />
-        </>
-      )}
+          <div className='flex flex-row gap-[20px]'>
+            <OrderInput
+              placeholder="Корпус"
+              value={order.build}
+              onChange={(x) => changeOrder("build", x.target.value)}
+              name="build"
+            />
+            <OrderInput
+              placeholder="Кв."
+              value={order.apartment}
+              onChange={(x) => changeOrder("apartment", x.target.value)}
+              name="appartament"
+            />
+          </div>
+        </div>
 
-      <div className="flex justify-center col-span-4 max-[1000px]:col-span-2">
-        <button
-          disabled={
-            order.name === "" ||
-            order.email === "" ||
-            order.phone === "" ||
-            (!isPickUpPointDelivery &&
-              (order.city === "" ||
-                order.street === "" ||
-                order.apartment === ""))
-          }
-          onClick={pay}
-          className={classNames(styles.buy, " w-[calc(8ch+10rem)] font-inter rounded-lg py-5 px-8 text-white")}
-        >
-          Оплатить
-        </button>
-      </div>
-    </form>
+        {/* Контактные данные */}
+        <div className='space-y-5'>
+          <h2>Контактные данные</h2>
+
+          <OrderInput
+            placeholder="ФИО"
+            type="text"
+            value={order.name}
+            onChange={(x) => changeOrder("name", x.target.value)}
+            name="FIO"
+          />
+          <OrderInput
+            placeholder="E-mail"
+            type="email"
+            value={order.email}
+            onChange={(x) => changeOrder("email", x.target.value)}
+            name="Email"
+          />
+          <OrderInput
+            placeholder="Телефон"
+            type="tel"
+            value={order.phone}
+            onChange={({ target }) => changeOrder("phone", target.value)}
+            name="phone"
+          />
+        </div>
+
+        {/* Комментарии к заказу */}
+        <div>
+          <h2>Комментарии к заказу</h2>
+          <OrderInput
+            placeholder="Примечание к заказу"
+            value={order.comment}
+            onChange={x => changeOrder("comment", x.target.value)}
+            name="comment"
+          />
+        </div>
+      </form>
+    </div>
 
   </section>
 }
