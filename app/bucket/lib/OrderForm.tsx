@@ -4,7 +4,6 @@ import BucketFormRadio from './BucketFormRadio'
 import BoxBerryModal from "../modals/BoxBerryModal";
 import SdekModal from "../modals/SdekModal";
 import { Order } from '../model/types'
-import { useAppSelector } from '@/lib/redux/store/hooks';
 import OrderInput from './OrderInput';
 
 type Props = {
@@ -45,8 +44,6 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
   //#endregion
 
   //#region Order
-  const bucketItems = useAppSelector(({ items }) => items);
-
   function changeOrder(prop: string, value: any) {
     setOrder(x => ({ ...x, [prop]: value }));
   }

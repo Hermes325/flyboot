@@ -14,7 +14,7 @@ import Payment from "./lib/Payment";
 function BucketPage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [order, setOrder] = useState<Order>(emptyOrder);
-  const startPayment = usePayment({ order, setOrder })
+  const [isPaymentStarted, startPayment] = usePayment({ order, setOrder })
 
   return <main className={classNames(
     `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5vw]
@@ -22,8 +22,8 @@ function BucketPage() {
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
       max-[550px]:!px-[5px]`, {
-    "relative": !isModalOpen,
-    "overflow-hidden fixed z-[103]": isModalOpen,
+    "relative": !isModalOpen && !isPaymentStarted,
+    "overflow-hidden fixed z-[103]": isModalOpen || isPaymentStarted,
   })}>
 
     {process.env.NEXT_PUBLIC_IS_PROD === undefined &&

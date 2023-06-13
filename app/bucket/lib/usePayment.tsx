@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Order } from "../model/types";
 import emailjs from "@emailjs/browser";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/store/hooks";
@@ -11,10 +11,11 @@ type Props = {
   order: Order
   setOrder: React.Dispatch<React.SetStateAction<Order>>
 }
-function usePayment({ order, setOrder }: Props): () => void {
+function usePayment({ order, setOrder }: Props): [boolean, () => void] {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const bucketItems = useAppSelector(({ items }) => items);
+  const [isPaymentStarted, setPaymentStarted] = useState(false)
 
   //#region Расчёт стоимости
   const itemsPrice = Math.ceil(
@@ -25,6 +26,7 @@ function usePayment({ order, setOrder }: Props): () => void {
   //#endregion
 
   function payment() {
+    setPaymentStarted(true)
     // items + order → options
     let clientDelivery: string;
     switch (order.delivery) {
@@ -91,16 +93,28 @@ function usePayment({ order, setOrder }: Props): () => void {
     // платёж прошёл успешно
     assistant.setOnSuccessCallback((operationId: string, transactionId: string) => {
       console.log("setOnSuccessCallback");
+      setPaymentStarted(false)
       dispatch(deleteAllItems());
       setOrder(emptyOrder);
       router.push("/thank-you");
     });
 
+    // отмена
+    assistant.closeModal = () => {
+      console.log("Отмена платежа", assistant);
+      // copy from library code https://github.com/PayAnyWay/assistant/blob/master/src/main/kotlin/Builder.kt
+      assistant.modal?.parentNode?.removeChild(assistant.modal)
+      assistant.modal_0?.parentNode?.removeChild(assistant.modal_0)
+      assistant.modal_0 = null
+      assistant.modal = null
+      setPaymentStarted(false)
+    }
+
     // платёж не прошёл
     assistant.setOnFailCallback((operationId: string, transactionId: string) => {
       console.log("setOnFailCallback");
+      setPaymentStarted(false)
     });
-
     // платёж обрабатывается
     assistant.setOnInProgressCallback((operationId: string, transactionId: string) => {
       console.log("setOnInProgressCallback");
@@ -153,6 +167,8 @@ function usePayment({ order, setOrder }: Props): () => void {
         .finally(() => console.log("finally"));
     });
 
+    console.log(assistant);
+
     assistant.build(options);
   }
 
@@ -164,7 +180,7 @@ function usePayment({ order, setOrder }: Props): () => void {
     if (order.startPayment !== 0) payment();
   }, [order.startPayment]);
 
-  return startPayment
+  return [isPaymentStarted, startPayment]
 }
 
 export default usePayment
