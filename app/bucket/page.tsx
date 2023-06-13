@@ -8,6 +8,7 @@ import OrderForm from "./lib/OrderForm";
 import { emptyOrder } from "./model/emptyOrder";
 import usePayment from "./lib/usePayment";
 import BucketRecommends from "./lib/BucketRecommends";
+import BucketHIW from "./lib/BucketHIW";
 
 function BucketPage() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -37,8 +38,9 @@ function BucketPage() {
 
     {/* Рекомендовать товары */}
     <BucketRecommends />
-    {/* Объяснить путь заказа */}
 
+    {/* Объяснить путь заказа */}
+    <BucketHIW />
   </main>
 }
 
