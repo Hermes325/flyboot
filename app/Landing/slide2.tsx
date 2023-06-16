@@ -2,7 +2,7 @@ import React, { use } from "react";
 import { getHotItemsForLanding } from "@/lib/datocms";
 import styles from "./styles/slide2.module.css";
 
-import ItemCard from "@/lib/components/item_card";
+import ItemCard from "@/lib/components/itemCard/ItemCard";
 
 //* горячие товары
 const Slide2 = () => {

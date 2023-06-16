@@ -1,0 +1,10 @@
+.buy {
+  background   : black;
+  border-radius: 8px;
+  margin-block : 10px;
+  padding-block: 17px;
+}
+
+.buy:disabled {
+  opacity: .5
+}

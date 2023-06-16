@@ -45,7 +45,6 @@ body {
   overflow-x : hidden;
   position   : relative;
   line-height: 1.5;
-  
 }
 
 
@@ -58,4 +57,3 @@ span,
 p {
   color: #000;
 }
-

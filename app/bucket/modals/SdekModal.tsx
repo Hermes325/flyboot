@@ -33,7 +33,7 @@ function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
     }
   }, [setSdekData]);
 
-  return (<section className={isSdekModalOpen ? "" : "hidden"}>
+  return (<section className={isSdekModalOpen ? "fixed top-0 left-0 z-[102]" : "hidden"}>
 
     <div
       onClick={closeModal}
@@ -49,7 +49,9 @@ function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
     <div
       ref={modalRef}
       id="forpvz"
-      className="absolute z-[102] top-[108px] left-[10vw] w-[80vw] h-[80vh]"
+      className="
+        absolute z-[102] top-[108px] left-[10vw] w-[80vw] h-[80vh] 
+        max-[650px]:left-[5px] max-[650px]:w-[calc(100vw-10px)]"
       onClick={e => e.stopPropagation()} />
   </section>)
 }

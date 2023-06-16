@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { addItem, BucketItem } from "@/lib/redux/slices/itemSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/lib/redux/store/hooks";
 import styles from "./bucketButton.module.css"
 
 
@@ -10,7 +10,7 @@ type Props = {
 };
 
 function BucketButton({ item, disabled }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <button

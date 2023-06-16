@@ -1,0 +1,12 @@
+.flex_items_center {
+  display    : flex;
+  align-items: center;
+}
+
+.hiw_list {
+  font-style    : normal;
+  font-weight   : 400;
+  font-size     : 30px;
+  line-height   : 37px;
+  letter-spacing: 0.04em;
+}

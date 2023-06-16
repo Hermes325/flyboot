@@ -4,12 +4,12 @@ import Link from 'next/link'
 const ThankPage = () => {
   return (<main className='min-h-screen flex flex-col items-center justify-start pt-[158px]'>
     <h1 className='font-montserrat'>Благодарим за покупку ♥</h1>
-    <p className='font-roboto'>Мы отправили чек на вашу почту</p>
+    <p className='font-noto'>Мы отправили чек на вашу почту</p>
     <address>
       <p>За помощью с заказом обращайтесь <Link href="https://t.me/FlyBootsSupport">@FlyBootsSupport</Link> </p>
     </address>
 
-    <Link className='text-white underline' href='/catalog'>
+    <Link className='text-blue-900 underline' href='/catalog'>
       Вернуться на каталог
     </Link>
 

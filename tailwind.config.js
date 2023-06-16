@@ -13,11 +13,10 @@ module.exports = {
         mobile: "600px",
       },
       fontFamily: {
+        noto: ["var(--font-noto)"],
         lato: ["var(--font-lato)"],
         inter: ["var(--font-inter)"],
-        roboto: ["var(--font-roboto)"],
         montserrat: ["var(--font-montserrat)"],
-        jost: ["var(--font-jost)"],
       },
     },
   },

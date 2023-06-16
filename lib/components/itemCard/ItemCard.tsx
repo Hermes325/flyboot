@@ -3,8 +3,8 @@ import React from "react";
 import { Item } from "@/lib/datocms";
 import { Image } from "react-datocms";
 import Link from "next/link";
-import styles from "./item_card.module.css";
-import "../../app/globals.css";
+import styles from "./ItemCard.module.css";
+import "@/app/globals.css";
 
 type Props = {
   h3ClassName?: string;
