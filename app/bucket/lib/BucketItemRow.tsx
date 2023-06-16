@@ -71,7 +71,8 @@ const BucketItemRow = ({ bucketItem }: Props) => {
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='w-full min-h-[198px] flex flex-row max-[1100px]:flex-col justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px] max-[650px]:p-[1rem]'>
+    <div className='w-full min-h-[198px] max-[650px]:h-[180px] max-[650px]:max-h-[180px] flex flex-row max-[1100px]:flex-col justify-between bg-white rounded-[10px] 
+    p-[26px_47px] max-[650px]:p-[1rem]'>
       <div className='flex flex-col justify-between max-[1100px]:space-y-4'>
         <h3 className='font-noto 
           text-[24px] leading-[24px]
