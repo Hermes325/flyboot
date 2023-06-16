@@ -28,7 +28,7 @@ function BoxBerryModal({ setBoxBerryData, closeModal, isBoxBerryModalOpen }: Pro
   }, [setBoxBerryData]);
 
 
-  return (<section className={isBoxBerryModalOpen ? "" : "hidden"}>
+  return (<section className={isBoxBerryModalOpen ? "fixed top-0 left-0 z-[102]" : "hidden"}>
 
     <div
       onClick={closeModal}

@@ -49,114 +49,135 @@ const BucketItemRow = ({ bucketItem }: Props) => {
     changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
 
-  return (<article className='relative flex flex-row items-center w-full p-[15px_7px] max-h-[250px] ml-3
-  gap-[24px] max-[650px]:gap-[6px]
+  return <article className='
+    relative grid grid-cols-[auto_1fr] items-center w-full min-h-[198px]
+    gap-[1.3vw] max-[650px]:gap-[6px]
   '>
     <DatoCMSImage
-      className="rounded-[13px]
-        min-w-[80px]
-        max-[650px]:col-start-1
-        max-[650px]:col-end-4
-        max-[650px]:!w-[auto]
-        max-[650px]:rounded-[13px]
+      className="
+        rounded-[10px] max-[650px]:rounded-[13px]
+        bg-white
+        h-full !w-[198px]
       "
-      style={{ width: "13vw", aspectRatio: "134/88" }}
-      objectFit="cover"
+      objectFit="contain"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='grow max-[650px]:flex-col bg-white rounded]'>
-      <h3 className='font-lato text-[20px] leading-[20px] mb-[5px] tracking-[0.01em]
+    <div className='w-full h-full flex flex-row justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px]'>
+      <div className='flex flex-col justify-between'>
+        <h3 className='font-noto 
+        text-[24px] leading-[20px] 
+        max-[1500px]:text-[15px]
+        mb-[5px] tracking-[0.01em]
         max-[650px]:text-[15px]
       '>
-        {item.title}
-      </h3>
+          {item.title}
+        </h3>
 
-      <p className='mt-2 font-lato text-[14px] leading-[8px] mb-[5px] tracking-[0.01em]
-        max-[650px]:text-[8px]
-      '>
-        Артикул {item.poizonArticul}
-      </p>
+        <p className='font-noto 
+          max-[1500px]:text-[12px] max-[1500px]:leading-[16px] 
+          max-[650px]:text-[8px] 
+          mb-[1.5rem] tracking-[0.01em]
+          uppercase text-[#AEAEAE]
+        '>
+          Артикул {item.poizonArticul}
+        </p>
 
-      {/* Изменить товар */}
-      <div className='flex gap-4'>
-        {/* Размер */}
-        <div className="
-          relative
-          after:absolute
-          after:content-['▼']
-          after:text-[12px]
-          after:top-[13px]
-          after:right-[10px]
-          after:w-[10px]
-          after:h-[10px]
-          after:bg-transparent
-          after:text-[#000]
-          after:block
-          after:pointer-events-none
-        ">
-          <select
-            defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
-            onChange={changeSize}
-            className="
-            mt-[5px]
-              font-inter font-bold bg-transparent text-[#000000] w-[85px] text-[14px]
+        {/* Изменить товар */}
+        <div className='flex gap-[1.3vw]'>
+          {/* Размер */}
+          <div className="
+            relative
+            after:absolute
+            after:content-['▼']
+            after:text-[15px] after:py-[0.5rem]
+            after:top-[7px] after:right-[2px] after:px-[5px]
+            after:w-fit after:h-[calc(100%-9px)]
+            after:outline-2 after:outline-black after:outline
+            after:rounded-r-[3px]
+            after:bg-transparent
+            after:text-[#000]
+            after:block
+            after:pointer-events-none
+          ">
+            <select
+              defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
+              onChange={changeSize}
+              className="
+              mt-[5px] py-[0.5rem] px-[2rem]
+              font-noto bg-transparent text-[#000000]
+              text-[20px] leading-[25px]
+              max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
+              w-[150px]
               max-[600px]:!w-[100px]
               max-[450px]:!w-[80px]
-              max-[450px]:!min-h-[80%]
               h-[auto]
               min-h-[88%]
-              border border-gray-300
-              focus:ring-blue-500 focus:border-blue-500 py-0.5 px-1.5 appearance-none">
-            {regionSizes
-              // Доступность размера
-              ?.sizeValue.filter((_, i) => regionSizes.available[i])
-              // Вывод опций
-              ?.map(value =>
-                <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
-                  {value} {size.chosenSizeKey}
-                </option>)}
-          </select>
-        </div>
+              max-[450px]:!min-h-[80%]
+              border-2 border-black rounded-[5px]
+              focus:ring-blue-500 focus:border-blue-500
+              cursor-pointer appearance-none">
+              {regionSizes
+                // Доступность размера
+                ?.sizeValue.filter((_, i) => regionSizes.available[i])
+                // Вывод опций
+                ?.map(value =>
+                  <option className='text-[#9A9A9A] bg-[black] text-[16px]' key={value} value={value}>
+                    {value} {size.chosenSizeKey}
+                  </option>)}
+            </select>
+          </div>
 
-        {/* Количество */}
-        <div className=' mt-[5px] flex justify-around items-center w-[4rem] py-[4px] px-[6px] border border-white 
-        max-[450px]:!min-h-[80%]'>
-          <button
-            className={classnames('font-inter font-bold text-[13px] active:scale-110', {
-              "text-[gray]": amount <= 1
-            })}
-            disabled={amount <= 1}
-            onClick={itemMinus}>-
-          </button>
-          <p
-            className='font-inter font-bold text-[13px] text-[#000000]'>{amount}</p>
-          <button
-            className='font-inter font-bold text-[13px] active:scale-110'
-            onClick={itemPlus}>+
-          </button>
+          {/* Количество */}
+          <div className='
+              mt-[5px] flex justify-around items-center w-[150px] py-[4px] px-[6px]
+              border-2 border-black rounded-[5px]
+              max-[450px]:!min-h-[80%]'>
+            <button
+              className={classnames('font-noto font-bold text-[13px] active:scale-110',
+                "text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px]",
+                {
+                  "text-[gray]": amount <= 1
+                })}
+              disabled={amount <= 1}
+              onClick={itemMinus}>
+              –
+            </button>
+            <p className='font-noto font-bold text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] text-[#000000]'>
+              {amount}
+            </p>
+            <button
+              className='font-noto font-bold text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] active:scale-110'
+              onClick={itemPlus}>
+              +
+            </button>
+          </div>
         </div>
       </div>
 
-      <p className='font-lato text-end font-extrabold text-[#000] text-[24px] leading-[40px] tracking-[0.01em] mr-[30px] min-w-[10ch]
-      max-[650px]:!min-w-[auto]
-      max-[650px]:!text-[12px]
-      max-[650px]:!mr-[0px]
-      max-[650px]:!text-start
-      max-[650px]:!align-top
-      pb-[30px]
-    '>
-        {price}&nbsp;руб
-      </p>
+      <h3 className='font-lato text-end font-extrabold text-[#000] 
+        mr-[7.5vw] min-w-[10ch]
+        text-[20px] leading-[25px]
+        max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
+        max-[650px]:!min-w-[auto]
+        max-[650px]:!text-[12px]
+        max-[650px]:!mr-[0px]
+        max-[650px]:!text-start
+        max-[650px]:!align-top
+        pb-[30px]
+      '>
+        {price}&nbsp;₽
+      </h3>
 
+      {/* Корзина */}
       <NextImage
-        className='absolute bottom-[24px] right-[24px] cursor-pointer hover:brightness-150 active:scale-110 transition-all'
+        className='absolute bottom-[24px] right-[24px] cursor-pointer active:scale-110 transition-all'
         src={bin}
         onClick={itemDelete}
         alt="Удалить" />
     </div>
 
-  </article>)
+  </article>
 }
 
 export default BucketItemRow

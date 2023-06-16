@@ -47,11 +47,11 @@ const Payment = ({ order, startPayment }: Props) => {
   }
   //#endregion
 
-  return <table>
+  return <table className='w-full'>
     <thead>
       <tr>
         <th className='font-noto text-[25px] font-[900] leading-[26px] tracking-[0.01em] uppercase text-left'>К оплате</th>
-        <th className='font-noto text-[25px] font-[900] leading-[26px] tracking-[0.01em] uppercase text-right'>{finalPriceStr} ₽</th>
+        <th className='font-noto text-[25px] font-[900] leading-[26px] tracking-[0.01em] uppercase text-right'>{finalPriceStr}&nbsp;₽</th>
       </tr>
     </thead>
     <tbody>
@@ -74,7 +74,7 @@ const Payment = ({ order, startPayment }: Props) => {
       </tr>
       <tr>
         <td colSpan={2}>
-          <p className="font-inter text-[10px] leading-[12.1px] font-extrabold tracking-[0.01em] max-w-[35ch]">
+          <p className="font-inter text-[12px] leading-[19px] text-[#AEAEAE]">
             Нажимая на кнопку “Оформить заказ”, Вы принимаете условия &nbsp;
             <Link href="/privacy" className="underline focus:text-[gray]">
               Публичной оферты

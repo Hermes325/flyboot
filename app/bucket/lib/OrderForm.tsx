@@ -5,6 +5,9 @@ import BoxBerryModal from "../modals/BoxBerryModal";
 import SdekModal from "../modals/SdekModal";
 import { Order } from '../model/types'
 import OrderInput from './OrderInput';
+import creditCard from "@/public/bucket/credit_card.svg"
+import Image from 'next/image'
+import classNames from 'classnames';
 
 type Props = {
   order: Order
@@ -49,7 +52,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
   }
   //#endregion
 
-  return <section id='orderForm' className='pt-[5rem]'>
+  return <section id='orderForm' className='mb-[100px]'>
     {isModalOpenSdek &&
       <SdekModal
         setSdekData={setSdekData}
@@ -63,30 +66,32 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
         closeModal={closeModals}
       />}
 
-    <h1 className="font-noto text-[25px] uppercase font-[500] leading-[26px] tracking-[0.01em]">
+    <h1 className="font-noto text-[62px] uppercase font-[500] leading-[74px] mb-[54px]">
       <b className='font-[900]'>Оформление</b> заказа
     </h1>
 
-    <div className='flex'>
-      {/* Выбрать способ доставки */}
-      <aside className='w-fit'>
-        <h2 className="w-[16ch] font-noto text-[25px] font-extrabold leading-[26px] tracking-[0.01em]">
-          Способ оплаты
-        </h2>
+    <div className='flex gap-[1.3vw]'>
+      <aside className='w-fit space-y-5'>
+        <H2Styled>Способ оплаты</H2Styled>
         <BucketFormRadio
           id="card"
           checked={true}
           onChange={() => { }}
-          className="min-h-[50px]"
+          showInput={false}
         >
-          <span className="block">Картой онлайн</span>
+          <div className='flex flex-row justify-between'>
+            <span className="block text-white">Картой онлайн</span>
+
+            <Image
+              src={creditCard}
+              alt="Иконка банковской карты"
+              className='bg-cover'
+            />
+          </div>
         </BucketFormRadio>
 
 
-        <h2 className="w-[16ch] font-noto text-[25px] font-extrabold leading-[26px] tracking-[0.01em]">
-          Выберите способ доставки
-        </h2>
-
+        <H2Styled className='!mt-[3rem]'>Способ доставки</H2Styled>
         <BucketFormRadio
           id="Sdek"
           checked={order.delivery === "Sdek"}
@@ -94,11 +99,11 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           className="min-h-[50px]"
         >
           <>
-            <span className="block">ПВЗ СДЭК - 350 ₽</span>
+            <span className="block text-white">ПВЗ СДЭК - 350 ₽</span>
             {order.delivery === "Sdek" &&
               <button
                 onClick={e => openModal(e, "Sdek")}
-                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-white text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
               >
                 {order.Sdek?.PVZ?.Address ?? <>Выбрать на карте...</>}
               </button>}
@@ -111,11 +116,11 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           className="min-h-[50px]"
         >
           <>
-            <span className="block">ПВЗ Boxberry - 350 ₽</span>
+            <span className="block text-white">ПВЗ Boxberry - 350 ₽</span>
             {order.delivery === "BoxBerry" &&
               <button
                 onClick={e => openModal(e, "BoxBerry")}
-                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-[#000] text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
+                className="font-inter text-[15px] leading-[18px] tracking-[0.01em] underline text-white text-ellipsis overflow-hidden whitespace-nowrap max-w-[25ch] text-left"
               >
                 {order.BoxBerry?.address ?? <>Выбрать на карте...</>}
               </button>}
@@ -135,7 +140,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
       <form className=" 
           h-min
           grid grid-cols-2 gap-[1.3vw] 
-          p-[2rem] max-[600px]:p-[1rem]
+          max-[600px]:p-[1rem]
           max-[1000px]:!min-w-[80vw]
           max-[1000px]:!gap-[10px]
           max-[600px]:!min-w-[90vw]
@@ -143,7 +148,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
 
         {/* Адрес доставки */}
         <div className='flex flex-col space-y-5'>
-          <h2>Адрес доставки</h2>
+          <H2Styled>Адрес доставки</H2Styled>
 
           <OrderInput
             placeholder="Город"
@@ -157,7 +162,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
             onChange={(x) => changeOrder("street", x.target.value)}
             name="address"
           />
-          <div className='flex flex-row gap-[20px]'>
+          <div className='flex flex-row gap-[1.3vw]'>
             <OrderInput
               placeholder="Корпус"
               value={order.build}
@@ -175,7 +180,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
 
         {/* Контактные данные */}
         <div className='space-y-5'>
-          <h2>Контактные данные</h2>
+          <H2Styled>Контактные данные</H2Styled>
 
           <OrderInput
             placeholder="ФИО"
@@ -185,24 +190,24 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
             name="FIO"
           />
           <OrderInput
-            placeholder="E-mail"
-            type="email"
-            value={order.email}
-            onChange={(x) => changeOrder("email", x.target.value)}
-            name="Email"
-          />
-          <OrderInput
             placeholder="Телефон"
             type="tel"
             value={order.phone}
             onChange={({ target }) => changeOrder("phone", target.value)}
             name="phone"
           />
+          <OrderInput
+            placeholder="E-mail"
+            type="email"
+            value={order.email}
+            onChange={(x) => changeOrder("email", x.target.value)}
+            name="Email"
+          />
         </div>
 
         {/* Комментарии к заказу */}
-        <div>
-          <h2>Комментарии к заказу</h2>
+        <div className='flex flex-col space-y-5 mt-[1rem]'>
+          <H2Styled>Комментарии к заказу</H2Styled>
           <OrderInput
             placeholder="Примечание к заказу"
             value={order.comment}
@@ -217,3 +222,11 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
 }
 
 export default OrderForm
+
+const H2Styled = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) =>
+  <h2 {...props} className={classNames(
+    "text-[20px] leading-[24px]",
+    "max-[1500px]:text-[15px] max-[1500px]:leading-[20px]",
+    "w-fit font-noto font-[700] uppercase",
+    props.className)}
+  />

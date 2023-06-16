@@ -6,11 +6,11 @@ const BucketItems = () => {
   const bucketItems = useAppSelector(({ items }) => items);
 
   return <>
-    <h1 className="font-noto text-[25px] uppercase font-[500] leading-[26px] tracking-[0.01em]">
+    <h1 className="font-noto uppercase text-[62px] font-[500] leading-[74px] mb-[32px] ">
       Ваш <b className='font-[900]'>Заказ</b>
     </h1>
 
-    <section className="w-full mb-12 flex flex-col gap-[20px] transition-all items-center justify-center max-[600px]:!justify-start">
+    <section className="w-full mb-[8rem] flex flex-col gap-[1.3vw] transition-all items-center justify-center max-[600px]:!justify-start">
       {/* Items */}
 
       {bucketItems.map((bucketItem, i) =>

@@ -33,7 +33,7 @@ function SdekModal({ setSdekData, closeModal, isSdekModalOpen }: Props) {
     }
   }, [setSdekData]);
 
-  return (<section className={isSdekModalOpen ? "" : "hidden"}>
+  return (<section className={isSdekModalOpen ? "fixed top-0 left-0 z-[102]" : "hidden"}>
 
     <div
       onClick={closeModal}

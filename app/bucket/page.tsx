@@ -17,7 +17,7 @@ function BucketPage() {
   const [isPaymentStarted, startPayment] = usePayment({ order, setOrder })
 
   return <main className={classNames(
-    `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5vw]
+    `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5.5vw] pb-20
       scroll-smooth
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
@@ -27,7 +27,7 @@ function BucketPage() {
   })}>
 
     {process.env.NEXT_PUBLIC_IS_PROD === undefined &&
-      <div className="absolute flex flex-col w-[150px] gap-3 top-[10rem] left-0 z-50 p-[10px_15px] bg-blue-500">
+      <div className="absolute flex flex-col w-[150px] gap-3 top-[30rem] left-0 z-50 p-[10px_15px] bg-blue-500">
         <button
           onClick={startPayment}
           className="bg-black text-white rounded-[10px] p-[5px]">
@@ -38,7 +38,7 @@ function BucketPage() {
         </div>
       </div>}
 
-    <div className="grid grid-cols-[1fr_auto]">
+    <div className="grid grid-cols-[1fr_auto] gap-[1.3vw] relative">
       {/* Заказать с доставкой */}
       <div>
         {/* Увидеть товары */}
@@ -51,11 +51,12 @@ function BucketPage() {
       {/* Оплата */}
       <div className="
             sticky
-            h-fit
-            top-[200px]
+            h-fit min-w-[300px] w-[20vw]
+            top-[calc(106px+74px)]
+            mt-[106px] mb-[100px] max-[1500px]:mb-[50px]
             bg-white
-            border-2 rounded-[10px]
-            px-[15px] pt-[26px] pb-[34px]
+            rounded-[10px]
+            px-[21px] py-[37px]
             max-[600px]:!pt-[0px]
             max-[600px]:!border-0 
             ">

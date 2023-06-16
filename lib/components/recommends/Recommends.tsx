@@ -54,10 +54,12 @@ const Recommends = (props: Props) => {
   return <section className="flex flex-col w-full">
     {/* will be interested and nav buttons */}
     <div className="flex flex-row w-full justify-between max-[600px]:w-[100%]">
-      <h2 className="text-black text-5xl my-[37px]
+      <h2 className="font-noto text-black text-5xl my-[37px]
         max-[600px]:text-xl 
         max-[600px]:inline-block
-      ">Может понравится </h2>
+      ">Может понравится
+      </h2>
+
       <div className="flex flex-row items-end gap-x-[5px] mb-[37px]">
         <Image
           alt="назад"
