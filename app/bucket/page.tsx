@@ -15,7 +15,7 @@ function BucketPage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [order, setOrder] = useState<Order>(emptyOrder);
   const [isPaymentStarted, startPayment] = usePayment({ order, setOrder })
-  const [isMobileForm, setIsMobileForm] = useState(false)
+  const [isMobileForm, setIsMobileForm] = useState(true)
 
   return <main className={classNames(
     `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5.5vw] pb-20
@@ -27,7 +27,7 @@ function BucketPage() {
     "overflow-hidden fixed z-[103]": isModalOpen || isPaymentStarted,
   })}>
 
-    {/* {process.env.NEXT_PUBLIC_IS_PROD === undefined &&
+    {process.env.NEXT_PUBLIC_IS_PROD === undefined &&
       <div className="absolute flex flex-col w-[150px] gap-3 top-[30rem] left-0 z-50 p-[10px_15px] bg-blue-500">
         <button
           onClick={startPayment}
@@ -37,7 +37,7 @@ function BucketPage() {
         <div className="bg-black text-white rounded-[10px] p-[5px]">
           <TestRedux />
         </div>
-      </div>} */}
+      </div>}
 
     {isMobileForm && <div className="grid grid-cols-[1fr_auto] gap-[1.3vw] relative max-[1100px]:grid-cols-1">
       {/* Заказать с доставкой */}

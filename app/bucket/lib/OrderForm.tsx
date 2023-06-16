@@ -58,23 +58,35 @@ const OrderForm = (props: Props) => {
   //#endregion
 
   //#region Order
+  const [errs, setErr] = useState<{ field: string, reason: string }[]>([])
   function changeOrder(prop: string, value: any) {
     setOrder(x => ({ ...x, [prop]: value }));
   }
+
+  function errsHas(field: string): boolean {
+    return errs.some(x => x.field === field)
+  }
+  function checkField(field: string, isErr: boolean, reason: string) {
+    isErr && setErr(x => [...x, { field, reason }])
+    return isErr
+  }
   function payOrCompleteForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    // TODO: валидация формы
-    const needCompletion = order.name === ""
-      || order.email === ""
-      || order.phone === ""
-      || order.city === ""
-      || order.street === ""
-      || order.apartment === ""
-      || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
-      || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)
+    setErr([])
+    const needCompletion =
+      checkField("name", order.name === "", "Заполните имя")
+      || checkField("email", order.email === "", "Введите корректный email")
+      || checkField("phone", order.phone === "", "Введите телефон")
+      || checkField("city", order.city === "", "Введите название города")
+      || checkField("street", order.street === "", "Введите название улицы")
+      || checkField("apartment", order.apartment === "", "Номер квартиры")
+      || checkField("Sdek", order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined, "Выберите ПВЗ СДЭК")
+      || checkField("BoxBerry", order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined, "Выберите ПВЗ BoxBerry")
 
     if (needCompletion === false && props.isDesktopForm === false)
       props.startPayment()
+    else
+      console.log(needCompletion, "прошла проверка");
   }
   //#endregion
 
@@ -100,7 +112,9 @@ const OrderForm = (props: Props) => {
       <b className='font-[900]'>Оформление</b> заказа
     </h1>
 
-    <div className="flex gap-[1.3vw] max-[1100px]:px-[32px] max-[1100px]:flex-col">
+    <form
+      className="grid gap-[1.3vw] max-[1100px]:px-[32px] grid-cols-[1fr_auto] max-[1100px]:grid-cols-1"
+      onSubmit={payOrCompleteForm}>
       <div className='w-fit space-y-5 max-[1100px]:!w-full'>
         <H2Styled>Способ оплаты</H2Styled>
         <BucketFormRadio
@@ -127,6 +141,7 @@ const OrderForm = (props: Props) => {
           checked={order.delivery === "Sdek"}
           onChange={_ => changeOrder("delivery", "Sdek")}
           className="min-h-[50px]"
+          isError={errs.map(x => x.field).includes("Sdek")}
         >
           <>
             <span className="block text-white text-[20px] leading-[50px] max-[1500px]:text-[15px]">ПВЗ СДЭК - 350&nbsp;₽</span>
@@ -144,6 +159,7 @@ const OrderForm = (props: Props) => {
           checked={order.delivery === "BoxBerry"}
           onChange={_ => changeOrder("delivery", "BoxBerry")}
           className="min-h-[50px]"
+          isError={errsHas("BoxBerry")}
         >
           <>
             <span className="block text-white text-[20px] leading-[50px] max-[1500px]:text-[15px]">ПВЗ Boxberry - 350&nbsp;₽</span>
@@ -167,15 +183,13 @@ const OrderForm = (props: Props) => {
       </div>
 
       {/* Заполнить данные заказа  */}
-      <form
-        onSubmit={payOrCompleteForm}
-        className=" 
-          h-min
-          grid grid-cols-2 
-          min-[1100px]:gap-[1.3vw]
-          max-[1100px]:mt-[2rem]
-          max-[1100px]:!gap-[2rem]
-          max-[1100px]:grid-cols-1">
+      <div className=" 
+        h-min
+        grid grid-cols-2 
+        min-[1100px]:gap-[1.3vw]
+        max-[1100px]:mt-[2rem]
+        max-[1100px]:!gap-[2rem]
+        max-[1100px]:grid-cols-1">
 
         {/* Адрес доставки */}
         <div className='flex flex-col space-y-5'>
@@ -184,12 +198,14 @@ const OrderForm = (props: Props) => {
           <OrderInput
             placeholder="Город"
             value={order.city}
+            className={classNames({ "border-red-500": errsHas("city") })}
             onChange={(x) => changeOrder("city", x.target.value)}
             name="city"
           />
           <OrderInput
             placeholder="Улица, дом"
             value={order.street}
+            className={classNames({ "border-red-500": errsHas("street") })}
             onChange={(x) => changeOrder("street", x.target.value)}
             name="address"
           />
@@ -203,8 +219,9 @@ const OrderForm = (props: Props) => {
             <OrderInput
               placeholder="Кв."
               value={order.apartment}
+              className={classNames({ "border-red-500": errsHas("apartment") })}
               onChange={(x) => changeOrder("apartment", x.target.value)}
-              name="appartament"
+              name="apartament"
             />
           </div>
         </div>
@@ -217,6 +234,7 @@ const OrderForm = (props: Props) => {
             placeholder="ФИО"
             type="text"
             value={order.name}
+            className={classNames({ "border-red-500": errsHas("name") })}
             onChange={(x) => changeOrder("name", x.target.value)}
             name="FIO"
           />
@@ -224,6 +242,7 @@ const OrderForm = (props: Props) => {
             placeholder="Телефон"
             type="tel"
             value={order.phone}
+            className={classNames({ "border-red-500": errsHas("phone") })}
             onChange={({ target }) => changeOrder("phone", target.value)}
             name="phone"
           />
@@ -231,8 +250,9 @@ const OrderForm = (props: Props) => {
             placeholder="E-mail"
             type="email"
             value={order.email}
+            className={classNames({ "border-red-500": errsHas("email") })}
             onChange={(x) => changeOrder("email", x.target.value)}
-            name="Email"
+            name="email"
           />
         </div>
 
@@ -246,20 +266,20 @@ const OrderForm = (props: Props) => {
             name="comment"
           />
         </div>
+      </div>
 
-        {/* Оплата на мобилке */}
-        {isDesktopForm === false && <div className='flex flex-col space-y-5 mt-[1rem]'>
-          <PayBtn className='bg-black' type='submit'>Оплатить</PayBtn>
-          <p className="font-inter text-[12px] leading-[19px] text-[#AEAEAE]">
-            Нажимая на кнопку “Оформить заказ”, Вы принимаете условия &nbsp;
-            <Link href="/privacy" className="underline focus:text-[gray]">
-              Публичной оферты
-            </Link>
-          </p>
-        </div>}
-
-      </form>
-    </div>
+      {/* Оплата на мобилке */}
+      {isDesktopForm === false && <div className='col-span-2 max-[1100px]:col-span-1 flex flex-col space-y-5 mt-[1rem]'>
+        {errs.length > 0 && <p className='text-red-500'>{errs[0].reason}</p>}
+        <PayBtn className='bg-black' type='submit'>Оплатить</PayBtn>
+        <p className="font-inter text-[12px] leading-[19px] text-[#AEAEAE]">
+          Нажимая на кнопку “Оформить заказ”, Вы принимаете условия &nbsp;
+          <Link href="/privacy" className="underline focus:text-[gray]">
+            Публичной оферты
+          </Link>
+        </p>
+      </div>}
+    </form>
   </>
 }
 

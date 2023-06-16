@@ -46,9 +46,9 @@ function BoxBerryModal({ setBoxBerryData, closeModal, isBoxBerryModalOpen }: Pro
       id="boxberry"
       className="absolute p-[2rem]
         h-min bg-[#e3e3e3] z-[102]
-        top-[108px]
-        left-[10vw]
-        w-[80vw]"
+        top-[108px] left-[10vw] w-[80vw]
+        max-[650px]:left-[5px] max-[650px]:w-[calc(100vw-10px)]
+        "
       onClick={e => e.stopPropagation()} />
   </section>)
 }

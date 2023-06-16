@@ -8,10 +8,11 @@ type Props = {
   children: string | JSX.Element | JSX.Element[]
   className?: string,
   showInput?: boolean
+  isError?: boolean
 }
 
-const BucketFormRadio = ({ id, checked, onChange, children, className = '', showInput = true }: Props) => {
-  return (<div className={classNames("mt-[1.25rem] mb-[20px] px-[12px] flex justify-between items-start rounded-[5px] w-[20vw] max-[1100px]:!w-full bg-black", className)}>
+const BucketFormRadio = ({ id, checked, onChange, children, className = '', showInput = true, isError = false }: Props) => {
+  return (<div className={classNames("mt-[1.25rem] mb-[20px] px-[12px] flex justify-between items-start rounded-[5px] w-[20vw] max-[1100px]:!w-full bg-black", { "bg-red-500": isError }, className)}>
     <label
       className={classNames(`cursor-pointer inline-block font-noto 
       text-[20px] leading-[50px] max-[1500px]:text-[15px]
