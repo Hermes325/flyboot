@@ -56,7 +56,7 @@ export default async function ItemPage({ params }: Props) {
               <h1 className="font-montserrat text-[32px] tracking-[0.01em] text-black max-[600px]:!text-[20px] max-[600px]:!leading-5	 max-[600px]:!font-bold">
                 {item.title}
               </h1>
-              <p className="font-jost max-[600px]:!text-[12px] text-[18px] text-[#AEAEAE]">
+              <p className="font-noto max-[600px]:!text-[12px] text-[18px] text-[#AEAEAE]">
                 Артикул {item.poizonArticul}
               </p>
               {/* Описание */}

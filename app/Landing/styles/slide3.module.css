@@ -2,7 +2,7 @@
     position: absolute;
     /** calc(10px + ...) - из-за самой картинки */
 
-    bottom           : 0%;
+    bottom        : 0%;
     /* right      : max(15px, 5%); */
     padding       : 0.17vw 1vw 0.25vw 1vw;
     width         : 100%;
@@ -33,7 +33,7 @@
     width            : auto;
     height           : 28vw;
     background-repeat: no-repeat;
-    background-size  : cover;
+    background-size  : contain;
     border-radius    : 1vw;
     transition       : 0.15s;
 }
@@ -42,27 +42,23 @@
 .ramochka_man:hover,
 .ramochka_woman:hover {
     transform: scale(1.08);
-    z-index: 20;
-    border: 1px solid black;
+    z-index  : 20;
+    border   : 1px solid black;
 }
 
 .ramochka_child {
     background-image: url(/main-images/odezhda.png);
-    background-size : contain;
 }
 
 .ramochka_man {
     background-image: url(/main-images/shoes.png);
-    background-size : contain;
 }
 
 .ramochka_woman {
     background-image: url(/main-images/other.png);
-    background-size : contain;
 }
 
 .container {
-    
     display              : grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap      : clamp(10px, 0.78vw, 15px);
@@ -70,32 +66,4 @@
     margin-top           : 2vw;
     grid-template-columns: repeat(3, 27%);
     justify-content      : center;
-}
-
-.catalog_button {
-    background    : linear-gradient(102.46deg, #03F0E1 2.3%, #226992 105.5%);
-    box-shadow    : 0px 2px 15px rgba(0, 0, 0, 0.1);
-    border-radius : 50px;
-    width         : 24vw;
-    height        : 4.5vw;
-    font-style    : normal;
-    font-weight   : 700;
-    font-size     : 40px;
-    line-height   : 39px;
-    /* identical to box height, or 98% */
-    text-align    : center;
-    letter-spacing: 0.04em;
-    color         : #FAFAFA;
-}
-
-
-.jost_p_center {
-    font-style    : normal;
-    font-weight   : 400;
-    font-size     : 25px;
-    line-height   : 29px;
-    /* or 152% */
-    text-align    : center;
-    letter-spacing: 0.04em;
-    color         : white;
 }

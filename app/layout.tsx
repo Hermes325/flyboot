@@ -4,7 +4,7 @@ import { Providers } from "./layouts/provider";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { Inter, Jost, Montserrat, Roboto, Lato, Noto_Sans } from "next/font/google";
+import { Inter, Montserrat, Lato, Noto_Sans } from "next/font/google";
 import { register } from "swiper/element/bundle";
 import classNames from "classnames";
 
@@ -17,24 +17,10 @@ const inter = Inter({
 
 });
 
-const jost = Jost({
-  subsets: ["cyrillic", "latin"],
-  variable: "--font-jost",
-  weight: "variable",
-  display: "optional",
-});
-
 const montserrat = Montserrat({
   subsets: ["cyrillic", "latin"],
   variable: "--font-montserrat",
   display: "optional",
-});
-
-const roboto = Roboto({
-  subsets: ["cyrillic", "latin"],
-  variable: "--font-roboto",
-  display: "optional",
-  weight: "100",
 });
 
 const lato = Lato({
@@ -61,9 +47,7 @@ export default function RootLayout({
       className={classNames(
         noto.variable,
         inter.variable,
-        roboto.variable,
         montserrat.variable,
-        jost.variable,
         lato.variable)}>
       {/*
         <head /> will contain the components returned by the nearest parent
