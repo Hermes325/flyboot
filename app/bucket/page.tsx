@@ -82,7 +82,7 @@ function BucketPage() {
 
       {/* Оплата */}
       <div className="
-        sticky max-[650px]:static max-[650px]:box-border
+        sticky max-[1100px]:static max-[1100px]:box-border
         h-fit min-w-[300px] w-[20vw]
         top-[calc(106px+74px)]
         mt-[106px] mb-[100px] max-[1500px]:mb-[50px]

@@ -56,19 +56,21 @@ const BucketItemRow = ({ bucketItem }: Props) => {
     grid-cols-[auto_1fr] max-[650px]:grid-cols-2
     items-center w-full min-h-[198px]
     gap-[1.3vw] max-[650px]:gap-[10px]
+    max-[650px]:min-h-[180px] max-[650px]:h-[180px] max-[650px]:max-h-[180px]
   '>
     <DatoCMSImage
       className="
         rounded-[10px] max-[650px]:rounded-[13px]
         bg-white
-        h-full !w-[198px]
+        h-fit min-h-[198px] !w-[198px]
         max-[650px]:!w-full
+        max-[650px]:h-[180px] max-[650px]:max-h-[180px]
       "
       objectFit="contain"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='w-full h-full flex flex-row max-[1100px]:flex-col justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px] max-[650px]:p-[1rem]'>
+    <div className='w-full min-h-[198px] flex flex-row max-[1100px]:flex-col justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px] max-[650px]:p-[1rem]'>
       <div className='flex flex-col justify-between max-[1100px]:space-y-4'>
         <h3 className='font-noto 
           text-[24px] leading-[24px]
