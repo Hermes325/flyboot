@@ -56,7 +56,8 @@ const BucketItemRow = ({ bucketItem }: Props) => {
     grid-cols-[auto_1fr] max-[650px]:grid-cols-2
     items-center w-full min-h-[198px]
     gap-[1.3vw] max-[650px]:gap-[10px]
-    max-[650px]:min-h-[180px] max-[650px]:h-[180px] max-[650px]:max-h-[180px]
+    max-[650px]:min-h-[180px] max-[650px]:h-[180px] max-[650px]:max-h-[180px] 
+    overflow-hidden
   '>
     <DatoCMSImage
       className="
