@@ -8,13 +8,24 @@ import OrderInput from './OrderInput';
 import creditCard from "@/public/bucket/credit_card.svg"
 import Image from 'next/image'
 import classNames from 'classnames';
+import PayBtn from './PayBtn';
+import Link from 'next/link';
 
 type Props = {
   order: Order
+  isDesktopForm: true
   setOrder: React.Dispatch<React.SetStateAction<Order>>
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+} | {
+  order: Order
+  isDesktopForm: false
+  setOrder: React.Dispatch<React.SetStateAction<Order>>
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  startPayment: () => void
 }
-const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
+const OrderForm = (props: Props) => {
+  const { order, setOrder, setModalOpen, isDesktopForm } = props
+
   //#region Modals
   const [isModalOpenSdek, setIsModalOpenSdek] = useState(false)
   const [isModalOpenBoxBerry, setIsModalOpenBoxBerry] = useState(false)
@@ -50,9 +61,24 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
   function changeOrder(prop: string, value: any) {
     setOrder(x => ({ ...x, [prop]: value }));
   }
+  function payOrCompleteForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    // TODO: валидация формы
+    const needCompletion = order.name === ""
+      || order.email === ""
+      || order.phone === ""
+      || order.city === ""
+      || order.street === ""
+      || order.apartment === ""
+      || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
+      || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)
+
+    if (needCompletion === false && props.isDesktopForm === false)
+      props.startPayment()
+  }
   //#endregion
 
-  return <section id='orderForm' className='mb-[100px]'>
+  return <>
     {isModalOpenSdek &&
       <SdekModal
         setSdekData={setSdekData}
@@ -74,8 +100,8 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
       <b className='font-[900]'>Оформление</b> заказа
     </h1>
 
-    <div className='flex gap-[1.3vw]'>
-      <aside className='w-fit space-y-5'>
+    <div className="flex gap-[1.3vw] max-[1100px]:px-[32px] max-[1100px]:flex-col">
+      <div className='w-fit space-y-5 max-[1100px]:!w-full'>
         <H2Styled>Способ оплаты</H2Styled>
         <BucketFormRadio
           id="card"
@@ -138,17 +164,18 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
         >
           Курьер СДЭК - 350&nbsp;₽
         </BucketFormRadio>
-      </aside>
+      </div>
 
       {/* Заполнить данные заказа  */}
-      <form className=" 
+      <form
+        onSubmit={payOrCompleteForm}
+        className=" 
           h-min
-          grid grid-cols-2 gap-[1.3vw] 
-          max-[600px]:p-[1rem]
-          max-[1000px]:!min-w-[80vw]
-          max-[1000px]:!gap-[10px]
-          max-[600px]:!min-w-[90vw]
-          text-black">
+          grid grid-cols-2 
+          min-[1100px]:gap-[1.3vw]
+          max-[1100px]:mt-[2rem]
+          max-[1100px]:!gap-[2rem]
+          max-[1100px]:grid-cols-1">
 
         {/* Адрес доставки */}
         <div className='flex flex-col space-y-5'>
@@ -219,10 +246,21 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
             name="comment"
           />
         </div>
+
+        {/* Оплата на мобилке */}
+        {isDesktopForm === false && <div className='flex flex-col space-y-5 mt-[1rem]'>
+          <PayBtn className='bg-black' type='submit'>Оплатить</PayBtn>
+          <p className="font-inter text-[12px] leading-[19px] text-[#AEAEAE]">
+            Нажимая на кнопку “Оформить заказ”, Вы принимаете условия &nbsp;
+            <Link href="/privacy" className="underline focus:text-[gray]">
+              Публичной оферты
+            </Link>
+          </p>
+        </div>}
+
       </form>
     </div>
-
-  </section>
+  </>
 }
 
 export default OrderForm

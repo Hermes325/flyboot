@@ -1,10 +1,9 @@
 import React from 'react'
 import { Order } from '../model/types'
 import Link from 'next/link'
-import classNames from 'classnames'
-import styles from "./Payment.module.css";
 import { useAppSelector } from '@/lib/redux/store/hooks';
 import { useRouter } from 'next/navigation';
+import PayBtn from './PayBtn';
 
 const priceSettings = {
   minimumFractionDigits: 0,
@@ -14,8 +13,9 @@ const priceSettings = {
 type Props = {
   order: Order
   startPayment: () => void
+  setIsMobileForm: React.Dispatch<React.SetStateAction<boolean>>
 }
-const Payment = ({ order, startPayment }: Props) => {
+const Payment = ({ order, startPayment, setIsMobileForm }: Props) => {
   const items = useAppSelector(({ items }) => items);
   const itemsAmount = items.reduce((a, v) => a + v.amount, 0);
 
@@ -27,7 +27,7 @@ const Payment = ({ order, startPayment }: Props) => {
   const itemsPriceStr = itemsPrice.toLocaleString("ru-RU", priceSettings)
   //#endregion
 
-  //#region вызов оплаты
+  //#region вызов оплаты / переход на заказ в мобилке
   const router = useRouter()
 
   function payOrCompleteForm() {
@@ -44,6 +44,10 @@ const Payment = ({ order, startPayment }: Props) => {
     needCompletion === false
       ? startPayment()
       : router.push(`/bucket#orderForm`)
+  }
+  function startForm() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setIsMobileForm(false)
   }
   //#endregion
 
@@ -63,12 +67,8 @@ const Payment = ({ order, startPayment }: Props) => {
     <tfoot>
       <tr>
         <td colSpan={2}>
-          <button
-            onClick={payOrCompleteForm}
-            className={classNames(styles.buy, "uppercase font-noto font-[700] text-[25px] leading-[26px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] w-full text-white bg-white border-2 border-solid border-black rounded-[15px]")}
-          >
-            Оформить заказ
-          </button>
+          <PayBtn className='max-[1100px]:hidden' onClick={payOrCompleteForm}>Оформить заказ</PayBtn>
+          <PayBtn className='min-[1100px]:hidden' onClick={startForm}>Оформить заказ</PayBtn>
         </td>
       </tr>
       <tr>
@@ -82,7 +82,7 @@ const Payment = ({ order, startPayment }: Props) => {
         </td>
       </tr>
     </tfoot>
-  </table >
+  </table>
 }
 
 const TableRow = (rowName: string, value: string) =>
@@ -90,6 +90,5 @@ const TableRow = (rowName: string, value: string) =>
     <td className='font-noto text-[20px] leading-[34.8px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] font-extralight py-[0.5rem] text-left'>{rowName}</td>
     <td className='font-noto text-[20px] leading-[34.8px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] font-extralight py-[0.5rem] text-right'>{value}</td>
   </tr>
-
 
 export default Payment
