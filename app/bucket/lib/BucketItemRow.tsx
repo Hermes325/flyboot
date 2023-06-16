@@ -65,7 +65,7 @@ const BucketItemRow = ({ bucketItem }: Props) => {
         bg-white
         h-fit min-h-[198px] !w-[198px]
         max-[650px]:!w-full
-        max-[650px]:h-[180px] max-[650px]:max-h-[180px]
+        max-[650px]:min-h-[180px] max-[650px]:h-[180px] max-[650px]:max-h-[180px]
       "
       pictureClassName='max-[650px]:h-[180px] max-[650px]:max-h-[180px]'
       objectFit="contain"
