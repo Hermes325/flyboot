@@ -15,13 +15,14 @@ function BucketPage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [order, setOrder] = useState<Order>(emptyOrder);
   const [isPaymentStarted, startPayment] = usePayment({ order, setOrder })
+  const [isDesktop, setIsDesktop] = useState(false)
 
   return <main className={classNames(
     `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5.5vw] pb-20
       scroll-smooth
       max-[800px]:!px-[50px]
       max-[600px]:!px-[25px]
-      max-[550px]:!px-[5px]`, {
+      max-[550px]:!px-[10px]`, {
     "relative": !isModalOpen && !isPaymentStarted,
     "overflow-hidden fixed z-[103]": isModalOpen || isPaymentStarted,
   })}>
@@ -38,27 +39,27 @@ function BucketPage() {
         </div>
       </div>}
 
-    <div className="grid grid-cols-[1fr_auto] gap-[1.3vw] relative">
+    <div className="grid grid-cols-[1fr_auto] gap-[1.3vw] relative max-[1100px]:grid-cols-1">
       {/* Заказать с доставкой */}
       <div>
         {/* Увидеть товары */}
         <BucketItems />
 
         {/* Оформить заказ */}
-        <OrderForm order={order} setOrder={setOrder} setModalOpen={setModalOpen} />
+        {isDesktop && <OrderForm order={order} setOrder={setOrder} setModalOpen={setModalOpen} />}
       </div>
 
       {/* Оплата */}
-      <div className="
+      <div className="      
             sticky
             h-fit min-w-[300px] w-[20vw]
             top-[calc(106px+74px)]
             mt-[106px] mb-[100px] max-[1500px]:mb-[50px]
+            max-[1200px]:mt-[73px]
             bg-white
             rounded-[10px]
+            max-[1100px]:m-auto
             px-[21px] py-[37px]
-            max-[600px]:!pt-[0px]
-            max-[600px]:!border-0 
             ">
         <Payment order={order} startPayment={startPayment} />
       </div>

@@ -25,6 +25,7 @@ const BucketItemRow = ({ bucketItem }: Props) => {
   const regionSizes = size.available
     .find(x => x.sizeKey === size.chosenSizeKey)
 
+  //#region Логика
   function itemPlus(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
     dispatch(addItem(bucketItem))
@@ -48,52 +49,65 @@ const BucketItemRow = ({ bucketItem }: Props) => {
 
     changeItemSize({ item: bucketItem, size: { ...bucketItem.size, chosenSizeValue: sizeNum } })
   }
+  //#endregion
 
   return <article className='
-    relative grid grid-cols-[auto_1fr] items-center w-full min-h-[198px]
-    gap-[1.3vw] max-[650px]:gap-[6px]
+    relative grid 
+    grid-cols-[auto_1fr] max-[650px]:grid-cols-2
+    items-center w-full min-h-[198px]
+    gap-[1.3vw] max-[650px]:gap-[10px]
   '>
     <DatoCMSImage
       className="
         rounded-[10px] max-[650px]:rounded-[13px]
         bg-white
         h-full !w-[198px]
+        max-[650px]:!w-full
       "
       objectFit="contain"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
 
-    <div className='w-full h-full flex flex-row justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px]'>
-      <div className='flex flex-col justify-between'>
+    <div className='w-full h-full flex flex-row max-[1100px]:flex-col justify-between max-[650px]:flex-col bg-white rounded-[10px] p-[26px_47px] max-[650px]:p-[1rem]'>
+      <div className='flex flex-col justify-between max-[1100px]:space-y-4'>
         <h3 className='font-noto 
-        text-[24px] leading-[20px] 
-        max-[1500px]:text-[15px]
-        mb-[5px] tracking-[0.01em]
-        max-[650px]:text-[15px]
-      '>
+          text-[24px] leading-[24px]
+          max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
+          max-[1100px]:text-[10px] max-[1100px]:leading-[14px]
+        '>
           {item.title}
         </h3>
 
         <p className='font-noto 
-          max-[1500px]:text-[12px] max-[1500px]:leading-[16px] 
-          max-[650px]:text-[8px] 
-          mb-[1.5rem] tracking-[0.01em]
+          max-[1500px]:text-[12px] max-[1500px]:leading-[16px]
+          max-[1100px]:leading-[11px]
+          max-[650px]:text-[8px]
+          mb-[1.5rem] max-[1100px]:!mt-[0.5rem]
           uppercase text-[#AEAEAE]
         '>
           Артикул {item.poizonArticul}
         </p>
 
         {/* Изменить товар */}
-        <div className='flex gap-[1.3vw]'>
+        <div className='flex gap-[1.3vw] max-[650px]:flex-col'>
           {/* Размер */}
           <div className="
             relative
+            w-fit max-[400px]:w-[100px]
             after:absolute
             after:content-['▼']
-            after:text-[15px] after:py-[0.5rem]
-            after:top-[7px] after:right-[2px] after:px-[5px]
+            after:text-[15px] 
+            after:px-[5px] after:py-[0.5rem]
+            after:top-[7px] after:right-[2px]
             after:w-fit after:h-[calc(100%-9px)]
-            after:outline-2 after:outline-black after:outline
+            after:outline-2 after:outline-black after:outline 
+            after:max-[1300px]:outline-1 
+            after:max-[1300px]:top-[6px]
+            after:max-[1300px]:right-[1px]
+            after:max-[1300px]:h-[calc(100%-7px)]
+            after:max-[1300px]:rounded-r-[4px]
+            after:max-[1100px]:leading-[1] 
+            after:max-[650px]:py-[0.25rem] 
             after:rounded-r-[3px]
             after:bg-transparent
             after:text-[#000]
@@ -104,17 +118,13 @@ const BucketItemRow = ({ bucketItem }: Props) => {
               defaultValue={size?.available?.find(x => x.sizeKey === size.chosenSizeKey)?.sizeValue?.[size.chosenSizeValue]}
               onChange={changeSize}
               className="
-              mt-[5px] py-[0.5rem] px-[2rem]
+              mt-[5px] py-[0.5rem] px-[2rem] max-[650px]:py-[0.25rem] 
               font-noto bg-transparent text-[#000000]
               text-[20px] leading-[25px]
               max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
-              w-[150px]
-              max-[600px]:!w-[100px]
-              max-[450px]:!w-[80px]
-              h-[auto]
-              min-h-[88%]
-              max-[450px]:!min-h-[80%]
-              border-2 border-black rounded-[5px]
+              max-[1100px]:text-[10px] max-[1100px]:leading-[14px]
+              w-[150px] max-[400px]:w-full
+              border-2 border-black rounded-[5px] max-[1300px]:border
               focus:ring-blue-500 focus:border-blue-500
               cursor-pointer appearance-none">
               {regionSizes
@@ -130,12 +140,14 @@ const BucketItemRow = ({ bucketItem }: Props) => {
 
           {/* Количество */}
           <div className='
-              mt-[5px] flex justify-around items-center w-[150px] py-[4px] px-[6px]
-              border-2 border-black rounded-[5px]
-              max-[450px]:!min-h-[80%]'>
+              mt-[5px] flex justify-around items-center w-[150px] max-[400px]:w-[100px]
+              py-[4px] px-[6px] max-[1100px]:py-[0.5rem] max-[650px]:py-[0.25rem]
+              border-2 border-black rounded-[5px] max-[1300px]:border'>
             <button
               className={classnames('font-noto font-bold text-[13px] active:scale-110',
-                "text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px]",
+                "text-[20px] leading-[25px]",
+                "max-[1500px]:text-[15px] max-[1500px]:leading-[20px]",
+                "max-[1100px]:text-[10px] max-[1100px]:leading-[14px]",
                 {
                   "text-[gray]": amount <= 1
                 })}
@@ -143,11 +155,19 @@ const BucketItemRow = ({ bucketItem }: Props) => {
               onClick={itemMinus}>
               –
             </button>
-            <p className='font-noto font-bold text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] text-[#000000]'>
+            <p className='
+              font-noto font-bold text-[#000000]
+              text-[20px] leading-[25px]
+              max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
+              max-[1100px]:text-[10px] max-[1100px]:leading-[14px]
+            '>
               {amount}
             </p>
-            <button
-              className='font-noto font-bold text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] active:scale-110'
+            <button className='
+              font-noto font-bold active:scale-110
+              text-[20px] leading-[25px] 
+              max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
+              max-[1100px]:text-[10px] max-[1100px]:leading-[14px]'
               onClick={itemPlus}>
               +
             </button>
@@ -155,16 +175,13 @@ const BucketItemRow = ({ bucketItem }: Props) => {
         </div>
       </div>
 
-      <h3 className='font-lato text-end font-extrabold text-[#000] 
+      <h3 className='font-noto text-end font-extrabold text-[#000] 
         mr-[7.5vw] min-w-[10ch]
         text-[20px] leading-[25px]
         max-[1500px]:text-[15px] max-[1500px]:leading-[20px]
-        max-[650px]:!min-w-[auto]
-        max-[650px]:!text-[12px]
-        max-[650px]:!mr-[0px]
-        max-[650px]:!text-start
-        max-[650px]:!align-top
-        pb-[30px]
+        max-[1100px]:text-[20px] max-[1100px]:leading-[25px]
+        max-[1100px]:text-start
+        max-[1280px]:mr-0
       '>
         {price}&nbsp;₽
       </h3>

@@ -7,9 +7,11 @@ import classNames from 'classnames'
 const OrderInput = (props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) =>
   <input
     {...props}
-    className={classNames(`px-[24px] text-[20px] font-noto h-[68px] max-[600px]:h-[50px] w-full
+    className={classNames(`
+    font-noto h-[68px] max-[600px]:h-[50px] w-full px-[24px] 
+    text-[20px] leading-[25px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] 
     rounded-[5px] border border-solid border-[#AEAEAE]
-    bg-transparent max-[1300px]:rounded-[30px] 
+    bg-transparent 
     invalid:border-red-500 text-black`,
       props.className)} />
 

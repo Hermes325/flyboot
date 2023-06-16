@@ -11,10 +11,11 @@ type Props = {
 }
 
 const BucketFormRadio = ({ id, checked, onChange, children, className = '', showInput = true }: Props) => {
-  return (<div className={classNames("mt-[calc(1.25rem*calc(1-var(--tw-space-y-reverse)))] mb-[20px] px-[12px] flex justify-between items-start rounded-[5px] w-[20vw] bg-black", className)}>
+  return (<div className={classNames("mt-[1.25rem] mb-[20px] px-[12px] flex justify-between items-start rounded-[5px] w-[20vw] bg-black", className)}>
     <label
-      className={classNames(`cursor-pointer inline-block font-noto text-[20px]
-      leading-[50px] font-extralight tracking-[0.01em] overflow-hidden
+      className={classNames(`cursor-pointer inline-block font-noto 
+      text-[20px] leading-[50px] max-[1500px]:text-[15px]
+      font-extralight overflow-hidden
       text-white`, {
         "w-full": !showInput
       })}

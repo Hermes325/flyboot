@@ -3,15 +3,8 @@
   border-radius: 8px;
   margin-block : 10px;
   padding-block: 17px;
-
-  font-weight   : 900;
-  font-size     : 20px;
-  line-height   : 24px;
-  letter-spacing: 0.01em;
 }
-.buy:disabled{
+
+.buy:disabled {
   opacity: .5
 }
-
-
-

@@ -50,8 +50,8 @@ const Payment = ({ order, startPayment }: Props) => {
   return <table className='w-full'>
     <thead>
       <tr>
-        <th className='font-noto text-[25px] font-[900] leading-[26px] tracking-[0.01em] uppercase text-left'>К оплате</th>
-        <th className='font-noto text-[25px] font-[900] leading-[26px] tracking-[0.01em] uppercase text-right'>{finalPriceStr}&nbsp;₽</th>
+        <th className='font-noto font-[900] text-[25px] leading-[26px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] pb-[1rem] uppercase text-left'>К оплате</th>
+        <th className='font-noto font-[900] text-[25px] leading-[26px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] pb-[1rem] uppercase text-right'>{finalPriceStr}&nbsp;₽</th>
       </tr>
     </thead>
     <tbody>
@@ -65,10 +65,9 @@ const Payment = ({ order, startPayment }: Props) => {
         <td colSpan={2}>
           <button
             onClick={payOrCompleteForm}
-            className={classNames(styles.buy, "uppercase font-inter w-full text-white bg-white border-2 border-solid border-black rounded-[15px]")}
-          // onClick={openOrderModal}
+            className={classNames(styles.buy, "uppercase font-noto font-[700] text-[25px] leading-[26px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] w-full text-white bg-white border-2 border-solid border-black rounded-[15px]")}
           >
-            ОФОРМИТЬ ЗАКАЗ
+            Оформить заказ
           </button>
         </td>
       </tr>
@@ -88,8 +87,8 @@ const Payment = ({ order, startPayment }: Props) => {
 
 const TableRow = (rowName: string, value: string) =>
   <tr>
-    <td className='font-noto text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] text-left'>{rowName}</td>
-    <td className='font-noto text-[20px] leading-[34.8px] font-extralight tracking-[0.01em] text-right'>{value}</td>
+    <td className='font-noto text-[20px] leading-[34.8px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] font-extralight py-[0.5rem] text-left'>{rowName}</td>
+    <td className='font-noto text-[20px] leading-[34.8px] max-[1500px]:text-[15px] max-[1500px]:leading-[20px] font-extralight py-[0.5rem] text-right'>{value}</td>
   </tr>
 
 

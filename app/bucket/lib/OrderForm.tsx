@@ -66,7 +66,11 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
         closeModal={closeModals}
       />}
 
-    <h1 className="font-noto text-[62px] uppercase font-[500] leading-[74px] mb-[54px]">
+    <h1 className="
+      font-noto uppercase font-[500] mb-[54px]
+      text-[62px] leading-[74px]
+      max-[1100px]:text-[30px] max-[1100px]:leading-[41px]
+    ">
       <b className='font-[900]'>Оформление</b> заказа
     </h1>
 
@@ -80,7 +84,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           showInput={false}
         >
           <div className='flex flex-row justify-between'>
-            <span className="block text-white">Картой онлайн</span>
+            <span className="block text-white text-[20px] leading-[50px] max-[1500px]:text-[15px]">Картой онлайн</span>
 
             <Image
               src={creditCard}
@@ -99,7 +103,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           className="min-h-[50px]"
         >
           <>
-            <span className="block text-white">ПВЗ СДЭК - 350 ₽</span>
+            <span className="block text-white text-[20px] leading-[50px] max-[1500px]:text-[15px]">ПВЗ СДЭК - 350&nbsp;₽</span>
             {order.delivery === "Sdek" &&
               <button
                 onClick={e => openModal(e, "Sdek")}
@@ -116,7 +120,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           className="min-h-[50px]"
         >
           <>
-            <span className="block text-white">ПВЗ Boxberry - 350 ₽</span>
+            <span className="block text-white text-[20px] leading-[50px] max-[1500px]:text-[15px]">ПВЗ Boxberry - 350&nbsp;₽</span>
             {order.delivery === "BoxBerry" &&
               <button
                 onClick={e => openModal(e, "BoxBerry")}
@@ -132,7 +136,7 @@ const OrderForm = ({ order, setOrder, setModalOpen }: Props) => {
           onChange={_ => changeOrder("delivery", "personal delivery")}
           className="min-h-[50px]"
         >
-          Курьер СДЭК - 350 ₽
+          Курьер СДЭК - 350&nbsp;₽
         </BucketFormRadio>
       </aside>
 
