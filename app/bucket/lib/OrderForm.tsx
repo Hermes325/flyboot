@@ -201,7 +201,7 @@ const OrderForm = (props: Props) => {
             onChange={(x) => changeOrder("street", x.target.value)}
             name="address"
           />
-          <div className='flex flex-row gap-[1.3vw]'>
+          <div className='flex flex-row gap-[1.3vw] max-[650px]:gap-[10px]'>
             <OrderInput
               placeholder="Корпус"
               value={order.build}
