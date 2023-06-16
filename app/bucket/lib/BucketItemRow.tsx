@@ -67,6 +67,7 @@ const BucketItemRow = ({ bucketItem }: Props) => {
         max-[650px]:!w-full
         max-[650px]:h-[180px] max-[650px]:max-h-[180px]
       "
+      pictureClassName='max-[650px]:h-[180px] max-[650px]:max-h-[180px]'
       objectFit="contain"
       data={item.images[0].responsiveImage}
       lazyLoad={true} />
