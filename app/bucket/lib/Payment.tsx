@@ -1,5 +1,4 @@
 import React from 'react'
-import { Order } from '../model/types'
 import Link from 'next/link'
 import { useAppSelector } from '@/lib/redux/store/hooks';
 import { useRouter } from 'next/navigation';
@@ -11,11 +10,11 @@ const priceSettings = {
 }
 
 type Props = {
-  order: Order
+  checkOrder: () => boolean
   startPayment: () => void
   setIsMobileForm: React.Dispatch<React.SetStateAction<boolean>>
 }
-const Payment = ({ order, startPayment, setIsMobileForm }: Props) => {
+const Payment = ({ checkOrder, startPayment, setIsMobileForm }: Props) => {
   const items = useAppSelector(({ items }) => items);
   const itemsAmount = items.reduce((a, v) => a + v.amount, 0);
 
@@ -31,19 +30,11 @@ const Payment = ({ order, startPayment, setIsMobileForm }: Props) => {
   const router = useRouter()
 
   function payOrCompleteForm() {
-    const needCompletion = order.name === ""
-      || order.email === ""
-      || order.phone === ""
-      || order.city === ""
-      || order.street === ""
-      || order.apartment === ""
-      || itemsAmount === 0
-      || (order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined)
-      || (order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined)
+    const needCompletion = checkOrder()
 
-    needCompletion === false
-      ? startPayment()
-      : router.push(`/bucket#orderForm`)
+    if (needCompletion)
+      router.push(`/bucket#orderForm`)
+    else startPayment()
   }
   function startForm() {
     window.scrollTo({ top: 0, behavior: 'smooth' })

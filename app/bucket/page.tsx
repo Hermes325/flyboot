@@ -17,6 +17,29 @@ function BucketPage() {
   const [isPaymentStarted, startPayment] = usePayment({ order, setOrder })
   const [isMobileForm, setIsMobileForm] = useState(true)
 
+  //#region Ошибки
+  const [errs, setErr] = useState<{ field: string, reason: string }[]>([])
+  function saveErr(field: string, isErr: boolean, reason: string) {
+    isErr && setErr(x => [...x, { field, reason }])
+    return isErr
+  }
+  function checkOrder(): boolean {
+    console.log("checkOrder");
+    setErr([])
+    const needCompletion =
+      saveErr("name", order.name === "", "Заполните имя")
+      || saveErr("email", order.email === "", "Введите корректный email")
+      || saveErr("phone", order.phone === "", "Введите телефон")
+      || saveErr("city", order.city === "", "Введите название города")
+      || saveErr("street", order.street === "", "Введите название улицы")
+      || saveErr("apartment", order.apartment === "", "Номер квартиры")
+      || saveErr("Sdek", order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined, "Выберите ПВЗ СДЭК")
+      || saveErr("BoxBerry", order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined, "Выберите ПВЗ BoxBerry")
+
+    return needCompletion
+  }
+  //#endregion
+
   return <main className={classNames(
     `w-screen min-h-screen flex flex-col bg-[#f5f5f5] pt-[108px] px-[5.5vw] pb-20
       scroll-smooth
@@ -41,18 +64,24 @@ function BucketPage() {
 
     {isMobileForm && <div className="grid grid-cols-[1fr_auto] gap-[1.3vw] relative max-[1100px]:grid-cols-1">
       {/* Заказать с доставкой */}
-      <div>
+      <div className="block relative min-h-fit">
         {/* Увидеть товары */}
         <BucketItems />
 
         {/* Оформить заказ */}
         <section id='orderForm' className='mb-[100px] max-[1100px]:hidden'>
-          <OrderForm order={order} setOrder={setOrder} setModalOpen={setModalOpen} isDesktopForm={true} />
+          <OrderForm
+            order={order}
+            setOrder={setOrder}
+            errs={errs}
+            checkOrder={checkOrder}
+            setModalOpen={setModalOpen}
+            isDesktopForm={true} />
         </section>
       </div>
 
       {/* Оплата */}
-      <div className="      
+      <div className="
         sticky
         h-fit min-w-[300px] w-[20vw]
         top-[calc(106px+74px)]
@@ -64,7 +93,7 @@ function BucketPage() {
         px-[21px] py-[37px]
         ">
         <Payment
-          order={order}
+          checkOrder={checkOrder}
           startPayment={startPayment}
           setIsMobileForm={setIsMobileForm}
         />
@@ -73,7 +102,14 @@ function BucketPage() {
 
     {/* Форма заказа в мобилке */}
     {!isMobileForm && <section className='mb-[100px]'>
-      <OrderForm order={order} setOrder={setOrder} setModalOpen={setModalOpen} isDesktopForm={false} startPayment={startPayment} />
+      <OrderForm
+        order={order}
+        errs={errs}
+        checkOrder={checkOrder}
+        setOrder={setOrder}
+        setModalOpen={setModalOpen}
+        isDesktopForm={false}
+        startPayment={startPayment} />
     </section>}
 
     {/* Рекомендовать товары */}

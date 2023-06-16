@@ -14,17 +14,23 @@ import Link from 'next/link';
 type Props = {
   order: Order
   isDesktopForm: true
+  errs: { field: string, reason: string }[]
+  checkOrder: () => boolean
   setOrder: React.Dispatch<React.SetStateAction<Order>>
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 } | {
   order: Order
   isDesktopForm: false
+  errs: { field: string, reason: string }[]
+  checkOrder: () => boolean
   setOrder: React.Dispatch<React.SetStateAction<Order>>
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>
   startPayment: () => void
 }
 const OrderForm = (props: Props) => {
-  const { order, setOrder, setModalOpen, isDesktopForm } = props
+  const { order, setOrder, setModalOpen, isDesktopForm, checkOrder, errs } = props
+
+  console.table(errs);
 
   //#region Modals
   const [isModalOpenSdek, setIsModalOpenSdek] = useState(false)
@@ -58,7 +64,6 @@ const OrderForm = (props: Props) => {
   //#endregion
 
   //#region Order
-  const [errs, setErr] = useState<{ field: string, reason: string }[]>([])
   function changeOrder(prop: string, value: any) {
     setOrder(x => ({ ...x, [prop]: value }));
   }
@@ -66,27 +71,14 @@ const OrderForm = (props: Props) => {
   function errsHas(field: string): boolean {
     return errs.some(x => x.field === field)
   }
-  function checkField(field: string, isErr: boolean, reason: string) {
-    isErr && setErr(x => [...x, { field, reason }])
-    return isErr
-  }
   function payOrCompleteForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setErr([])
-    const needCompletion =
-      checkField("name", order.name === "", "Заполните имя")
-      || checkField("email", order.email === "", "Введите корректный email")
-      || checkField("phone", order.phone === "", "Введите телефон")
-      || checkField("city", order.city === "", "Введите название города")
-      || checkField("street", order.street === "", "Введите название улицы")
-      || checkField("apartment", order.apartment === "", "Номер квартиры")
-      || checkField("Sdek", order.delivery === "Sdek" && order.Sdek?.PVZ?.Address === undefined, "Выберите ПВЗ СДЭК")
-      || checkField("BoxBerry", order.delivery === "BoxBerry" && order.BoxBerry?.address === undefined, "Выберите ПВЗ BoxBerry")
+    const needCompletion = checkOrder()
 
     if (needCompletion === false && props.isDesktopForm === false)
       props.startPayment()
     else
-      console.log(needCompletion, "прошла проверка");
+      console.table(errs);
   }
   //#endregion
 
@@ -198,14 +190,14 @@ const OrderForm = (props: Props) => {
           <OrderInput
             placeholder="Город"
             value={order.city}
-            className={classNames({ "border-red-500": errsHas("city") })}
+            className={classNames({ "!border-red-500": errsHas("city") })}
             onChange={(x) => changeOrder("city", x.target.value)}
             name="city"
           />
           <OrderInput
             placeholder="Улица, дом"
             value={order.street}
-            className={classNames({ "border-red-500": errsHas("street") })}
+            className={classNames({ "!border-red-500": errsHas("street") })}
             onChange={(x) => changeOrder("street", x.target.value)}
             name="address"
           />
@@ -219,7 +211,7 @@ const OrderForm = (props: Props) => {
             <OrderInput
               placeholder="Кв."
               value={order.apartment}
-              className={classNames({ "border-red-500": errsHas("apartment") })}
+              className={classNames({ "!border-red-500": errsHas("apartment") })}
               onChange={(x) => changeOrder("apartment", x.target.value)}
               name="apartament"
             />
@@ -234,7 +226,7 @@ const OrderForm = (props: Props) => {
             placeholder="ФИО"
             type="text"
             value={order.name}
-            className={classNames({ "border-red-500": errsHas("name") })}
+            className={classNames({ "!border-red-500": errsHas("name") })}
             onChange={(x) => changeOrder("name", x.target.value)}
             name="FIO"
           />
@@ -242,7 +234,7 @@ const OrderForm = (props: Props) => {
             placeholder="Телефон"
             type="tel"
             value={order.phone}
-            className={classNames({ "border-red-500": errsHas("phone") })}
+            className={classNames({ "!border-red-500": errsHas("phone") })}
             onChange={({ target }) => changeOrder("phone", target.value)}
             name="phone"
           />
@@ -250,7 +242,7 @@ const OrderForm = (props: Props) => {
             placeholder="E-mail"
             type="email"
             value={order.email}
-            className={classNames({ "border-red-500": errsHas("email") })}
+            className={classNames({ "!border-red-500": errsHas("email") })}
             onChange={(x) => changeOrder("email", x.target.value)}
             name="email"
           />
@@ -266,6 +258,14 @@ const OrderForm = (props: Props) => {
             name="comment"
           />
         </div>
+
+        {isDesktopForm && errs.length > 0 &&
+          <p className={classNames(
+            "text-[20px] leading-[24px]",
+            "max-[1500px]:text-[15px] max-[1500px]:leading-[20px]",
+            "w-fit font-noto font-[700] text-red-500")}>
+            * {errs[0].reason}
+          </p>}
       </div>
 
       {/* Оплата на мобилке */}
